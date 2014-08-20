@@ -1,0 +1,1588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>Tesina di RICERCA OPERATIVA - Analisi - Gionata 
+Massi</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name=author content="Gionata Massi">
+  <meta name="keywords" content="metodo del simplesso, 
+programmazione lineare, forma standard, forma canonica, tableau, metodo delle 
+due fasi, programmazione lineare intera, medodo dei piani di taglio, variabili 
+slack, variabili surplus, variabili ausiliarie, variabili artificiali, forma di 
+inamissibilità, regione di ammissibilità, Gionata Massi">
+  <link rel="StyleSheet" href="stile.css" type="text/css" media="screen">
+</head>
+
+<body>
+
+  <table width="100%" border="0" summary=
+  "divide in tre parti lo schermo per presentare la testata come ||IMG| Titolo 
+|IMG||">
+    <thead>
+      <tr>
+        <th><img src="images/sx.png" alt="IMAGE [EQN]"
+        height="200" width="250"></th>
+
+        <th valign="middle">
+          <div align="center">
+            <h1>METODO DEL SIMPLESSO</h1>
+
+            <h2>Universit&agrave; Politecnica delle Marche</h2>
+
+            <h3>Tesina di Gionata Massi per il corso di Ricerca Operativa</h3>
+
+          </div>
+        </th>
+
+        <th><img src="images/dx.png" alt="IMAGE [MTX]" height="200"
+        width="250"></th>
+      </tr>
+    </thead>
+  </table>
+
+  <!-- TAGLIA 1 -->
+  <hr align="left" width="100%">
+  <br>
+  <br>
+  <!-- FINE TESTATA -->
+<h2>Analisi</h2><h4>Il problema introdotto &egrave;</h4>
+		<strong>min z =  - 3/4 x<sub>4</sub> + 20 x<sub>5</sub> - 1/2 x<sub>6</sub> + 6 x<sub>7</sub><br><br>
+		Soggetto a<br><br>
+		1)  x<sub>1</sub> + 1/4 x<sub>4</sub> - 8 x<sub>5</sub> - x<sub>6</sub> + 9 x<sub>7</sub> = 0 <br>2)  + x<sub>2</sub> + 1/2 x<sub>4</sub> - 12 x<sub>5</sub> - 1/2 x<sub>6</sub> + 3 x<sub>7</sub> = 0 <br>3)  + x<sub>3</sub> + x<sub>6</sub> = 1 <br>
+		&nbsp; &nbsp; &nbsp; &nbsp; x<sub>i</sub> &gt;= 0 &nbsp; &nbsp; per i = 1,...,7</strong><br><br>
+
+<p><strong>La FORMA STANDARD coincide la rappresentazione del problema immessa</strong>.</p><p><strong>La FORMA CANONICA coincide con quella STANDARD</strong>.</p><h2>Metodo del SIMPLESSO</h2><h4>Tableau al passo 0:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/4</td>
+<td bgcolor="#FFFFFF">20</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">6</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#FFFFFF">-8</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">9</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x4</strong>.<br><h4>Tableau al passo 1:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-7/2</td>
+<td bgcolor="#FFFFFF">33</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-32</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">36</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-15</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x5</strong>.<br><h4>Tableau al passo 2:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">18</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#FFFFFF">-84</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">3/8</td>
+<td bgcolor="#FFFFFF">-15/4</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x6</strong>.<br><h4>Tableau al passo 3:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-3/2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-21/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/16</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/64</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">3/16</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">21/2</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x7</strong>.<br><h4>Tableau al passo 4:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">16</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-6</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/2</td>
+<td bgcolor="#FFFFFF">56</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#FFFFFF">-2/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/4</td>
+<td bgcolor="#FFFFFF">16/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">6</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">5/2</td>
+<td bgcolor="#FFFFFF">-56</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x1</strong>.<br><h4>Tableau al passo 5:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-7/4</td>
+<td bgcolor="#FFFFFF">44</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/4</td>
+<td bgcolor="#FFFFFF">28</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/6</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-1/6</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x2</strong>.<br><h4>Tableau al passo 6:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/4</td>
+<td bgcolor="#FFFFFF">20</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">6</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#FFFFFF">-8</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">9</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x4</strong>.<br><h4>Tableau al passo 7:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-7/2</td>
+<td bgcolor="#FFFFFF">33</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-32</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">36</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-15</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x5</strong>.<br><h4>Tableau al passo 8:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">18</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#FFFFFF">-84</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">3/8</td>
+<td bgcolor="#FFFFFF">-15/4</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x6</strong>.<br><h4>Tableau al passo 9:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-3/2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-21/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/16</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/64</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">3/16</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">21/2</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x7</strong>.<br><h4>Tableau al passo 10:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">16</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-6</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/2</td>
+<td bgcolor="#FFFFFF">56</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#FFFFFF">-2/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/4</td>
+<td bgcolor="#FFFFFF">16/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">6</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">5/2</td>
+<td bgcolor="#FFFFFF">-56</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x1</strong>.<br><h4>Tableau al passo 11:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-7/4</td>
+<td bgcolor="#FFFFFF">44</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/4</td>
+<td bgcolor="#FFFFFF">28</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/6</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-1/6</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x2</strong>.<br><h4>Tableau al passo 12:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/4</td>
+<td bgcolor="#FFFFFF">20</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">6</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#FFFFFF">-8</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">9</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x4</strong>.<br><h4>Tableau al passo 13:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-7/2</td>
+<td bgcolor="#FFFFFF">33</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-32</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">36</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-15</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x5</strong>.<br><h4>Tableau al passo 14:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">18</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#FFFFFF">-84</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">3/8</td>
+<td bgcolor="#FFFFFF">-15/4</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x6</strong>.<br><h4>Tableau al passo 15:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-3/2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-21/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/16</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/64</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">3/16</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">21/2</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x7</strong>.<br><h4>Tableau al passo 16:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">16</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-6</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/2</td>
+<td bgcolor="#FFFFFF">56</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#FFFFFF">-2/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/4</td>
+<td bgcolor="#FFFFFF">16/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">6</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">5/2</td>
+<td bgcolor="#FFFFFF">-56</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x1</strong>.<br><h4>Tableau al passo 17:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-7/4</td>
+<td bgcolor="#FFFFFF">44</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/4</td>
+<td bgcolor="#FFFFFF">28</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/6</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-1/6</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x2</strong>.<br><h4>Tableau al passo 18:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/4</td>
+<td bgcolor="#FFFFFF">20</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">6</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#FFFFFF">-8</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">9</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x4</strong>.<br><h4>Tableau al passo 19:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-7/2</td>
+<td bgcolor="#FFFFFF">33</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-32</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">36</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">4</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-15</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x5</strong>.<br><h4>Tableau al passo 20:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">18</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">8</td>
+<td bgcolor="#FFFFFF">-84</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">3/8</td>
+<td bgcolor="#FFFFFF">-15/4</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 4, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x6</strong>.<br><h4>Tableau al passo 21:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-3/2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-21/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/16</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/64</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">3/16</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-1/8</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">21/2</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 5, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x7</strong>.<br><h4>Tableau al passo 22:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">16</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-6</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/2</td>
+<td bgcolor="#FFFFFF">56</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#FFFFFF">-2/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/4</td>
+<td bgcolor="#FFFFFF">16/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">6</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">5/2</td>
+<td bgcolor="#FFFFFF">-56</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 6, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x1</strong>.<br><h4>Tableau al passo 23:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-7/4</td>
+<td bgcolor="#FFFFFF">44</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-5/4</td>
+<td bgcolor="#FFFFFF">28</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/3</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/6</td>
+<td bgcolor="#FFFFFF">-4</td>
+<td bgcolor="#FFFFFF">-1/6</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 7, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x2</strong>.<br><h4>Tableau al passo 24:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-3/4</td>
+<td bgcolor="#FFFFFF">20</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">6</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/4</td>
+<td bgcolor="#FFFFFF">-8</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">9</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#FFFFFF">-12</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+<td bgcolor="#FFFFFF">3</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 2, 3 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 0 <br>x<sub>7</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x4</strong>.<br>L'algoritmo termina perch&egrave; raggiunto il numero massimo di iterazioni previste.<br>
+  <!-- INIZIO PIEDE -->
+  <br>
+  <br>
+  <hr align="left" width="100%">
+  <!-- TAGLIA 2 -->
+
+  <table border="0" width="100%" cellspacing="0" cellpadding="0"
+  summary="link a fondo pagina">
+    <thead>
+      <tr>
+        <th width="25%" align="left" valign="top"><a href=
+        "index.php"><img src="images/top.png" alt="[HOME]  "
+        height="32" width="32" border="0"> Tornare alla pagina
+        principale.</a></th>
+
+        <th width="25%" align="center" valign="top"><a href=
+        "immissione_dati_0.php"><img src="images/up.png" alt=
+        "[NEW]  " height="32" width="32" border="0"> Inserire un nuovo
+        problema.</a></th>
+
+        <th width="25%" align="right" valign="top"><a href=
+        "show_src.php?script=simplesso.php" target="sorgenti">
+        <img src="images/src.png" alt="[SRC]  " height="32" width="32" border="0"> 
+        Vedi il codice sorgente del file.</a></th>
+        
+        <th width="25%" align="right" valign="top"><a href=
+        "info.php" target="info"><img src="images/doc.png"
+        alt="[INFO]  " height="32" width="32" border="0"> Andare alla
+        documentazione.</a></th>
+      </tr>
+    </thead>
+  </table>
+  <hr width="100%">
+  <br>
+  <br>
+
+  <table width="100%" summary=
+  "divide in due lo schermo per un migliore output grafico e la massima 
+separazione fra nome e indirizzo email">  <tbody>
+      <tr>
+        <td width="50%" align="left">
+          <address>
+            Creato da <strong>Gionata Massi</strong><br>
+            Copyright (c) 2003
+          </address>
+        </td>
+
+        <td width="50%" align="right">
+          <address>
+            Email: <a href=
+            "mailto:g.massi@univpm.it">g.massi@univpm.it</a><br>
+          </address>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

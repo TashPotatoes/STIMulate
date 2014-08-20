@@ -1,0 +1,10 @@
+# Problema di PL proposto nella dispensa a pagina 4 #
+minmax = max
+numVariables = 2
+numConstraints = 3
+intera = false
+c = [ 120 40 ]
+d = 0 
+a = [ 40 20 ; 8 2 ; 1 1 ]
+b = [ 2200 320 100 ]
+lge = [ =< =< =< ]

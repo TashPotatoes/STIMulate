@@ -1,0 +1,11 @@
+# Problema di PLI proposto nella dispensa a pag 7 #
+
+minmax = max
+numVariables = 2
+numConstraints = 2
+intera = true
+c = [ 120 80 ]
+d = 0 
+a = [ 2 1 ; 7 8 ]
+b = [ 6 28 ]
+lge = [ =< =< ]

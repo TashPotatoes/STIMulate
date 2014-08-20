@@ -1,0 +1,31 @@
+h1 {
+   font-size: xx-large;
+   color: red;
+   font-style: oblique
+}
+
+h2 {
+   font-size: x-large;
+   color: blue;
+   font-style: italic;
+   text-align: center 
+}
+
+h3 {
+   font-size: large;
+   color: black;
+   font-style: normal
+}
+
+h4 {
+   font-size: large;
+   color: brown;
+   font-style: normal
+}
+
+th {
+   font-family: sans-serif;
+   font-weight: bold;
+   font-style: oblique;
+   text-align: center
+}

@@ -1,0 +1,14 @@
+#
+Problema di Beale:
+ il metodo del simplesso non converge applicato ai dati in questione
+#
+
+minmax = min
+numVariables = 7
+numConstraints = 3
+intera = false
+c = [ 0 0 0 -3/4 20 -1/2 6 ]
+d = 0 
+a = [ 1 0 0 1/4 -8 -1 9 ; 0 1 0 1/2 -12 -1/2 3 ; 0 0 1 0 0 1 0 ]
+b = [ 0 0 1 ]
+lge = [ = = = ]

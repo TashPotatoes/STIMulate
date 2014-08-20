@@ -1,0 +1,49 @@
+# 
+L'unico scopo di questo esempio e' provare se gli "1"
+vengono visualizzati correttamente.
+#
+
+minmax = max
+
+numVariables = 4
+
+numConstraints = 8
+
+intera = true
+
+c = [ -1 -1 1 1 ]
+
+d = 0 
+
+a = [
+       1  1  1  1 ;
+       1 -1  1 -1 ;
+       1  1 -1 -1 ;
+       1 -1 -1  1 ;
+      -1 -1 -1 -1 ;
+      -1  1 -1  1 ;
+      -1 -1  1  1 ;
+      -1  1  1 -1 
+    ]
+
+b = [
+      1
+      1
+      1
+      1 
+      1
+      1
+      1
+      1
+    ]
+
+lge = [
+        =<
+	=<
+	=<
+	=<
+	=<
+	=<
+	=<
+	=<
+      ]

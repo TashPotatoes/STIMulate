@@ -1,0 +1,15 @@
+# Da "Optimization Modeling with LINDO" pag. 17 #
+minmax = max
+numVariables = 3
+numConstraints = 6
+intera = false
+c = [ 1 1 1 ]
+d = 0 
+a = [  2 -1  0 ;
+       2  0 -1 ;
+      -1  2  0 ;
+       0  2 -1 ;
+      -1  0  2 ;
+       0 -1  2 ]
+b = [ 1 1 1 1 1 1 ]
+lge = [ =< =< =< =< =< =< ]

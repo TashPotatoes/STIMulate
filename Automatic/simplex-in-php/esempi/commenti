@@ -1,0 +1,39 @@
+ #######################################################
+##                                                     #
+##   Test sulla sintassi accettata da prova_simplesso  #
+##                                                     #
+#######################################################
+#
+
+# commento semplice su una riga #
+
+#
+commento che occupa
+piu' di una riga
+#
+
+### ancora un commento valido #
+
+# le stringhe a sinistra del simbolo '=' sono CASE INSENSITIVE #
+MinMax = max
+Numvariables = 2
+numconstraints = 3
+INTERA = true
+
+# 
+i ritorni a capo '\n' contenuti fra '[' e `]`vengono ignorati 
+e il punto e virgola ';' rimane necessario per separare le rghe
+della matrice 'a'
+#
+
+### i commenti non sono validi all'interno delle quadre #
+
+C = [ 2 1 ]
+d = 0 
+A = [ 1 -2 ;
+     -3  1 ;
+       1 1 ]
+b = [ 2 3 4 ]
+lge = [ =<
+        =<
+        =< ]

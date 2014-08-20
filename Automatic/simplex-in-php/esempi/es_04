@@ -1,0 +1,14 @@
+# Esercizio nr. 4 - INFINITE SOLUZIONI #
+minmax = min
+numVariables = 2
+numConstraints = 3
+intera = false
+c = [ -2 -3 ]
+d = 0 
+a = [ -2 3 ;
+       1 3 ;
+       1 0 ]
+b = [ 6
+      9
+      6 ]
+lge = [ =< =< =< ]

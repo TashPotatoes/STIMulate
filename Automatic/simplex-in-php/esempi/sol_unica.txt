@@ -1,0 +1,15 @@
+### 
+Le dimensioni del problema impongono l'esistenza di un'unica soluzione
+#
+
+minmax = max
+numVariables = 2
+numConstraints = 3
+intera = true
+c = [ 0 3 ]
+d = 5
+a = [ 1 4 ;
+      6 2 ;
+     -5 1 ]
+b = [ 0 0 50 ]
+lge = [ =< = =< ]

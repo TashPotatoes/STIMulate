@@ -1,0 +1,14 @@
+# Esercizio nr. 5 #
+minmax = max
+numVariables = 2
+numConstraints = 3
+intera = false
+c = [ 1 1 ]
+d = 0 
+a = [ 2  1 ;
+      1 -2 ;
+      0  1 ]
+b = [ 8
+      2
+      4 ]
+lge = [ =< =< =< ]

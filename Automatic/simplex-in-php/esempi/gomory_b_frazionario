@@ -1,0 +1,14 @@
+### Problema di PLI. Il metodo dei tagli di Gomory non è applicabile
+#
+minmax = max
+numVariables = 2
+numConstraints = 4
+intera = true
+c = [ 120 40 ]
+d = 0
+a = [ 40 20 ;
+	8 2 ;
+	1 1 ;
+	1 1 ]
+b = [ 2200 320 100 171/2 ]
+lge = [ =< =< =< >= ]

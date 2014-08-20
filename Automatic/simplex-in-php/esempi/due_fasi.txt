@@ -1,0 +1,14 @@
+# 
+Problema di PL da risolvere con il metodo delle due fasi
+proposto sul libro pagine 53-54
+#
+
+minmax = min
+numVariables = 2
+numConstraints = 4
+intera = false
+c = [ 0 -1 ]
+d = 0 
+a = [ 1 1 ; 1 1 ; 1 -1 ; 1 -1 ]
+b = [ 1 2 1 -1 ]
+lge = [ >= =< =< >= ]

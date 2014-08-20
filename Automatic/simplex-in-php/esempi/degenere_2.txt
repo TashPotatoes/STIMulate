@@ -1,0 +1,15 @@
+### 
+#
+
+minmax = max
+numVariables = 2
+numConstraints = 4
+intera = true
+c = [ 4 3 ]
+d = 0
+a = [ 1 2 ;
+      1 1 ;
+      1 0 ;
+      0 1 ]
+b = [ 12 10 10 6 ]
+lge = [ =< =< =< <= ]

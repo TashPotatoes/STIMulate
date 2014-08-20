@@ -1,0 +1,12 @@
+# Esercizio nr. 2 #
+minmax = min
+numVariables = 2
+numConstraints = 2
+intera = false
+c = [ 0 -1 ]
+d = 0 
+a = [ 2 1 ;
+     -1 1 ]
+b = [ 2
+      0 ]
+lge = [ =< =< ]

@@ -1,0 +1,14 @@
+# Esercizio nr. 7 #
+minmax = max
+numVariables = 2
+numConstraints = 3
+intera = false
+c = [ 1 4 ]
+d = 0 
+a = [ 1 6 ;
+      5 3 ;
+      1 0 ]
+b = [ 9
+      12
+      2  ]
+lge = [ =< =< =< ]

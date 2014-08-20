@@ -1,0 +1,12 @@
+# Esercizio nr. 3 -- INFINITE SOLUZIONI #
+minmax = max
+numVariables = 2
+numConstraints = 2
+intera = true
+c = [ 1 1 ]
+d = 0 
+a = [ 1 0 ;
+      1 1 ]
+b = [ 3
+      5 ]
+lge = [ =< =< ]

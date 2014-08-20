@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>Tesina di RICERCA OPERATIVA - Analisi - Gionata 
+Massi</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name=author content="Gionata Massi">
+  <meta name="keywords" content="metodo del simplesso, 
+programmazione lineare, forma standard, forma canonica, tableau, metodo delle 
+due fasi, programmazione lineare intera, medodo dei piani di taglio, variabili 
+slack, variabili surplus, variabili ausiliarie, variabili artificiali, forma di 
+inamissibilità, regione di ammissibilità, Gionata Massi">
+  <link rel="StyleSheet" href="stile.css" type="text/css" media="screen">
+</head>
+
+<body>
+
+  <table width="100%" border="0" summary=
+  "divide in tre parti lo schermo per presentare la testata come ||IMG| Titolo 
+|IMG||">
+    <thead>
+      <tr>
+        <th><img src="images/sx.png" alt="IMAGE [EQN]"
+        height="200" width="250"></th>
+
+        <th valign="middle">
+          <div align="center">
+            <h1>METODO DEL SIMPLESSO</h1>
+
+            <h2>Universit&agrave; Politecnica delle Marche</h2>
+
+            <h3>Tesina di Gionata Massi per il corso di Ricerca Operativa</h3>
+
+          </div>
+        </th>
+
+        <th><img src="images/dx.png" alt="IMAGE [MTX]" height="200"
+        width="250"></th>
+      </tr>
+    </thead>
+  </table>
+
+  <!-- TAGLIA 1 -->
+  <hr align="left" width="100%">
+  <br>
+  <br>
+  <!-- FINE TESTATA -->
+<h2>Analisi</h2><h4>Il problema introdotto &egrave;</h4>
+		<strong>min z =  - x<sub>2</sub><br><br>
+		Soggetto a<br><br>
+		1)  x<sub>1</sub> + x<sub>2</sub> &gt;= 1 <br>2)  x<sub>1</sub> + x<sub>2</sub> =&lt; 2 <br>3)  x<sub>1</sub> - x<sub>2</sub> =&lt; 1 <br>4)  x<sub>1</sub> - x<sub>2</sub> &gt;= -1 <br>
+		&nbsp; &nbsp; &nbsp; &nbsp; x<sub>i</sub> &gt;= 0 &nbsp; &nbsp; per i = 1,...,2</strong><br><br>
+
+<h4>Il problema espresso in FORMA STANDARD</h4>
+		<strong>min z =  - x<sub>2</sub><br><br>
+		Soggetto a<br><br>
+		1)  x<sub>1</sub> + x<sub>2</sub> - x<sub>3</sub> = 1 <br>2)  x<sub>1</sub> + x<sub>2</sub> + x<sub>4</sub> = 2 <br>3)  x<sub>1</sub> - x<sub>2</sub> + x<sub>5</sub> = 1 <br>4)  x<sub>1</sub> - x<sub>2</sub> - x<sub>6</sub> = -1 <br>
+		&nbsp; &nbsp; &nbsp; &nbsp; x<sub>i</sub> &gt;= 0 &nbsp; &nbsp; per i = 1,...,6</strong><br><br>
+
+<h4>Il problema espresso in FORMA CANONICA</h4>
+		<strong>min z =  - x<sub>2</sub><br><br>
+		Soggetto a<br><br>
+		1)  x<sub>1</sub> + x<sub>2</sub> - x<sub>3</sub> + x<sub>7</sub> = 1 <br>2)  x<sub>1</sub> + x<sub>2</sub> + x<sub>4</sub> = 2 <br>3)  x<sub>1</sub> - x<sub>2</sub> + x<sub>5</sub> = 1 <br>4)  - x<sub>1</sub> + x<sub>2</sub> + x<sub>6</sub> = 1 <br>
+		&nbsp; &nbsp; &nbsp; &nbsp; x<sub>i</sub> &gt;= 0 &nbsp; &nbsp; per i = 1,...,7</strong><br><br>
+
+<center><img src="images/tmp/due_fasi.png" alt="[IMG]  Regione di ammissibilita'" align="middle"></center><h4>Il problema espresso in FORMA CANONICA per la prima fase</h4>
+        <strong> min &rho; = &Sigma; &alpha;<sub>i</sub> =  - x<sub>1</sub> - x<sub>2</sub> + x<sub>3</sub> + 1 <br><br>
+        Soggetto a<br><br>
+        1)  x<sub>1</sub> + x<sub>2</sub> - x<sub>3</sub> + x<sub>7</sub> = 1 <br>2)  x<sub>1</sub> + x<sub>2</sub> + x<sub>4</sub> = 2 <br>3)  x<sub>1</sub> - x<sub>2</sub> + x<sub>5</sub> = 1 <br>4)  - x<sub>1</sub> + x<sub>2</sub> + x<sub>6</sub> = 1 <br>
+        &nbsp; &nbsp; x<sub>i</sub> &gt;= 0 &nbsp; per i =1,...,7</strong>
+        <h2>Fase I</h2><h4>Tableau al passo 0:</h4>
+<table summary="mostra il tableau in un lato e nell'altro il valore delle variabili" cellpadding="50%" cellspacing="50%">
+ <tbody>
+  <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r5</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+  <td>Indici di base: S = { 7, 4, 5, 6 } <br>
+        Soluzione di base: &rho; = 1 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 0 <br>x<sub>4</sub> = 2 <br>x<sub>5</sub> = 1 <br>x<sub>6</sub> = 1 <br>x<sub>7</sub> = 1 <br></td>
+  </tr>
+ </tbody>
+</table>
+Soluzione non ammissibile. L'algoritmo continua ad iterare.<br>
+Pivot in riga <strong>r2</strong> colonna <strong>x1</strong>.<br>
+<h4>Tableau al passo 1:</h4>
+<table summary="mostra il tableau in un lato e nell'altro il valore delle variabili" cellpadding="50%" cellspacing="50%">
+ <tbody>
+  <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+<th>x7</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r5</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+  <td>Indici di base: S = { 1, 4, 5, 6 } <br>
+        Soluzione di base: &rho; = 0 <br>x<sub>1</sub> = 1 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 0 <br>x<sub>4</sub> = 1 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 2 <br>x<sub>7</sub> = 0 <br></td>
+  </tr>
+ </tbody>
+</table>
+&rho; &egrave; minimizzata.<br>
+Tutte le variabili artificiali sono fuori base<br>
+<h2>Metodo del SIMPLESSO</h2><h4>Tableau al passo 0:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 1, 4, 5, 6 } <br>
+        Soluzione di base: z = 0 <br>x<sub>1</sub> = 1 <br>x<sub>2</sub> = 0 <br>x<sub>3</sub> = 0 <br>x<sub>4</sub> = 1 <br>x<sub>5</sub> = 0 <br>x<sub>6</sub> = 2 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    <center><img src="images/tmp/due_fasi0.png" alt="[IMG]  Regione di ammissibilita'" align="middle"></center>Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r1</strong> colonna <strong>x2</strong>.<br><h4>Tableau al passo 1:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 2, 4, 5, 6 } <br>
+        Soluzione di base: z = -1 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 1 <br>x<sub>3</sub> = 0 <br>x<sub>4</sub> = 1 <br>x<sub>5</sub> = 2 <br>x<sub>6</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    <center><img src="images/tmp/due_fasi1.png" alt="[IMG]  Regione di ammissibilita'" align="middle"></center>Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r4</strong> colonna <strong>x3</strong>.<br><h4>Tableau al passo 2:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">-1</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#FFFFFF">-2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 2, 4, 5, 3 } <br>
+        Soluzione di base: z = -1 <br>x<sub>1</sub> = 0 <br>x<sub>2</sub> = 1 <br>x<sub>3</sub> = 0 <br>x<sub>4</sub> = 1 <br>x<sub>5</sub> = 2 <br>x<sub>6</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    <center><img src="images/tmp/due_fasi2.png" alt="[IMG]  Regione di ammissibilita'" align="middle"></center>Soluzione migliorabile. L'algoritmo continua ad iterare.<br>Pivot in riga <strong>r2</strong> colonna <strong>x1</strong>.<br><h4>Tableau al passo 3:</h4>
+    <table summary="mostra il tableau in un lato e nell'altro il valore delle
+    variabili" cellpadding="50%" cellspacing="50%">
+     <tbody>
+      <tr><td>
+        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
+         <thead>
+        <tr  align="center" valign="middle">
+            <th></th><th></th><th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>x4</th>
+<th>x5</th>
+<th>x6</th>
+</tr>
+         </thead>
+         <tbody>
+         <tr  align="center"  valign="middle"><td><strong>r0</strong></td><td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r1</strong></td><td bgcolor="#FFFFFF">3/2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r2</strong></td><td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">1/2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">-1/2</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r3</strong></td><td bgcolor="#FFFFFF">2</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+</tr><tr  align="center"  valign="middle"><td><strong>r4</strong></td><td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#E8E8E8">1</td>
+<td bgcolor="#FFFFFF">1</td>
+<td bgcolor="#E8E8E8">0</td>
+<td bgcolor="#FFFFFF">0</td>
+</tr>
+         </tbody>
+        </table>
+        </td>
+      <td>Indici di base: S = { 2, 1, 5, 3 } <br>
+        Soluzione di base: z = -3/2 <br>x<sub>1</sub> = 1/2 <br>x<sub>2</sub> = 3/2 <br>x<sub>3</sub> = 1 <br>x<sub>4</sub> = 0 <br>x<sub>5</sub> = 2 <br>x<sub>6</sub> = 0 <br></td>
+      </tr>
+     </tbody>
+    </table>
+    <center><img src="images/tmp/due_fasi3.png" alt="[IMG]  Regione di ammissibilita'" align="middle"></center><font color="red" size="+2">Soluzione <strong>ottima</strong>: &nbsp;&nbsp;&nbsp; </font><font color="#0000FF" size="+2">z<sup>*</sup> = -3/2, &nbsp;&nbsp;&nbsp; x<sup>*</sup> = [ 1/2, 3/2, 1, 0, 2, 0 ]<sup>T</sup></font><br>
+
+  <!-- INIZIO PIEDE -->
+  <br>
+  <br>
+  <hr align="left" width="100%">
+  <!-- TAGLIA 2 -->
+
+  <table border="0" width="100%" cellspacing="0" cellpadding="0"
+  summary="link a fondo pagina">
+    <thead>
+      <tr>
+        <th width="25%" align="left" valign="top"><a href=
+        "index.php"><img src="images/top.png" alt="[HOME]  "
+        height="32" width="32" border="0"> Tornare alla pagina
+        principale.</a></th>
+
+        <th width="25%" align="center" valign="top"><a href=
+        "immissione_dati_0.php"><img src="images/up.png" alt=
+        "[NEW]  " height="32" width="32" border="0"> Inserire un nuovo
+        problema.</a></th>
+
+        <th width="25%" align="right" valign="top"><a href=
+        "show_src.php?script=simplesso.php" target="sorgenti">
+        <img src="images/src.png" alt="[SRC]  " height="32" width="32" border="0"> 
+        Vedi il codice sorgente del file.</a></th>
+        
+        <th width="25%" align="right" valign="top"><a href=
+        "info.php" target="info"><img src="images/doc.png"
+        alt="[INFO]  " height="32" width="32" border="0"> Andare alla
+        documentazione.</a></th>
+      </tr>
+    </thead>
+  </table>
+  <hr width="100%">
+  <br>
+  <br>
+
+  <table width="100%" summary=
+  "divide in due lo schermo per un migliore output grafico e la massima 
+separazione fra nome e indirizzo email">  <tbody>
+      <tr>
+        <td width="50%" align="left">
+          <address>
+            Creato da <strong>Gionata Massi</strong><br>
+            Copyright (c) 2003
+          </address>
+        </td>
+
+        <td width="50%" align="right">
+          <address>
+            Email: <a href=
+            "mailto:g.massi@univpm.it">g.massi@univpm.it</a><br>
+          </address>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

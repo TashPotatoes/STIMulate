@@ -1,0 +1,9 @@
+minmax = min
+numVariables = 7
+numConstraints = 3
+intera = flase
+c = [ 0 0 0 -3/4 0 -1/2 6 ]
+d = 0
+a = [ 1 0 0 1/4 -8 -1 9 ; 0 1 0 1/2 -12 -1/2 3 ; 0 0 1 0 0 1 0 ]
+b = [ 0 0 1 ]
+lge = [ = =< >= ]

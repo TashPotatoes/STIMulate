@@ -1,0 +1,33 @@
+#
+Problema di scheduling proposto nella dispensa a pagina 12
+#
+
+minmax = min
+numVariables = 6
+numConstraints = 6
+intera = true
+
+c = [ 1 1 1 1 1 1 ]
+
+d = 0 
+
+a = [ 1 0 0 0 0 1 ;
+      1 1 0 0 0 0 ;
+      0 1 1 0 0 0 ;
+      0 0 1 1 0 0 ;
+      0 0 0 1 1 0 ;
+      0 0 0 0 1 1 ]
+
+b = [ 7
+     20
+     14
+     20
+     10
+      5 ]
+
+lge = [ >=
+        >=
+        >= 
+        >=
+        >=
+        >= ]
