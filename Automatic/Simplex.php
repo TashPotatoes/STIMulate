@@ -34,7 +34,7 @@ function init_variables(&$ismax, &$numVariables, &$numConstraints, &$_a, &$_b,
  /* Read the data that has been sent and creates the corresponding variables */ 
 	foreach ($_POST as $var => $value) {
 		$$var = $value;	
-	} //Potential error: echo "$var = $value<br />\n"; $_POST as $var => $value;
+	}
 
 	// Determine if the objective function is required to be negative or not?	
 	if (!strcmp($minmax, "max")) $changeSign = true;
@@ -54,7 +54,7 @@ function init_variables(&$ismax, &$numVariables, &$numConstraints, &$_a, &$_b,
 		$_b[$i] = new razionale;
 		if (isset($b[$i]))
 			$_b[$i]->scanfrac($b[$i]);		
-	} //Potential error: $i = 1; $i < $numConstraints + 1; $i++
+	}
 	
 	// generate _c objective coefficients
 	for ($j = 1; $j < $numVariables + 1; $j++) {
