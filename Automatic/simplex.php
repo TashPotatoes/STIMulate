@@ -2,9 +2,9 @@
 
 
 
-/// Retrieve from databasic
+/// Retrieve from database
 
-
+// the following is information about input parameters
 //     $ismax          Controls whether lp is Maximisation or Minimisation
 //     $numVariables    Number of decision variables
 //     $numConstraints  Number of constraints (rows in table + 1)
@@ -27,7 +27,7 @@
 //     $entire          The entire linear programming problem
 
 
-
+require 'rationalNum.php';
 
 function init_variables(&$ismax, &$numVariables, &$numConstraints, &$_a, &$_b,
  &$_c, &$_d, &$inequal, &$entire, &$changeSign, &$graphic, &$image, &$name){
@@ -43,7 +43,7 @@ function init_variables(&$ismax, &$numVariables, &$numConstraints, &$_a, &$_b,
 	// generate _a coefficient matrix
 	for ($j = 1; $j < $numVariables + 1; $j++) {
 		for ($i = 1; $i < $numConstraints + 1; $i++) {
-			$_a[$i][$j] = new razionale;
+			$_a[$i][$j] = new rationalNum;
 			if (isset($a[$i][$j]))
 				$_a[$i][$j]->scanfrac($a[$i][$j]);		
 		} // Potential error: $i = 1; $i < $numConstraints + 1; $i++) { for ( //$j = 1; $j < $numVariables + 1; $j++){		
@@ -51,20 +51,20 @@ function init_variables(&$ismax, &$numVariables, &$numConstraints, &$_a, &$_b,
 	
 	// generate _b resource vector
 	for ($i = 1; $i < $numConstraints + 1; $i++) {
-		$_b[$i] = new razionale;
+		$_b[$i] = new rationalNum;
 		if (isset($b[$i]))
 			$_b[$i]->scanfrac($b[$i]);		
 	}
 	
 	// generate _c objective coefficients
 	for ($j = 1; $j < $numVariables + 1; $j++) {
-		$_c[$j] = new razionale;
+		$_c[$j] = new rationalNum;
 		if (isset($c[$j]))
 			$_c[$j]->scanfrac($c[$j]);	
 	} //Potential error: $j = 1; $j < $numVariables + 1; $j++
 	
 	// generate _d
-	$_d = new razionale;
+	$_d = new rationalNum;
 	if (isset($d)){
 		$_d->scanfrac($d);
 	}
@@ -96,7 +96,7 @@ function standardise(&$minmax, &$numVariables, $numConstraints, &$a, &$b,
 			// slack
 			$numAux++;
 			$j = $numVariables + $numAux;
-			$a[$i][$j] = new razionale(1, 1);
+			$a[$i][$j] = new rationalNum(1, 1);
 			$inequal[$i] = "=";
 			// if b >= 0 -> e' definitely in basic $basic[]=(variable => line)
 			if ($b[$i]->value() >= 0) $basic[] = array($i => $j);
@@ -108,7 +108,7 @@ function standardise(&$minmax, &$numVariables, $numConstraints, &$a, &$b,
 			// surplus
 			$numAux++;
 			$j = $numVariables + $numAux;
-			$a[$i][$j] = new razionale(-1, 1);
+			$a[$i][$j] = new rationalNum(-1, 1);
 			$inequal[$i] = "=";
 			if ($b[$i]->value() < 0) $basic[] = array($i => $j);
 		}		
@@ -148,7 +148,7 @@ function isBasic($a, $c, $numConstraints, $numVariables, $i, $j)  {
 /* check if the variable x [$ j] can get into the basic set and possibly 
   perform the operation to find the output */ 
 function searchBasic($a, $c, $numConstraints, $numVariables, $i, &$div) {
-	$div = new razionale;
+	$div = new rationalNum;
 	for ($j = 1; $j < $numVariables + 1; $j++) {
 		if (!isset($a[$i][$j])) continue;
 		$div = $a[$i][$j];
@@ -167,7 +167,7 @@ function searchBasic($a, $c, $numConstraints, $numVariables, $i, &$div) {
 
 
 function normalise(&$a, &$b, $i, $j, $numVariables) {
-	$div = new razionale;
+	$div = new rationalNum;
 	$div = $a[$i][$j];
 	if ($div->value() == 1) return "";
 	elseif ($div->num() > 0) {
@@ -182,7 +182,7 @@ function normalise(&$a, &$b, $i, $j, $numVariables) {
 
 function addArtificial($i, $numArtificials, $numVariables, &$a, $b, &$rho, &$basic) {
 	$k = $numVariables + $numArtificials;
-	$a[$i][$k] = new razionale(1, 1);
+	$a[$i][$k] = new rationalNum(1, 1);
 	for ($j = 1; $j < $numVariables + 1; $j++) if (isset($a[$i][$j])) {
 		$rho[$j]->subfrac($rho[$j], $a[$i][$j]);
 	}
@@ -218,7 +218,7 @@ function reduceCanon(&$minmax, &$numVariables, &$numConstraints, &$numArtificial
 				$basic[$i - 1] = $j;
 			} //$j = searchBasic( $a, $c, $numConstraints, $numVariables, $i, $div )
 			else {
-				if (!isset($rho)) for ($k = 0; $k < $numVariables + 1; $k++) $rho[$k] = new razionale(0, 1);
+				if (!isset($rho)) for ($k = 0; $k < $numVariables + 1; $k++) $rho[$k] = new rationalNum(0, 1);
 				$tmp.= addArtificial($i, ++$numArtificials, $numVariables, $a, $b, $rho, $basic);
 				// TODO: Check!!!!
 				$basic[$i - 1] = $numVariables + $numArtificials;
@@ -228,23 +228,23 @@ function reduceCanon(&$minmax, &$numVariables, &$numConstraints, &$numArtificial
 	return $tmp;
 } // END reduceCanon()
 function crea_tableau_simplesso($a, $b, $c, $d, $numVariables, $numConstraints, $changeSign, $basic, &$Tableau) {
-	$matrice[0][0] = new razionale(-$d->num(), $d->den());
-	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($c[$j])) $matrice[0][$j] = new razionale($c[$j]->num(), $c[$j]->den());
-	for ($i = 0; $i < $numConstraints + 1; $i++) if (isset($b[$i])) $matrice[$i][0] = new razionale($b[$i]->num(), $b[$i]->den());
-	for ($i = 1; $i < $numConstraints + 1; $i++) for ($j = 1; $j < $numVariables + 1; $j++) if (isset($a[$i][$j])) $matrice[$i][$j] = new razionale($a[$i][$j]->num(), $a[$i][$j]->den());
+	$matrice[0][0] = new rationalNum(-$d->num(), $d->den());
+	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($c[$j])) $matrice[0][$j] = new rationalNum($c[$j]->num(), $c[$j]->den());
+	for ($i = 0; $i < $numConstraints + 1; $i++) if (isset($b[$i])) $matrice[$i][0] = new rationalNum($b[$i]->num(), $b[$i]->den());
+	for ($i = 1; $i < $numConstraints + 1; $i++) for ($j = 1; $j < $numVariables + 1; $j++) if (isset($a[$i][$j])) $matrice[$i][$j] = new rationalNum($a[$i][$j]->num(), $a[$i][$j]->den());
 	$Tableau = new matrix($numConstraints + 1, $numVariables + 1, $matrice, $basic, $changeSign);
 } // END crea_tableau_simplesso()
 function crea_tableau_fase_1($rho, $a, $b, $c, $d, $numVariables, $numConstraints, $changeSign, $basic, &$Tableau) {
 	// aggiungiamo la forma di inammissibilita'
-	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($rho[$j])) $matrice[0][$j] = new razionale($rho[$j]->num(), $rho[$j]->den());
-	////$matrice[0][0] = new razionale(-$matrice[0][0]->num(), $matrice[0][0]->den());
-	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($c[$j])) $matrice[1][$j] = new razionale($c[$j]->num(), $c[$j]->den());
+	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($rho[$j])) $matrice[0][$j] = new rationalNum($rho[$j]->num(), $rho[$j]->den());
+	////$matrice[0][0] = new rationalNum(-$matrice[0][0]->num(), $matrice[0][0]->den());
+	for ($j = 0; $j < $numVariables + 1; $j++) if (isset($c[$j])) $matrice[1][$j] = new rationalNum($c[$j]->num(), $c[$j]->den());
 	if ($changeSign)
-		$matrice[1][0] = new razionale(-$d->num(), $d->den());
+		$matrice[1][0] = new rationalNum(-$d->num(), $d->den());
 	else
-		$matrice[1][0] = new razionale($d->num(), $d->den());
-	for ($i = 1; $i < $numConstraints + 1; $i++) if (isset($b[$i])) $matrice[$i + 1][0] = new razionale($b[$i]->num(), $b[$i]->den());
-	for ($i = 1; $i < $numConstraints + 1; $i++) for ($j = 1; $j < $numVariables + 1; $j++) if (isset($a[$i][$j])) $matrice[$i + 1][$j] = new razionale($a[$i][$j]->num(), $a[$i][$j]->den());
+		$matrice[1][0] = new rationalNum($d->num(), $d->den());
+	for ($i = 1; $i < $numConstraints + 1; $i++) if (isset($b[$i])) $matrice[$i + 1][0] = new rationalNum($b[$i]->num(), $b[$i]->den());
+	for ($i = 1; $i < $numConstraints + 1; $i++) for ($j = 1; $j < $numVariables + 1; $j++) if (isset($a[$i][$j])) $matrice[$i + 1][$j] = new rationalNum($a[$i][$j]->num(), $a[$i][$j]->den());
 	// cambiare l'assegnamento agli indici di basic
 	for ($i = 0; $i < count($basic); $i++) {
 		//foreach ($basic[$i] as $key => $value) {
@@ -299,7 +299,7 @@ function fase_1(&$Tableau, &$content, $numArtificials) /*
 	if ($passo == 25) $content.= "L'algoritmo termina perch&egrave; raggiunto il numero massimo di iterazioni previste.<br>\n";
 	// ricordarsi che la soluzione in $Tableau->elemento(0,0) va interpretata col segno invertito
 	// rho > 0
-	$p = new razionale;
+	$p = new rationalNum;
 	$p = $Tableau->elemento(0, 0);
 	if ($p->value() < 0) {
 		$content.= 'La regione di ammisssibilit&agrave; &egrave; vuota.<p><font color="red" size="+2"><strong>Non esistono soluzioni.<br></strong></font></p>';
