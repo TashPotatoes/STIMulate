@@ -223,9 +223,9 @@ class rationalNum {
 	public function scanfrac($x) {
 		// if the string includes "/" parse it as a normal fraction
 		if (strchr($x, "/")) {
-			$num_den = explode("/", $x, strlen($x));
-			$this->num = $num_den[0];
-			$this->den = $num_den[1];
+			$numDen = explode("/", $x, strlen($x));
+			$this->num = $numDen[0];
+			$this->den = $numDen[1];
 		} 
 		// if string includes "." convert to double and ..
 		else if (strchr($x, ".")) { 
