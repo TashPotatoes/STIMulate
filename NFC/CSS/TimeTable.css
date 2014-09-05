@@ -1,0 +1,84 @@
+/* Contains the timetable elements */
+.timeTable {
+	width: 700px;
+	height: 700px;
+	margin: 0 auto 0 auto;
+	border-collapse: collapse;
+}
+
+.timeTable th {
+    vertical-align: middle;
+}
+
+.timeTable td {
+	border-bottom: 1px solid rgba(30,144,255, 0.5);
+	width: 100px;
+	border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+	/* Manipulating text location */
+	vertical-align: top;
+	color: rgba(0,0,0,0.5);
+}
+
+.timeTable th {
+	border-bottom: 2px solid rgba(30,144,255, 1);
+	width: 100px;
+    height: 50px;
+}
+
+.calCell{
+    height: 100px;
+    overflow: hidden;
+}
+.calCell a {
+	width: 100%;
+}
+.calCell:hover, .calCell:hover {
+
+}
+
+.calActivity {
+    background: limegreen;
+    text-align: center;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+}
+
+.old {
+    background: red;
+}
+
+.calActivity:hover, .calActivity:hover a {
+    background: #1E90FF;
+    color: white;
+}
+
+.popup {
+    position: absolute;
+    width: 150px;
+    cursor: default;
+}
+
+.remove {
+    background: white;
+    color: black;
+    width:100%;
+
+    display: block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: deepskyblue;
+}
+
+.calActivity p {
+    margin: 0;
+    padding: 0;
+}
+
+.shift {
+    background: limegreen;
+}

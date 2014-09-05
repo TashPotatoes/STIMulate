@@ -1,0 +1,61 @@
+header {
+    background: dimgrey;
+    padding: 10px 0 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(30,144,255);
+}
+
+header h1 {
+    font-size: 14pt;
+    display: inline;
+    margin: 0;
+    padding: 0 0 0 10px;
+    color: white;
+}
+
+header ul {
+    display: inline;
+    padding: 0;
+    margin-left: 15%;
+    cursor: pointer;
+
+}
+
+header li {
+    text-decoration: none;
+    display: inline;
+    list-style: none;
+}
+
+header li a {
+    padding: 10px 25px 10px 25px;
+    color: white;
+    font-weight: bold;
+
+    background: rgb(30,144,255);
+}
+
+header li a:hover {
+    color: black;
+}
+
+.submitBtn {
+    padding: 7.5px 7.5px 7.5px 7.5px;
+    background: rgb(30,144,255);
+    color: white;
+    border: none;
+    cursor:pointer;
+
+    font-size: 12pt;
+
+}
+
+
+.inputField {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 7px 2.5px 7px 2.5px;
+}

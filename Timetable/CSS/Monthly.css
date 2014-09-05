@@ -1,0 +1,46 @@
+#wrapper {
+    background: white;
+    width: 800px;
+    margin: 0 auto 0 auto;
+    padding-bottom: 20px;
+}
+
+#calWrapper {
+    overflow: hidden;
+}
+
+legend {
+    font-size: 24pt;
+    color: black;
+}
+
+fieldset {
+    border: 0;
+    background: none;
+}
+
+td {
+    background: white;
+}
+
+#search{
+    background: white;
+    width: 670px;
+    margin: 0 auto 0 auto;
+}
+
+#search legend {
+    padding-top: 10px;
+    color: rgb(30,144,255);
+    font-size: 14pt;
+}
+
+#searchBar {
+    width: 550px;
+    display: inline-block;
+
+}
+
+#searchBar input {
+    margin: 0;
+}
