@@ -49,11 +49,12 @@ margin: 0 auto;
 }
 .filter-stream ul li
 {
-float: left;
-text-align: center;
-width: 100px;
-padding: 15px;
-margin: 15px;
+    float: left;
+    text-align: center;
+    width: 100px;
+    padding: 15px;
+    margin: 15px;
+    cursor: pointer;
 }
 
 .filter-spec {

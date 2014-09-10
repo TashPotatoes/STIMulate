@@ -14,7 +14,7 @@
     <h1>Stimulate Rapid Prototype [V19/08/2014]</h1>
     <ul>
         <li><a href = "..\1.0 Stimulate\Index.php">Record a Session</a></li>
-        <li><a href = "Index.php">Monthly Calendar</a></li>
+        <li><a href = "../Index.php">Monthly Calendar</a></li>
         <li><a href = "Weekly.php">Weekly Calendar</a></li>
     </ul>
 </header>
@@ -32,7 +32,7 @@
         </form>
     </div>
     <div id = "calWrapper">
-        <?php include "Include/Weekly.inc"?>
+        <?php include "Include/Weekly.inc" ?>
     </div>
 </div>
 

@@ -1,0 +1,38 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   Timetable/.idea/.name
+#	new file:   Timetable/.idea/Timetable.iml
+#	new file:   Timetable/.idea/encodings.xml
+#	new file:   Timetable/.idea/misc.xml
+#	new file:   Timetable/.idea/modules.xml
+#	new file:   Timetable/.idea/scopes/scope_settings.xml
+#	new file:   Timetable/.idea/vcs.xml
+#	new file:   Timetable/.idea/workspace.xml
+#	new file:   Timetable/Include/Weekly.php
+#	modified:   Timetable/Include/header.php
+#	new file:   Timetable/css/style.css
+#	new file:   Timetable/css/timetable.css
+#	new file:   Timetable/js/filters.js
+#	new file:   Timetable/js/jQuery.js
+#	new file:   Timetable/js/jquery-ui.js
+#	new file:   Timetable/php/DatabaseAPI.php
+#	new file:   Timetable/php/MySQL.php
+#	new file:   Timetable/php/SqlObject.php
+#	new file:   Timetable/php/amazontest.php
+#
+# Changes not staged for commit:
+#	deleted:    Timetable/Include/css/style.css
+#	deleted:    Timetable/Include/css/timetable.css
+#	deleted:    Timetable/Include/js/filters.js
+#	deleted:    Timetable/Include/php/DatabaseAPI.php
+#	deleted:    Timetable/Include/php/MySQL.php
+#	deleted:    Timetable/Include/php/SqlObject.php
+#	deleted:    Timetable/Include/php/amazontest.php
+#	deleted:    Timetable/Weekly.php
+#
+
