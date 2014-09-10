@@ -19,134 +19,136 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
 */
+
+require_once "rationalNum.php";
+
 class matrix {
-	public $rows; // the row number of the tableau
-	public $cols; // the column number of the tableau
-	public $Tableau; // the tabluea
+	public $rows; // the row number of the table
+	public $cols; // the column number of the table
+	public $table; // the tabluea
 	public $S; // $S[] = base index holds associated solution for the row 
 	public $changeSign; // boolean variable == true if the problem is a max
-	public $sol; // Solution vector of the form [z|x]
-	
-	
-	 /* Constructor that allocates the matrix A [row x col] 
-	 */ 
-	public function matrix($rows, $cols, $matrice, $S, $changeSign){
+	public $solutionVector; // Solution vector of the form [z|x]
+
+    // Constructor that allocates the matrix A [row x col]
+	public function __construct($rows, $cols, $matrix, $S, $changeSign){
 		$this->rows = $rows;
 		$this->cols = $cols;
-		$this->Tableau = $matrice;
+		$this->table = $matrix;
 		$this->S = $S;
 		$this->changeSign = $changeSign;
 	}
-	
-	
-	/* end Matrix. Finds if $j is in solution vector and returns the index
-	  otherwise it returns -1 
-	*/
+
+    // End matrix. Find if $j is in solution vector and returns the index, else
+    // returns -1
 	public function inS($j) {
 		$m = count($this->S);
 		// iterate through S array to find j and return index
-		for ($i = 0; $i < $m; $i++) if ($j == $this->S[$i]) return $i;
+		for ($i = 0; $i < $m; $i++) {
+            if ($j == $this->S[$i]) {
+                return $i;
+            }
+        }
 		return -1;
 	}
-	
-	
-	/* Funzioni di output "grafico"
-	*/
-	public function display_tableau() /* scrive la matrice $this->Tableau in forma di tabella */ {
-		$content = '
-        <table frame="box" summary="visualizzazione tableau" cellspacing="5" cellpadding="3">
-         <thead>
-        ';
-		// aggiungi intestazioni
-		$content.= '<tr  align="center" valign="middle">
-            <th></th><th></th>';
-		for ($j = 1; $j < $this->cols; $j++)
-		// aggiungi elemento di posizione (i,j)
-		$content.= sprintf("<th>x%d</th>\n", $j);
-		$content.= '</tr>
-         </thead>
-         <tbody>
-         ';
-		for ($i = 0; $i < $this->rows; $i++) {
-			// aggiungi una riga
-			$content.= '<tr  align="center"  valign="middle"><td><strong>r' . $i . '</strong></td>';
+
+	// Visual output function. Writes the array $this->table in html table form
+	public function display_table() {
+		$content = '<table><thead>';
+
+		// adding headers
+		$content.= '<tr><th></th><th></th>';
+		for ($j = 1; $j < $this->cols; $j++) {
+            // Add element into position i,j
+            $content.= sprintf("<th>x%d</th>\n", $j);
+        }
+		$content.= '</tr></thead><tbody>';
+
+        for ($i = 0; $i < $this->rows; $i++) {
+			// Adding a line
+			$content.= '<tr><td><strong>r' . $i . '</strong></td>';
+
 			for ($j = 0; $j < $this->cols; $j++) {
-				// aggiungi elemento di posizione (i,j)
-				if ($this->inS($j) >= 0) $bgcolor = "#E8E8E8";
-				else $bgcolor = "#FFFFFF";
-				if (!isset($this->Tableau[$i][$j])) $content.= sprintf("<td bgcolor=\"$bgcolor\">0</td>\n");
-				else $content.= sprintf("<td bgcolor=\"$bgcolor\">%s</td>\n", $this->Tableau[$i][$j]->fractoa());
-			} //$j = 0; $j < $this->cols; $j++
+				// Add element into position i,j
+				if ($this->inS($j) >= 0) {
+                    $bgcolor = "#E8E8E8";
+                } else {
+                    $bgcolor = "#FFFFFF";
+                }
+
+				if (!isset($this->table[$i][$j])) {
+                    $content.= sprintf("<td bgcolor=\"$bgcolor\">0</td>\n");
+                } else {
+                    $content.= sprintf("<td bgcolor=\"$bgcolor\">%s</td>\n", $this->table[$i][$j]->fractoa());
+                }
+			}
 			$content.= '</tr>';
-		} //$i = 0; $i < $this->rows; $i++
-		$content.= '
-         </tbody>
-        </table>
-        ';
+		}
+		$content.= '</tbody></table>';
+
 		return $content;
 	}
 	
-	public function display_equations($fase) /* scrive la matrice $this->Tableau in forma di equazioni */ {
-		if ($fase == 1) $content = '
-        <strong> min z = ';
-		else $content = '
-        <strong> min &rho; = &Sigma; &alpha;<sub>i</sub> = ';
+	public function display_equations($fase) /* scrive la matrice $this->table in forma di equazioni */ {
+		if ($fase == 1) {
+            $content = '<strong> min z = ';
+        } else {
+            $content = '<strong> min &rho; = &Sigma; &alpha;<sub>i</sub> = ';
+        }
 		// 1ma riga: c^t x + ...
-		if (!isset($this->Tableau[0][1])) $content.= sprintf("&nbsp; &nbsp;");
-		else if ($this->Tableau[0][1]->value() == 1) {
+		if (!isset($this->table[0][1])){
+            $content.= sprintf("&nbsp; &nbsp;");
+        } else if ($this->table[0][1]->value() == 1) {
 			$content.= sprintf(" x<sub>1</sub>");
-		} //$this->Tableau[0][1]->value() == 1
-		else if ($this->Tableau[0][1]->num() == 0) {
+		} else if ($this->table[0][1]->num() == 0) { //$this->table[0][1]->value() == 1
 			// $content .= sprintf("&nbsp; &nbsp;");
-			
-		} //$this->Tableau[0][1]->num() == 0
-		else if ($this->Tableau[0][1]->value() == - 1) {
+		} else if ($this->table[0][1]->value() == - 1) { //$this->table[0][1]->num() == 0
 			$content.= sprintf(" - x<sub>1</sub>");
-		} //$this->Tableau[0][1]->value() == -1
+		} //$this->table[0][1]->value() == -1
 		else {
-			$content.= sprintf(" %s x<sub>1</sub>", $this->Tableau[0][1]->fractoa());
+			$content.= sprintf(" %s x<sub>1</sub>", $this->table[0][1]->fractoa());
 		}
 		for ($j = 2; $j < $this->cols; $j++) {
-			if (!isset($this->Tableau[0][$j])) {
+			if (!isset($this->table[0][$j])) {
 				// $content .= sprintf("&nbsp; &nbsp;");
 				
-			} //!isset( $this->Tableau[0][$j] )
-			else if ($this->Tableau[0][$j]->num() >= 0) {
-				if ($this->Tableau[0][$j]->value() == 1) { // = 1
+			} //!isset( $this->table[0][$j] )
+			else if ($this->table[0][$j]->num() >= 0) {
+				if ($this->table[0][$j]->value() == 1) { // = 1
 					$content.= sprintf(" + x<sub>%d</sub>", $j);
-				} //$this->Tableau[0][$j]->value() == 1
-				else if ($this->Tableau[0][$j]->num() == 0) { // = 0
+				} //$this->table[0][$j]->value() == 1
+				else if ($this->table[0][$j]->num() == 0) { // = 0
 					// $content .= sprintf("&nbsp; &nbsp;");
 					
-				} //$this->Tableau[0][$j]->num() == 0
+				} //$this->table[0][$j]->num() == 0
 				else { // > 0, != 1
-					$content.= sprintf(" + %s x<sub>%d</sub>", $this->Tableau[0][$j]->fractoa(), $j);
+					$content.= sprintf(" + %s x<sub>%d</sub>", $this->table[0][$j]->fractoa(), $j);
 				}
-			} //$this->Tableau[0][$j]->num() >= 0
-			else if ($this->Tableau[0][$j]->value() == - 1) { // = -1
+			} //$this->table[0][$j]->num() >= 0
+			else if ($this->table[0][$j]->value() == - 1) { // = -1
 				$content.= sprintf(" - x<sub>%d</sub>", $j);
-			} //$this->Tableau[0][$j]->value() == -1
+			} //$this->table[0][$j]->value() == -1
 			else { // < 0 != -1
 				$tmp = new rationalNum;
-				$tmp = clone $this->Tableau[0][$j];
+				$tmp = clone $this->table[0][$j];
 				$tmp->negatefrac();
 				$content.= sprintf(" - %s x<sub>%d</sub>", $tmp->fractoa(), $j);
 			}
 		} //$j = 2; $j < $this->cols; $j++
 		// ... + (-d)
-		if (!isset($this->Tableau[0][0])) {
+		if (!isset($this->table[0][0])) {
 			// $content .= sprintf("&nbsp; &nbsp;");
 			
-		} //!isset( $this->Tableau[0][0] )
-		else if ($this->Tableau[0][0]->num() > 0) {
-			$content.= sprintf(" - %s ", $this->Tableau[0][0]->fractoa());
-		} //$this->Tableau[0][0]->num() > 0
-		else if ($this->Tableau[0][0]->num() < 0) {
+		} //!isset( $this->table[0][0] )
+		else if ($this->table[0][0]->num() > 0) {
+			$content.= sprintf(" - %s ", $this->table[0][0]->fractoa());
+		} //$this->table[0][0]->num() > 0
+		else if ($this->table[0][0]->num() < 0) {
 			$tmp = new rationalNum;
-			$tmp = clone $this->Tableau[0][0];
+			$tmp = clone $this->table[0][0];
 			$tmp->negatefrac();
 			$content.= sprintf(" + %s ", $tmp->fractoa());
-		} //$this->Tableau[0][0]->num() < 0
+		} //$this->table[0][0]->num() < 0
 		else;
 		$content.= '<br><br>
         Soggetto a<br><br>
@@ -157,54 +159,54 @@ class matrix {
 			if ($fase == 1) $content.= $i . ') ';
 			else $content.= $i - 1 . ') ';
 			// variabile 1ma colonna
-			if (!isset($this->Tableau[$i][1])) {
+			if (!isset($this->table[$i][1])) {
 				// $content .= sprintf("&nbsp; &nbsp;");
 				
-			} //!isset( $this->Tableau[$i][1] )
-			else if ($this->Tableau[$i][1]->value() == 1) {
+			} //!isset( $this->table[$i][1] )
+			else if ($this->table[$i][1]->value() == 1) {
 				$content.= sprintf(" x<sub>1</sub>");
-			} //$this->Tableau[$i][1]->value() == 1
-			else if ($this->Tableau[$i][1]->value() == - 1) {
+			} //$this->table[$i][1]->value() == 1
+			else if ($this->table[$i][1]->value() == - 1) {
 				$content.= sprintf(" - x<sub>1</sub>");
-			} //$this->Tableau[$i][1]->value() == -1
-			else if ($this->Tableau[$i][1]->num() == 0) {
+			} //$this->table[$i][1]->value() == -1
+			else if ($this->table[$i][1]->num() == 0) {
 				// $content .= sprintf("&nbsp; &nbsp;");
 				
-			} //$this->Tableau[$i][1]->num() == 0
+			} //$this->table[$i][1]->num() == 0
 			else {
-				$content.= sprintf(" %.s x<sub>1</sub>", $this->Tableau[$i][1]->fractoa());
+				$content.= sprintf(" %.s x<sub>1</sub>", $this->table[$i][1]->fractoa());
 			}
 			// le altre colonne
 			for ($j = 2; $j < $this->cols; $j++) {
-				if (!isset($this->Tableau[$i][$j])) {
+				if (!isset($this->table[$i][$j])) {
 					// $content .= sprintf("&nbsp; &nbsp;");
 					
-				} //!isset( $this->Tableau[$i][$j] )
-				else if ($this->Tableau[$i][$j]->num() >= 0) { // >= 0
-					if ($this->Tableau[$i][$j]->value() == 1) { // == 1
+				} //!isset( $this->table[$i][$j] )
+				else if ($this->table[$i][$j]->num() >= 0) { // >= 0
+					if ($this->table[$i][$j]->value() == 1) { // == 1
 						$content.= sprintf(" + x<sub>%d</sub>", $j);
-					} //$this->Tableau[$i][$j]->value() == 1
-					else if ($this->Tableau[$i][$j]->num() == 0) { // == 0
+					} //$this->table[$i][$j]->value() == 1
+					else if ($this->table[$i][$j]->num() == 0) { // == 0
 						// $content .= sprintf("&nbsp; &nbsp;");
 						
-					} //$this->Tableau[$i][$j]->num() == 0
+					} //$this->table[$i][$j]->num() == 0
 					else { // > 0 != 1
-						$content.= sprintf(" + %s x<sub>%d</sub>", $this->Tableau[$i][$j]->fractoa(), $j);
+						$content.= sprintf(" + %s x<sub>%d</sub>", $this->table[$i][$j]->fractoa(), $j);
 					}
-				} //$this->Tableau[$i][$j]->num() >= 0
-				else if ($this->Tableau[$i][$j]->value() == - 1) { // == -1
+				} //$this->table[$i][$j]->num() >= 0
+				else if ($this->table[$i][$j]->value() == - 1) { // == -1
 					$content.= sprintf(" - x<sub>%d</sub>", $j);
-				} //$this->Tableau[$i][$j]->value() == -1
+				} //$this->table[$i][$j]->value() == -1
 				else { // < 0 != -1
 					$tmp = new rationalNum;
-					$tmp = clone $this->Tableau[$i][$j];
+					$tmp = clone $this->table[$i][$j];
 					$tmp->negatefrac();
 					$content.= sprintf(" - %s x<sub>%d</sub>", $tmp->fractoa(), $j);
 				}
 			} //$j = 2; $j < $this->cols; $j++
 			// risorse
-			if (!isset($this->Tableau[$i][0])) $content.= sprintf(" = 0 <br>");
-			else $content.= sprintf(" = %s <br>", $this->Tableau[$i][0]->fractoa());
+			if (!isset($this->table[$i][0])) $content.= sprintf(" = 0 <br>");
+			else $content.= sprintf(" = %s <br>", $this->table[$i][0]->fractoa());
 		} //$i = $fase; $i < $this->rows; $i++
 		// non negativita'
 		$content.= '
@@ -232,15 +234,15 @@ class matrix {
 		$content.= ' <br>
         Soluzione di base: ';
 		if ($fase == 1) {
-			$p = new rationalNum(-$this->Tableau[0][0]->num(), $this->Tableau[0][0]->den());
+			$p = new rationalNum(-$this->table[0][0]->num(), $this->table[0][0]->den());
 			$content.= sprintf("&rho; = %s <br>", $p->fractoa());
 			// scrive la soluzione di base: variabili in e fuori base
 			for ($j = 1; $j < $this->cols; $j++) {
 				$i = $this->inS($j);
 				if ($i >= 0) { // in base?
-					if (isset($i)) $content.= sprintf("x<sub>%d</sub> = %s <br>", $j, $this->Tableau[$i + 2][0]->fractoa());
+					if (isset($i)) $content.= sprintf("x<sub>%d</sub> = %s <br>", $j, $this->table[$i + 2][0]->fractoa());
 					else echo "in_base NON FUNZIONA<br />\n";
-					$this->sol[$j] = clone $this->Tableau[$i + 2][0];
+					$this->sol[$j] = clone $this->table[$i + 2][0];
 				} //$i >= 0
 				else {
 					$content.= sprintf("x<sub>%d</sub> = 0 <br>", $j);
@@ -250,18 +252,18 @@ class matrix {
 		} //$fase == 1
 		else { // seconda fase
 			if ($this->changeSign == false) // problema di min
-			$this->sol[0] = new rationalNum(-$this->Tableau[0][0]->num(), $this->Tableau[0][0]->den());
+			$this->sol[0] = new rationalNum(-$this->table[0][0]->num(), $this->table[0][0]->den());
 			else { // problema di max
-				$this->sol[0] = new rationalNum($this->Tableau[0][0]->num(), $this->Tableau[0][0]->den());
+				$this->sol[0] = new rationalNum($this->table[0][0]->num(), $this->table[0][0]->den());
 			}
 			$content.= sprintf("z = %s <br>", $this->sol[0]->fractoa());
 			// scrive la soluzione di base: variabili in e fuori base
 			for ($j = 1; $j < $this->cols; $j++) {
 				$i = $this->inS($j);
 				if ($i >= 0) { // in base? Se si' $i = riga risorsa
-					if (isset($i)) $content.= sprintf("x<sub>%d</sub> = %s <br>", $j, $this->Tableau[$i + 1][0]->fractoa());
+					if (isset($i)) $content.= sprintf("x<sub>%d</sub> = %s <br>", $j, $this->table[$i + 1][0]->fractoa());
 					else echo "in_base NON FUNZIONA<br />\n";
-					$this->sol[$j] = clone $this->Tableau[$i + 1][0];
+					$this->sol[$j] = clone $this->table[$i + 1][0];
 				} //$i >= 0
 				else {
 					$content.= sprintf("x<sub>%d</sub> = 0 <br>", $j);
@@ -303,14 +305,14 @@ class matrix {
 		//}
 		return -1;
 	}
-	public function riduci_tableau($varArtificials) /* Cambia il tableau del metodo delle 2 fasi per eseguire il m. del simplesso */ {
+	public function riduci_table($varArtificials) /* Cambia il table del metodo delle 2 fasi per eseguire il m. del simplesso */ {
 		// le colonne delle variabili artificiali non mi servono piu'
-		for ($i = 0; $i < $this->rows; $i++) for ($j = $this->cols - $varArtificials; $j < $this->cols; $j++) unset($this->Tableau[$i][$j]);
+		for ($i = 0; $i < $this->rows; $i++) for ($j = $this->cols - $varArtificials; $j < $this->cols; $j++) unset($this->table[$i][$j]);
 		$this->cols-= $varArtificials;
 		// Alza la matrice di una riga
-		for ($i = 0; $i < $this->rows; $i++) for ($j = 0; $j < $this->cols; $j++) $this->Tableau[$i - 1][$j] = $this->Tableau[$i][$j];
+		for ($i = 0; $i < $this->rows; $i++) for ($j = 0; $j < $this->cols; $j++) $this->table[$i - 1][$j] = $this->table[$i][$j];
 		// le righe sono diminuite di uno
-		// unset($this->Tableau[$this->rows]);
+		// unset($this->table[$this->rows]);
 		$this->rows--;
 	}
 	public function correggi_base() /* ripristina $this->S dalla prima fase al simplesso*/ {
@@ -323,7 +325,7 @@ class matrix {
 		
 	}
 	public function prima_fase($numArtificials) /* ripristina i dati per l'esecuzione della seconda fase */ {
-		$this->riduci_tableau($numArtificials);
+		$this->riduci_table($numArtificials);
 		$this->correggi_base();
 	}
 	public function fuori_base_artificiali($numArtificials) /* verifica se le variabili artificiali sono fuori base */ {
@@ -338,7 +340,7 @@ class matrix {
 		$k = 0;
 		while ($k < $this->cols - 1) {
 			$k++;
-			if ($arry[$k] < 0 && isset($this->Tableau[$h][$k]) && $this->Tableau[$h][$k]->num() > 0) break;
+			if ($arry[$k] < 0 && isset($this->table[$h][$k]) && $this->table[$h][$k]->num() > 0) break;
 		} //$k < $this->cols
 		// che non sia una variabile artificiale
 		if ($k >= $this->cols - $numArtificials)
@@ -351,27 +353,27 @@ class matrix {
 	public function unica() /* Restituisce true se la soluzione ottima e' unica */ {
 		// se esiste indice non di base k tale che c[k]==0
 		for ($j = 1; $j < $this->cols; $j++) if ($this->inS($j) < 0) // $i = riga risorsa
-		if (!isset($this->Tableau[0][$j]) || $this->Tableau[0][$j]->num() == 0) return false;
+		if (!isset($this->table[0][$j]) || $this->table[0][$j]->num() == 0) return false;
 		return true;
 	}
 	public function altra_soluzione(&$i, &$j, $fase) {
 		// se esiste indice non di base k tale che c[k]==0
 		for ($j = 1; $j < $this->cols; $j++) {
 			if ($this->inS($j) < 0)
-			 if (!isset($this->Tableau[0][$j]) || $this->Tableau[0][$j]->num() == 0) {
+			 if (!isset($this->table[0][$j]) || $this->table[0][$j]->num() == 0) {
 				// x[$j] prima variabile non di base con c nullo
 				// cerca elemento di pivot con min b[i]/a[i][j]
 				$h = - 1;
 				$min = 10e9; // sembra un valore sufficientemente grande, no?
 				for ($i = 1; $i < $this->rows; $i++) {
-					if (isset($this->Tableau[$i][$j])) if ($this->Tableau[$i][$j]->num() > 0) {
-						$quo = $this->Tableau[$i][0]->value() / $this->Tableau[$i][$j]->value();
+					if (isset($this->table[$i][$j])) if ($this->table[$i][$j]->num() > 0) {
+						$quo = $this->table[$i][0]->value() / $this->table[$i][$j]->value();
 						if ($quo < $min) {
 							$h = $i;
 							$min = $quo;
 						} //$quo < $min
 						
-					} //$this->Tableau[$i][$j]->num() > 0
+					} //$this->table[$i][$j]->num() > 0
 					
 				} //$i = 1; $i < $this->rows; $i++
 				if ($h == - 1) // a[i][j] =< 0 per ogni i
@@ -392,7 +394,7 @@ class matrix {
 				*/
 				$i = $h;
 				break;
-			} //!isset( $this->Tableau[0][$j] ) || $this->Tableau[0][$j]->num() == 0
+			} //!isset( $this->table[0][$j] ) || $this->table[0][$j]->num() == 0
 			
 		}
 	}
@@ -402,26 +404,26 @@ class matrix {
 	 *
 	*/
 	public function pivot($h, $k, $fase) /* Pivoting, l'operazione fondamentale nell'algoritmo del simplesso */ {
-		$pivot = new rationalNum($this->Tableau[$h][$k]->num(), $this->Tableau[$h][$k]->den());
+		$pivot = new rationalNum($this->table[$h][$k]->num(), $this->table[$h][$k]->den());
 		// divide la riga $h per se stessa
-		for ($j = 0; $j < $this->cols; $j++) if (isset($this->Tableau[$h][$j]) && $this->Tableau[$h][$j]->num != 0) $this->Tableau[$h][$j]->divfrac($this->Tableau[$h][$j], $pivot);
+		for ($j = 0; $j < $this->cols; $j++) if (isset($this->table[$h][$j]) && $this->table[$h][$j]->num != 0) $this->table[$h][$j]->divfrac($this->table[$h][$j], $pivot);
 		// per ogni riga
 		for ($i = 0; $i < $this->rows; $i++)
 		// diversa da $h
 		if ($i != $h) {
-			if (isset($this->Tableau[$i][$k])) $m = new rationalNum($this->Tableau[$i][$k]->num(), $this->Tableau[$i][$k]->den());
+			if (isset($this->table[$i][$k])) $m = new rationalNum($this->table[$i][$k]->num(), $this->table[$i][$k]->den());
 			for ($j = 0; $j < $this->cols; $j++)
 			// se e' la colonna $k allora risparmia il conto
-			if ($j == $k) if (isset($this->Tableau[$i][$j])) $this->Tableau[$i][$j]->set(0, 1);
-			else $this->Tableau[$i][$j] = new rationalNum(0, 1);
+			if ($j == $k) if (isset($this->table[$i][$j])) $this->table[$i][$j]->set(0, 1);
+			else $this->table[$i][$j] = new rationalNum(0, 1);
 			// altrimenti fai i calcoli
 			else {
 				$tmp = new rationalNum;
 				if (isset($m)) {
-					if (!isset($this->Tableau[$h][$j])) $this->Tableau[$h][$j] = new rationalNum();
-					$tmp->mulfrac($m, $this->Tableau[$h][$j]);
-					if (isset($this->Tableau[$i][$j])) $this->Tableau[$i][$j]->subfrac($this->Tableau[$i][$j], $tmp);
-					else $this->Tableau[$i][$j] = new rationalNum(-$tmp->num(), $tmp->den());
+					if (!isset($this->table[$h][$j])) $this->table[$h][$j] = new rationalNum();
+					$tmp->mulfrac($m, $this->table[$h][$j]);
+					if (isset($this->table[$i][$j])) $this->table[$i][$j]->subfrac($this->table[$i][$j], $tmp);
+					else $this->table[$i][$j] = new rationalNum(-$tmp->num(), $tmp->den());
 				} //isset( $m )
 				
 			} //$j = 0; $j < $this->cols; $j++
@@ -440,13 +442,13 @@ class matrix {
 		// a partire dalla colonna 1 perche' per ogni c[j] (non di base)
 		for ($j = 1; $j < $this->cols; $j++) {
 			if (($this->inS($j) < 0)) {
-				if ( ! isset($this->Tableau[0][$j])) {
-					$this->Tableau[0][$j] = new rationalNum;
+				if ( ! isset($this->table[0][$j])) {
+					$this->table[0][$j] = new rationalNum;
 				}
-				if ($this->Tableau[0][$j]->num() < 0 && $this->Tableau[0][$j]->value() < $min) {
+				if ($this->table[0][$j]->num() < 0 && $this->table[0][$j]->value() < $min) {
 				$k = $j;
-				$min = $this->Tableau[0][$j]->value();
-				} //$this->Tableau[0][$j]->num() < 0 && $this->Tableau[0][$j]->value() < $min
+				$min = $this->table[0][$j]->value();
+				} //$this->table[0][$j]->num() < 0 && $this->table[0][$j]->value() < $min
 			}
 			
 		} //$j = 1; $j < $this->cols; $j++
@@ -459,14 +461,14 @@ class matrix {
 		// attenzione a scegliere elementi non appartenenti alla prima riga
 		// se il termine di indice (0,1) e' =< 0
 		for ($fase == 1 ? $i = 2 : $i = 1; $i < $this->rows; $i++) {
-			if (isset($this->Tableau[$i][$k])) if ($this->Tableau[$i][$k]->num() > 0) {
-				$quo = $this->Tableau[$i][0]->value() / $this->Tableau[$i][$k]->value();
+			if (isset($this->table[$i][$k])) if ($this->table[$i][$k]->num() > 0) {
+				$quo = $this->table[$i][0]->value() / $this->table[$i][$k]->value();
 				if ($quo < $min) {
 					$h = $i;
 					$min = $quo;
 				} //$quo < $min
 				
-			} //$this->Tableau[$i][$k]->num() > 0
+			} //$this->table[$i][$k]->num() > 0
 			
 		} //$fase == 1 ? $i = 2 : $i = 1; $i < $this->rows; $i++
 		if ($h == - 1) // a[i][k] =< 0 per ogni i
@@ -486,10 +488,10 @@ class matrix {
 		$min = 1;
 		// si valutano i b[i] alla ricerca di quello negatvo con modulo max
 		for ($i = 1; $i < $this->rows; $i++) {
-			if ($this->Tableau[$i][0]->num() < 0 && $this->Tableau[$i][0]->value() < $min) {
+			if ($this->table[$i][0]->num() < 0 && $this->table[$i][0]->value() < $min) {
 				$h = $i;
-				$min = $this->Tableau[$i][0];
-			} //$this->Tableau[$i][0]->num() < 0 && $this->Tableau[$i][0]->value() < $min
+				$min = $this->table[$i][0];
+			} //$this->table[$i][0]->num() < 0 && $this->table[$i][0]->value() < $min
 			
 		} //$i = 1; $i < $this->rows; $i++
 		if ($h == - 1) // b[i] >= 0 per ogni j
@@ -498,14 +500,14 @@ class matrix {
 		$k = - 1;
 		$min = 10e9; // sembra un valore sufficientemente grande, no?
 		for ($j = 1; $j < $this->cols; $j++) {
-			if ($this->Tableau[$h][$j]->num() < 0) {
-				$quo = $this->Tableau[0][$j]->value() / (-$this->Tableau[$h][$j]->value());
+			if ($this->table[$h][$j]->num() < 0) {
+				$quo = $this->table[0][$j]->value() / (-$this->table[$h][$j]->value());
 				if ($quo < $min) {
 					$k = $j;
 					$min = $quo;
 				} //$quo < $min
 				
-			} //$this->Tableau[$h][$j]->num() < 0
+			} //$this->table[$h][$j]->num() < 0
 			
 		} //$j = 1; $j < $this->cols; $j++
 		if ($k == - 1) // a[h][j] > 0 per ogni j
@@ -524,7 +526,7 @@ class matrix {
 	 *
 	*/
 	public function elemento($i, $j) /*  Restituisce l'elemento in posizione [i][j] */ {
-		return $this->Tableau[$i][$j];
+		return $this->table[$i][$j];
 	}
 	public function check_intera() /* restituisce true se la soluzione e' intera */ {
 		// devono essere intere sia z
@@ -558,7 +560,7 @@ class matrix {
 		$max = 0;
 		// Iterate through the first column to find the largest fraction 
 		for ($i = 0; $i < $this->rows; $i++) {
-			$frac = $this->frac($this->Tableau[$i][0]);
+			$frac = $this->frac($this->table[$i][0]);
 			if ($frac->value() > $max) {
 				$max = $frac->value();
 				$h = $i;
@@ -569,26 +571,26 @@ class matrix {
 		else $content = '<p>Riga con f<sub>i</sub> massima: <strong>' . $h . '</strong></p>';
 		
 		// generate and write the constraint
-		$f = clone $this->frac($this->Tableau[$h][0]);
-		$this->Tableau[$this->rows][0] = new rationalNum(-$f->num(), $f->den());
-		$f = $this->frac($this->Tableau[$h][1]);
-		$this->Tableau[$this->rows][1] = new rationalNum(-$f->num(), $f->den());
-		if ($this->Tableau[$this->rows][1]->num() != 0) {
-			$f->set(-$this->Tableau[$this->rows][1]->num(), $this->Tableau[$this->rows][1]->den());
+		$f = clone $this->frac($this->table[$h][0]);
+		$this->table[$this->rows][0] = new rationalNum(-$f->num(), $f->den());
+		$f = $this->frac($this->table[$h][1]);
+		$this->table[$this->rows][1] = new rationalNum(-$f->num(), $f->den());
+		if ($this->table[$this->rows][1]->num() != 0) {
+			$f->set(-$this->table[$this->rows][1]->num(), $this->table[$this->rows][1]->den());
 			//$content.= sprintf(" %s x<sub>1</sub>", $f->fractoa());
 		}
 		
 		for ($j = 2; $j < $this->cols; $j++) {
-			$f = clone $this->frac($this->Tableau[$h][$j]);
-			$this->Tableau[$this->rows][$j] = new rationalNum(-$f->num(), $f->den());
-			if ($this->Tableau[$this->rows][$j]->num() != 0) {
-				$f->set(-$this->Tableau[$this->rows][$j]->num(), $this->Tableau[$this->rows][$j]->den());
+			$f = clone $this->frac($this->table[$h][$j]);
+			$this->table[$this->rows][$j] = new rationalNum(-$f->num(), $f->den());
+			if ($this->table[$this->rows][$j]->num() != 0) {
+				$f->set(-$this->table[$this->rows][$j]->num(), $this->table[$this->rows][$j]->den());
 				//$content.= sprintf(" + %s x<sub>%d</sub>", $f->fractoa(), $j);
 			} 
 		} 
-		$f->set(-$this->Tableau[$this->rows][0]->num, $this->Tableau[$this->rows][0]->den());
+		$f->set(-$this->table[$this->rows][0]->num, $this->table[$this->rows][0]->den());
 		//$content.= sprintf(" &gt;= %s", $f->fractoa());
-		$this->Tableau[$this->rows][$this->cols] = new rationalNum(1, 1);
+		$this->table[$this->rows][$this->cols] = new rationalNum(1, 1);
 		// aggiungi anche variabile di base inammissibile
 		$this->S[] = $this->cols;
 		$this->rows++;
