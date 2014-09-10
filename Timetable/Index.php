@@ -10,8 +10,7 @@
                 <span class="clearfix"></span>
             </div>
 
-            <div class="filter-spec">specialisation filters go here</div>
-        </div>
+            <div class="filter-spec"><?php include('include/filters.php'); ?></div>        </div>
 
         <?php include('include/timetable.php'); ?>
         
