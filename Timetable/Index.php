@@ -1,4 +1,4 @@
-<?php include "include/header.php"; ?>
+<?php include "header.php"; ?>
         <div class="timetable-filter">
             <div class="filter-stream">
                 <ul>

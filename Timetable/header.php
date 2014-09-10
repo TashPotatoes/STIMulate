@@ -5,8 +5,8 @@
         <title>Timetable Prototype</title>
         <link href="css/style.css" type="text/css" rel = "stylesheet">
         <link href="css/timetable.css" type="text/css" rel = "stylesheet">
-        <script src = "JS/jQuery.js"></script>
-        <script src = "JS/filters.js"></script>
+        <script src = "js/jQuery.js"></script>
+        <script src = "js/filters.js"></script>
     </head>
     <body>
     <header>

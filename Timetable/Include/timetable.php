@@ -63,7 +63,7 @@ $lq = "SELECT stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_sh
     }
     function NameCard($f, $absentInformation)
     {
-        echo "<span class='namecard' id='".$f["str_shortname"]."'>";
+        echo "<span class='namecard f-".$f["str_shortname"]."'>";
         echo "<span class='".$f['str_shortname']."'>".$f["str_shortname"]."</span>";
         echo $f['stu_name_first']." ".substr($f['stu_name_last'], 0,1);
         echo "</span>";
