@@ -7,6 +7,7 @@
         <link href="css/timetable.css" type="text/css" rel = "stylesheet">
         <script src = "js/jQuery.js"></script>
         <script src = "js/filters.js"></script>
+        <script src = "js/Absenties.js"></script>
     </head>
     <body>
     <header>
