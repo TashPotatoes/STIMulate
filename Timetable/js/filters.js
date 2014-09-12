@@ -27,6 +27,11 @@ function FilterByStream(stream) {
 }
 
 function FilterBySpecialisations(specialisations) {
-
+    //not working #oops.
+    var output = '';
+    for (var property in specialisations) {
+        output += property + ': ' + specialisations[property]+'; ';
+    }
+    document.getElementById('testies').innerHTML(output);
 
 }
