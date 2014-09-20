@@ -23,28 +23,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LocationSeparator.inc" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LocationSeparator.inc" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Merged/Include/LocationSeparator.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="4" selection-start="166" selection-end="166" vertical-scroll-proportion="0.09725401" vertical-offset="0" max-vertical-offset="874">
+            <state line="5" column="4" selection-start="166" selection-end="166" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="221">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationSeparator.CSS" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Merged/CSS/LocationSeparator.CSS">
+      <file leaf-file-name="Timetable.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Merged/Timetable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="10" selection-start="281" selection-end="281" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+            <state line="21" column="43" selection-start="545" selection-end="545" vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="544">
+              <folding>
+                <element signature="e#6#88#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timetable.inc" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Merged/Include/Timetable.inc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="41" selection-start="3665" selection-end="3665" vertical-scroll-proportion="-11.115385" vertical-offset="867" max-vertical-offset="2040">
+              <folding>
+                <marker date="1411199480681" expanded="true" signature="579:943" placeholder="SELECT facil..facilitators..." />
+                <marker date="1411199480681" expanded="true" signature="4164:4213" placeholder="SELECT * FRO..absences..." />
+                <marker date="1411199480681" expanded="true" signature="4798:4869" placeholder="UPDATE STIMu..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SideBar.CSS" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Merged/CSS/SideBar.CSS">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="952">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SideBar.inc" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Merged/Include/SideBar.inc">
+      <file leaf-file-name="Timetable.CSS" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Merged/CSS/Timetable.CSS">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="95" selection-start="350" selection-end="429" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="663">
+            <state line="96" column="32" selection-start="1722" selection-end="1722" vertical-scroll-proportion="0.86777776" vertical-offset="851" max-vertical-offset="1751">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.CSS" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Merged/CSS/Header.CSS">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="31" selection-start="67" selection-end="82" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -71,11 +104,11 @@
         <option value="$PROJECT_DIR$/Merged/Include/SideBar.inc" />
         <option value="$PROJECT_DIR$/Merged/Timetable.php" />
         <option value="$PROJECT_DIR$/Merged/CSS/SideBar.CSS" />
-        <option value="$PROJECT_DIR$/Merged/CSS/Timetable.CSS" />
-        <option value="$PROJECT_DIR$/Merged/Include/Timetable.inc" />
         <option value="$PROJECT_DIR$/Merged/PHP/MySQL.php" />
         <option value="$PROJECT_DIR$/Merged/CSS/LocationSeparator.CSS" />
         <option value="$PROJECT_DIR$/Merged/Include/LocationSeparator.inc" />
+        <option value="$PROJECT_DIR$/Merged/Include/Timetable.inc" />
+        <option value="$PROJECT_DIR$/Merged/CSS/Timetable.CSS" />
       </list>
     </option>
   </component>
@@ -127,56 +160,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Timetable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Timetable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stimulate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Timetable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -338,18 +321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="570" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding>
-            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Merged/Include/Header.inc">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
@@ -401,36 +372,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/CSS/SideBar.CSS">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="31" selection-start="374" selection-end="390" vertical-scroll-proportion="0.45333335" vertical-offset="0" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/CSS/Header.CSS">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="31" selection-start="67" selection-end="82" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/CSS/Timetable.CSS">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="22" selection-start="381" selection-end="381" vertical-scroll-proportion="-7.4615383" vertical-offset="197" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/Timetable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="43" selection-start="545" selection-end="545" vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="544">
-          <folding>
-            <element signature="e#6#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Timetable/php/MySQL.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="8" selection-start="619" selection-end="1191" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="1275">
@@ -442,17 +383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="34" selection-start="572" selection-end="572" vertical-scroll-proportion="0.42791763" vertical-offset="0" max-vertical-offset="1139">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Merged/Include/Timetable.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="316" selection-end="316" vertical-scroll-proportion="0.2528604" vertical-offset="0" max-vertical-offset="1870">
-          <folding>
-            <marker date="1411191280011" expanded="true" signature="-1:-1" placeholder="SELECT facil..facilitators..." />
-            <marker date="1411191280011" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..absences..." />
-            <marker date="1411191280011" expanded="true" signature="-1:-1" placeholder="UPDATE STIMu..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -472,7 +402,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Merged/Include/LocationSeparator.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="166" selection-end="166" vertical-scroll-proportion="0.09725401" vertical-offset="0" max-vertical-offset="874">
+        <state line="5" column="4" selection-start="166" selection-end="166" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="221">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="7" selection-start="570" selection-end="570" vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="442">
+          <folding>
+            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1411186191004" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/CSS/SideBar.CSS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/CSS/Header.CSS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="31" selection-start="67" selection-end="82" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/Timetable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="43" selection-start="545" selection-end="545" vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="544">
+          <folding>
+            <element signature="e#6#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/Include/Timetable.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="41" selection-start="3665" selection-end="3665" vertical-scroll-proportion="-11.115385" vertical-offset="867" max-vertical-offset="2040">
+          <folding>
+            <marker date="1411199480681" expanded="true" signature="579:943" placeholder="SELECT facil..facilitators..." />
+            <marker date="1411199480681" expanded="true" signature="4164:4213" placeholder="SELECT * FRO..absences..." />
+            <marker date="1411199480681" expanded="true" signature="4798:4869" placeholder="UPDATE STIMu..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Merged/CSS/Timetable.CSS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="32" selection-start="1722" selection-end="1722" vertical-scroll-proportion="0.86777776" vertical-offset="851" max-vertical-offset="1751">
           <folding />
         </state>
       </provider>

@@ -1,3 +1,11 @@
+<div class = "searchbar">
+    <span class = "searchSpan">
+        <input type="search" placeholder="Search Topics, Streams, or Units...">
+    </span>
+    <input class = "searchButton" type = 'submit' value = "Search">
+</div>
+
+
 <div class="timetable">
     <table>
         <tr>
@@ -55,9 +63,9 @@
 
                                 if($shiftInformation[$i]["shi_time"] == $absentTime && $day == $absentDay &&
                                     $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
-
+                                    NameCard($shiftInformation[$i], $day, true);
                                 } else {
-                                    NameCard($shiftInformation[$i], $day);
+                                    NameCard($shiftInformation[$i], $day, false);
                                     break;
                                 }
                             }
@@ -70,14 +78,16 @@
                 }
             }
         }
-        function NameCard($shiftInformation, $day)
+        function NameCard($shiftInformation, $day, $disabled)
         {
-            echo "<span class='namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+            if($disabled){
+                echo "<div class='absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+            } else {
+                echo "<div class='namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+            }
             echo "<span class='".$shiftInformation['str_shortname']."'>".$shiftInformation["str_shortname"]."</span>";
             echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
-            echo "</span>";
-
-
+            echo "</div>";
         }
 
         function RetrieveAbsentRecords(){
