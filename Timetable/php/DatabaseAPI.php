@@ -16,8 +16,10 @@ if(isset($_POST['action'])) {
 }
 
 function InsertAbsent($volunteerID, $date, $time){
+    $dateNow = date("Y-m-d", strtotime("now")+mktime(0,0,0,date('n'),$date, date('y')));
+    var_dump($dateNow);
     $hourMinuteSecond = explode(":", $time);
-
+    $dayMonthYear = explode("-", $date);
     $date = date("Y-m-d H:i:s", mktime($hourMinuteSecond[0], $hourMinuteSecond[1], $hourMinuteSecond[2], date('n'), $date, date('y')));
     $sqlObject = new \PHP\SqlObject("INSERT INTO stimulate.volunteerabsenties (timestamp, volunteerID) VALUES (:timestamp, :volunteerID)", array($date, $volunteerID));
     $sqlObject->Execute();

@@ -19,8 +19,10 @@ $(document).ready(function(){
 
 
     $(document).on("click", ".remove", function(){
-        //var dateTime = $(this).closest("a").find("input").val().split('d');
-        //AjaxCall(dateTime[1], dateTime[0]);
+        var dateTime = $(this).closest(".namecard").parent().html();
+        var dateTimeIDArray = FindDateTimeID(dateTime);
+        console.log(dateTimeIDArray);
+        AjaxCall(dateTimeIDArray['date'], dateTimeIDArray['time'], dateTimeIDArray['id']);
         $(this).closest("span").remove();
     });
 
@@ -34,13 +36,16 @@ $(document).ready(function(){
     });
 });
 
-function AjaxCall(date, time){
+function AjaxCall(date, time, id){
+    console.log(date);
+    console.log(time);
+    console.log(id);
     $.ajax({ url: 'PHP/DatabaseAPI.php',
         data: {
             "action": 'absent',
             "date" : date,
             "time" : time,
-            "volunteerID" : document.getElementsByName("volID")[0].value
+            "volunteerID" : id
         },
         type: 'post',
         datatype: 'JSON',
@@ -66,4 +71,18 @@ function UnsuccessfulCall(){
 function RemovePopUp(){
     $(".popup").remove();
     $(".remove").remove();
+}
+
+function FindDateTimeID(html){
+    var dayNumberPattern = "[0-9]";
+    var timeNumberPattern = "[0-9]+:[0-9]+";
+    var idPattern = "n[0-9]+";
+    // Matching date and time
+    var dayNumberPatternMatch = html.match(dayNumberPattern)[0];
+    var timeNumberPatternMatch = html.match(timeNumberPattern)[0];
+    var idPatternMatch = html.match(idPattern)[0];
+
+    // Putting into assoc array and returnign
+    var dateTimeID = {date:dayNumberPatternMatch, time:timeNumberPatternMatch, id:idPatternMatch};
+    return dateTimeID;
 }

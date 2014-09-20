@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+main, body, html {
+    position: relative;
+    height: 100%;
+}
+
+.inline-image {
+    height: 30px;
+    width: 30px;
+
+    /* Postioning */
+    display: inline-block;
+    padding-right: 5px;
+    position: relative;
+    top: 8px;
+}
+
+.inline-text {
+    display: inline-block;
+    color: white;
+
+    /* Positioning */
+    margin: 0;
+}
+
+.inline {
+    display: inline;
+}

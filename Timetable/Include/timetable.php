@@ -58,12 +58,12 @@ $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, 
                                 $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
 
                             } else {
-                                NameCard($shiftInformation[$i], $absentInformation);
+                                NameCard($shiftInformation[$i], $day);
                                 break;
                             }
                         }
                     } else {
-                        NameCard($shiftInformation[$i], $absentInformation);
+                        NameCard($shiftInformation[$i], $day);
                     }
 
 
@@ -80,11 +80,11 @@ $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, 
             }
         }
     }
-    function NameCard($f, $absentInformation)
+    function NameCard($shiftInformation, $day)
     {
-        echo "<span class='namecard f-".$f["str_shortname"]."'>";
-        echo "<span class='".$f['str_shortname']."'>".$f["str_shortname"]."</span>";
-        echo $f['stu_name_first']." ".substr($f['stu_name_last'], 0,1);
+        echo "<span class='namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+        echo "<span class='".$shiftInformation['str_shortname']."'>".$shiftInformation["str_shortname"]."</span>";
+        echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
         echo "</span>";
 
 
