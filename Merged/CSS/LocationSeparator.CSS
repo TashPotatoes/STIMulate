@@ -1,7 +1,7 @@
 #locationBar {
     height: 25px;
     color: black;
-    background: rgb(225,225,225);
+    background: white;
 }
 #locationBar p {
     display: inline-block;

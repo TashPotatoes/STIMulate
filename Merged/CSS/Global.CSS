@@ -7,6 +7,10 @@ main, body, html {
     height: 100%;
 }
 
+body {
+    background: rgb(234,234,234);
+}
+
 .inline-image {
     height: 30px;
     width: 30px;
