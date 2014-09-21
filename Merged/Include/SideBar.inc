@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class = "alternative">
-            <a href = "Index.php">
+            <a href = "TimetablePref.php">
                 <img src = "IMG/plf.png" alt = "dashboard" class = "inline-image side-img">
                 <p class = "inline-text">PLF Sign-in</p>
             </a>
