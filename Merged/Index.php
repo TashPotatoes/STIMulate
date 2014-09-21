@@ -17,7 +17,12 @@
     <body>
         <main>
             <?php include 'Include/Header.inc'; ?>
-            <?php include 'Include/LocationSeparator.inc'; ?>
+            <?php
+                $currentPlace = "<a href = \"index.php\">
+                    <img src = \"IMG/dashboard.png\" alt = \"dashboard\" class = \"inline-image\">
+                        <p>Home</p>
+                    </a>";
+                include 'Include/LocationSeparator.inc'; ?>
             <?php include 'Include/SideBar.inc'; ?>
 
 

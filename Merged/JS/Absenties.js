@@ -3,17 +3,24 @@
  */
 
 $(document).ready(function(){
-    $(document).on("click", ".namecard", function(){
+    InitiateClickingEvents();
+});
 
+function InitiateClickingEvents(){
+    $(document).on("click", ".namecard", function(){
         if($(".popup").length > 0){
             RemovePopUp();
         }
 
         $("" +
             "<div class = \"popup\">" +
-            "<fieldset>" +
-            "<p class = \"remove\">I can't make it</p>" +
-            "</fieldset>" +
+            "<div class = \"popuphead\">" +
+            "<img src='IMG/plf.png' class='inline-image popup-image'>" +
+            "<h2 class = \"\">Options</h2>" +
+            "</div>" +
+            "<ul>" +
+            "<li class = \"remove\">I can't make it</li>" +
+            "</ul>"+
             "</div>").appendTo($(this));
     });
 
@@ -22,8 +29,10 @@ $(document).ready(function(){
         var dateTime = $(this).closest(".namecard").parent().html();
         var dateTimeIDArray = FindDateTimeID(dateTime);
         console.log(dateTimeIDArray);
-        AjaxCall(dateTimeIDArray['date'], dateTimeIDArray['time'], dateTimeIDArray['id']);
-        $(this).closest("span").remove();
+        //AjaxCall(dateTimeIDArray['date'], dateTimeIDArray['time'], dateTimeIDArray['id']);
+        $(this).closest(".namecard").addClass("absent");
+        RemovePopUp();
+
     });
 
     $(document.body).on("click", function(){
@@ -34,8 +43,7 @@ $(document).ready(function(){
         }
 
     });
-});
-
+}
 function AjaxCall(date, time, id){
     console.log(date);
     console.log(time);

@@ -14,13 +14,20 @@
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
+    <link href="CSS/Absenses.CSS" rel="stylesheet" type="text/css">
     <script src = "js/filters.js"></script>
     <script src = "js/Absenties.js"></script>
 </head>
 <body>
 <main>
     <?php include 'Include/Header.inc'; ?>
-    <?php include 'Include/LocationSeparator.inc'; ?>
+    <?php
+    $currentPlace = "<a href = \"index.php\">
+                    <img src = \"IMG/dashboard.png\" alt = \"dashboard\" class = \"inline-image\">
+                        <p>Home</p>
+                    </a>
+                    <p> > Timetable</p>";
+        include 'Include/LocationSeparator.inc'; ?>
     <?php include 'Include/SideBar.inc'; ?>
     <?php include 'Include/Timetable.inc'; ?>
 
