@@ -140,3 +140,8 @@ td:last-child {
 #filterStreamMa {background: rgba(0,200,0,0.2);}
 #filterStreamDh {background: rgba(200,200,0,0.2);}
 
+//added css for timetable preferences
+
+.time {
+    width: 2%;
+}

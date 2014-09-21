@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<title>Timetable</title>
-		<link rel="stylesheet" type="text/css" href="CSS/InputTimetable.css">
+		<!--<link rel="stylesheet" type="text/css" href="CSS/InputTimetable.css"> -->
+		<link rel="stylesheet" type="text/css" href="CSS/Timetable.css">
 	</head>
 	<body>
 		<!-- Main Menu Code (move this later) -->
-		<div id="container">
+		<div class="timetableWrapper">
+			<div>
 			<table>
 				<tr>
 					<th colspan="2">Monday</th>
@@ -115,6 +117,7 @@
 			</table>
 
 
+
 			<!-- code to change colours -->
 			<script type="text/javascript">
 				var colors = ["green", "yellow", "red", "white"];
@@ -124,6 +127,8 @@
 					console.log(obj.style.backgroundColor);
 				}
 			</script>
+
+			</div>
 
 		</div>
 
