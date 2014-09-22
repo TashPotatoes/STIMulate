@@ -101,6 +101,13 @@ td:last-child {
     text-align: right;
     padding: 2px;
 }
+.column-colour {
+    min-height: 20px;
+    max-width: 40px;
+    width: 5%;
+    text-align: right;
+    padding: 2px;
+}
 .namecard {
     cursor: pointer;
     padding: 2px 0;
@@ -140,6 +147,3 @@ td:last-child {
 
 //added css for timetable preferences
 
-.time {
-    width: 2%;
-}
