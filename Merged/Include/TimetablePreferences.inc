@@ -3,12 +3,15 @@ Author: Pearl Gariano
 -->
 
 <div class="timetableWrapper">
+    <p>Please select your stream</p>
     <select>
       <option value="IT">IT</option>
       <option value="science">Science</option>
       <option value="maths">Maths</option>
       <option value="duty-host">Duty Host</option>
     </select>
+    <p>To enter preferences click on the cells (next to the times) until they change colour.</p>
+    <p>Green is first preference, yellow is second peference and red is last preference. Leave any times you aren't available white.</p>
     <div>
         <table>
             <tr>
@@ -116,19 +119,7 @@ Author: Pearl Gariano
                 <td onclick="clickColorEvent(this)"></td>
             </tr>   
         </table>
-
-
-
-        <!-- code to change colours 
-        <script type="text/javascript">
-            var colors = ["green", "yellow", "red", "white"];
-            function clickColorEvent(obj){
-                obj.colorIndex = obj.colorIndex || 0;
-                obj.style.backgroundColor = colors[obj.colorIndex++ % colors.length];
-                console.log(obj.style.backgroundColor);
-            }
-        </script> -->
-
     </div>
+    <input type="submit" value="Submit">
 
 </div>
