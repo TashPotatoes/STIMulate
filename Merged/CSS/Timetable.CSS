@@ -94,6 +94,9 @@ td{
 td:last-child {
     border-right:none;
 }
+.timetable-pref td {
+    width: 15%;
+}
 .column-time {
     min-height: 20px;
     max-width: 40px;
