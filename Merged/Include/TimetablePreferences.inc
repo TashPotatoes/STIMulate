@@ -24,99 +24,99 @@ Author: Pearl Gariano
             <!-- green is 3, yellow is 2, red is 1, white is null -->
             <tr>
                 <td class="column-time">9-10</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">9-10</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">9-10</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">9-10</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">9-10</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">10-11</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">10-11</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">10-11</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">10-11</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">10-11</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">11-12</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">11-12</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">11-12</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">11-12</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">11-12</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">12-1</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">12-1</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">12-1</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">12-1</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">12-1</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">1-2</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">1-2</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">1-2</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">1-2</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">1-2</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">2-3</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">2-3</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">2-3</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">2-3</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">2-3</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">3-4</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">3-4</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">3-4</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">3-4</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">3-4</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>
             <tr>
                 <td class="column-time">4-5</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">4-5</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">4-5</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">4-5</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
                 <td class="column-time">4-5</td>
-                <td onclick="clickColorEvent(this)"></td>
+                <td class="column-colour" onclick="clickColorEvent(this)"></td>
             </tr>   
         </table>
     </div>
