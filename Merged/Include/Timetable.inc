@@ -50,6 +50,8 @@
 
                 $absentInformation = RetrieveAbsentRecords();
 
+                $startOfWeek = date("d-m-Y", strtotime('this week', time()));
+
                 $DAYS_IN_WEEK = 5;
                 $START_HOUR = '08:00:00'; // Must be before 12 noon, whole hour only (0-12), set to hour before earliest shift. // CHANGE THIS TO BE A QUERY
                 $SECTIONS_IN_DAY = 8;
@@ -75,20 +77,23 @@
                             if($currentTime == $shiftInformation[$i]['shi_time'])
                             {
                                 if(count($absentInformation) > 0) {
+                                    $inputtedNameCards = 0;
                                     for($j = 0; $j < count($absentInformation); $j++){
-                                        $absentDay = date("w", strtotime($absentInformation[$j]["absence_timestamp"]))-2;
+                                        $absentDay = date("w", strtotime($absentInformation[$j]["absence_timestamp"]))-1;
                                         $absentTime = date("H:i", strtotime($absentInformation[$j]["absence_timestamp"]));
 
                                         if($shiftInformation[$i]["shi_time"] == $absentTime && $day == $absentDay &&
                                             $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
                                             NameCard($shiftInformation[$i], $day, true);
-                                        } else {
-                                            NameCard($shiftInformation[$i], $day, false);
+                                            $inputtedNameCards++;
                                             break;
                                         }
                                     }
+                                    if($inputtedNameCards == 0) {
+                                        NameCard($shiftInformation[$i], $day, false);
+                                    }
                                 } else {
-                                    NameCard($shiftInformation[$i], $day);
+                                    NameCard($shiftInformation[$i], $day, false);
                                 }
 
 

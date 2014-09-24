@@ -24,8 +24,8 @@ function InitiateClickingEvents(){
             "<li class = \"remove\">I can't make it</li>" +
             "</ul>"+
             "</div>").appendTo($(this));
-            isRemoving = false;
         }
+        isRemoving = false;
     });
 
 

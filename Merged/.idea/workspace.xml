@@ -23,37 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LocationSeparator.inc" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/LocationSeparator.inc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="32" selection-start="57" selection-end="57" vertical-scroll-proportion="-0.0" vertical-offset="17" max-vertical-offset="136">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SideBar.CSS" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="952">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Timetable.inc" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="72" selection-start="688" selection-end="748" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2397">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="filters.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/filters.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="714">
+            <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
               <folding />
             </state>
           </provider>
@@ -62,16 +35,41 @@
       <file leaf-file-name="Absenties.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/Absenties.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="20" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="2057">
+            <state line="27" column="26" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="2057">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MySQL.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
+      <file leaf-file-name="Timetable.inc" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="123" selection-start="696" selection-end="696" vertical-scroll-proportion="0.4473684" vertical-offset="0" max-vertical-offset="1139">
+            <state line="92" column="85" selection-start="4660" selection-end="4660" vertical-scroll-proportion="0.86178863" vertical-offset="822" max-vertical-offset="2482">
+              <folding>
+                <marker date="1411530216005" expanded="true" signature="1565:1969" placeholder="SELECT facil..facilitators..." />
+                <marker date="1411530216005" expanded="true" signature="5901:5950" placeholder="SELECT * FRO..absences..." />
+                <marker date="1411530216005" expanded="true" signature="6631:6702" placeholder="UPDATE STIMu..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseAPI.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PHP/DatabaseAPI.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="82" selection-start="566" selection-end="644" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="680">
+              <folding>
+                <marker date="1411529484121" expanded="true" signature="444:477" placeholder="SELECT * FRO..data..." />
+                <marker date="1411529484121" expanded="true" signature="891:991" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SqlObject.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PHP/SqlObject.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
@@ -124,14 +122,15 @@
         <option value="$PROJECT_DIR$/CSS/Global.CSS" />
         <option value="$PROJECT_DIR$/CSS/LocationSeparator.CSS" />
         <option value="$PROJECT_DIR$/JS/filters.js" />
-        <option value="$PROJECT_DIR$/Include/Timetable.inc" />
         <option value="$PROJECT_DIR$/CSS/Absenses.CSS" />
         <option value="$PROJECT_DIR$/Include/LocationSeparator.inc" />
         <option value="$PROJECT_DIR$/Timetable.php" />
         <option value="$PROJECT_DIR$/Index.php" />
         <option value="$PROJECT_DIR$/CSS/Timetable.CSS" />
-        <option value="$PROJECT_DIR$/JS/Absenties.js" />
         <option value="$PROJECT_DIR$/PHP/MySQL.php" />
+        <option value="$PROJECT_DIR$/JS/Absenties.js" />
+        <option value="$PROJECT_DIR$/PHP/DatabaseAPI.php" />
+        <option value="$PROJECT_DIR$/Include/Timetable.inc" />
       </list>
     </option>
   </component>
@@ -514,20 +513,6 @@
         <state line="3" column="21" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JS/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="72" selection-start="688" selection-end="748" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="952">
@@ -577,6 +562,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="996" column="0" selection-start="15304" selection-end="15304" vertical-scroll-proportion="0.33333334" vertical-offset="16632" max-vertical-offset="64821">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="123" selection-start="696" selection-end="696" vertical-scroll-proportion="0.4473684" vertical-offset="0" max-vertical-offset="1139">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TimetablePref.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="51" selection-start="890" selection-end="890" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="629">
@@ -586,24 +592,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+    <entry file="file://$PROJECT_DIR$/PHP/SqlObject.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="996" column="0" selection-start="15304" selection-end="15304" vertical-scroll-proportion="0.33333334" vertical-offset="16632" max-vertical-offset="64821">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/Absenties.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="20" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="2057">
+        <state line="27" column="26" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="2057">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
+    <entry file="file://$PROJECT_DIR$/PHP/DatabaseAPI.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="123" selection-start="696" selection-end="696" vertical-scroll-proportion="0.4473684" vertical-offset="0" max-vertical-offset="1139">
-          <folding />
+        <state line="24" column="82" selection-start="566" selection-end="644" vertical-scroll-proportion="-15.692307" vertical-offset="0" max-vertical-offset="680">
+          <folding>
+            <marker date="1411529484121" expanded="true" signature="444:477" placeholder="SELECT * FRO..data..." />
+            <marker date="1411529484121" expanded="true" signature="891:991" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="85" selection-start="4660" selection-end="4660" vertical-scroll-proportion="0.86178863" vertical-offset="822" max-vertical-offset="2482">
+          <folding>
+            <marker date="1411530216005" expanded="true" signature="1565:1969" placeholder="SELECT facil..facilitators..." />
+            <marker date="1411530216005" expanded="true" signature="5901:5950" placeholder="SELECT * FRO..absences..." />
+            <marker date="1411530216005" expanded="true" signature="6631:6702" placeholder="UPDATE STIMu..." />
+          </folding>
         </state>
       </provider>
     </entry>
