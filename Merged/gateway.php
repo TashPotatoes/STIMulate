@@ -1,7 +1,7 @@
 <?php
     require_once '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
-    require_once '/temp/login.php';
+    require_once '/php/uac.php';
 	$login = new Login();
 
 	if ($login->isUserLoggedIn() == true) {

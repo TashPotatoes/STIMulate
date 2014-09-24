@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <header>
     <div id = "logo">
         <img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image">
@@ -15,7 +16,7 @@
             </li>
             <li id = "loginButton">
                 <img src="IMG/student.png" alt = "student Picture" class = "inline-image">
-                <p id = "studentName" class = "inline-text">Hayden Jackson</p>
+                <p id = "studentName" class = "inline-text"><?php echo $_SESSION['facilitator_id']?></p>
             </li>
         </ul>
     </div>

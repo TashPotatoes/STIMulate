@@ -5,9 +5,12 @@
  * Date: 16/09/14
  * Time: 7:09 PM
  */
+session_start();
+echo $_SESSION['facilitator_id'];
 ?>
 
 <!DOCTYPE html>
+
 <html>
     <head>
         <?php include 'Include/GlobalHead.inc'; ?>
