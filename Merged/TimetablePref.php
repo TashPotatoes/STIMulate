@@ -8,6 +8,8 @@ Author: Pearl Gariano
 		<title>Timetable Preferences</title>
 		<!--<link rel="stylesheet" type="text/css" href="CSS/Inputcolumn-timetable.css"> -->
 	    <?php include 'Include/GlobalHead.inc'; ?>
+	    <?php include 'PHP/functions.php'; ?>
+        <?php include 'PHP/uac.php'; ?>
 	    <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
 	    <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
 	    <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">

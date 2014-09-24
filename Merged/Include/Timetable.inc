@@ -1,4 +1,5 @@
 <div class = "push-right">
+    <?php if("index.php" == basename($_SERVER['PHP_SELF'])) { ?>
     <div class = "filter">
         <div class = "headElement">
             <img src="IMG/calander.png" alt="Calander" class = "inline-image">
@@ -17,6 +18,7 @@
             <input type="text" placeholder="Search Topics, Streams, or Units..." class = "searchSpan">
         </span>
     </div>
+    <?php } ?>
 
     <div class = "timetableWrapper">
 
