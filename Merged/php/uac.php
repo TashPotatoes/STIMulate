@@ -13,8 +13,9 @@ class Login
 
     public function __construct()
     {
+        if (session_status() == PHP_SESSION_NONE) {
         session_start();
-        if (isset($_GET["logout"])) {
+        }        if (isset($_GET["logout"])) {
             $this->doLogout();
         }
         elseif (isset($_POST["login"])) {
