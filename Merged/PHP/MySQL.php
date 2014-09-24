@@ -26,7 +26,7 @@ class MySQL {
 
     // Gets the PDO connection
     private function Connection(){
-        $databaseConnection = new \PDO("mysql:host=stimulate.ceu1tvrd8kag.ap-southeast-2.rds.amazonaws.com;dbname=stimulate", $this->username, $this->password);
+        $databaseConnection = new \PDO("mysql:host=stimulate.ceu1tvrd8kag.ap-southeast-2.rds.amazonaws.com;dbname=STIMulate", $this->username, $this->password);
         return $databaseConnection;
     }
 

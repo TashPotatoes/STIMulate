@@ -7,11 +7,13 @@ $(document).ready(function(){
 });
 
 function InitiateClickingEvents(){
+    var isRemoving = false;
+
     $(document).on("click", ".namecard", function(){
         if($(".popup").length > 0){
             RemovePopUp();
         }
-
+        if(!isRemoving){
         $("" +
             "<div class = \"popup\">" +
             "<div class = \"popuphead\">" +
@@ -22,17 +24,29 @@ function InitiateClickingEvents(){
             "<li class = \"remove\">I can't make it</li>" +
             "</ul>"+
             "</div>").appendTo($(this));
+            isRemoving = false;
+        }
     });
 
 
     $(document).on("click", ".remove", function(){
-        var dateTime = $(this).closest(".namecard").parent().html();
-        var dateTimeIDArray = FindDateTimeID(dateTime);
-        console.log(dateTimeIDArray);
-        //AjaxCall(dateTimeIDArray['date'], dateTimeIDArray['time'], dateTimeIDArray['id']);
-        $(this).closest(".namecard").addClass("absent");
-        RemovePopUp();
+        // Adding absent to namecard
+        var namecard = $(this).closest('.namecard');
+        namecard.addClass("absent");
 
+        // Removing the popup
+        var removeDiv = $(this).parent().parent();
+        removeDiv.remove();
+
+        // Retrieving the date time and student id
+        var dateTimeIDArray = FindDateTimeID(namecard.parent().html());
+        console.log(dateTimeIDArray);
+
+        // Appending to database
+        AjaxCall(dateTimeIDArray['date'], dateTimeIDArray['time'], dateTimeIDArray['id']);
+
+        // Ensuring that the popup doesn't reappear
+        isRemoving = true;
     });
 
     $(document.body).on("click", function(){
@@ -93,4 +107,10 @@ function FindDateTimeID(html){
     // Putting into assoc array and returnign
     var dateTimeID = {date:dayNumberPatternMatch, time:timeNumberPatternMatch, id:idPatternMatch};
     return dateTimeID;
+}
+
+function debug(input){
+    console.log(input);
+    var html = $(input).html();
+    console.log(html);
 }
