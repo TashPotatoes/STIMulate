@@ -55,11 +55,3 @@ background-color: rgb(100,100,100);
 .alternative {
     background: rgb(125,125,125);
 }
-
-.icon-calander {
-    text-indent: 20px;
-    background-image: url('../img/calander.png');
-    background-repeat: no-repeat;
-    background-size: 25px 25px;
-    background-position: 0 5px;
-}
