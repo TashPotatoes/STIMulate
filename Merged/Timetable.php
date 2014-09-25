@@ -1,12 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Hayden
- * Date: 16/09/14
- * Time: 7:09 PM
- */
-?>
-
+<?php include 'PHP/functions.php'; ?>
+<?php require 'PHP/uac.php'; ?>
+<?php $UserAccessControl = new UserAccessControl(); ?>
 <!DOCTYPE html>
 <html>
 <head>

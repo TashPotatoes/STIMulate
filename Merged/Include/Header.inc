@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
 session_start();
 }
@@ -8,10 +9,12 @@ session_start();
         <img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image">
         <h1 class = inline-text>STIMulate</h1>
     </div>
+    <?php    echo $UserAccessControl->isUserLoggedIn(); ?>
+    <?php if($UserAccessControl->isUserLoggedIn()){ ?>
     <div id = "user-information">
         <ul>
             <li id = "latest-information">
-                <img src="IMG/latest.png" alt = "latest information picture" class = "inline-image">
+                <img src="IMG/latest.png" alt="latest information picture" class = "inline-image">
                 <p class = "notificationNumber inline-text">2</p>
             </li>
             <li id = "user-notifications">
@@ -19,9 +22,16 @@ session_start();
                 <p class = "notificationNumber inline-text">6</p>
             </li>
             <li id = "loginButton">
-                <img src="IMG/student.png" alt = "student Picture" class = "inline-image">
-                <p id = "studentName" class = "inline-text"><?php echo $_SESSION['facilitator_id']?></p>
+                <?php
+                if(isset($_SESSION['facilitator_id'])) {
+                    echo '<img src="IMG/student.png" alt = "student Picture" class = "inline-image">';
+                    echo '<p id = "studentName" class = "inline-text">'.$_SESSION['facilitator_id'].'</p>';
+                } else {
+                    echo "FUCKING NOT LOGGED THE FUCK IT";
+                }
+                ?>
             </li>
         </ul>
     </div>
+    <?php } ?>
 </header>

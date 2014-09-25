@@ -1,3 +1,7 @@
+<?php include 'PHP/functions.php'; ?>
+<?php include 'PHP/uac.php'; ?>
+<?php $UserAccessControl = new UserAccessControl(); ?>
+
 <!--
 Author: Pearl Gariano
 -->

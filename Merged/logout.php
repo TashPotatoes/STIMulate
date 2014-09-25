@@ -2,9 +2,10 @@
     require_once '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
     require_once '/php/uac.php';
-	$login = new Login();
+	$UserAccessControl = new UserAccessControl();
 
-	$login->doLogout();
+	$UserAccessControl->doLogout();
+	header("Location: index.php");
 ?>
 
 <!-- login form box -->

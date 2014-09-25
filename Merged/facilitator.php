@@ -1,22 +1,22 @@
+<?php include 'Include/GlobalHead.inc'; ?>
+<?php include 'PHP/functions.php'; ?>
+<?php require 'PHP/uac.php'; ?>
 <?php
-/**
- * Created by PhpStorm.
- * User: Hayden
- * Date: 16/09/14
- * Time: 7:09 PM
- */
+    $UserAccessControl = new UserAccessControl();
+
     if (session_status() == PHP_SESSION_NONE) {
     session_start();
     }
-?>
 
+    if(!$UserAccessControl->isUserLoggedIn()) {
+        header("Location: gateway.php");
+    }
+?>
 <!DOCTYPE html>
 
 <html>
     <head>
-        <?php include 'Include/GlobalHead.inc'; ?>
-        <?php include 'PHP/functions.php'; ?>
-        <?php include 'PHP/uac.php'; ?>
+
         <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
         <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     </head>

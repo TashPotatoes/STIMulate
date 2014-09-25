@@ -4,7 +4,7 @@
  * Class login
  * handles the user's login and logout process
  */
-class Login
+class UserAccessControl
 {
 
     private $db_connection = null;
@@ -36,7 +36,6 @@ class Login
             $sqlObject = new \php\SqlObject("SELECT * FROM facilitators 
                                 WHERE student_id = :id AND stu_name_last = :name", array($user_name, $password));
             $loginCheck = $sqlObject->Execute();
-var_dump($loginCheck);
 
             if (count($loginCheck)) {
                 echo "CORRECT CREDENTIALS";
@@ -60,7 +59,10 @@ var_dump($loginCheck);
     public function doLogout()
     {
         // delete the session of the user
-        $_SESSION = array();
+       // $_SESSION = array();
+        unset($_SESSION['facilitator_id']);
+        $_SESSION['user_login_status'] = 0;
+
         session_destroy();
         // return a little feeedback message
         $this->messages[] = "You have been logged out.";
@@ -74,7 +76,6 @@ var_dump($loginCheck);
     public function isUserLoggedIn()
     {
         if (isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] == 1) {
-            echo "USER LOGGED IN";
             return true;
         }
         // default return
