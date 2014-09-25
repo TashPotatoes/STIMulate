@@ -23,10 +23,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TimetableInteraction.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
+      <file leaf-file-name="Admin.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="20" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.48627" vertical-offset="204" max-vertical-offset="3043">
+            <state line="27" column="32" selection-start="757" selection-end="757" vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="629">
+              <folding>
+                <element signature="e#6#88#0" expanded="true" />
+                <marker date="1411636045631" expanded="true" signature="433:593" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Admin.inc" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Include/Admin.inc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="29" selection-start="93" selection-end="93" vertical-scroll-proportion="0.058352403" vertical-offset="0" max-vertical-offset="874">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SideBar.inc" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="28" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="663">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timetable.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Timetable.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="20" selection-start="647" selection-end="874" vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="612">
+              <folding>
+                <marker date="1411614598257" expanded="true" signature="671:831" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="24" selection-start="0" selection-end="806" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="527">
               <folding />
             </state>
           </provider>
@@ -44,7 +85,6 @@
       <list>
         <option value="$PROJECT_DIR$/Include/GlobalHead.inc" />
         <option value="$PROJECT_DIR$/CSS/Header.CSS" />
-        <option value="$PROJECT_DIR$/Include/SideBar.inc" />
         <option value="$PROJECT_DIR$/CSS/SideBar.CSS" />
         <option value="$PROJECT_DIR$/CSS/Global.CSS" />
         <option value="$PROJECT_DIR$/CSS/LocationSeparator.CSS" />
@@ -60,6 +100,9 @@
         <option value="$PROJECT_DIR$/Timetable.php" />
         <option value="$PROJECT_DIR$/JS/TimetableInteraction.js" />
         <option value="$PROJECT_DIR$/CSS/Absenses.CSS" />
+        <option value="$PROJECT_DIR$/Include/SideBar.inc" />
+        <option value="$PROJECT_DIR$/Admin.php" />
+        <option value="$PROJECT_DIR$/Include/Admin.inc" />
       </list>
     </option>
   </component>
@@ -219,7 +262,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -260,20 +303,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/JS/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="26" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2057">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="85" selection-start="4660" selection-end="4660" vertical-scroll-proportion="0.0" vertical-offset="822" max-vertical-offset="2482">
@@ -332,7 +361,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="952" />
+        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="952">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
@@ -391,9 +422,7 @@
     <entry file="file://$PROJECT_DIR$/Index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="24" selection-start="654" selection-end="654" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="612">
-          <folding>
-            <marker date="1411614487598" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -411,7 +440,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="952" />
+        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="952">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
@@ -456,15 +487,15 @@
     <entry file="file://$PROJECT_DIR$/Index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="7" selection-start="185" selection-end="329" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="527">
-          <folding>
-            <marker date="1411614487598" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="20" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="952" />
+        <state line="14" column="20" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="952">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/LocationSeparator.CSS">
@@ -480,11 +511,6 @@
     <entry file="file://$PROJECT_DIR$/Include/GlobalHead.inc">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="75" selection-end="136" vertical-scroll-proportion="0.0778032" vertical-offset="0" max-vertical-offset="874" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="539" selection-end="539" vertical-scroll-proportion="0.3560606" vertical-offset="3" max-vertical-offset="663" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/Header.CSS">
@@ -504,7 +530,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="952" />
+        <state line="28" column="4" selection-start="416" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="952">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS/Timetable.CSS">
@@ -587,24 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="24" selection-start="654" selection-end="654" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="527">
-          <folding>
-            <marker date="1411614487598" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Timetable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="42" selection-start="537" selection-end="537" vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="612">
-          <folding>
-            <marker date="1411614598257" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSS/Absenses.CSS">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="17" selection-start="25" selection-end="25" vertical-scroll-proportion="0.018888889" vertical-offset="0" max-vertical-offset="900">
@@ -612,9 +622,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="24" selection-start="0" selection-end="806" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Timetable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="20" selection-start="647" selection-end="874" vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="612">
+          <folding>
+            <marker date="1411614598257" expanded="true" signature="671:831" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="28" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="20" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.48627" vertical-offset="204" max-vertical-offset="3043">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="32" selection-start="757" selection-end="757" vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="629">
+          <folding>
+            <element signature="e#6#88#0" expanded="true" />
+            <marker date="1411636045631" expanded="true" signature="433:593" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/Admin.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="29" selection-start="93" selection-end="93" vertical-scroll-proportion="0.058352403" vertical-offset="0" max-vertical-offset="874">
           <folding />
         </state>
       </provider>

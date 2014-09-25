@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class = "">
-            <a href = "Index.php">
+            <a href = "Admin.php">
                 <img src = "IMG/plf.png" alt = "dashboard" class = "inline-image side-img">
                 <p class = "inline-text">Admin</p>
             </a>
