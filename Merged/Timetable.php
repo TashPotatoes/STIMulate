@@ -1,18 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Hayden
- * Date: 16/09/14
- * Time: 7:09 PM
- */
-?>
-
+<?php include 'PHP/functions.php'; ?>
+<?php require 'PHP/uac.php'; ?>
+<?php $UserAccessControl = new UserAccessControl(); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <?php include 'Include/GlobalHead.inc'; ?>
-        <?php include 'PHP/functions.php'; ?>
-        <?php include 'PHP/uac.php'; ?>
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">

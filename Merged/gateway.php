@@ -1,21 +1,20 @@
 <?php
     require_once '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
-    require_once '/php/uac.php';
-	$login = new Login();
-
-	if ($login->isUserLoggedIn() == true) {
+    require '/php/uac.php';
+	$UserAccessControl = new UserAccessControl();
+	if ($UserAccessControl->isUserLoggedIn() == true) {
 
 
 	} else {
-		if (isset($login)) {
-		    if ($login->errors) {
-		        foreach ($login->errors as $error) {
+		if (isset($UserAccessControl)) {
+		    if ($UserAccessControl->errors) {
+		        foreach ($UserAccessControl->errors as $error) {
 		            echo $error;
 		        }
 		    }
-		    if ($login->messages) {
-		        foreach ($login->messages as $message) {
+		    if ($UserAccessControl->messages) {
+		        foreach ($UserAccessControl->messages as $message) {
 		            echo $message;
 		        }
 		    }
@@ -25,7 +24,6 @@
     if (session_status() == PHP_SESSION_NONE) {
     session_start();
     }
-echo $_SESSION['facilitator_id'];
 ?>
 
 <!DOCTYPE html>
