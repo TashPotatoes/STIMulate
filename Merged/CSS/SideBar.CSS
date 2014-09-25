@@ -28,18 +28,12 @@ aside li:hover {
     background-color: rgb(150,150,150);
 }
 
-aside p {
-    font-size: 10pt;
-    position: relative;
-    bottom: 3px;
-}
-
-aside a {
-    text-decoration: none;
-}
 
 .nav li{
 background-color: rgb(100,100,100);
+    font-size: 10pt;
+    position: relative;
+    bottom: 3px;
 }
 .nav:nth-child(2n+2) li {
     background-color: rgb(125,125,125);
@@ -66,4 +60,5 @@ background-color: rgb(100,100,100);
 
 .nav li a:link, .nav li a:hover, .nav li a:visited{
     color: white;
+    text-decoration: none;
 }

@@ -1,10 +1,15 @@
 .timetableWrapper, .filter{
     margin: 15px auto 0 auto;
-    width: 1600px;
+    max-width: 1600px;
+    width: 100%;
     border: 2px solid rgb(225,225,225);
+}
+.index-container {
+    padding: 20px;
 }
 .push-right {
     margin-left: 200px;
+    padding: 20px;
 }
 .headElement {
     background: rgb(246,246,246);
@@ -21,15 +26,12 @@
     padding-right: 0;
 }
 .searchbar {
-    float: right;
-    position: relative;
     padding-bottom: 5px;
-    right: 0px;
+    min-height: 52px;
 }
 .searchButton {
     width: 100px;
     height: 40px;
-
     color: white;
     background: rgb(67,142,185);
     border: none;

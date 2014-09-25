@@ -1,5 +1,5 @@
 <?php
-    require_once '/php/databaseAPI.php';
+    require '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
 
     if (session_status() == PHP_SESSION_NONE) {
@@ -18,9 +18,9 @@
 </head>
 <body>
 <main>
-
+    <div class="index-container">
     <?php include 'Include/Timetable.inc'; ?>
-
+</div>
 </main>
     </body>
 </html>

@@ -5,8 +5,6 @@
 <html>
 <head>
     <?php include 'Include/GlobalHead.inc'; ?>
-        <?php include 'PHP/functions.php'; ?>
-        <?php include 'PHP/uac.php'; ?>
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
@@ -25,8 +23,9 @@
                     <p> > Timetable</p>";
         include 'Include/LocationSeparator.inc'; ?>
     <?php include 'Include/SideBar.inc'; ?>
+    <div class="push-right">
     <?php include 'Include/Timetable.inc'; ?>
-
+    </div>
 </main>
 </body>
 </html>

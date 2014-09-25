@@ -1,18 +1,22 @@
-<div class = "push-right">
+<?php require_once '/php/DatabaseAPI.php'; ?>
     <?php if("index.php" == basename($_SERVER['PHP_SELF'])) { ?>
     <div class = "filter">
         <div class = "headElement">
             <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-            <h2 class = "inline-text">Filters</h2>
+            <h2 class = "inline-text">Stream</h2>
         </div>
         <span class = "filter-stream">
             <ul>
-                <li id = "filterStreamIt" class = "stream-filters">IT</li>
-                <li id = "filterStreamSc" class = "stream-filters">Science</li>
-                <li id = "filterStreamMa" class = "stream-filters">Maths</li>
-                <li id = "filterStreamDh" class = "stream-filters">Duty Hosts</li>
+                <?php generateStreamFilters(); ?>
             </ul>
         </span>
+
+    </div>
+    <div class = "filter">
+        <div class = "headElement">
+            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
+            <h2 class = "inline-text">Specialisation</h2>
+        </div>
         <span class = "searchbar">
             <img src="IMG/search.png" class = "inline-image searchIcon">
             <input type="text" placeholder="Search Topics, Streams, or Units..." class = "searchSpan">
@@ -136,8 +140,18 @@
                     $sqlObject->Execute();
                 }
 
+                function generateStreamFilters() {
+                    $sqlObject = new \PHP\SqlObject("SELECT str_shortname, str_name FROM streams");
+                    $data = $sqlObject->Execute();
+
+                    foreach ($data as $stream) {
+                        $shortcode = ucfirst(strtolower($stream['str_shortname']));
+                        echo "<li id='filterStream".$shortcode."' class='stream-filters'>".$stream['str_name']."</li>";
+                    }  
+                }
+
                 ?>
             </table>
         </div>
     </div>
-</div>
+s
