@@ -16,7 +16,7 @@
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Absenses.CSS" rel="stylesheet" type="text/css">
     <script src = "js/filters.js"></script>
-    <script src = "js/Absenties.js"></script>
+    <script src = "js/TimetableInteraction.js"></script>
 </head>
 <body>
 <main>
