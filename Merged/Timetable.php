@@ -11,6 +11,8 @@
 <html>
 <head>
     <?php include 'Include/GlobalHead.inc'; ?>
+        <?php include 'PHP/functions.php'; ?>
+        <?php include 'PHP/uac.php'; ?>
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">

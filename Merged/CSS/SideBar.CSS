@@ -39,6 +39,12 @@ aside a {
     text-decoration: none;
 }
 
+.nav ul li{
+background-color: rgb(100,100,100);
+}
+.nav ul:nth-child(2n+2) li {
+    background-color: rgb(125,125,125);
+}
 .side-img {
     height: 20px;
     width: 20px;
@@ -48,4 +54,12 @@ aside a {
 
 .alternative {
     background: rgb(125,125,125);
+}
+
+.icon-calander {
+    text-indent: 20px;
+    background-image: url('../img/calander.png');
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 0 5px;
 }
