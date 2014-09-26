@@ -9,7 +9,7 @@ session_start();
         <img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image">
         <h1 class = inline-text>STIMulate</h1>
     </div>
-    <?php    echo $UserAccessControl->isUserLoggedIn(); ?>
+    <?php    //echo $UserAccessControl->isUserLoggedIn(); ?>
     <?php if($UserAccessControl->isUserLoggedIn()){ ?>
     <div id = "user-information">
         <ul>
