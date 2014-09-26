@@ -129,7 +129,7 @@ Author: Pearl Gariano
 </form>
 
 </div> -->
-
+<div class="push-right">
 <div class = "timetableWrapper">
 
     <div class = "headElement">
@@ -147,31 +147,27 @@ Author: Pearl Gariano
                 <th>Friday</th>
             </tr>
 
-            <?php
-            require_once 'PHP/databaseAPI.php';
-            require_once 'PHP/SqlObject.php';            
+<?php
+$startOfWeek = date("d-m-Y", strtotime('this week', time()));
 
-            $startOfWeek = date("d-m-Y", strtotime('this week', time()));
+$DAYS_IN_WEEK = 5;
+$START_HOUR = '08:00:00'; // Must be before 12 noon, whole hour only (0-12), set to hour before earliest shift. // CHANGE THIS TO BE A QUERY
+$SECTIONS_IN_DAY = 8;
 
-            $DAYS_IN_WEEK = 5;
-            $START_HOUR = '08:00:00'; // Must be before 12 noon, whole hour only (0-12), set to hour before earliest shift. // CHANGE THIS TO BE A QUERY
-            $SECTIONS_IN_DAY = 8;
+$row = 1;
 
-            $row = 1;
-
-            for($i = 0; $i < $SECTIONS_IN_DAY; $i++){
-                $currentTime = date("h:i", strtotime('+'.($row*60).'minutes', strtotime($START_HOUR)));
-                echo '<tr>';
-                echo '<td class="column-time">'.$currentTime.'</td>';
-                for($j = 0; $j < $DAYS_IN_WEEK; $j++){
-                    echo "<td>";
-                    //InsertActivity($shiftInformation, $absentInformation, $j, $currentTime);
-                    echo "</td>";
-                }
-                echo '</tr>';
-                $row++;
-            } 
-            ?>
-         </table>
-    </div>
+for($i = 0; $i < $SECTIONS_IN_DAY; $i++){
+    $currentTime = date("h:i", strtotime('+'.($row*60).'minutes', strtotime($START_HOUR)));
+    echo '<tr>';
+    echo '<td class="column-time">'.$currentTime.'</td>';
+    for($j = 0; $j < $DAYS_IN_WEEK; $j++){
+        echo "<td>";
+        echo "</td>";
+    }
+    echo '</tr>';
+    $row++;
+}
+?>
 </div>
+
+    </div>
