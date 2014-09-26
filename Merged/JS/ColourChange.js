@@ -3,12 +3,31 @@ Author: Pearl Gariano
 **/
 
 $(document).ready(function(){
-    clickColorEvent(obj);
+    clickColorEvent();
 });
 
-var colors = ["green", "yellow", "red", "white"];
-function clickColorEvent(obj){
-    obj.colorIndex = obj.colorIndex || 0;
-    obj.style.backgroundColor = colors[obj.colorIndex++ % colors.length];
-    console.log(obj.style.backgroundColor);
+function clickColorEvent() {
+	$('.column-colour').on('click', function(){
+		console.log(this);
+		if($(this).hasClass("green")) {
+			console.log(1);
+			$(this).removeClass("green");
+			$(this).addClass("yellow");
+			$(this).css({'background-color': 'yellow'});
+
+		} else if($(this).hasClass("yellow")) {
+			$(this).removeClass("yellow");
+			$(this).addClass("red");
+			$(this).css({'background-color': 'red'});
+
+		} else if($(this).hasClass("red")) {
+			$(this).removeClass("red");
+			$(this).css({'background-color': 'white'});
+
+		} else {
+			$(this).addClass("green");
+			$(this).css({'background-color': 'green'});
+		} 
+	});
 }
+
