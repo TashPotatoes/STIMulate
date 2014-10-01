@@ -1,42 +1,45 @@
 <html>
 <head>
 <script src="../dist/glpk.min.js"></script>
-</head>
+
+	
+	
+	</head>
 <body>
-<?php 
-	/*
-	//xij = decision variable. i = ith person, j is jth shift. 
-
-	//x[i][j] = ith student jth shift
-
-	//IMPORT PREFERNCES INTO AN ARRAY.
-	//then perhaps sort by  
-
-	$host = "stimulate.ceu1tvrd8kag.ap-southeast-2.rds.amazonaws.com";
-	$dbnm = "stimulate";
-	$user = "stimdev";
-	$pass = "itisbest";
-	try {
-		$conn = new PDO('mysql:host=stimulate.ceu1tvrd8kag.ap-southeast-2.rds.amazonaws.com;dbname=stimulate', $user, $pass);
-		  echo "Connected<p>";
+<?php
+    require '../../PHP/functions.php'; 
+	require_once '../../php/databaseAPI.php';
+    require_once '../../php/SqlObject.php';
+    require '../../php/uac.php';
+	
+	//$sqlStatement = "SELECT `student_ID`, `day`, `shift_time` FROM preferences";
+	
+	// Generate array of studentsID, Index of studentID in array will be used to generate the input CPLEX string
+	$studentList = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences GROUP BY `student_ID`", array());
+    $studentList->Execute();
+	$studentArray = array();
+	$studentNum = 0;
+	foreach($studentList as $row) {
+		$studentArray[$studentNum] = $row['student_ID'];
+		$studentNum++;
 	}
-	catch (Exception $e){
-	  echo "Unable to connect: " . $e->getMessage() ."<p>";
-	}	
-
-	$q2 = $conn->prepare("SELECT test_code FROM test");//TODO: SELECT * FROM table WHERE stream = x ORDERBY newPLF, studentID asc
-	$q2->execute();
-	echo "- DISPLAY";
-	$result = $q2->fetchAll();
-	//$dis = array_map('reset', $dis);
-	//print_r($dis);
-
-	//iterate within a shift j
-	//iterate within a
-
-
-
-	$totalPeople = count($result);
+	
+	// Generates array with ith student and jth shift, where j is calculated by day + shift
+	$preferences = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences", array());
+    $preferences->Execute();
+	$prefArray = array();
+	foreach($preferences as $row) {
+		$studentIndex = array_search($row['student_ID'],$studentList,true);
+		for ($i = 0; $i < 8; $i++){
+			$prefArray[$studentIndex][$row['day']+$i] = $row["'"+ ($i + 9) % 12 +"'"];
+		}
+	}
+	echo "<pre>";
+	print_r($preferences);
+	echo "<pre>";
+ 
+ 
+	/*$totalPeople = count($result);
 	$totalShifts = count($shifts);
 	$personIndex = 1;
 	$shiftIndex = 0;
@@ -44,10 +47,10 @@
 	$personArray = array();
 
 	$objective = "\* Objective function *\ \n Maximize \n obj:"; 
-	$constraint2 = 
+	//$constraint2 = 
 
 	// iterate over each persons preferences
-	foreach ($result as $person){
+	/*foreach ($result as $person){
 		foreach ($person as $shift){ // check 		
 			$objective += $shift + " + x" + $personIndex + "_" + $shiftIndex; // creates objective function
 			$personArray[$personIndex] = $person[1]; // maps student ID to index	
@@ -72,16 +75,14 @@
 			else {
 				$constrait1 += "= 2\n"; // eventually remove hard coded values and retrieve from a database		
 			}		
-	}
-	*/
+	}*/
+	
 	
 ?>	
 
 
 
 	<textarea id="source" cols="50" rows="10">
-
-	
 	\* Objective function *\
 Minimize
 obj: +17 x1_1 +23 x2_1 +16 x3_1 +19 x4_1 +18 x5_1 +21 x1_2 +16 x2_2 +20 x3_2 +19 x4_2 +19 x5_2 +22 x1_3 +21 x2_3 +16 x3_3 +22 x4_3 +15 x5_3 +18 x1_4 +16 x2_4 +25 x3_4 +22 x4_4 +15 x5_4 +24 x1_5 +17 x2_5
