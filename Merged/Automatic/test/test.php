@@ -12,72 +12,104 @@
     require_once '../../php/SqlObject.php';
     require '../../php/uac.php';
 	
-	//$sqlStatement = "SELECT `student_ID`, `day`, `shift_time` FROM preferences";
+	$stream = "IT"; //TODO: create UI with a button, where this variable gets its value from
 	
 	// Generate array of studentsID, Index of studentID in array will be used to generate the input CPLEX string
-	$studentList = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences GROUP BY `student_ID`", array());
-    $studentList->Execute();
+	$studentListRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences GROUP BY `student_ID ORDER BY `student_ID` ASC WHERE  `stream` = :stream;", array($stream));
+    $studentListRS->Execute();
 	$studentArray = array();
-	$studentNum = 0;
-	foreach($studentList as $row) {
-		$studentArray[$studentNum] = $row['student_ID'];
-		$studentNum++;
+	$studentTotal = 0;
+	foreach($studentListRS as $row) {
+		$studentArray[$studentTotal] = $row['student_ID'];
+		$studentTotal++;
 	}
-	
-	// Generates array with ith student and jth shift, where j is calculated by day + shift
-	$preferences = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences", array());
-    $preferences->Execute();
-	$prefArray = array();
-	foreach($preferences as $row) {
+	$studentHours = array(); //TODO: create hours in db and then uncomment code below
+	/*$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM preferences GROUP BY `student_ID`" ORDER BY `student_ID` asc, array());
+    $studentHourstRS->Execute();
+	foreach($studentHoursRS as $row) {
 		$studentIndex = array_search($row['student_ID'],$studentList,true);
-		for ($i = 0; $i < 8; $i++){
-			$prefArray[$studentIndex][$row['day']+$i] = $row["'"+ ($i + 9) % 12 +"'"];
-		}
-	}
-	echo "<pre>";
-	print_r($preferences);
-	echo "<pre>";
- 
- 
-	/*$totalPeople = count($result);
-	$totalShifts = count($shifts);
-	$personIndex = 1;
-	$shiftIndex = 0;
-
-	$personArray = array();
-
-	$objective = "\* Objective function *\ \n Maximize \n obj:"; 
-	//$constraint2 = 
-
-	// iterate over each persons preferences
-	/*foreach ($result as $person){
-		foreach ($person as $shift){ // check 		
-			$objective += $shift + " + x" + $personIndex + "_" + $shiftIndex; // creates objective function
-			$personArray[$personIndex] = $person[1]; // maps student ID to index	
-		}
-	}
-
-	// constraints
-	// sum of all shift i 
-	$constraint1 = "\* Constraints *\ \n Subject To"
-
-
-	for ($num = 0, $num < $totalShifts + $totalPeople){
-		for ($j = 0, $j < $totalShifts, j++){ //check start of sql index
-			$constraint1 += "shiftLim_" + $j + ":";
-			for ($i = 0, $i < $totalPeople, i++){
-				$constraint1 += " +x" + $i + "_" $j;		
-			}
-			
-			// If shift is early or late in the day, only one person is required, otherwise two are required
-			if ($i < 2 || $i > 8) {
-				$constraint1 += "= 1\n"; // eventually remove hard coded values and retrieve from a database
-			else {
-				$constrait1 += "= 2\n"; // eventually remove hard coded values and retrieve from a database		
-			}		
+		$studentHours[studentIndex] = $row['hours'];
 	}*/
 	
+			
+	// Generates array with ith student and jth shift, where j is calculated by day + shift
+	$shiftTotal = 8; //TODO: maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
+	$startTime = 9;
+	$preferencesRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences", array());
+    $preferencesRS->Execute();
+	$prefArray = array();
+	foreach($preferencesRS as $row) {
+		$studentIndex = array_search($row['student_ID'],$studentList,true);
+		for ($i = 0; $i < $shiftTotal; $i++){
+			$prefArray[$studentIndex][$row['day']+$i] = $row["'"+ ($i + startTime) % 12 +"'"];
+		}
+	}
+
+	// iterate over each persons preferences to create objective function
+	$objective = "\* Objective function *\ *\ \n Maximize \n obj:";
+	for ($person = 0; $person < $studentTotal; $person++){
+		for ($shift = 0; $shift < $shiftTotal; $shift++){
+			$objective += " +" + $prefArray[$person][$shift] + " x" + $person + "_" + $shift;
+		}
+	}
+
+	// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
+	$constraint = "\n  \* Constraints *\ \n Subject To \n";
+	for ($person = 0; $person < $studentTotal; $person++){
+		$constraint += "person_" + $person + ":"; 
+		for ($shift = 0; $shift < $shiftTotal; $shift++){
+			$constraint +=  " +x" + $person + "_" + $shift;
+		}
+		$constraint += " = " + 2 + "\n"; // TODO: after db is changed, changed this line to: $constraint += " = " + $studentHours[$person] + "\n"; // decide whether <= or =
+	}
 	
+	// iterate over each shift to make sure each shift has the specified number of people
+	$desk = array ( 1, 1, 2, 2, 2, 2, 2, 1, 1);
+	for ($shift = 0; $shift < $shiftTotal; $shift++){
+		$constraint += "shift_" + $shift +":";
+		for ($person = 0; $person < $personTotal; $person++){
+			$constraint +=  " +x" + $person + "_" + $shift;
+		}
+		$constraint += " <= " + $desk[$shift] + "\n";
+	}
+	
+	// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
+	// is effective, otherwise large m will make restraint redundant
+	// Modelled on A - 1 + my < m,  1 - B - my <= 0
+	$newTotal = 5; // TODO: retrieve total number of new students and also sort all sql queries by new/not new and then student ID
+	$m = 10000; // arbitrarily large amount  
+	for ($shift = 0; $shift < $shiftTotal; $shift++){
+		$constraintNewA += "newPLFa_" + $shift +": "; 
+		$constraintNewB += "newPLFb_" + $shift +": 1- ";
+		
+		for ($person = 0; $person < $newTotal; $person++){
+			$constraintNewA +=  " x" + $person + "_" + $shift;
+		}
+		for ($person = $newTotal; $person < $studentTotal; $person++){
+			$constraintNewB +=  " -x" + $person + "_" + $shift;
+		}
+		$constraintNewA += " -1 +" + $m + "y" + $shift +" < " + $m + "\n";
+		$constraintNewB += " -" + $m + "y" + $shift +" <= " + 0 + "\n";
+		
+		$constraint += $constraintNewA + $constraintNewB;
+	}
+	// Ensures all decision variables are binary (ie less than 1 and integer)
+	$bounds = "\n \* Variable bounds *\ \n Bounds \n";
+	$integers = "\n	\* Integer definitions *\ \n General \n ";	
+	for ($shift = 0; $shift < $shiftTotal; $shift++){
+		for ($person = 0; $person < $studentTotal; $person){
+			$bounds += " x" + $person + "_" + $shift + " <= 1 \n ";
+			$integers +=" x" + $person + "_" + $shift;
+		}
+		$bounds += " y" + $shift + " <= 1 \n";
+	}
+
+	// Collect all the strings to generate the input string
+	$input = $objective + $constraint + $bounds + $integers + " End"
+	
+	//TODO: pass input string directly to algorithm
+	//TODO: parse output
+	//TODO: add output to db
 ?>	
 
 
