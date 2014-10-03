@@ -1,0 +1,15 @@
+#loginForm{
+    width: 500px;
+    margin: 30px auto;
+}
+
+#loginForm input {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 7px 3px 7px 3px;
+}

@@ -33,6 +33,7 @@
         <?php include 'Include/GlobalHead.inc'; ?>
         <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
         <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
+        <link href="CSS/Gateway.CSS" rel="stylesheet" type="text/css">
     </head>
     <body>
         <main>
@@ -45,13 +46,13 @@
                 include 'Include/LocationSeparator.inc'; ?>
             <?php include 'Include/SideBar.inc'; ?>
 
-<form method="post" action="gateway.php" name="loginform">
+<form method="post" action="gateway.php" name="loginform" id = "loginForm">
 
     <label for="login_input_username">Username</label>
-    <input id="login_input_username" class="login_input" type="text" name="login_input_username" required />
+    <input id="login_input_username" class="login_input" type="text" name="login_input_username" placeholder="Username" required />
 
     <label for="login_input_password">Password</label>
-    <input id="login_input_password" class="login_input" type="password" name="login_input_password" autocomplete="off" required />
+    <input id="login_input_password" class="login_input" type="password" name="login_input_password" autocomplete="off" placeholder="Password" required />
 
     <input type="submit"  name="login" value="Log in" />
 
