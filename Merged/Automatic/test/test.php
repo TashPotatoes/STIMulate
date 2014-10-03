@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <script src="../dist/glpk.min.js"></script>
 
 	
@@ -64,7 +66,7 @@
 	}
 	
 	// iterate over each shift to make sure each shift has the specified number of people
-	$desk = array ( 1, 1, 2, 2, 2, 2, 2, 1, 1);
+	$desk = array ( 1, 1, 2, 2, 2, 2, 1, 1);
 	for ($shift = 0; $shift < $shiftTotal; $shift++){
 		$constraint .= "shift_" + $shift +":";
 		for ($person = 0; $person < $studentTotal; $person++){
@@ -113,12 +115,13 @@
 	//TODO: pass input string directly to algorithm
 	//TODO: parse output
 	//TODO: add output to db
-	// TODO: may need to change all \n to <br>
+	//TODO: may need to change all \n to <br>
 	echo $input;
+	//echo "<textarea id='source' cols='50' rows='10' placeholder = 'two' >";
 ?>	
 
-	<textarea id="source" cols="50" rows="10">
-	\* Objective function *\
+	<textarea id="source" cols="50" rows="10"> 
+\* Objective function *\
 Minimize
 obj: +17 x1_1 +23 x2_1 +16 x3_1 +19 x4_1 +18 x5_1 +21 x1_2 +16 x2_2 +20 x3_2 +19 x4_2 +19 x5_2 +22 x1_3 +21 x2_3 +16 x3_3 +22 x4_3 +15 x5_3 +18 x1_4 +16 x2_4 +25 x3_4 +22 x4_4 +15 x5_4 +24 x1_5 +17 x2_5
 +24 x3_5 +20 x4_5 +21 x5_5 +15 x1_6 +16 x2_6 +16 x3_6 +16 x4_6 +25 x5_6 +20 x1_7 +19 x2_7 +17 x3_7 +19 x4_7 +16 x5_7 +18 x1_8 +25 x2_8 +19 x3_8 +17 x4_8 +16 x5_8 +19 x1_9 +18 x2_9 +19 x3_9 +21 x4_9 +23 x5_9
@@ -239,7 +242,7 @@ End
     <pre id="log"/>
 
     <script>
-        var start;
+    var start;
 	var logNode = document.getElementById("log");
         var log = glp_print_func = function(value){
             var now = new Date();
@@ -252,7 +255,7 @@ End
             start = new Date(); 
 	    logNode.innerText = "";
             var lp = glp_create_prob();
-            glp_read_lp_from_string(lp, null, document.getElementById("source").value);
+            glp_read_lp_from_string(lp, null, <?php echo $input; ?>); //document.getElementById("source").value);
 
             glp_scale_prob(lp, GLP_SF_AUTO);
 
