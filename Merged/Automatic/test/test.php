@@ -41,7 +41,7 @@
 	foreach($preferencesRS as $row) {
 		$studentIndex = array_search($row['student_ID'],$studentList,true);
 		for ($i = 0; $i < $shiftTotal; $i++){
-			$prefArray[$studentIndex][$row['day']+$i] = $row["'"+ ($i + startTime) % 12 +"'"];
+			$prefArray[$studentIndex][$row['day']+$i] = $row["'" . ($i + startTime) % 12 . "'"];
 		}
 	}
 
@@ -49,70 +49,73 @@
 	$objective = "\* Objective function *\ *\ \n Maximize \n obj:";
 	for ($person = 0; $person < $studentTotal; $person++){
 		for ($shift = 0; $shift < $shiftTotal; $shift++){
-			$objective += " +" + $prefArray[$person][$shift] + " x" + $person + "_" + $shift;
+			$objective .= " +" . $prefArray[$person][$shift] . " x" . $person . "_" . $shift;
 		}
 	}
 
 	// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
 	$constraint = "\n  \* Constraints *\ \n Subject To \n";
 	for ($person = 0; $person < $studentTotal; $person++){
-		$constraint += "person_" + $person + ":"; 
+		$constraint .= "person_" . $person . ":"; 
 		for ($shift = 0; $shift < $shiftTotal; $shift++){
-			$constraint +=  " +x" + $person + "_" + $shift;
+			$constraint .=  " +x" . $person . "_" . $shift;
 		}
-		$constraint += " = " + 2 + "\n"; // TODO: after db is changed, changed this line to: $constraint += " = " + $studentHours[$person] + "\n"; // decide whether <= or =
+		$constraint .= " = " . 2 . "\n"; // TODO: after db is changed, changed this line to: $constraint .= " = " + $studentHours[$person] + "\n"; // decide whether <= or =
 	}
 	
 	// iterate over each shift to make sure each shift has the specified number of people
 	$desk = array ( 1, 1, 2, 2, 2, 2, 2, 1, 1);
 	for ($shift = 0; $shift < $shiftTotal; $shift++){
-		$constraint += "shift_" + $shift +":";
-		for ($person = 0; $person < $personTotal; $person++){
-			$constraint +=  " +x" + $person + "_" + $shift;
+		$constraint .= "shift_" + $shift +":";
+		for ($person = 0; $person < $studentTotal; $person++){
+			$constraint .=  " +x" . $person . "_" . $shift;
 		}
-		$constraint += " <= " + $desk[$shift] + "\n";
+		$constraint .= " <= " . $desk[$shift] . "\n";
 	}
 	
 	// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
 	// is effective, otherwise large m will make restraint redundant
 	// Modelled on A - 1 + my < m,  1 - B - my <= 0
 	$newTotal = 5; // TODO: retrieve total number of new students and also sort all sql queries by new/not new and then student ID
-	$m = 10000; // arbitrarily large amount  
+	$m = 10000; // arbitrarily large amount
+	$constraintNewA = "";
+	$constraintNewB = "";
 	for ($shift = 0; $shift < $shiftTotal; $shift++){
-		$constraintNewA += "newPLFa_" + $shift +": "; 
-		$constraintNewB += "newPLFb_" + $shift +": 1- ";
+		$constraintNewA .= "newPLFa_" . $shift . ": "; 
+		$constraintNewB .= "newPLFb_" . $shift . ": 1- ";
 		
 		for ($person = 0; $person < $newTotal; $person++){
-			$constraintNewA +=  " x" + $person + "_" + $shift;
+			$constraintNewA .=  " x" . $person . "_" . $shift;
 		}
 		for ($person = $newTotal; $person < $studentTotal; $person++){
-			$constraintNewB +=  " -x" + $person + "_" + $shift;
+			$constraintNewB .=  " -x" . $person . "_" . $shift;
 		}
-		$constraintNewA += " -1 +" + $m + "y" + $shift +" < " + $m + "\n";
-		$constraintNewB += " -" + $m + "y" + $shift +" <= " + 0 + "\n";
+		$constraintNewA .= " -1 +" . $m . "y" . $shift . " < " . $m . "\n";
+		$constraintNewB .= " -" . $m . "y" . $shift . " <= " . 0 . "\n";
 		
-		$constraint += $constraintNewA + $constraintNewB;
+		$constraint .= $constraintNewA + $constraintNewB;
 	}
+		
 	// Ensures all decision variables are binary (ie less than 1 and integer)
 	$bounds = "\n \* Variable bounds *\ \n Bounds \n";
 	$integers = "\n	\* Integer definitions *\ \n General \n ";	
 	for ($shift = 0; $shift < $shiftTotal; $shift++){
 		for ($person = 0; $person < $studentTotal; $person){
-			$bounds += " x" + $person + "_" + $shift + " <= 1 \n ";
-			$integers +=" x" + $person + "_" + $shift;
+			$bounds .= " x" . $person . "_" . $shift . " <= 1 \n ";
+			$integers .=" x" . $person . "_" . $shift;
 		}
-		$bounds += " y" + $shift + " <= 1 \n";
+		$bounds .= " y" . $shift . " <= 1 \n";
 	}
 
 	// Collect all the strings to generate the input string
-	$input = $objective + $constraint + $bounds + $integers + " End"
+	$input = $objective . $constraint . $bounds . $integers . " End";
 	
 	//TODO: pass input string directly to algorithm
 	//TODO: parse output
 	//TODO: add output to db
+	// TODO: may need to change all \n to <br>
+	echo $input;
 ?>	
-
-
 
 	<textarea id="source" cols="50" rows="10">
 	\* Objective function *\
