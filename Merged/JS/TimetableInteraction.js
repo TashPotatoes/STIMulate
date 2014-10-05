@@ -9,6 +9,24 @@ $(document).ready(function(){
 function InitiateClickingEvents(){
     var isRemoving = false;
 
+    $('.namecard').hover(function (event) {
+        var element = $(event.target);
+        $("" +
+            "<div class = \"popup\">" +
+            "<div class = \"popuphead\">" +
+            "<img src='IMG/crown.png' class='inline-image popup-image'>" +
+            "<h2 class = \"\">Options</h2>" +
+            "</div>" +
+            "<ul>" +
+            "<li class = \"remove\">I can't make it</li>" +
+            "</ul>"+
+            "</div>").appendTo(element);
+    }, function(event){
+        // Remove if popup already exists
+        if($(".popup").length > 0){
+            RemovePopUp();
+        }
+    });
     $(document).on("click", 'td', function (event) {
         var element = $(event.target);
         // If empty table selected

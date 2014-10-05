@@ -2,8 +2,6 @@
 <?php require 'PHP/uac.php'; ?>
 <?php $UserAccessControl = new UserAccessControl();
     require_once "PHP/SqlObject.php";
-
-    $sqlObject = new \PHP\SqlObject("INSERT INTO WHATEVS (studentID) VALUES (:studentID)", array($_SESSION['facilitator_id']));
 ?>
 
 <!--

@@ -15,9 +15,9 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
     $navigation = array(
         	//   ("usertype[staff/student]", "Name", "file", "icon");
         	//     0: student 1: staff
-            array("0", "Dashboard", "index.php", "home"),
-            array("0", "Your Shifts", "shifts.php", "calander"),
-            array("0", "Your Availabilities", "TimetablePref.php", "calander"),
+            array("0", "Dashboard", "Dashboard.php", "home"),
+            array("0", "Timetable", "shifts.php", "calander"),
+            array("0", "Shift Preferences", "TimetablePref.php", "calander"),
             array("0", "Record a session", "#", "crown"),
             array("0", "Record a shift", "#", "crown"),
 
