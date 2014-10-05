@@ -21,7 +21,7 @@
         <div class="index-container">
         <?php include 'Include/Timetable.inc'; ?>
     </div>
-    <p><a href="facilitator.php">Facilitator Login</a></p>
+    <p><a href="dashboard.php">Facilitator Login</a></p>
     </main>
     </body>
 </html>
