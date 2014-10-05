@@ -2,6 +2,8 @@
  * Created by Hayden on 11/08/14.
  */
 
+var days = ['Monday', 'Tuesday', 'Wednesday','Thursday','Friday'];
+
 $(document).ready(function(){
     InitiateClickingEvents();
 });
@@ -11,15 +13,12 @@ function InitiateClickingEvents(){
 
     $('.namecard').hover(function (event) {
         var element = $(event.target);
+
+        var datetime = FindDateTimeID(element.parent().html());
         $("" +
             "<div class = \"popup\">" +
-            "<div class = \"popuphead\">" +
-            "<img src='IMG/crown.png' class='inline-image popup-image'>" +
-            "<h2 class = \"\">Options</h2>" +
-            "</div>" +
-            "<ul>" +
-            "<li class = \"remove\">I can't make it</li>" +
-            "</ul>"+
+            "<p>"+days[datetime['date']]+"</p>" +
+            "<p>"+datetime['time']+"</p>" +
             "</div>").appendTo(element);
     }, function(event){
         // Remove if popup already exists
@@ -45,7 +44,7 @@ function InitiateClickingEvents(){
                 // If it's not absent already
                 if(!element.hasClass('absent')){
                     $("" +
-                        "<div class = \"popup\">" +
+                        "<div class = \"popup large\">" +
                         "<div class = \"popuphead\">" +
                         "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                         "<h2 class = \"\">Options</h2>" +
@@ -57,7 +56,7 @@ function InitiateClickingEvents(){
                 // If absent
                 } else {
                     $("" +
-                        "<div class = \"popup\">" +
+                        "<div class = \"popup large\">" +
                         "<div class = \"popuphead\">" +
                         "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                         "<h2 class = \"\">Options</h2>" +

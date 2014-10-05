@@ -1,11 +1,15 @@
 .popup{
     color: black;
     position: absolute;
-    margin-left: 125px;
     background: white;
+    margin-left: 100px;
     border: 2px solid rgb(225,225,225);
-    width: 200px;
+    width: 100px;
 
+}
+
+.large {
+    width: 200px;
 }
 .popuphead{
     background: rgb(246,246,246);
@@ -26,6 +30,11 @@
     padding-left: 5px;
     height: 25px;
     width: 25px;
+}
+
+.popup p {
+    font-size: 12pt;
+    margin: 0;
 }
 
 .popup ul {
