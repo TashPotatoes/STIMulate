@@ -5,7 +5,7 @@
 	$UserAccessControl = new UserAccessControl();
 
 	$UserAccessControl->doLogout();
-	header("Location: facilitator.php");
+	header("Location: gateway.php");
 ?>
 
 <!-- login form box -->
