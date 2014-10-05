@@ -44,14 +44,23 @@
                 <?php
                 require_once 'PHP/databaseAPI.php';
                 require_once 'PHP/SqlObject.php';
-
-                $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
-                FROM STIMulate.facilitators
-                JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
-                JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
-                WHERE facilitators.active = 1
-                ORDER BY shift_id asc;";
-                $sqlObject = new \php\SqlObject($lq); // WHERE shifts.student_id = :student_id", array(8571091)); // HARD CODED
+                if(!isset($oneStudent)){
+                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
+                    FROM STIMulate.facilitators
+                    JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
+                    JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
+                    WHERE facilitators.active = 1
+                    ORDER BY shift_id asc;";
+                    $sqlObject = new \php\SqlObject($lq);
+                } else {
+                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
+                            FROM STIMulate.facilitators
+                            JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
+                            JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
+                            WHERE facilitators.active = 1 AND shifts.student_id = :student_id
+                            ORDER BY shift_id asc;";
+                    $sqlObject = new \php\SqlObject($lq, array($_SESSION['facilitator_id']));
+                }
                 $shiftInformation = $sqlObject->Execute();
 
                 $absentInformation = RetrieveAbsentRecords();

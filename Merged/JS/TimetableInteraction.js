@@ -12,57 +12,46 @@ function InitiateClickingEvents(){
     $(document).on("click", 'td', function (event) {
         var element = $(event.target);
         // If empty table selected
-        if(element.is('td')) {
-            // New options
-            $("" +
-                "<div class = \"popup\">" +
-                "<div class = \"popuphead\">" +
-                "<img src='IMG/plf.png' class='inline-image popup-image'>" +
-                "<h2 class = \"\">Options</h2>" +
-                "</div>" +
-                "<ul>" +
-                "<li class = \"remove\">Add shift</li>" +
-                "</ul>"+
-                "</div>").appendTo(element);
-        } else {
-            // Add option to appropriate namecard, not span
-            if(element.is('span')) {
-                element = element.parent();
-            }
+        if(element.is('span')) {
+            element = element.parent();
+        }
+        // Remove if popup already exists
+        if($(".popup").length > 0){
+            RemovePopUp();
+        }
 
-            // Remove if popup already exists
-            if($(".popup").length > 0){
-                RemovePopUp();
-            }
+        // Doesn't support adding shifts anymore
+        if(!element.is('td')){
+            // If the element hasn't just been removed
             if(!isRemoving){
+                // If it's not absent already
                 if(!element.hasClass('absent')){
-                $("" +
-                    "<div class = \"popup\">" +
-                    "<div class = \"popuphead\">" +
-                    "<img src='IMG/plf.png' class='inline-image popup-image'>" +
-                    "<h2 class = \"\">Options</h2>" +
-                    "</div>" +
-                    "<ul>" +
-                    "<li class = \"remove\">I can't make it</li>" +
-                    "</ul>"+
-                    "</div>").appendTo(element);
-            } else {
                     $("" +
                         "<div class = \"popup\">" +
                         "<div class = \"popuphead\">" +
-                        "<img src='IMG/plf.png' class='inline-image popup-image'>" +
+                        "<img src='IMG/crown.png' class='inline-image popup-image'>" +
+                        "<h2 class = \"\">Options</h2>" +
+                        "</div>" +
+                        "<ul>" +
+                        "<li class = \"remove\">I can't make it</li>" +
+                        "</ul>"+
+                        "</div>").appendTo(element);
+                // If absent
+                } else {
+                    $("" +
+                        "<div class = \"popup\">" +
+                        "<div class = \"popuphead\">" +
+                        "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                         "<h2 class = \"\">Options</h2>" +
                         "</div>" +
                         "<ul>" +
                         "<li class = \"remove\">I can make it</li>" +
                         "</ul>"+
                         "</div>").appendTo(element);
+                }
             }
             isRemoving = false;
         }
-    }
-    //Absenties();
-    //AddingShift();
     });
 
     // Click anywhere after popup has been raised
@@ -73,6 +62,8 @@ function InitiateClickingEvents(){
             }
         }
     });
+
+    // If the remove button is clicked
     RecordAbsence();
 }
 
@@ -95,24 +86,6 @@ function RecordAbsence(){
 
         // Ensuring that the popup doesn't reappear
         isRemoving = true;
-    });
-}
-// Adding ability to add shift
-function AddingShift(){
-    $(document).on("click", "td", function(){
-        if($(".popup").length > 0){
-            RemovePopUp();
-        }
-        $("" +
-            "<div class = \"popup\">" +
-            "<div class = \"popuphead\">" +
-            "<img src='IMG/plf.png' class='inline-image popup-image'>" +
-            "<h2 class = \"\">Options</h2>" +
-            "</div>" +
-            "<ul>" +
-            "<li class = \"remove\">I can't make it</li>" +
-            "</ul>"+
-            "</div>").appendTo($(this));
     });
 }
 
@@ -165,10 +138,4 @@ function FindDateTimeID(html){
     // Putting into assoc array and returnign
     var dateTimeID = {date:dayNumberPatternMatch, time:timeNumberPatternMatch, id:idPatternMatch};
     return dateTimeID;
-}
-
-function debug(input){
-    console.log(input);
-    var html = $(input).html();
-    console.log(html);
 }

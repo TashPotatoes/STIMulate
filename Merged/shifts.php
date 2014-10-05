@@ -24,7 +24,10 @@
         include 'Include/LocationSeparator.inc'; ?>
     <?php include 'Include/SideBar.inc'; ?>
     <div class="push-right">
-    <?php include 'Include/Timetable.inc'; ?>
+        <?php
+            $oneStudent = true;
+            include 'Include/Timetable.inc';
+        ?>
     </div>
 </main>
 </body>
