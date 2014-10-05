@@ -7,23 +7,36 @@ $(document).ready(function(){
 function Initialise(){
     $("#filterStreamIt").on("click", function() {
         FilterByStream(this.id);
+        UnHideTableElements();
     });
     $("#filterStreamSc").on("click", function() {
         FilterByStream(this.id);
+        UnHideTableElements();
     });
     $("#filterStreamMa").on("click", function() {
         FilterByStream(this.id);
+        UnHideTableElements();
     });
     $("#filterStreamDh").on("click", function() {
         FilterByStream(this.id);
+        UnHideTableElements();
     });
 
 }
 
+function UnHideTableElements() {
+    if( $(".specfilter").css("display") ) {
+        console.log('UNHIDE IT');
+        $(".specfilter").css("display", "block");
+        $(".timetableWrapper").css("display", "block");
+        $("#filterSelectMsg").remove();
+        $("#defaultLogo").remove();
+    }
+}
 function FilterByStream(stream) {
 	StreamClass = ".f-" + stream.substr(-2).toUpperCase();
-	$(".namecard").not(StreamClass).css("opacity", "0.4");
-	$(StreamClass).css("opacity", "1")
+	$(".namecard").not(StreamClass).css({"visibility": "hidden","display": "none"});
+	$(StreamClass).css({"visibility": "visible", "display": "block"})
 }
 
 function FilterBySpecialisations(specialisations) {

@@ -6,8 +6,8 @@ session_start();
 ?>
 <header>
     <div id = "logo">
-        <img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image">
-        <h1 class = inline-text>STIMulate</h1>
+        <a href="http://qut.edu.au"><img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image"></a>
+        <h1 class = inline-text><a href="index.php">STIMulate</a></h1>
     </div>
     <?php    //echo $UserAccessControl->isUserLoggedIn(); ?>
     <?php if($UserAccessControl->isUserLoggedIn()){ ?>

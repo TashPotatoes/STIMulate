@@ -1,6 +1,9 @@
 <?php include 'PHP/functions.php'; ?>
 <?php require 'PHP/uac.php'; ?>
-<?php $UserAccessControl = new UserAccessControl(); ?>
+<?php $UserAccessControl = new UserAccessControl(); 
+    $UserAccessControl->checkTimeout();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

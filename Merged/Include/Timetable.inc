@@ -1,34 +1,43 @@
 <?php require_once '/php/DatabaseAPI.php'; ?>
     <?php if("index.php" == basename($_SERVER['PHP_SELF'])) { ?>
-    <div class = "filter">
-        <div class = "headElement">
-            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-            <h2 class = "inline-text">Stream</h2>
+    <style type="text/css">
+    .specfilter {display: none;}
+    .timetableWrapper {display:none;}
+    </style>
+
+    <div class="filter">
+        <div class="headElement">
+            <img src="IMG/calander.png" alt="Calander" class="inline-image">
+            <h2 class="inline-text">Stream</h2>
         </div>
-        <span class = "filter-stream">
+        <span class="filter-stream">
             <ul>
                 <?php generateStreamFilters(); ?>
             </ul>
         </span>
-
     </div>
-    <div class = "filter">
-        <div class = "headElement">
-            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-            <h2 class = "inline-text">Specialisation</h2>
+
+    <div class="messagebox" id="filterSelectMsg">
+        <p style="text-align:center">Select a stream to view a timetable</p>
+    </div>
+
+    <div class="filter specfilter">
+        <div class="headElement">
+            <img src="IMG/calander.png" alt="Calander" class="inline-image">
+            <h2 class="inline-text">Specialisation</h2>
         </div>
-        <span class = "searchbar">
-            <img src="IMG/search.png" class = "inline-image searchIcon">
-            <input type="text" placeholder="Search Topics, Streams, or Units..." class = "searchSpan">
+        <span class="searchbar">
+            <img src="IMG/search.png" class="inline-image searchIcon">
+            <input type="text" placeholder="Search Topics, Streams, or Units..." class="searchSpan">
         </span>
     </div>
     <?php } ?>
 
-    <div class = "timetableWrapper">
+    <div class="timetableWrapper">
 
-        <div class = "headElement">
-            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-            <h2 class = "inline-text">Timetable</h2>
+        <div class="headElement">
+            <img src="IMG/calander.png" alt="Calander" class="inline-image">
+            <h2 class="inline-text">Timetable</h2>
         </div>
         <div class="timetable">
             <table>
@@ -45,7 +54,7 @@
                 require_once 'PHP/databaseAPI.php';
                 require_once 'PHP/SqlObject.php';
                 if(!isset($oneStudent)){
-                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
+                    $lq="SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
                     FROM STIMulate.facilitators
                     JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                     JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id

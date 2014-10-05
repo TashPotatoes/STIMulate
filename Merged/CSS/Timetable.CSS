@@ -1,8 +1,11 @@
-.timetableWrapper, .filter{
+.timetableWrapper, .filter, .messagebox{
     margin: 15px auto 0 auto;
     max-width: 1600px;
     width: 100%;
     border: 2px solid rgb(225,225,225);
+}
+.messagebox {
+    text-align: center;
 }
 .index-container {
     padding: 20px;
@@ -40,17 +43,14 @@
 }
 
 .timetable {
-    text-align: center;
 }
-
-
 .timetable table {
 
     table-layout: auto;
     width: 100%;
     border-collapse: collapse;
     margin:0;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .timetable table, .timetable th, .timetable td {
     vertical-align: top;
@@ -98,19 +98,46 @@ td:last-child {
     padding: 2px;
 }
 .namecard {
-    cursor: pointer;
+    height: 20px;
     padding: 2px 0;
 }
 
-.IT {background: rgba(200,0,0,0.2);}
-.MA {background: rgba(0,200,0,0.2);}
-.SC {background: rgba(200,0,200,0.2);}
-.DH {background: rgba(200,200,0,0.2)}
+.namecard span {
+    text-align: center;
+    display: inline-block;
+    width: 25px;
+    height: 17px;
+    font-size: .75em;
+    top: -.25em;
+    border-radius: 10px 10px 10px 10px;
+    position: relative;
+    color: #efefef;
+    margin-right: 3px;
+}
+.namecard .DH {color: #212121;}
+.IT {background-color: rgba(250,0,0,.9);}
+.MA {background-color: rgba(11,118,13,.9);}
+.SC {background-color: rgba(137,22,132,.9);}
+.DH {color: red; background-color: rgba(250,250,0,.9); }
 
 .absent {
-    color: rgba(0,0,0,0.25);
+    background-image: url('../img/alert-icon.png');
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: top 4px right 3px;
+    background-color: rgba(200,50,50,.1);
 }
-
+.absent-current { /*meaning, the current week */
+    opacity: 0.5;
+}
+.absent:hover:after {
+    color: white;
+    background: #222;
+    z-index: 9999;
+    display: block;
+    font-size: 8pt;
+    content: "This Facilitator will be absent";
+}
 
 .filter-stream {
     color: rgb(98,98,98);

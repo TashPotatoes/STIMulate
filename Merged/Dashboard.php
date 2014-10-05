@@ -11,6 +11,8 @@
     if(!$UserAccessControl->isUserLoggedIn()) {
         header("Location: gateway.php");
     }
+
+    $UserAccessControl->checkTimeout();
 ?>
 <!DOCTYPE html>
 

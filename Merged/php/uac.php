@@ -100,6 +100,14 @@ class UserAccessControl
 
         }
     }
+    public function checkTimeout() {
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
+            session_unset();     
+            session_destroy();
+        }
+        $_SESSION['last_activity'] = time(); 
+    }
+    
     /**
      * perform the logout
      */

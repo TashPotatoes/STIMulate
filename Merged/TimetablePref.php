@@ -1,7 +1,8 @@
 <?php require 'PHP/functions.php'; ?>
+<?php require_once "PHP/SqlObject.php"; ?>
 <?php require 'PHP/uac.php'; ?>
 <?php $UserAccessControl = new UserAccessControl();
-    require_once "PHP/SqlObject.php";
+    $UserAccessControl->checkTimeout();
 ?>
 
 <!--

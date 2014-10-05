@@ -5,7 +5,6 @@
 	$UserAccessControl = new UserAccessControl();
 	if ($UserAccessControl->isUserLoggedIn() == true) {
         header("Location: dashboard.php");
-
 	} else {
 		if (isset($UserAccessControl)) {
 		    if ($UserAccessControl->errors) {
@@ -20,10 +19,7 @@
 		    }
 		}
 	}
-
-    if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    }
+    $UserAccessControl->checkTimeout();
 ?>
 
 <!DOCTYPE html>
