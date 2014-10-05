@@ -2,8 +2,8 @@
     $navigation = array 
         (
             array("Dashboard", "Dashboard.php", "home"),
-            array("Your Shifts", "shifts.php", "calander alternative"),
-            array("Your Availabilities", "TimetablePref.php", "calander"),
+            array("Timetable", "shifts.php", "calander alternative"),
+            array("Your Preferences", "TimetablePref.php", "calander"),
             array("Record a session", "#", "crown alternative"),
             array("Record a shift", "#", "crown"),
         );
