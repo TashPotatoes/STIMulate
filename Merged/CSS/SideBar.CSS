@@ -27,7 +27,9 @@ aside li {
 aside li:hover {
     background-color: rgb(150,150,150);
 }
-
+aside ul li:nth-child(even) {
+    background-color: rgb(125,125,125);
+}
 .icon {
     text-indent: 30px;
     background-repeat: no-repeat;
@@ -43,7 +45,3 @@ aside a {
 .icon-calander { background-image: url('../img/calander.png'); }
 .icon-crown { background-image: url('../img/crown.png');}
 .icon-home { background-image: url('../img/dashboard.png');}
-
-.alternative {
-    background-color: rgb(125,125,125);
-}

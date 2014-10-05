@@ -23,14 +23,14 @@ session_start();
             </li>
             <li id = "loginButton">
                 <?php
-                if(isset($_SESSION['facilitator_id'])) {
+                if(isset($_SESSION['user_id'])) {
                     echo '<img src="IMG/student.png" alt = "student Picture" class = "inline-image">';
-                    echo '<p id = "studentName" class = "inline-text">'.$_SESSION['facilitator_id'].'</p>';
-                } else {
-                    echo "FUCKING NOT LOGGED THE FUCK IT";
+                    echo '<p id = "studentName" class = "inline-text">'.$_SESSION['user_id'].'</p>';
+                } else { echo "fek.";
                 }
                 ?>
             </li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
     <?php } ?>

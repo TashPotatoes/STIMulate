@@ -4,7 +4,7 @@
     require '/php/uac.php';
 	$UserAccessControl = new UserAccessControl();
 	if ($UserAccessControl->isUserLoggedIn() == true) {
-
+        header("Location: facilitator.php");
 
 	} else {
 		if (isset($UserAccessControl)) {

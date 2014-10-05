@@ -17,10 +17,11 @@
     <script src = "js/filters.js"></script>
 </head>
 <body>
-<main>
-    <div class="index-container">
-    <?php include 'Include/Timetable.inc'; ?>
-</div>
-</main>
+    <main>
+        <div class="index-container">
+        <?php include 'Include/Timetable.inc'; ?>
+    </div>
+    <p><a href="facilitator.php">Facilitator Login</a></p>
+    </main>
     </body>
 </html>

@@ -10,20 +10,33 @@ class UserAccessControl
     private $db_connection = null;
     public $errors = array();
     public $messages = array();
-
+    public $loop = 0;
     public function __construct()
     {
         if (session_status() == PHP_SESSION_NONE) {
         session_start();
-        }        if (isset($_GET["logout"])) {
+        }
+        if (isset($_GET["logout"])) {
+            echo "nope";
             $this->doLogout();
         }
-        elseif (isset($_POST["login"])) {
-            $this->dologinWithPostData();
+        elseif (isset($_POST['login'])) {
+            switch (substr($_POST['login_input_username'],0,1)) {
+                case 'n':
+                    $this->doFacilitatorLogin();
+                    break;
+                case 's':
+                    $this->doStaffLogin();
+                    break;
+                default:
+                    $this->errors[] = "Incorrect credentials";
+                    break;
+            }
         }
     }
 
-    private function dologinWithPostData()
+
+    private function doFacilitatorLogin()
     {
     if (empty($_POST['login_input_username'])) {
         $this->errors[] = "Username field was empty.";
@@ -38,11 +51,12 @@ class UserAccessControl
             $loginCheck = $sqlObject->Execute();
 
             if (count($loginCheck)) {
-                echo "CORRECT CREDENTIALS";
+                $userType = "student";
                 $result_row = $loginCheck;
 
-                $_SESSION['facilitator_id'] = $loginCheck[0]['student_id'];
+                $_SESSION['user_id'] = $loginCheck[0]['student_id'];
                 $_SESSION['user_login_status'] = 1;
+                $_SESSION['user_type'] = $userType;
 
             } else {
                 $this->errors[] = "This user does not exist.";
@@ -53,6 +67,39 @@ class UserAccessControl
         }
     }
 
+    private function doStaffLogin() {
+   if (empty($_POST['login_input_username'])) {
+        $this->errors[] = "Username field was empty.";
+    } elseif (empty($_POST['login_input_password'])) {
+        $this->errors[] = "Password field was empty.";
+    } elseif (!empty($_POST['login_input_username']) && !empty($_POST['login_input_password'])) {
+
+            $user_name = $_POST['login_input_username'];
+            $password = md5($_POST['login_input_password']);
+            $sqlObject = new \php\SqlObject("SELECT * FROM staff 
+                                WHERE staff_id = :id AND staff_password = :pass", array($user_name, $password));
+            $loginCheck = $sqlObject->Execute();
+
+            if (count($loginCheck)) {
+
+                echo "STAFF";
+                $userType = "staff";
+                $result_row = $loginCheck;
+
+                var_dump($result_row);
+
+                $_SESSION['user_id'] = $loginCheck[0]['staff_id'];
+                $_SESSION['user_login_status'] = 1;
+                $_SESSION['user_type'] = $userType;
+
+            } else {
+                $this->errors[] = "This user does not exist.";
+            }
+        } else {
+            $this->errors[] = "Database connection problem.";
+
+        }
+    }
     /**
      * perform the logout
      */
@@ -60,7 +107,7 @@ class UserAccessControl
     {
         // delete the session of the user
        // $_SESSION = array();
-        unset($_SESSION['facilitator_id']);
+        unset($_SESSION['user_id']);
         $_SESSION['user_login_status'] = 0;
 
         session_destroy();
