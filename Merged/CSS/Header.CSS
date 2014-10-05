@@ -48,3 +48,8 @@ header {
 #user-information li:hover {
     background: rgb(77,152,195);
 }
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}

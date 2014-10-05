@@ -9,7 +9,6 @@ session_start();
         <img src="IMG/QUT.png" alt="QUT Logo" class = "inline-image">
         <h1 class = inline-text>STIMulate</h1>
     </div>
-    <?php    //echo $UserAccessControl->isUserLoggedIn(); ?>
     <?php if($UserAccessControl->isUserLoggedIn()){ ?>
     <div id = "user-information">
         <ul>
@@ -20,8 +19,10 @@ session_start();
             <li id = "loginButton">
                 <?php
                 if(isset($_SESSION['facilitator_id'])) {
+                    echo '<a href = "gateway.php">';
                     echo '<img src="IMG/student.png" alt = "student Picture" class = "inline-image">';
                     echo '<p id = "studentName" class = "inline-text">'.$_SESSION['facilitator_id'].'</p>';
+                    echo '</a>';
                 } else {
                     echo "noty";
                 }

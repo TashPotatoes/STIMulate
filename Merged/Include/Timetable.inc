@@ -49,9 +49,9 @@
                 FROM STIMulate.facilitators
                 JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                 JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
-                WHERE facilitators.active = 1
+                WHERE facilitators.active = 1 AND shifts.student_id = :student_id
                 ORDER BY shift_id asc;";
-                $sqlObject = new \php\SqlObject($lq); // WHERE shifts.student_id = :student_id", array(8571091)); // HARD CODED
+                $sqlObject = new \php\SqlObject($lq, array($_SESSION['facilitator_id'])); // WHERE shifts.student_id = :student_id", array(8571091)); // HARD CODED
                 $shiftInformation = $sqlObject->Execute();
 
                 $absentInformation = RetrieveAbsentRecords();
