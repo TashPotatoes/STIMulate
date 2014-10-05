@@ -17,17 +17,13 @@ session_start();
                 <img src="IMG/latest.png" alt="latest information picture" class = "inline-image">
                 <p class = "notificationNumber inline-text">2</p>
             </li>
-            <li id = "user-notifications">
-                <img src="IMG/notification.png" alt = "user notification picture" class = "inline-image">
-                <p class = "notificationNumber inline-text">6</p>
-            </li>
             <li id = "loginButton">
                 <?php
                 if(isset($_SESSION['facilitator_id'])) {
                     echo '<img src="IMG/student.png" alt = "student Picture" class = "inline-image">';
                     echo '<p id = "studentName" class = "inline-text">'.$_SESSION['facilitator_id'].'</p>';
                 } else {
-                    echo "FUCKING NOT LOGGED THE FUCK IT";
+                    echo "noty";
                 }
                 ?>
             </li>

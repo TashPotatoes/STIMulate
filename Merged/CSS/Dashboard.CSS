@@ -1,0 +1,10 @@
+#dashboard {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.notification {
+    border: 2px solid rgb(225,225,225);
+    margin: 10px 0;
+    background: white;
+}

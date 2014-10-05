@@ -1,7 +1,7 @@
 <?php
     $navigation = array 
         (
-            array("Dashboard", "index.php", "home"),
+            array("Dashboard", "Dashboard.php", "home"),
             array("Your Shifts", "shifts.php", "calander alternative"),
             array("Your Availabilities", "TimetablePref.php", "calander"),
             array("Record a session", "#", "crown alternative"),

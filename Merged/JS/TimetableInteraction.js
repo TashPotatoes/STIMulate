@@ -17,7 +17,7 @@ function InitiateClickingEvents(){
             $("" +
                 "<div class = \"popup\">" +
                 "<div class = \"popuphead\">" +
-                "<img src='IMG/plf.png' class='inline-image popup-image'>" +
+                "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                 "<h2 class = \"\">Options</h2>" +
                 "</div>" +
                 "<ul>" +
@@ -39,7 +39,7 @@ function InitiateClickingEvents(){
                 $("" +
                     "<div class = \"popup\">" +
                     "<div class = \"popuphead\">" +
-                    "<img src='IMG/plf.png' class='inline-image popup-image'>" +
+                    "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                     "<h2 class = \"\">Options</h2>" +
                     "</div>" +
                     "<ul>" +
@@ -50,7 +50,7 @@ function InitiateClickingEvents(){
                     $("" +
                         "<div class = \"popup\">" +
                         "<div class = \"popuphead\">" +
-                        "<img src='IMG/plf.png' class='inline-image popup-image'>" +
+                        "<img src='IMG/crown.png' class='inline-image popup-image'>" +
                         "<h2 class = \"\">Options</h2>" +
                         "</div>" +
                         "<ul>" +
@@ -95,24 +95,6 @@ function RecordAbsence(){
 
         // Ensuring that the popup doesn't reappear
         isRemoving = true;
-    });
-}
-// Adding ability to add shift
-function AddingShift(){
-    $(document).on("click", "td", function(){
-        if($(".popup").length > 0){
-            RemovePopUp();
-        }
-        $("" +
-            "<div class = \"popup\">" +
-            "<div class = \"popuphead\">" +
-            "<img src='IMG/plf.png' class='inline-image popup-image'>" +
-            "<h2 class = \"\">Options</h2>" +
-            "</div>" +
-            "<ul>" +
-            "<li class = \"remove\">I can't make it</li>" +
-            "</ul>"+
-            "</div>").appendTo($(this));
     });
 }
 
@@ -165,10 +147,4 @@ function FindDateTimeID(html){
     // Putting into assoc array and returnign
     var dateTimeID = {date:dayNumberPatternMatch, time:timeNumberPatternMatch, id:idPatternMatch};
     return dateTimeID;
-}
-
-function debug(input){
-    console.log(input);
-    var html = $(input).html();
-    console.log(html);
 }

@@ -1,4 +1,4 @@
-<?php include 'Include/GlobalHead.inc'; ?>
+
 <?php include 'PHP/functions.php'; ?>
 <?php require 'PHP/uac.php'; ?>
 <?php
@@ -16,9 +16,10 @@
 
 <html>
     <head>
-
+        <?php include 'Include/GlobalHead.inc'; ?>
         <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
         <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
+        <link href="CSS/Dashboard.CSS" rel="stylesheet" type="text/css">
     </head>
     <body>
         <main>
@@ -30,8 +31,7 @@
                     </a>";
                 include 'Include/LocationSeparator.inc'; ?>
             <?php include 'Include/SideBar.inc'; ?>
-
-
+            <?php include 'Include/Dashboard.inc'; ?>
         </main>
     </body>
 </html>

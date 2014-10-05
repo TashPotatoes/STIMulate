@@ -38,7 +38,7 @@ aside li:hover {
 aside a {
     text-decoration: none;
     color: white;
-    font-size: 11pt;
+    font-size: 10pt;
 }
 .icon-calander { background-image: url('../img/calander.png'); }
 .icon-crown { background-image: url('../img/crown.png');}
