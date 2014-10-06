@@ -10,6 +10,8 @@
     $facilitatorstreams = $sqlObject->Execute();
 
     $showSearch = false;
+    $placeholder = "Student Name, Student Number...";
+    $headName = "Search";
 ?>
 <div class = "push-right">
     <div class="contentWrapper">
