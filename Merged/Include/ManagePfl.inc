@@ -10,6 +10,8 @@
     $facilitatorstreams = $sqlObject->Execute();
 
     $showSearch = false;
+    $placeholder = "Student Name, Student Number...";
+    $headName = "Search";
 ?>
 <div class = "push-right">
     <div class="contentWrapper">
@@ -17,7 +19,11 @@
             <img src="IMG/calander.png" alt="Calander" class="inline-image">
             <h2 class="inline-text">Manage</h2>
         </div>
-
+        <div class = "manageWrapper">
+            <ul>
+                <li><input type="button" value="Add new Facilitator"></li>
+            </ul>
+        </div>
     </div>
 
     <?php include 'Include/TimetableFilter.inc';?>

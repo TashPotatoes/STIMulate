@@ -1,5 +1,9 @@
+.specialSearchSpan input {
+    width: 400px;
+    bottom: 10px;
+}
 .specialSearchSpan {
-
+    margin-left: 40px;
 }
 
 .filter {
