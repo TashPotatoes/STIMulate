@@ -15,3 +15,13 @@
 #studentInformationTable th {
     font-size: 12pt;
 }
+
+.manageWrapper {
+
+}
+
+.manageWrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 5px;
+}

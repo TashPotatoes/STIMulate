@@ -12,6 +12,7 @@
     <?php include 'Include/GlobalHead.inc'; ?>
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
+    <link href="CSS/Admin.CSS" rel="stylesheet" type="text/css">
 </head>
 <body>
 <main>

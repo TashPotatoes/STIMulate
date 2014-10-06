@@ -25,7 +25,8 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
         array(1, "Manage Facilitators", "manageFacilitators.php", "home"),
         array(1, "Manage Shifts", "manageShifts.php", "home"),
         array(1, "Record a session", "#", "crown"),
-        array(1, "Record a shift", "#", "crown"));
+        array(1, "Record a shift", "#", "crown"),
+        array("0", "Admin", "Admin.php", "crown"));
     ?>
     <aside>
         <ul class='nav'>
