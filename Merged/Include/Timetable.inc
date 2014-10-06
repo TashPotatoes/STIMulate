@@ -54,7 +54,7 @@
                 require_once 'PHP/databaseAPI.php';
                 require_once 'PHP/SqlObject.php';
                 if(!isset($oneStudent)){
-                    $lq="SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
+                    $lq="SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name
                     FROM STIMulate.facilitators
                     JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                     JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
@@ -62,7 +62,7 @@
                     ORDER BY shift_id asc;";
                     $sqlObject = new \php\SqlObject($lq);
                 } else {
-                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_time, str_shortname, str_name
+                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name
                             FROM STIMulate.facilitators
                             JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                             JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
@@ -98,8 +98,7 @@
                 function InsertActivity($shiftInformation, $absentInformation, $day, $currentTime){
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
-                            if($currentTime == $shiftInformation[$i]['shi_time'])
-                            {
+                            if($currentTime == $shiftInformation[$i]['shi_time'] || $currentTime+1 == $shiftInformation[$i]['shi_time']+$shiftInformation[$i]['shi_duration']) {
                                 if(count($absentInformation) > 0) {
                                     $inputtedNameCards = 0;
                                     for($j = 0; $j < count($absentInformation); $j++){
