@@ -68,8 +68,7 @@ function FilterSpecialisations() {
     var specialisation = $("#SpecFilter").val();
     console.log(specialisation);
     if (specialisation == 'one') {
-        $(".n8571091").css("background-color", "red");
-        $(".namecard").not(".n8571091").css("display", "none");
+        $(".n8571091").css("opacity", "1");
+        $(".namecard").not(".n8571091").css("opacity", ".4");
     };
-
 }
