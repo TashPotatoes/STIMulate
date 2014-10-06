@@ -6,7 +6,7 @@
  */
 class UserAccessControl
 {
-
+    private $timetoutTime = 3000;
     private $db_connection = null;
     public $errors = array();
     public $messages = array();
@@ -101,7 +101,7 @@ class UserAccessControl
         }
     }
     public function checkTimeout() {
-        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 30000000)) {
+        if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $this->timetoutTime)) {
             session_unset();     
             session_destroy();
             header("Location: gateway.php?ref=timeout");
