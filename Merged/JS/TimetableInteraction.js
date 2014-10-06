@@ -3,28 +3,31 @@ $(document).ready(function(){
 });
 
 function getCellData() {
-	$('submit').on('click', function() {
+	$('.submit').on('click', function() {
 
 		console.log("clicked");
 
 		$('td').each(function(){
 
-			console.log(1);
+			//var DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]
 
 			if ($(this).hasClass("MONDAY")){
 				//var monday = 
+				
 				if ($(this).hasClass("GREEN")){
-					//ADD TIME AND 3 TO ARRAY
-					var test = $(this).classList[0];
-					console.log(test);
+					//get time and change green to 3
+					console.log("test: monday green");
 				} else if ($(this).hasClass("YELLOW")){
-					//ADD TIME AND 2 TO ARRAY
+					//get time and change yellow to 2
 
 				} else if ($(this).hasClass("RED")){
-					//ADD TIME AND 1 TO ARRAY
+					//get time and change green to 1
 
 				}
 			}
+
+			//test for the rest of the days
+
 		});
 	});
 }
