@@ -7,8 +7,8 @@
         <div id = "adminOptions">
             <ul>
                 <li><a href="ManagePLF.php">Manage PLFs</a></li>
-                <li>Manage Staff</li>
-                <li>Manage Individual Shifts</li>
+                <li><a href = "ManageStaff.php">Manage Staff</a></li>
+                <li><a href = "manageShifts.php"> Manage Individual Shifts</a></li>
                 <li>View Abenties</li>
             </ul>
         </div>

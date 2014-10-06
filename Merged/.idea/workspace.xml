@@ -26,12 +26,55 @@
       <file leaf-file-name="ManagePfl.inc" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/ManagePfl.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="8" selection-start="617" selection-end="782" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1411">
+            <state line="16" column="19" selection-start="0" selection-end="2863" vertical-scroll-proportion="8.230769" vertical-offset="486" max-vertical-offset="1411">
               <folding>
                 <marker date="1412599742333" expanded="true" signature="81:145" placeholder="SELECT * FRO..facilitators..." />
                 <marker date="1412599742333" expanded="true" signature="233:264" placeholder="SELECT * FRO..streams..." />
                 <marker date="1412599742333" expanded="true" signature="344:387" placeholder="SELECT * FRO..facilitator_streams..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageStaff.inc" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="41" selection-start="899" selection-end="899" vertical-scroll-proportion="0.49427918" vertical-offset="27" max-vertical-offset="901">
+              <folding>
+                <marker date="1412602641891" expanded="true" signature="73:132" placeholder="SELECT * FRO..staff..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageStaff.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ManageStaff.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="42" selection-start="382" selection-end="382" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="816">
+              <folding>
+                <element signature="e#6#87#0" expanded="true" />
+                <marker date="1412601554801" expanded="true" signature="794:954" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManagePLF.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ManagePLF.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="39" selection-start="0" selection-end="1120" vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="816">
+              <folding>
+                <element signature="e#6#87#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageShifts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manageShifts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -47,10 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Admin.inc" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Admin.inc" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/Admin.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="33" selection-start="472" selection-end="472" vertical-scroll-proportion="0.21395881" vertical-offset="0" max-vertical-offset="874">
+            <state line="9" column="42" selection-start="393" selection-end="393" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
@@ -115,7 +158,9 @@
         <option value="$PROJECT_DIR$/Include/ManagePfl.inc" />
         <option value="$PROJECT_DIR$/Admin.php" />
         <option value="$PROJECT_DIR$/CSS/Admin.CSS" />
+        <option value="$PROJECT_DIR$/ManageStaff.php" />
         <option value="$PROJECT_DIR$/Include/Admin.inc" />
+        <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
       </list>
     </option>
   </component>
@@ -274,6 +319,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15974441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -285,7 +331,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -311,16 +356,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="72" selection-start="688" selection-end="748" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2397" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="4" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="714" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="10" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="1717" />
@@ -473,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manageFacilitators.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="874">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="902">
@@ -608,27 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ManagePLF.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="39" selection-start="570" selection-end="570" vertical-scroll-proportion="0.48627" vertical-offset="0" max-vertical-offset="874">
-          <folding>
-            <element signature="e#6#87#0" expanded="true" />
-            <marker date="1412596167481" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/ManagePfl.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="8" selection-start="617" selection-end="782" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="1411">
-          <folding>
-            <marker date="1412599742333" expanded="true" signature="81:145" placeholder="SELECT * FRO..facilitators..." />
-            <marker date="1412599742333" expanded="true" signature="233:264" placeholder="SELECT * FRO..streams..." />
-            <marker date="1412599742333" expanded="true" signature="344:387" placeholder="SELECT * FRO..facilitator_streams..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSS/ManagePfl.CSS">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="20" selection-start="345" selection-end="345" vertical-scroll-proportion="0.4722222" vertical-offset="0" max-vertical-offset="900">
@@ -652,10 +659,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ManagePLF.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="39" selection-start="0" selection-end="1120" vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="816">
+          <folding>
+            <element signature="e#6#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manageShifts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/ManagePfl.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="19" selection-start="0" selection-end="2863" vertical-scroll-proportion="8.230769" vertical-offset="486" max-vertical-offset="1411">
+          <folding>
+            <marker date="1412599742333" expanded="true" signature="81:145" placeholder="SELECT * FRO..facilitators..." />
+            <marker date="1412599742333" expanded="true" signature="233:264" placeholder="SELECT * FRO..streams..." />
+            <marker date="1412599742333" expanded="true" signature="344:387" placeholder="SELECT * FRO..facilitator_streams..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Include/Admin.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="33" selection-start="472" selection-end="472" vertical-scroll-proportion="0.21395881" vertical-offset="0" max-vertical-offset="874">
+        <state line="9" column="42" selection-start="393" selection-end="393" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="357">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageStaff.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="42" selection-start="382" selection-end="382" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="816">
+          <folding>
+            <element signature="e#6#87#0" expanded="true" />
+            <marker date="1412601554801" expanded="true" signature="794:954" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="41" selection-start="899" selection-end="899" vertical-scroll-proportion="0.49427918" vertical-offset="27" max-vertical-offset="901">
+          <folding>
+            <marker date="1412602641891" expanded="true" signature="73:132" placeholder="SELECT * FRO..staff..." />
+          </folding>
         </state>
       </provider>
     </entry>
