@@ -9,14 +9,21 @@ function getCellData() {
 
 		$('td').each(function(){
 
-			//var DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]
+			//var DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"];
+			//var COLOURS = ["GREEN", "YELLOW", "RED"];
 
 			if ($(this).hasClass("MONDAY")){
-				//var monday = 
+
 				
 				if ($(this).hasClass("GREEN")){
-					//get time and change green to 3
+
+					//this works now =D to get the time... now how to 
+					var classNames = $(this).attr('class').split(' ');
+					var time = classNames[0]; 
+
 					console.log("test: monday green");
+					console.log(classNames[0]);
+
 				} else if ($(this).hasClass("YELLOW")){
 					//get time and change yellow to 2
 
