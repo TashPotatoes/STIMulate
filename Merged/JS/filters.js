@@ -3,21 +3,26 @@ $(document).ready(function(){
     Initialise();
 })
 
+var clickedStream = "";
 
 function Initialise(){
     $("#filterStreamIt").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
+		clickedStream = "in_it";
     });
     $("#filterStreamSc").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
+		clickedStream = "in_sc";
     });
     $("#filterStreamMa").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
+		clickedStream = "in_ma";
     });
     $("#filterStreamDh").on("click", function() {
+	
         FilterByStream(this.id);
         UnHideTableElements();
     });
@@ -44,14 +49,31 @@ function FilterByStream(stream) {
 	$(StreamClass).css({"visibility": "visible", "display": "block"})
 }
 
+
 function FilterBySpecialisations() {
-    var Specialisations = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five"
-    ];
+    /*var Specialisations; 
+	$.ajax({ url: 'PHP/DatabaseAPI.php',
+			data: {
+				"action": 'specialisation',
+				"stream": clickedStream
+			},
+        type: 'post',
+        datatype: 'JSON',
+
+		success:  function(output){
+			Specialisations = (JSON.Parse(output));
+		}
+        error: UnsuccessfulCall
+		});*/
+	 var Specialisations = [
+		"python",
+		"c++",
+		"c#",
+		"BPM",
+		"five"
+		];
+	
+	
     $("#SpecFilter").autocomplete({
         source: Specialisations,
         select: function(event, ui) {
@@ -67,9 +89,9 @@ function FilterBySpecialisations() {
 function FilterSpecialisations() {
     var specialisation = $("#SpecFilter").val();
     console.log(specialisation);
-    if (specialisation == 'one') {
-        $(".n8571091").css("background-color", "red");
-        $(".namecard").not(".n8571091").css("display", "none");
+    if (specialisation == 'python') {
+        $(".n8571091").css("opacity", "1");
+        $(".namecard").not(".n8571091").css("opacity", ".4");
     };
 
 }
