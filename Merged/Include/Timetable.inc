@@ -1,7 +1,11 @@
 <?php require_once '/php/DatabaseAPI.php'; ?>
-    <?php if("index.php" == basename($_SERVER['PHP_SELF'])) { ?>
+    <?php
+        if("index.php" == basename($_SERVER['PHP_SELF'])) { 
+        $specialisationObject = retrieveAllSpecialisations();
+
+    ?>
     <style type="text/css">
-    .specfilter {display: none;}
+    .111specfilter {display: none;}
     .timetableWrapper {display:none;}
     </style>
 
@@ -28,7 +32,12 @@
         </div>
         <span class="searchbar">
             <img src="IMG/search.png" class="inline-image searchIcon">
-            <input type="text" placeholder="Search Topics, Streams, or Units..." class="searchSpan">
+            <input type="text" id="SpecFilter" placeholder="Search for a topics" class="searchSpan">
+        </span>
+        <span class="filter-stream">
+            <script type="text/javascript">
+                FilterBySpecialisations();
+            </script>
         </span>
     </div>
     <?php } ?>
@@ -127,9 +136,9 @@
                 function NameCard($shiftInformation, $day, $disabled)
                 {
                     if($disabled){
-                        echo "<div class='absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+                        echo "<div class='".$shiftInformation["student_id"]." absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
                     } else {
-                        echo "<div class='namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+                        echo "<div class='" . $shiftInformation["student_id"] . " namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
                     }
                     echo "<span class='".$shiftInformation['str_shortname']."'>".$shiftInformation["str_shortname"]."</span>";
                     echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);

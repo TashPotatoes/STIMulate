@@ -1,12 +1,8 @@
+<?php require '/php/databaseAPI.php'; ?>
+<?php require_once '/php/SqlObject.php'; ?>
+<?php require 'PHP/uac.php'; ?>
 <?php
-    require '/php/databaseAPI.php';
-    require_once '/php/SqlObject.php';
-    require '/php/uac.php';
-    $UserAccessControl = new UserAccessControl();
-    if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    }
-    $UserAccessControl->checkTimeout();
+    $UserAccessControl = new UserAccessControl(); 
 ?>
 
 <!DOCTYPE html>

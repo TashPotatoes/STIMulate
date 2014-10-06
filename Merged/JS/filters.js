@@ -21,7 +21,12 @@ function Initialise(){
         FilterByStream(this.id);
         UnHideTableElements();
     });
-
+    $("#SpecFilter").on("change", function() {
+       // console.log($(this).value.text);
+        //get the inputs value
+        //find elements with ^ value in class
+        //do something with them.
+    });
 }
 
 function UnHideTableElements() {
@@ -39,12 +44,32 @@ function FilterByStream(stream) {
 	$(StreamClass).css({"visibility": "visible", "display": "block"})
 }
 
-function FilterBySpecialisations(specialisations) {
-    //not working #oops.
-    var output = '';
-    for (var property in specialisations) {
-        output += property + ': ' + specialisations[property]+'; ';
-    }
-    document.getElementById('testies').innerHTML(output);
+function FilterBySpecialisations() {
+    var Specialisations = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five"
+    ];
+    $("#SpecFilter").autocomplete({
+        source: Specialisations,
+        select: function(event, ui) {
+            FilterSpecialisations();
+        },
+        change: function(event, ui) {
+            FilterSpecialisations();
+        }
+    })
+
+}
+
+function FilterSpecialisations() {
+    var specialisation = $("#SpecFilter").val();
+    console.log(specialisation);
+    if (specialisation == 'one') {
+        $(".n8571091").css("background-color", "red");
+        $(".namecard").not(".n8571091").css("display", "none");
+    };
 
 }

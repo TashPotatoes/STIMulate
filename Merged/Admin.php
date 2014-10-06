@@ -1,10 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Hayden
- * Date: 16/09/14
- * Time: 7:09 PM
- */
+<?php require 'PHP/uac.php'; ?>
+<?php $UserAccessControl = new UserAccessControl(); 
+    if (!$UserAccessControl->isUserLoggedIn() == true) {
+        header("Location: gateway.php");
+    } 
+    $UserAccessControl->checkTimeout();
 ?>
 
 <!DOCTYPE html>

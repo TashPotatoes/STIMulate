@@ -1,6 +1,9 @@
 <?php include 'PHP/functions.php'; ?>
 <?php require 'PHP/uac.php'; ?>
 <?php $UserAccessControl = new UserAccessControl(); 
+    if (!$UserAccessControl->isUserLoggedIn() == true) {
+        header("Location: gateway.php");
+    } 
     $UserAccessControl->checkTimeout();
 ?>
 

@@ -1,19 +1,11 @@
-
-<?php include 'PHP/functions.php'; ?>
 <?php require 'PHP/uac.php'; ?>
-<?php
-    $UserAccessControl = new UserAccessControl();
-
-    if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    }
-
-    if(!$UserAccessControl->isUserLoggedIn()) {
+<?php $UserAccessControl = new UserAccessControl(); 
+    if (!$UserAccessControl->isUserLoggedIn() == true) {
         header("Location: gateway.php");
-    }
-
+    } 
     $UserAccessControl->checkTimeout();
 ?>
+
 <!DOCTYPE html>
 
 <html>
