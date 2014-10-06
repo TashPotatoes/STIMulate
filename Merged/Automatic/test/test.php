@@ -11,8 +11,22 @@
     require_once '../../php/SqlObject.php';
     require '../../php/uac.php';
 	
-	$stream = "IT"; //TODO: create UI with a button, where this variable gets its value from
-	
+	$stream = "IT"; //TODO:DONE create UI with a button, where this variable gets its value from
+	if(isset($_POST['stream'])) {
+		$stream =  $_POST['stream'];
+		echo "<p>Current Stream: " . $stream . "</p>";
+	} else {
+?>
+<form name="streamSelect" action="test.php" method="post">
+<input type="radio" name="stream" id="stream-it"value="IT"><label for="stream-it">IT</label><br/>
+<input type="radio" name="stream" id="stream-ma"value="MA"><label for="stream-ma">Maths</label><br/>
+<input type="radio" name="stream" id="stream-sc"value="SC"><label for="stream-sc">Science</label><br/>
+<input type="radio" name="stream" id="stream-dh"value="DH"><label for="stream-dh">Duty Host</label><br/>
+<input type="submit" value="Select Stream">
+</form>
+<?php
+}
+
 	// Generate array of studentsID, Index of studentID in array will be used to generate the input CPLEX string
 	$studentListRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences GROUP BY `student_ID ORDER BY `student_ID` ASC WHERE  `stream` = :stream;", array($stream));
     $studentListRS->Execute();
@@ -22,13 +36,13 @@
 		$studentArray[$studentTotal] = $row['student_ID'];
 		$studentTotal++;
 	}
-	$studentHours = array(); //TODO: create hours in db and then uncomment code below and edit for loop for generating relevant constraints
-	/*$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM preferences WHERE `stream` = :stream GROUP BY `student_ID` ORDER BY `student_ID` asc;",  array($stream);
-    $studentHourstRS->Execute();
+	$studentHours = array(); //TODO:DONE create hours in db and then uncomment code below and edit for loop for generating relevant constraints
+	$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM facilitator_maxx_hours WHERE `stream` = :stream GROUP BY `student_ID` ORDER BY `student_ID` asc", array($stream));
+    $studentHoursRS->Execute();
 	foreach($studentHoursRS as $row) {
 		$studentIndex = array_search($row['student_ID'],$studentList,true);
 		$studentHours[studentIndex] = $row['hours'];
-	}*/
+	}
 	
 			
 	// Generates array with ith student and jth shift, where j is calculated by day + shift
@@ -59,7 +73,8 @@
 		for ($shift = 0; $shift < $shiftTotal; $shift++){
 			$constraint .=  " +x" . $person . "_" . $shift;
 		}
-		$constraint .= " = " . 2 . "\n"; // TODO: after db is changed, changed this line to: $constraint .= " = " + $studentHours[$person] + "\n"; // decide whether <= or =
+		//$constraint .= " = " . 2 . "\n"; // TODODONE: after db is changed, changed this line to: 
+		$constraint .= " = " + $studentHours[$person] + "\n"; // decide whether <= or =
 	}
 	
 	// iterate over each shift to make sure each shift has the specified number of people
@@ -297,7 +312,7 @@ End
 		// assume shift_ID goes from 0 to shiftnum,
 		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shift_ID, stream, day, shift_time) VALUES";
 		foreach ($results as $entry){
-			$sqlEntry = "( `". array_search($entry[1], $studentArray);  . "`, " . entry[2] . ", `" . $stream . "`"; 
+			$sqlEntry = "( `". array_search($entry[1], $studentArray)  . "`, " . $entry[2] . ", `" . $stream . "`"; 
 			$sqlEtnry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
 			///TODO: check if final "," causes sql error and if variable names have spaces at the start
 		}
@@ -307,7 +322,7 @@ End
 		$automaticTable->Execute();
 			
 	?>
-			
+
 
 </body>
 </html>
