@@ -52,8 +52,60 @@ Author: Pearl Gariano
                     $currentTime = date("h:i", strtotime('+'.($row*60).'minutes', strtotime($START_HOUR)));
                     echo '<tr>';
                     echo '<td class="column-time">'.$currentTime.'</td>';
+
+                    //stuff here for now... 
+                    switch ($i) {
+                        case 0:
+                            $time="9";
+                            break;
+                        case 1:
+                            $time="10";
+                            break;
+                        case 2:
+                            $time="11";
+                            break;
+                        case 3:
+                            $time="12";
+                            break;
+                        case 4:
+                            $time="1";
+                            break;
+                        case 5:
+                            $time="2";
+                            break;
+                        case 6:
+                            $time="3";
+                            break;
+                        case 7:
+                            $time="4";
+                            break;
+                        default:
+                            $time="ERROR";
+                            break;
+                    }
+
                     for($j = 0; $j < $DAYS_IN_WEEK; $j++){
-                        echo "<td>";
+                        switch ($j) {
+                            case 0:
+                                $day="MONDAY";
+                                break;
+                            case 1:
+                                $day="TUESDAY";
+                                break;
+                            case 2:
+                                $day="WEDNESDAY";
+                                break;
+                            case 3:
+                                $day="THURSDAY";
+                                break;
+                            case 4:
+                                $day="FRIDAY";
+                                break;
+                            default:
+                                $day="ERROR";
+                                break;
+                        }
+                        echo "<td class='$time $day'>";
                         echo "</td>";
                     }
                     echo '</tr>';
@@ -71,6 +123,6 @@ Author: Pearl Gariano
                 <option value="4">4</option>
             </select>
         </p>
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
     </div>
 </div>
