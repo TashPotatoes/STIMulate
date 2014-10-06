@@ -81,7 +81,8 @@
                 }
                 $shiftInformation = $sqlObject->Execute();
 
-                $absentInformation = RetrieveAbsentRecords();
+                $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp;");
+                $absentInformation = $sqlObject->Execute();
 
                 $startOfWeek = date("d-m-Y", strtotime('this week', time()));
 
@@ -107,7 +108,15 @@
                 function InsertActivity($shiftInformation, $absentInformation, $day, $currentTime){
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
-                            if($currentTime == $shiftInformation[$i]['shi_time'] || $currentTime+1 == $shiftInformation[$i]['shi_time']+$shiftInformation[$i]['shi_duration']) {
+                            if($currentTime == $shiftInformation[$i]['shi_time']) {
+                                $rightTime = true;
+                            } else if($currentTime+1 == $shiftInformation[$i]['shi_time']+$shiftInformation[$i]['shi_duration']){
+                                $rightTime = true;
+                            } else {
+                                $rightTime = false;
+                            }
+
+                            if($rightTime) {
                                 if(count($absentInformation) > 0) {
                                     $inputtedNameCards = 0;
                                     for($j = 0; $j < count($absentInformation); $j++){
@@ -127,12 +136,11 @@
                                 } else {
                                     NameCard($shiftInformation[$i], $day, false);
                                 }
-
-
                             }
                         }
                     }
                 }
+
                 function NameCard($shiftInformation, $day, $disabled)
                 {
                     if($disabled){
@@ -143,27 +151,6 @@
                     echo "<span class='".$shiftInformation['str_shortname']."'>".$shiftInformation["str_shortname"]."</span>";
                     echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
                     echo "</div>";
-                }
-
-                function RetrieveAbsentRecords(){
-                    $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences WHERE active = 1;");
-                    $absentInformation = $sqlObject->Execute();
-
-                    $dateNow = date("d", strtotime("now"));
-                    for($i = 0; $i < count($absentInformation); $i++) {
-                        $absentDate =  date("d", strtotime($absentInformation[$i]["absence_timestamp"]));
-
-                        if($dateNow + 7 < $absentDate) {
-                            DisableAbsentRecord($absentInformation[$i]["absence_id"]);
-                        }
-                    }
-
-                    return $sqlObject->Execute();
-                }
-
-                function DisableAbsentRecord($absentID){
-                    $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.absences SET active = 0 WHERE absence_id = :absence_id;", array($absentID));
-                    $sqlObject->Execute();
                 }
 
                 function generateStreamFilters() {

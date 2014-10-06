@@ -53,3 +53,10 @@ body {
     margin-left: 200px;
     padding: 20px;
 }
+
+.contentWrapper {
+    margin: 15px auto 0 auto;
+    max-width: 1600px;
+    width: 100%;
+    border: 2px solid rgb(225,225,225);
+}
