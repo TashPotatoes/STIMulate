@@ -35,10 +35,9 @@ function InsertAbsentie($post){
 }
 
 function retrieveAllSpecialisations() {
-    $sqlObject = new\PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations
+    $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations
                                     INNER JOIN specialisations
                                     ON facilitator_specialisations.spec_id=specialisations.spec_id");
     
     return $sqlObject->Execute();
-
 }

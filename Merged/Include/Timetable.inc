@@ -2,7 +2,6 @@
     <?php
         if("index.php" == basename($_SERVER['PHP_SELF'])) { 
         $specialisationObject = retrieveAllSpecialisations();
-
     ?>
     <style type="text/css">
     .111specfilter {display: none;}
