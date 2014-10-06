@@ -10,6 +10,9 @@ if(isset($_POST["action"])){
         case "absent":
             InsertAbsentie($_POST);
             break;
+		case "specialisations":
+             retrieveAllSpecialisationsStream($_POST['stream']);
+            break;
         default:
             echo "Invalid Database Request.";
     }
@@ -35,9 +38,18 @@ function InsertAbsentie($post){
 }
 
 function retrieveAllSpecialisations() {
-    $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations
-                                    INNER JOIN specialisations
-                                    ON facilitator_specialisations.spec_id=specialisations.spec_id");
+    $sqlObject = new\PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations
+                                INNER JOIN specialisations
+                                ON facilitator_specialisations.spec_id=specialisations.spec_id");
     
     return $sqlObject->Execute();
+
+}
+
+function retrieveAllSpecialisationsInStreams($inStream) {
+    $sqlObject = new\PHP\SqlObject("SELECT `spec_name` FROM specialisations
+				WHERE  :instream = 1", array($inStream));
+    
+    return $sqlObject->Execute();
+
 }

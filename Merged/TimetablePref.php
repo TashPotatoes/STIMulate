@@ -19,6 +19,7 @@ Author: Pearl Gariano
 	    <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
 	    <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
 	    <script src = "js/ColourChange.js"></script>
+	    <script src = "js/TimetableInteraction.js"></script>
 	</head>
 <body>
 <main>
