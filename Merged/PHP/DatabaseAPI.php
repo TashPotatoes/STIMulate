@@ -40,5 +40,4 @@ function retrieveAllSpecialisations() {
                                     ON facilitator_specialisations.spec_id=specialisations.spec_id");
     
     return $sqlObject->Execute();
-
 }

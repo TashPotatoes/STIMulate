@@ -1,4 +1,4 @@
-.timetableWrapper, .filter, .messagebox{
+.timetableWrapper {
     margin: 15px auto 0 auto;
     max-width: 1600px;
     width: 100%;
@@ -9,37 +9,6 @@
 }
 .index-container {
     padding: 20px;
-}
-
-
-.searchbar {
-    padding-bottom: 5px;
-    min-height: 52px;
-}
-.searchButton {
-    width: 100px;
-    height: 40px;
-    color: white;
-    background: rgb(67,142,185);
-    border: none;
-}
-
-.searchSpan {
-    position: relative;
-    top: 3px;
-    outline: none;
-    height: 40px;
-    width: 500px;
-    border: none;
-    background: none;
-}
-.searchIcon {
-    top: 12px;
-    padding-left: 5px;
-}
-
-.stream-filters {
-
 }
 
 .timetable {
@@ -139,26 +108,6 @@ td:last-child {
     content: "This Facilitator will be absent";
 }
 
-.filter-stream {
-    color: rgb(98,98,98);
-}
-.filter-stream ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: inline-block;
-}
-.filter-stream ul li {
-    background: white;
-    display: inline-block;
-    text-align: center;
-    width: 100px;
-    padding: 15px;
-    cursor: pointer;
-}
-#filterStreamIt {background: rgba(200,0,0,0.2);}
-#filterStreamSc {background: rgba(200,0,200,0.2);}
-#filterStreamMa {background: rgba(0,200,0,0.2);}
-#filterStreamDh {background: rgba(200,200,0,0.2);}
+
 
 /*added css for timetable preferences*/

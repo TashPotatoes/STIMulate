@@ -12,6 +12,7 @@
     <?php include 'Include/GlobalHead.inc'; ?>
         <?php include 'PHP/functions.php'; ?>
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
+    <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
     <script src = "js/filters.js"></script>
 </head>
 <body>
