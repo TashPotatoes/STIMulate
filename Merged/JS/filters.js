@@ -45,29 +45,45 @@ function FilterByStream(stream) {
 }
 
 function FilterBySpecialisations() {
-    var Specialisations = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five"
-    ];
-    $("#SpecFilter").autocomplete({
-        source: Specialisations,
-        select: function(event, ui) {
-            FilterSpecialisations();
-        },
-        change: function(event, ui) {
-            FilterSpecialisations();
-        }
-    })
+	/*var Specialisations; 
+	$.ajax({ url: 'PHP/DatabaseAPI.php',
+		data: {
+			"action": 'specialisation',
+			"stream": clickedStream
+		},
+        	type: 'post',
+        	datatype: 'JSON',
+
+		success:  function(output){
+			Specialisations = (JSON.Parse(output));
+		}
+        	error: UnsuccessfulCall
+	});*/
+		
+	 var Specialisations = [
+		"python",
+		"c++",
+		"c#",
+		"BPM",
+		"teensy"
+	];
+	
+	$("#SpecFilter").autocomplete({
+        	source: Specialisations,
+        	select: function(event, ui) {
+            		FilterSpecialisations();
+        	},
+        	change: function(event, ui) {
+            		FilterSpecialisations();
+        	}
+    	})
 
 }
 
 function FilterSpecialisations() {
     var specialisation = $("#SpecFilter").val();
     console.log(specialisation);
-    if (specialisation == 'one') {
+    if (specialisation == 'python') {
         $(".n8571091").css("opacity", "1");
         $(".namecard").not(".n8571091").css("opacity", ".4");
     };
