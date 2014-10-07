@@ -68,16 +68,16 @@ Author: Pearl Gariano
                             $time="12";
                             break;
                         case 4:
-                            $time="1";
+                            $time="13";
                             break;
                         case 5:
-                            $time="2";
+                            $time="14";
                             break;
                         case 6:
-                            $time="3";
+                            $time="15";
                             break;
                         case 7:
-                            $time="4";
+                            $time="16";
                             break;
                         default:
                             $time="ERROR";
@@ -105,7 +105,7 @@ Author: Pearl Gariano
                                 $day="ERROR";
                                 break;
                         }
-                        echo "<td class='$time $day'>";
+                        echo "<td class='$time $day WHITE'>";
                         echo "</td>";
                     }
                     echo '</tr>';

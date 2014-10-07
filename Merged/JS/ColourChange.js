@@ -8,21 +8,23 @@ $(document).ready(function(){
 
 function clickColorEvent() {
 	$('td').on('click', function(){
-		if($(this).hasClass("GREEN")) {
+		if ($(this).hasClass("GREEN")) {
 			$(this).removeClass("GREEN");
 			$(this).addClass("YELLOW");
 			$(this).css({'background-color': 'yellow'});
 
-		} else if($(this).hasClass("YELLOW")) {
+		} else if ($(this).hasClass("YELLOW")) {
 			$(this).removeClass("YELLOW");
 			$(this).addClass("RED");
 			$(this).css({'background-color': 'red'});
 
-		} else if($(this).hasClass("RED")) {
+		} else if ($(this).hasClass("RED")) {
 			$(this).removeClass("RED");
+			$(this).addClass("WHITE");
 			$(this).css({'background-color': 'white'});
 
-		} else {
+		} else if ($(this).hasClass("WHITE")){
+			$(this).removeClass("WHITE");
 			$(this).addClass("GREEN");
 			$(this).css({'background-color': 'green'});
 		} 
