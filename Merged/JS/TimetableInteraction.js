@@ -5,33 +5,67 @@ $(document).ready(function(){
 function getCellData() {
 	$('.submit').on('click', function() {
 
-		console.log("clicked");
-
 		$('td').each(function(){
 
-			//var DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"];
-			//var COLOURS = ["GREEN", "YELLOW", "RED"];
+			var DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"];
+			var COLOURS = ["GREEN", "YELLOW", "RED"];
 
-			if ($(this).hasClass("MONDAY")){
+			var array = [[]];
+			var classNames;
+			var time;
 
-				
-				if ($(this).hasClass("GREEN")){
+			for (var i = 0; i <= 4; i++) {
+			
+				if ($(this).hasClass(DAYS[i])){
+					//console.log(DAYS[i]);
 
-					//this works now =D to get the time... now how to 
-					var classNames = $(this).attr('class').split(' ');
-					var time = classNames[0]; 
+					if ($(this).hasClass("GREEN")){
+						//this works now =D to get the time... now how to 
+						classNames = $(this).attr('class').split(' ');
+						time = classNames[0]; 
+						//add to list
+						array[i][time] = 27;
 
-					console.log("test: monday green");
-					console.log(classNames[0]);
+						console.log(array[i][time]);
+						console.log(DAYS[i]);
+						console.log(classNames[0]);
 
-				} else if ($(this).hasClass("YELLOW")){
-					//get time and change yellow to 2
+					} else if ($(this).hasClass("YELLOW")){
+						
+						classNames = $(this).attr('class').split(' ');
+						time = classNames[0]; 
+						array[i][time] = 9;
 
-				} else if ($(this).hasClass("RED")){
-					//get time and change green to 1
+						console.log(array[i][time]);
+						console.log(DAYS[i]);
+						console.log(classNames[0]);
+
+
+					} else if ($(this).hasClass("RED")){
+						
+						classNames = $(this).attr('class').split(' ');
+						time = classNames[0]; 
+						array[i][time] = 1;
+
+						console.log(array[i][time]);
+						console.log(DAYS[i]);
+						console.log(classNames[0]);
+		
+					} else {
+						console.log("not selected");
+						
+						//classNames = $(this).attr('class').split(' ');
+						//time = classNames[0]; 
+						//array[i][time] = -50;
+
+						//console.log(array[i][time]);
+						//console.log(DAYS[i]);
+						//console.log(classNames[0]);
+					}
 
 				}
-			}
+
+			};//end for loop
 
 			//test for the rest of the days
 
