@@ -6,18 +6,7 @@
 	if ($UserAccessControl->isUserLoggedIn() == true) {
         header("Location: dashboard.php");
 	} else {
-		if (isset($UserAccessControl)) {
-		    if ($UserAccessControl->errors) {
-		        foreach ($UserAccessControl->errors as $error) {
-		            echo $error;
-		        }
-		    }
-		    if ($UserAccessControl->messages) {
-		        foreach ($UserAccessControl->messages as $message) {
-		            echo $message;
-		        }
-		    }
-		}
+        $errors = 1;
 	}
     $UserAccessControl->checkTimeout();
 ?>
@@ -40,8 +29,24 @@
                         <p>Home</p>
                     </a>";
                 include 'Include/LocationSeparator.inc'; ?>
-            <?php include 'Include/SideBar.inc'; ?>
-
+<div>
+<?php
+if($errors) {
+    if (isset($UserAccessControl)) {
+        if ($UserAccessControl->errors) {
+            foreach ($UserAccessControl->errors as $error) {
+                echo $error;
+            }
+        }
+        if ($UserAccessControl->messages) {
+            foreach ($UserAccessControl->messages as $message) {
+                echo $message;
+            }
+        }
+    }
+}
+?>
+</div>
 <form method="post" action="gateway.php" name="loginform" id = "loginForm">
 
     <label for="login_input_username">Username</label>

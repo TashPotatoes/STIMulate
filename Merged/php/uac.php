@@ -46,18 +46,21 @@ class UserAccessControl
 
             $user_name = $_POST['login_input_username'];
             $password = $_POST['login_input_password'];
-            $sqlObject = new \php\SqlObject("SELECT * FROM facilitators 
+            $sqlObject = new \php\SqlObject("SELECT student_id, active FROM facilitators 
                                 WHERE student_id = :id AND stu_name_last = :name", array($user_name, $password));
             $loginCheck = $sqlObject->Execute();
 
             if (count($loginCheck)) {
-                $userType = "student";
-                $result_row = $loginCheck;
+                if($loginCheck[0]['active']) {
+                    $userType = "student";
+                    $result_row = $loginCheck;
 
-                $_SESSION['user_id'] = $loginCheck[0]['student_id'];
-                $_SESSION['user_login_status'] = 1;
-                $_SESSION['user_type'] = $userType;
-
+                    $_SESSION['user_id'] = $loginCheck[0]['student_id'];
+                    $_SESSION['user_login_status'] = 1;
+                    $_SESSION['user_type'] = $userType;
+                } else {
+                    $this->errors[] = "This user is not active";
+                }
             } else {
                 $this->errors[] = "This user does not exist.";
             }
