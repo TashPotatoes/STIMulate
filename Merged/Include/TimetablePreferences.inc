@@ -16,7 +16,7 @@ Author: Pearl Gariano
         </div>
         <div>
             <p>Please select your stream: 
-                <select>
+                <select id="stream">
                     <option value="default">Stream Here...</option>
                     <option value="IT">IT</option>
                     <option value="science">Science</option>
@@ -115,7 +115,7 @@ Author: Pearl Gariano
             </table>
         </div>
         <p>How many hours you would like to volunteer for your stream per week? 
-            <select>
+            <select id="hours">
                 <option value="default">Hours Here...</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -123,6 +123,6 @@ Author: Pearl Gariano
                 <option value="4">4</option>
             </select>
         </p>
-        <input class="submit" type="submit" value="Submit">
+        <input id="submit" type="submit" value="Submit">
     </div>
 </div>
