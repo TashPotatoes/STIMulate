@@ -3,26 +3,21 @@ $(document).ready(function(){
     Initialise();
 })
 
-var clickedStream = "";
 
 function Initialise(){
     $("#filterStreamIt").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
-		clickedStream = "in_it";
     });
     $("#filterStreamSc").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
-		clickedStream = "in_sc";
     });
     $("#filterStreamMa").on("click", function() {
         FilterByStream(this.id);
         UnHideTableElements();
-		clickedStream = "in_ma";
     });
     $("#filterStreamDh").on("click", function() {
-	
         FilterByStream(this.id);
         UnHideTableElements();
     });
@@ -49,40 +44,39 @@ function FilterByStream(stream) {
 	$(StreamClass).css({"visibility": "visible", "display": "block"})
 }
 
-
 function FilterBySpecialisations() {
-    /*var Specialisations; 
+	/*var Specialisations; 
 	$.ajax({ url: 'PHP/DatabaseAPI.php',
-			data: {
-				"action": 'specialisation',
-				"stream": clickedStream
-			},
-        type: 'post',
-        datatype: 'JSON',
+		data: {
+			"action": 'specialisation',
+			"stream": clickedStream
+		},
+        	type: 'post',
+        	datatype: 'JSON',
 
 		success:  function(output){
 			Specialisations = (JSON.Parse(output));
 		}
-        error: UnsuccessfulCall
-		});*/
+        	error: UnsuccessfulCall
+	});*/
+		
 	 var Specialisations = [
 		"python",
 		"c++",
 		"c#",
 		"BPM",
-		"five"
-		];
+		"teensy"
+	];
 	
-	
-    $("#SpecFilter").autocomplete({
-        source: Specialisations,
-        select: function(event, ui) {
-            FilterSpecialisations();
-        },
-        change: function(event, ui) {
-            FilterSpecialisations();
-        }
-    })
+	$("#SpecFilter").autocomplete({
+        	source: Specialisations,
+        	select: function(event, ui) {
+            		FilterSpecialisations();
+        	},
+        	change: function(event, ui) {
+            		FilterSpecialisations();
+        	}
+    	})
 
 }
 
@@ -93,5 +87,4 @@ function FilterSpecialisations() {
         $(".n8571091").css("opacity", "1");
         $(".namecard").not(".n8571091").css("opacity", ".4");
     };
-
 }

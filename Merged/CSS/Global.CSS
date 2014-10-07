@@ -60,3 +60,13 @@ body {
     width: 100%;
     border: 2px solid rgb(225,225,225);
 }
+
+.pageWrapper {
+    max-width: 960px;
+}
+.checkboxWrapper {
+    width: 250px;
+    box-shadow: inset 0 0 1px black;
+    padding: 5px;
+    margin:;
+}

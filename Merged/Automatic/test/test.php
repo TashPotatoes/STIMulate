@@ -11,7 +11,7 @@
     require_once '../../php/SqlObject.php';
     require '../../php/uac.php';
 	
-	$stream = "IT"; //TODO:DONE create UI with a button, where this variable gets its value from
+	$stream = "IT"; //TODONE create UI with a button, where this variable gets its value from
 	if(isset($_POST['stream'])) {
 		$stream =  $_POST['stream'];
 		echo "<p>Current Stream: " . $stream . "</p>";
@@ -26,7 +26,7 @@
 </form>
 <?php
 }
-
+f
 	// Generate array of studentsID, Index of studentID in array will be used to generate the input CPLEX string
 	$studentListRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences GROUP BY `student_ID ORDER BY `student_ID` ASC WHERE  `stream` = :stream;", array($stream));
     $studentListRS->Execute();
@@ -36,7 +36,7 @@
 		$studentArray[$studentTotal] = $row['student_ID'];
 		$studentTotal++;
 	}
-	$studentHours = array(); //TODO:DONE create hours in db and then uncomment code below and edit for loop for generating relevant constraints
+	$studentHours = array(); //TODONE create hours in db and then uncomment code below and edit for loop for generating relevant constraints
 	$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM facilitator_maxx_hours WHERE `stream` = :stream GROUP BY `student_ID` ORDER BY `student_ID` asc", array($stream));
     $studentHoursRS->Execute();
 	foreach($studentHoursRS as $row) {
@@ -46,7 +46,7 @@
 	
 			
 	// Generates array with ith student and jth shift, where j is calculated by day + shift
-	$shiftTotal = 8; //TODO: maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
+	$shiftTotal = 8; //TODONE maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
 	$startTime = 9;
 	$preferencesRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences  WHERE  `stream` = :stream;", array($stream));
     $preferencesRS->Execute();
@@ -88,14 +88,14 @@
 	}
 	
 	
-	// TODO: add int 1, 0 field for each stream called new to db, once added, uncomment the following code 
-	/*$newTotal = new \PHP\SqlObject("SELECT COUNT(*) FROM preferences WHERE new = :new AND stream = :stream;", array(1, $stream));
-    $newTotal->Execute();*/
+	// TODONE:DONE add int 1, 0 field for each stream called new to db, once added, uncomment the following code 
+	$newTotal = new \PHP\SqlObject("SELECT COUNT(*) FROM facilitator_shift_preferences WHERE new = :new AND stream = :stream;", array(1, $stream));
+    $newTotal->Execute();
 	
 	// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
 	// is effective, otherwise large m will make restraint redundant
 	// Modelled on A - 1 + my < m,  1 - B - my <= 0
-	$newTotal = 5; //TODO: delete this once db field new has been added
+	//$newTotal = 5;  TODO:REMOVE THIS LINE //TODONE delete this once db field new has been added
 	$m = 10000; // arbitrarily large amount
 	$constraintNewA = "";
 	$constraintNewB = "";
@@ -313,8 +313,9 @@ End
 		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shift_ID, stream, day, shift_time) VALUES";
 		foreach ($results as $entry){
 			$sqlEntry = "( `". array_search($entry[1], $studentArray)  . "`, " . $entry[2] . ", `" . $stream . "`"; 
-			$sqlEtnry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
-			///TODO: check if final "," causes sql error and if variable names have spaces at the start
+			$sqlEntry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
+			///TODONE: the final "," breaks stuff. check if final "," causes sql error and if variable names have spaces at the start
+
 		}
 		
 		// add constructed table to database

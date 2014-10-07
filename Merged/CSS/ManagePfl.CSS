@@ -1,0 +1,27 @@
+.contentWrapper {
+    background-color: white;
+}
+
+#studentInformationTable {
+    max-width: 1600px;
+    width: 100%;
+}
+
+#studentInformationTable td {
+    text-align: center;
+    width: 7%;
+}
+
+#studentInformationTable th {
+    font-size: 12pt;
+}
+
+.manageWrapper {
+
+}
+
+.manageWrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 5px;
+}

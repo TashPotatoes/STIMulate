@@ -24,11 +24,11 @@ aside li {
     background-color: rgb(100,100,100)
 }
 
-aside li:hover {
-    background-color: rgb(150,150,150);
-}
-.alternative {
+aside ul li:nth-child(even) {
     background-color: rgb(125,125,125);
+}
+aside ul li:hover {
+    background-color: rgb(150,150,150);
 }
 .icon {
     text-indent: 30px;

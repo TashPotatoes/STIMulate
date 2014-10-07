@@ -11,7 +11,7 @@ if(isset($_POST["action"])){
             InsertAbsentie($_POST);
             break;
 		case "specialisations":
-             retrieveAllSpecialisationsStream($_POST['stream'];
+             retrieveAllSpecialisationsStream($_POST['stream']);
             break;
         default:
             echo "Invalid Database Request.";
