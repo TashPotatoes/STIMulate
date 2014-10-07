@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="../dist/glpk.min.js"></script>
-
-	
-	
-	</head>
+	<meta charset="UTF-8">
+	<script src="../dist/glpk.min.js"></script>	
+</head>
 <body>
 <?php
     require '../../PHP/functions.php'; 
@@ -25,8 +22,8 @@
 		$studentArray[$studentTotal] = $row['student_ID'];
 		$studentTotal++;
 	}
-	$studentHours = array(); //TODO: create hours in db and then uncomment code below
-	/*$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM preferences GROUP BY `student_ID`" ORDER BY `student_ID` asc, array());
+	$studentHours = array(); //TODO: create hours in db and then uncomment code below and edit for loop for generating relevant constraints
+	/*$studentHoursRS = new \PHP\SqlObject("SELECT `student_ID`, `hours`, FROM preferences WHERE `stream` = :stream GROUP BY `student_ID` ORDER BY `student_ID` asc;",  array($stream);
     $studentHourstRS->Execute();
 	foreach($studentHoursRS as $row) {
 		$studentIndex = array_search($row['student_ID'],$studentList,true);
@@ -37,7 +34,7 @@
 	// Generates array with ith student and jth shift, where j is calculated by day + shift
 	$shiftTotal = 8; //TODO: maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
 	$startTime = 9;
-	$preferencesRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences", array());
+	$preferencesRS = new \PHP\SqlObject("SELECT `student_ID`, `day`, `shift_time` FROM preferences  WHERE  `stream` = :stream;", array($stream));
     $preferencesRS->Execute();
 	$prefArray = array();
 	foreach($preferencesRS as $row) {
@@ -75,10 +72,15 @@
 		$constraint .= " <= " . $desk[$shift] . "\n";
 	}
 	
+	
+	// TODO: add int 1, 0 field for each stream called new to db, once added, uncomment the following code 
+	/*$newTotal = new \PHP\SqlObject("SELECT COUNT(*) FROM preferences WHERE new = :new AND stream = :stream;", array(1, $stream));
+    $newTotal->Execute();*/
+	
 	// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
 	// is effective, otherwise large m will make restraint redundant
 	// Modelled on A - 1 + my < m,  1 - B - my <= 0
-	$newTotal = 5; // TODO: retrieve total number of new students and also sort all sql queries by new/not new and then student ID
+	$newTotal = 5; //TODO: delete this once db field new has been added
 	$m = 10000; // arbitrarily large amount
 	$constraintNewA = "";
 	$constraintNewB = "";
@@ -112,10 +114,8 @@
 	// Collect all the strings to generate the input string
 	$input = $objective . $constraint . $bounds . $integers . " End";
 	
-	//TODO: pass input string directly to algorithm
-	//TODO: parse output
-	//TODO: add output to db
-	//TODO: may need to change all \n to <br>
+	//TODO: pass input string directly to algorithm, may need to change.
+	
 	echo $input;
 	//echo "<textarea id='source' cols='50' rows='10' placeholder = 'two' >";
 ?>	
@@ -251,9 +251,13 @@ End
             if (d > 60) throw new Error("timeout");
 	        console.log(value);
         };
-        function run(){
+		function javascriptToPHP(var  jsvar, var pageURL) { 
+				 $.post(pageURL, {variable: jsVar}); 
+		}
+		
+		function run(){
             start = new Date(); 
-	    logNode.innerText = "";
+			logNode.innerText = "";
             var lp = glp_create_prob();
             glp_read_lp_from_string(lp, null, <?php echo $input; ?>); //document.getElementById("source").value);
 
@@ -264,14 +268,46 @@ End
 
             var iocp = new IOCP({presolve: GLP_ON});
             glp_intopt(lp, iocp);
-
-            log("obj: " + glp_mip_obj_val(lp));
+			
+			var results;
+            //l og("obj: " + glp_mip_obj_val(lp));
             for(var i = 1; i <= glp_get_num_cols(lp); i++){
-                log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
+                // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
+				var person = Integer.parseInt(glp_get_col_name(lp, i) [1]);
+				var shift = Integer.parseInt(glp_get_col_name(lp, i) [3]);
+				var value = Integer.parseInt(glp_mip_col_val(lp, i));
+				results[person][shift]  = value; 
             }
-        }
+			
+			javascriptToPHP(results, 'test.php');
+			
+		}
+        
     </script>
 
+	<?php
+
+		// Return the javascript array of person, shift and value 
+		$results = $_POST['variable'];
+		$entries = count($results);
+		$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
+		$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+		
+		
+		// assume shift_ID goes from 0 to shiftnum,
+		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shift_ID, stream, day, shift_time) VALUES";
+		foreach ($results as $entry){
+			$sqlEntry = "( `". array_search($entry[1], $studentArray);  . "`, " . entry[2] . ", `" . $stream . "`"; 
+			$sqlEtnry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
+			///TODO: check if final "," causes sql error and if variable names have spaces at the start
+		}
+		
+		// add constructed table to database
+		$automaticTable = new \PHP\SqlObject("$sqlEntry", array());
+		$automaticTable->Execute();
+			
+	?>
+			
 
 </body>
 </html>
