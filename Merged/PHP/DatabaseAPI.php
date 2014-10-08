@@ -11,7 +11,7 @@ if(isset($_POST["action"])){
             InsertAbsentie($_POST);
             break;
 		case "specialisations":
-             retrieveAllSpecialisationsStream($_POST['stream']);
+             retrieveAllSpecialisations();
             break;
         default:
             echo "Invalid Database Request.";
@@ -38,13 +38,20 @@ function InsertAbsentie($post){
 }
 
 function retrieveAllSpecialisations() {
-    $sqlObject = new\PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations
-                                INNER JOIN specialisations
-                                ON facilitator_specialisations.spec_id=specialisations.spec_id");
-    
-    return $sqlObject->Execute();
-
+    $sqlObject = new\PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations");
+    $data = $sqlObject->Execute();
+    echo JSON_ENCODE($data);
 }
+    // foreach ($data as $combo) {
+    //     if(array_search($combo['spec_name'], $fac_spec_matrix)) {
+    //         echo "EXISTS";
+    //     } else {
+    //         echo "NO EXISTS";
+    //     }
+    //     //check if spec if in the array
+    //     //if is, add user_id to relevant nested array
+    //     //if no, add array(spec) to main array, then add user_id to that array
+    // }
 
 function retrieveAllSpecialisationsInStreams($inStream) {
     $sqlObject = new\PHP\SqlObject("SELECT `spec_name` FROM specialisations

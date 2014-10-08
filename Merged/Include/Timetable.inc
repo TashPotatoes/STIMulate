@@ -1,7 +1,6 @@
 <?php require_once '/php/DatabaseAPI.php'; ?>
     <?php
         if("index.php" == basename($_SERVER['PHP_SELF'])) { 
-        $specialisationObject = retrieveAllSpecialisations();
         
     ?>
     <style type="text/css">

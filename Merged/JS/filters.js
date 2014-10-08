@@ -42,22 +42,35 @@ function FilterByStream(stream) {
 
 
 function FilterBySpecialisations() {
-	/*var Specialisations; 
+	var Specialisations; 
 	$.ajax({ url: 'PHP/DatabaseAPI.php',
 		data: {
-			"action": 'specialisation',
-			"stream": clickedStream
+			"action": 'specialisations',
 		},
         	type: 'post',
         	datatype: 'JSON',
 
-		success:  function(output){
-			Specialisations = (JSON.Parse(output));
-		}
-        	error: UnsuccessfulCall
-	});*/
-		
-	  var Specialisations = [
+		success: function(output) {
+            console.log(output);
+			Specialisations = JSON.parse(output);
+		},
+        error: function(){
+            console.log("ajax is fucking shit");
+        }
+	})
+        var Spec2 = [];
+        var fac_spec2 = [];
+        $.each(Specialisations, function(user_id, spec_id)
+        {
+            // if($.inArray(spec, Spec2)) {
+            //     console.log(spec_id + " not in array");
+            // }
+            // else {
+            //     console.log(spec_id + " in array");
+            // }
+        });
+        //console.log(Specialisations);
+	  var Spec = [
 	 	"python",
 	 	"BPM",
 	 	"teensy",
