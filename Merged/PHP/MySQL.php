@@ -32,7 +32,7 @@ class MySQL {
 
     // Extracts potential parameters denoted by :String and returns them
     private function ExtractParameters(){
-        $pattern = '/:[A-z]*/'; // Parameter format.
+        $pattern = '/:[A-z 0-9 ]*/'; // Parameter format.
         $matches = null;
 
         // Return all matches
