@@ -33,7 +33,7 @@ class SqlObject extends MySQL{
         $this->id = $connection->lastInsertId();
 
         // Retrieves the database Query
-        $this->QueryResults = $databaseQuery->fetchAll(\PDO::FETCH_ASSOC);
+        $this->QueryResults = $databaseQuery->fetchAll();
 
         // Committing sql
         $connection->commit();

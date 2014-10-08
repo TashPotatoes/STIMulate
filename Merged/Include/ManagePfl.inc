@@ -58,14 +58,16 @@
                 echo '<td>'.$facilitatorInfo[$i]['stu_name_first'].' '.$facilitatorInfo[$i]['stu_name_last'].'</td>';
                 for($j = 0; $j < count($streams); $j++) {
                     $checked = '';
+
                     for($k = 0; $k < count($facilitatorstreams); $k ++) {
-
-                        if($facilitatorstreams[$k]['stream_id'] == $streams[$j]['stream_id'] && $facilitatorstreams[$k]['student_id'] == $facilitatorInfo[$i]['student_id']){
-                            $checked = 'checked';
-                            break;
-                        }
+                        //var_dump($facilitatorstreams[$k]);
+                        if(isset($facilitatorstreams[$k][$j+1], $facilitatorstreams[$k][0], $facilitatorInfo[$i]['student_id'])){
+                            if($facilitatorstreams[$k][$j+1]==1 && $facilitatorstreams[$k][0] == $facilitatorInfo[$i]['student_id']){
+                                $checked = 'checked';
+                                break;
+                                }
+                            }
                     }
-
                     echo '<td><input type = "checkbox" '.$checked.'></td>';
                 }
                 echo '<td><input type = "checkbox" '.$active.'></td>';
