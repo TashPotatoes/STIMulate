@@ -1,9 +1,12 @@
 <?php
-    /*
-    Global header includes
-    */
+	if(isset($pageTitle)) {
+		$pageTitle .= " - STIMulate";
+	} else {
+		$pageTitle = "STIMulate";
+	}
+
 ?>
-<title>STIMulate</title>
+<title><?php echo $pageTitle; ?></title>
 <link href="CSS/Header.CSS" rel="stylesheet" type="text/css">
 <link href="CSS/Global.CSS" rel="stylesheet" type="text/css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
