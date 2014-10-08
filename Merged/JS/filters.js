@@ -6,20 +6,24 @@ $(document).ready(function(){
 
 function Initialise(){
     $("#filterStreamIt").on("click", function() {
-        FilterByStream(this.id);
         UnHideTableElements();
+        FilterByStream(this.id);
+        ResetSpecialisationFilters();
     });
     $("#filterStreamSc").on("click", function() {
-        FilterByStream(this.id);
         UnHideTableElements();
+        FilterByStream(this.id);
+        ResetSpecialisationFilters();
     });
     $("#filterStreamMa").on("click", function() {
-        FilterByStream(this.id);
         UnHideTableElements();
+        FilterByStream(this.id);
+        ResetSpecialisationFilters();
     });
     $("#filterStreamDh").on("click", function() {
-        FilterByStream(this.id);
         UnHideTableElements();
+        FilterByStream(this.id);
+        ResetSpecialisationFilters();
     });
     $("#SpecFilter").on("change", function() {
        // console.log($(this).value.text);
@@ -29,6 +33,10 @@ function Initialise(){
     });
 }
 
+function ResetSpecialisationFilters() {console.log("BLSADS");
+    $(".namecard").css("opacity", "1");
+
+}
 function UnHideTableElements() {
     if( $(".specfilter").css("display") ) {
         console.log('UNHIDE IT');
