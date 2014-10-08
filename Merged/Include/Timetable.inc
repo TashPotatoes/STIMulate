@@ -112,6 +112,9 @@
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
                             $shiftTime = date("H:i", strtotime($shiftInformation[$i]["shi_time"]));
+                            if($shiftTime < date("h:i", strtotime("09:00"))) {
+                                $shiftTime+= 12;
+                            }
                             $shiftDuration = $shiftInformation[$i]['shi_duration']-1;
                             if($currentTime == $shiftTime) {
                                 $rightTime = true;
