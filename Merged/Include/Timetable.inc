@@ -132,7 +132,8 @@
                                             $inputtedNameCards++;
                                             break;
                                         } else if($absentTime+$shiftInformation[$i]['shi_duration'] <= $shiftTime+$shiftInformation[$i]['shi_duration'] &&
-                                            $currentTime >= $shiftTime) {
+                                            $currentTime >= $shiftTime && $day == $absentDay &&
+                                            $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]) {
                                             NameCard($shiftInformation[$i], $day, true);
                                             $inputtedNameCards++;
                                             break;
