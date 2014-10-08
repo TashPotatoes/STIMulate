@@ -41,7 +41,6 @@
         </span>
     </div>
     <?php } ?>
-
     <div class="timetableWrapper">
 
         <div class="headElement">
@@ -63,18 +62,20 @@
                 require_once 'PHP/databaseAPI.php';
                 require_once 'PHP/SqlObject.php';
                 if(!isset($oneStudent)){
-                    $lq="SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name
+                    $lq="SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name, is_IT, is_SC, is_MA, is_DH
                     FROM STIMulate.facilitators
                     JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                     JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
+                    LEFT JOIN STIMulate.facilitator_streams ON facilitators.student_id=facilitator_streams.user_id
                     WHERE facilitators.active = 1
                     ORDER BY shift_id asc;";
                     $sqlObject = new \php\SqlObject($lq);
                 } else {
-                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name
+                    $lq = "SELECT facilitators.student_id, stu_name_first, stu_name_last, shift_id, shi_day, shi_duration, shi_time, str_shortname, str_name, is_IT, is_SC, is_MA, is_DH
                             FROM STIMulate.facilitators
                             JOIN STIMulate.shifts ON facilitators.student_id=shifts.student_id
                             JOIN STIMulate.streams ON shifts.shi_stream=streams.stream_id
+                            LEFT JOIN STIMulate.facilitator_streams ON facilitators.student_id=facilitator_streams.user_id
                             WHERE facilitators.active = 1 AND shifts.student_id = :student_id
                             ORDER BY shift_id asc;";
                     $sqlObject = new \php\SqlObject($lq, array($_SESSION['user_id']));
@@ -135,13 +136,13 @@
 
                                         if($shiftTime == $absentTime && $day == $absentDay &&
                                             $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
-                                            NameCard($shiftInformation[$i], $day, true);
+                                            NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
                                             $inputtedNameCards++;
                                             break;
                                         } else if($absentTime+$shiftDuration <= $shiftTime+$shiftDuration &&
                                             $currentTime >= $shiftTime && $day == $absentDay &&
                                             $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]) {
-                                            NameCard($shiftInformation[$i], $day, true);
+                                            NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
                                             $inputtedNameCards++;
                                             break;
                                         }
@@ -160,11 +161,22 @@
                 function NameCard($shiftInformation, $day, $disabled)
                 {
                     if($disabled){
-                        echo "<div class='".$shiftInformation["student_id"]." absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
+                        $date = substr($disabled, 0, 9);
+                        $absentMsg = "away on the " . substr($disabled, 0,9);
+                        echo "<div class='".$shiftInformation["student_id"]." absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."' title='". $absentMsg ."'>";
                     } else {
                         echo "<div class='" . $shiftInformation["student_id"] . " namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
                     }
-                    echo "<span class='".$shiftInformation['str_shortname']."'>".$shiftInformation["str_shortname"]."</span>";
+                    if($shiftInformation['is_IT']) {
+                        echo "<span class='IT' alt='Info. Tech.'>IT</span>";
+                    }
+                    if($shiftInformation['is_SC']) {
+                        echo "<span class='SC' alt='Science'>SC</span>";
+                    }
+                    if($shiftInformation['is_MA']) {
+                        echo "<span class='MA' alt='Maths'>MA</span>";
+
+                    }
                     echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
                     echo "</div>";
                 }
