@@ -106,6 +106,9 @@
                 }
 
                 function InsertActivity($shiftInformation, $absentInformation, $day, $currentTime){
+                    if($currentTime < date("h:i", strtotime("09:00"))) {
+                        $currentTime += 12;
+                    }
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
                             $shiftTime = date("H:i", strtotime($shiftInformation[$i]["shi_time"]));
