@@ -107,9 +107,12 @@
                 function InsertActivity($shiftInformation, $absentInformation, $day, $currentTime){
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
-                            if($currentTime == $shiftInformation[$i]['shi_time']) {
+                            $shiftTime = date("H:i", strtotime($shiftInformation[$i]["shi_time"]));
+
+                            if($currentTime == $shiftTime) {
                                 $rightTime = true;
-                            } else if($currentTime+1 == $shiftInformation[$i]['shi_time']+$shiftInformation[$i]['shi_duration']){
+                            } else if($currentTime+$shiftInformation[$i]['shi_duration'] <= $shiftTime+$shiftInformation[$i]['shi_duration'] &&
+                                $currentTime >= $shiftTime){
                                 $rightTime = true;
                             } else {
                                 $rightTime = false;
@@ -122,8 +125,13 @@
                                         $absentDay = date("w", strtotime($absentInformation[$j]["absence_timestamp"]))-1;
                                         $absentTime = date("H:i", strtotime($absentInformation[$j]["absence_timestamp"]));
 
-                                        if($shiftInformation[$i]["shi_time"] == $absentTime && $day == $absentDay &&
+                                        if($shiftTime == $absentTime && $day == $absentDay &&
                                             $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
+                                            NameCard($shiftInformation[$i], $day, true);
+                                            $inputtedNameCards++;
+                                            break;
+                                        } else if($absentTime+$shiftInformation[$i]['shi_duration'] <= $shiftTime+$shiftInformation[$i]['shi_duration'] &&
+                                            $currentTime >= $shiftTime) {
                                             NameCard($shiftInformation[$i], $day, true);
                                             $inputtedNameCards++;
                                             break;
