@@ -32,11 +32,12 @@ class MySQL {
 
     // Extracts potential parameters denoted by :String and returns them
     private function ExtractParameters(){
-        $pattern = '/:[A-z 0-9 ]*/'; // Parameter format.
+        $pattern = '/:[A-z0-9]*/'; // Parameter format.
         $matches = null;
 
         // Return all matches
         preg_match_all($pattern, $this->sqlStatement, $matches);
+
         return $matches;
     }
 

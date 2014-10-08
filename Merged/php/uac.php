@@ -46,8 +46,10 @@ class UserAccessControl
 
             $user_name = $_POST['login_input_username'];
             $password = $_POST['login_input_password'];
+
             $sqlObject = new \php\SqlObject("SELECT student_id, active FROM facilitators 
                                 WHERE student_id = :id AND stu_name_last = :name", array($user_name, $password));
+
             $loginCheck = $sqlObject->Execute();
 
             if (count($loginCheck)) {

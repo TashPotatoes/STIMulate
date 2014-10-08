@@ -28,8 +28,8 @@
       <file leaf-file-name="Timetable.inc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.346153" vertical-offset="612" max-vertical-offset="3417">
-              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="49" />
+            <state vertical-scroll-proportion="-21.576923" vertical-offset="1377" max-vertical-offset="3417">
+              <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="116" selection-end-column="29" />
               <folding>
                 <marker date="1412771557813" expanded="true" signature="2083:2664" placeholder="SELECT facil..facilitators..." />
                 <marker date="1412771557813" expanded="true" signature="2778:3443" placeholder="SELECT facil..facilitators..." />
@@ -62,14 +62,62 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.inc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dashboard.inc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/Dashboard.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11422172" vertical-offset="0" max-vertical-offset="901">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="-23.538462" vertical-offset="374" max-vertical-offset="1394">
+              <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
               <folding>
-                <marker date="1412774463779" expanded="true" signature="692:783" placeholder="SELECT * FRO..absences..." />
-                <marker date="1412774463779" expanded="true" signature="823:881" placeholder="SELECT * FRO..facilitators..." />
+                <marker date="1412776336407" expanded="true" signature="478:569" placeholder="SELECT * FRO..absences..." />
+                <marker date="1412776336407" expanded="true" signature="609:667" placeholder="SELECT * FRO..facilitators..." />
+                <marker date="1412776336407" expanded="true" signature="2234:2428" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gateway.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gateway.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="1207">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding>
+                <marker date="1412776571125" expanded="true" signature="825:985" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uac.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PHP/uac.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.23077" vertical-offset="289" max-vertical-offset="2567">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding>
+                <marker date="1412776718268" expanded="true" signature="1460:1585" placeholder="SELECT stude..facilitators..." />
+                <marker date="1412776718268" expanded="true" signature="2847:2947" placeholder="SELECT * FRO..staff..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MySQL.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4538835" vertical-offset="204" max-vertical-offset="1156">
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Header.inc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Include/Header.inc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="986">
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+              <folding>
+                <marker date="1412775631045" expanded="true" signature="1475:1573" placeholder="SELECT COUNT..absences..." />
               </folding>
             </state>
           </provider>
@@ -94,13 +142,11 @@
         <option value="$PROJECT_DIR$/CSS/Absenses.CSS" />
         <option value="$PROJECT_DIR$/Include/TimetablePreferences.inc" />
         <option value="$PROJECT_DIR$/CSS/Gateway.CSS" />
-        <option value="$PROJECT_DIR$/gateway.php" />
         <option value="$PROJECT_DIR$/Dashboard.php" />
         <option value="$PROJECT_DIR$/CSS/Dashboard.CSS" />
         <option value="$PROJECT_DIR$/CSS/Header.CSS" />
         <option value="$PROJECT_DIR$/TimetablePref.php" />
         <option value="$PROJECT_DIR$/CSS/TimetableInteraction.CSS" />
-        <option value="$PROJECT_DIR$/Include/Header.inc" />
         <option value="$PROJECT_DIR$/JS/TimetableInteraction.js" />
         <option value="$PROJECT_DIR$/CSS/SideBar.CSS" />
         <option value="$PROJECT_DIR$/RecordAbsentie.php" />
@@ -109,7 +155,6 @@
         <option value="$PROJECT_DIR$/Include/Absentie.inc" />
         <option value="$PROJECT_DIR$/manageFacilitators.php" />
         <option value="$PROJECT_DIR$/PHP/DatabaseAPI.php" />
-        <option value="$PROJECT_DIR$/PHP/uac.php" />
         <option value="$PROJECT_DIR$/TimeTableFilter.CSS" />
         <option value="$PROJECT_DIR$/CSS/Timetable.CSS" />
         <option value="$PROJECT_DIR$/ManagePLF.php" />
@@ -126,18 +171,21 @@
         <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
         <option value="$PROJECT_DIR$/shifts.php" />
         <option value="$PROJECT_DIR$/Include/Timetable.inc" />
-        <option value="$PROJECT_DIR$/PHP/SqlObject.php" />
-        <option value="$PROJECT_DIR$/PHP/MySQL.php" />
+        <option value="$PROJECT_DIR$/Include/Header.inc" />
         <option value="$PROJECT_DIR$/Include/Dashboard.inc" />
+        <option value="$PROJECT_DIR$/PHP/SqlObject.php" />
+        <option value="$PROJECT_DIR$/gateway.php" />
+        <option value="$PROJECT_DIR$/PHP/uac.php" />
+        <option value="$PROJECT_DIR$/PHP/MySQL.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-1288" />
+    <option name="y" value="48" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -238,6 +286,13 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
@@ -254,23 +309,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1288" y="48" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1078125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16171876" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32829374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -428,13 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Include/Header.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38393977" vertical-offset="0" max-vertical-offset="797">
-          <caret line="18" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSS/SideBar.CSS">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
@@ -446,13 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.23077" vertical-offset="44" max-vertical-offset="918">
           <caret line="32" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.97254" vertical-offset="0" max-vertical-offset="1105">
-          <caret line="50" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -474,13 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="1156">
           <caret line="28" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHP/uac.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="51" max-vertical-offset="2482">
-          <caret line="8" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -625,19 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.346153" vertical-offset="612" max-vertical-offset="3417">
-          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="49" />
-          <folding>
-            <marker date="1412771557813" expanded="true" signature="2083:2664" placeholder="SELECT facil..facilitators..." />
-            <marker date="1412771557813" expanded="true" signature="2778:3443" placeholder="SELECT facil..facilitators..." />
-            <marker date="1412771557813" expanded="true" signature="3661:3752" placeholder="SELECT * FRO..absences..." />
-            <marker date="1412771557813" expanded="true" signature="9553:9596" placeholder="SELECT str_s..streams..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ManagePLF.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="731">
@@ -645,22 +666,6 @@
           <folding>
             <marker date="1412723965413" expanded="true" signature="794:954" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385" vertical-offset="204" max-vertical-offset="1139">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHP/SqlObject.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.418813" vertical-offset="0" max-vertical-offset="893">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -674,14 +679,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.576923" vertical-offset="1377" max-vertical-offset="3417">
+          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="116" selection-end-column="29" />
+          <folding>
+            <marker date="1412771557813" expanded="true" signature="2083:2664" placeholder="SELECT facil..facilitators..." />
+            <marker date="1412771557813" expanded="true" signature="2778:3443" placeholder="SELECT facil..facilitators..." />
+            <marker date="1412771557813" expanded="true" signature="3661:3752" placeholder="SELECT * FRO..absences..." />
+            <marker date="1412771557813" expanded="true" signature="9553:9596" placeholder="SELECT str_s..streams..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Include/Dashboard.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11422172" vertical-offset="0" max-vertical-offset="901">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="-23.538462" vertical-offset="374" max-vertical-offset="1394">
+          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
           <folding>
-            <marker date="1412774463779" expanded="true" signature="692:783" placeholder="SELECT * FRO..absences..." />
-            <marker date="1412774463779" expanded="true" signature="823:881" placeholder="SELECT * FRO..facilitators..." />
+            <marker date="1412776336407" expanded="true" signature="478:569" placeholder="SELECT * FRO..absences..." />
+            <marker date="1412776336407" expanded="true" signature="609:667" placeholder="SELECT * FRO..facilitators..." />
+            <marker date="1412776336407" expanded="true" signature="2234:2428" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gateway.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846" vertical-offset="0" max-vertical-offset="1207">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <marker date="1412776571125" expanded="true" signature="825:985" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHP/SqlObject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43249702" vertical-offset="12" max-vertical-offset="884">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHP/uac.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.23077" vertical-offset="289" max-vertical-offset="2567">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <marker date="1412776718268" expanded="true" signature="1460:1585" placeholder="SELECT stude..facilitators..." />
+            <marker date="1412776718268" expanded="true" signature="2847:2947" placeholder="SELECT * FRO..staff..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/Header.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="986">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <folding>
+            <marker date="1412775631045" expanded="true" signature="1475:1573" placeholder="SELECT COUNT..absences..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHP/MySQL.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4538835" vertical-offset="204" max-vertical-offset="1156">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
