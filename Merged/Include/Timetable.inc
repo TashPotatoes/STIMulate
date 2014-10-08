@@ -109,10 +109,11 @@
                     for($i = 0; $i < count($shiftInformation); $i++){
                         if($shiftInformation[$i]['shi_day'] == $day) {
                             $shiftTime = date("H:i", strtotime($shiftInformation[$i]["shi_time"]));
-
+                            $shiftDuration = $shiftInformation[$i]['shi_duration']-1;
                             if($currentTime == $shiftTime) {
                                 $rightTime = true;
-                            } else if($currentTime+$shiftInformation[$i]['shi_duration'] <= $shiftTime+$shiftInformation[$i]['shi_duration'] &&
+                            } else if(($currentTime+$shiftDuration) - ($shiftTime+$shiftDuration)
+                                <= $shiftDuration &&
                                 $currentTime >= $shiftTime){
                                 $rightTime = true;
                             } else {
@@ -131,7 +132,7 @@
                                             NameCard($shiftInformation[$i], $day, true);
                                             $inputtedNameCards++;
                                             break;
-                                        } else if($absentTime+$shiftInformation[$i]['shi_duration'] <= $shiftTime+$shiftInformation[$i]['shi_duration'] &&
+                                        } else if($absentTime+$shiftDuration <= $shiftTime+$shiftDuration &&
                                             $currentTime >= $shiftTime && $day == $absentDay &&
                                             $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]) {
                                             NameCard($shiftInformation[$i], $day, true);
