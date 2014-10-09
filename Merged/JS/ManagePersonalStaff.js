@@ -51,8 +51,6 @@ var ButtonControls = function(event){
             '<input type="text" name = "id">' +
             '<label>Name:</label>' +
             '<input type="text" name = "name">' +
-            '<label>Stream:</label>' +
-            '<input type="text" name = "stream">' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
             '<input type="hidden" name="type" value = "new">' +
@@ -79,8 +77,6 @@ var ButtonControls = function(event){
             '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId">' +
             '<label>Name:</label>' +
             '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name">' +
-            '<label>Stream:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[2] + '" name = "stream">' +
             '<input type="submit" value = "Update" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
             '<input type="hidden" name="type" value = "manage">' +
@@ -102,10 +98,10 @@ var ButtonControls = function(event){
                 '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
                 '<input type="hidden" name="type" value = "Delete">';
 
-                for(var i = 0; i < checkedData.length; i++){
-                    html += '<input type="hidden" name="id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
-                }
-                html +='</form>';
+            for(var i = 0; i < checkedData.length; i++){
+                html += '<input type="hidden" name="id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
+            }
+            html +='</form>';
             $('main').append(html);
             OnChange(checkedData);
         }
@@ -136,11 +132,10 @@ var TableData = function(checkBoxElement){
     var checkBoxElement = checkBoxElement;
     var idNum = "";
     var name = "";
-    var streams = "";
     GetSiblings();
 
     this.FetchAllData = function() {
-        return [idNum, name, streams];
+        return [idNum, name];
     };
 
     function GetSiblings(){
@@ -153,7 +148,6 @@ var TableData = function(checkBoxElement){
 
         idNum = siblingData[0];
         name = siblingData[1];
-        streams = siblingData[2];
     }
 
-    };
+};

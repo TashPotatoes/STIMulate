@@ -29,9 +29,6 @@ var ButtonControls = function(event){
             case "New":
                 NewClick();
                 break;
-            case "Manage":
-                ManageClick();
-                break;
             case "Delete":
                 DeleteClick();
                 break;
@@ -45,50 +42,40 @@ var ButtonControls = function(event){
     }
 
     function NewClick(){
+
+
         var html = '<form method="post" action="" class = "popup-window">' +
             '<h1>Add new</h1>' +
             '<label>ID Number:</label>' +
             '<input type="text" name = "id">' +
-            '<label>Name:</label>' +
-            '<input type="text" name = "name">' +
             '<label>Stream:</label>' +
-            '<input type="text" name = "stream">' +
+            '<select name = "stream">' +
+            '<option>IT</option>' +
+            '<option>Science</option>' +
+            '<option>Math</option>' +
+            '<option>Duty Host</option>' +
+            '</select>' +
+            '<label>Day:</label>' +
+            '<select name = "day">' +
+            '<option>Monday</option>' +
+            '<option>Tuesday</option>' +
+            '<option>Wednesday</option>' +
+            '<option>Thursday</option>' +
+            '<option>Friday</option>' +
+            '</select>' +
+            '<label>Time:</label>' +
+            '<input type="time" name = "time">' +
+            '<label>Duration:</label>' +
+            '<select name = "duration">' +
+            '<option>1</option>' +
+            '<option>2</option>' +
+            '<option>3</option>' +
+            '</select>' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
             '<input type="hidden" name="type" value = "new">' +
             '</form>';
         $('main').append(html);
-    }
-
-    function ManageClick(){
-        var checkedData = GetCheckedElements();
-        if(checkedData.length>0) {
-            var currentSelectIndex = 0;
-
-            var html = '<form method="post" class = "popup-window">' +
-                '<h1>Manage</h1>' +
-                '<label>Record:</label>' +
-                '<select class = "popup-select">';
-
-            for (var i = 0; i < checkedData.length; i++) {
-                html += '<option>' + checkedData[i].FetchAllData()[1] + '</option>';
-            }
-
-            html += '</select>' +
-            '<label>ID Number:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId">' +
-            '<label>Name:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name">' +
-            '<label>Stream:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[2] + '" name = "stream">' +
-            '<input type="submit" value = "Update" class = "inline">' +
-            '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
-            '<input type="hidden" name="type" value = "manage">' +
-            '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
-            '</form>';
-            $('main').append(html);
-            OnChange(checkedData);
-        }
     }
 
     function DeleteClick(){
@@ -102,12 +89,11 @@ var ButtonControls = function(event){
                 '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
                 '<input type="hidden" name="type" value = "Delete">';
 
-                for(var i = 0; i < checkedData.length; i++){
-                    html += '<input type="hidden" name="id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
-                }
-                html +='</form>';
+            for(var i = 0; i < checkedData.length; i++){
+                html += '<input type="hidden" name="shift_id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
+            }
+            html +='</form>';
             $('main').append(html);
-            OnChange(checkedData);
         }
     }
 
@@ -118,29 +104,20 @@ var ButtonControls = function(event){
         }
         return checkedData;
     }
-
-    function OnChange(checkedData){
-        $('.popup-select').on("change", function(){
-            var currentIndex = $('.popup-select')[0].selectedIndex;
-            var inputs = $('.popup-window').find('input[type = "text"]');
-
-            inputs[0].value = (checkedData[currentIndex].FetchAllData()[0]);
-            inputs[1].value = (checkedData[currentIndex].FetchAllData()[1]);
-            inputs[2].value = (checkedData[currentIndex].FetchAllData()[2]);
-        })
-    }
-
 };
 
 var TableData = function(checkBoxElement){
     var checkBoxElement = checkBoxElement;
     var idNum = "";
-    var name = "";
-    var streams = "";
+    var stream = "";
+    var day = "";
+    var time = "";
+    var duration = "";
+    var shift_id = "";
     GetSiblings();
 
     this.FetchAllData = function() {
-        return [idNum, name, streams];
+        return [shift_id, idNum, stream, day, time, duration];
     };
 
     function GetSiblings(){
@@ -152,8 +129,11 @@ var TableData = function(checkBoxElement){
         }
 
         idNum = siblingData[0];
-        name = siblingData[1];
-        streams = siblingData[2];
+        stream = siblingData[1];
+        day = siblingData[2];
+        time = siblingData[3];
+        duration = siblingData[4];
+        shift_id = $(siblingData[5]).val();
     }
 
-    };
+};

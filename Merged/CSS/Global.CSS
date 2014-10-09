@@ -81,7 +81,7 @@ body {
     left: 30%;
 }
 
-.popup-window input, .popup-window label {
+.popup-window input, .popup-window label, .popup-window select, .popup-window textarea {
     display: block;
 }
 
