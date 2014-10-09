@@ -46,36 +46,39 @@ function getCellData() {
 						time = classNames[0]-9; 
 						array[i][time] = -50;
 						
-					}
-
-					
+					}	
 				}
 			};
-
 		});
 		
-		//var studentNumber = session things
-		var stream = $("#stream").val();
-		var hours = $("#hours").val();
-
-		//put all data in data string...
-		var dataString = 'stream='+ stream + 'hours='+hours + 'preferences='+array;
-		
-		if( stream=="default" || hours=="default"){
-			alert("Please ensure both the dropdown boxes are filled out correctly.");
+		if ($('input[name=stream]:checked').length > 0) {
+    		var stream = $('input[name=stream]:checked').val();
 		} else {
-		
-			//ajax code to submit form
-			$.ajax({
-				type: "POST",
-				url: "../Merged/SendPreferences.php",
-				data: dataString,
-				cache: false,
-				//success: function(result){
-					//alert(result);
-				//}
-			});
+			alert("Please select your stream");
 		}
+		
+
+		if ($('input[name=max-hour]:checked').length > 0) {
+			var hours = $('input[name=max-hour]:checked').val();
+		} else {
+			alert("Please select your max hours");
+		}
+		
+		//ajax code to submit form
+		$.ajax({
+			url: 'PHP/DatabaseAPI.php',
+			data: {
+				"action": 'updatePreferences',
+				"stream": stream,
+				"hours": hours,
+				"array": array
+			},
+			type: 'post',
+			datatype: 'JSON',
+			success: function(result){
+				console.log(result);
+			}
+		});
 
 	});
 }

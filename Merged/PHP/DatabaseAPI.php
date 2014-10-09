@@ -13,6 +13,9 @@ if(isset($_POST["action"])){
 		case "specialisations":
              retrieveAllSpecialisations();
             break;
+        case "updatePreferences":
+            updateTimetablePreferences($_POST);
+            break;
         default:
             echo "Invalid Database Request.";
     }
@@ -59,4 +62,18 @@ function retrieveAllSpecialisationsInStreams($inStream) {
     
     return $sqlObject->Execute();
 
+}
+
+
+
+function updateTimetablePreferences($post) {
+
+    
+    echo $post["stream"];
+    echo $post["hours"];
+    echo $post["array"];
+    //$query = new \PHP\SqlObject(INSERT INTO STIMulate.preferences (student_id, faculty, `day`, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) 
+    //VALUES (array($_SESSION['user_id']), 'stream', 'MONDAY', '3', '2', '1', '1', '0', '0', '0', '0');
+
+   // $sqlObject = new\PHP\SqlObject("INSERT ");
 }

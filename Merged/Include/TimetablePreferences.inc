@@ -1,11 +1,6 @@
 <!--
 Author: Pearl Gariano
 -->
-<?php
-    require_once '/php/SqlObject.php';
-
-    //$query = new \PHP\SqlObject(INSERT INTO STIMulate.preferences (student_id, faculty, `day`, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) VALUES (array($_SESSION['user_id']), 'stream', 'MONDAY', '3', '2', '1', '1', '0', '0', '0', '0');
-?>
 
 <div class="push-right pageWrapper">
 
@@ -15,15 +10,13 @@ Author: Pearl Gariano
             <h2 class = "inline-text">Timetable Preferences</h2>
         </div>
         <div>
-            <p>Please select your stream: 
-<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
-<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
-<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
-<input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/>
+            <p>Please select your stream:<br/>
+                <input type="radio" name="stream" id="stream-it" value="IT"><label for="stream-it">IT</label><br/>
+                <input type="radio" name="stream" id="stream-ma" value="MATH"><label for="stream-ma">Maths</label><br/>
+                <input type="radio" name="stream" id="stream-sc" value="SCIENCE"><label for="stream-sc">Science</label><br/>
+                <input type="radio" name="stream" id="stream-dh" value="DUTYHOST"><label for="stream-dh">Duty Host</label><br/>
             </p>
             <p>To enter preferences, click on the cells until they change to the correct colour.</p>
-            <p>Green is first preference, yellow is second peference and red is last preference. 
-                Ensure any times you aren't available are white.</p>
 
    
     </div>
@@ -116,11 +109,11 @@ Author: Pearl Gariano
                 ?>
             </table>
         </div>
-        <p>
-<input type="radio" name="max-hour" id="max-hour-1"value="1"><label for="max-hour-1">1</label><br/>
-<input type="radio" name="max-hour" id="max-hour-2"value="2"><label for="max-hour-2">2</label><br/>
-<input type="radio" name="max-hour" id="max-hour-3"value="3"><label for="max-hour-3">3</label><br/>
-<input type="radio" name="max-hour" id="max-hour-4"value="4"><label for="max-hour-4">4</label><br/>
+        <p>How many hours would you like to volunteer for your selected stream?<br/>
+            <input type="radio" name="max-hour" id="max-hour-1" value="1"><label for="max-hour-1">1</label><br/>
+            <input type="radio" name="max-hour" id="max-hour-2" value="2"><label for="max-hour-2">2</label><br/>
+            <input type="radio" name="max-hour" id="max-hour-3" value="3"><label for="max-hour-3">3</label><br/>
+            <input type="radio" name="max-hour" id="max-hour-4" value="4"><label for="max-hour-4">4</label><br/>
         </p>
         <input id="submit" type="submit" value="Submit">
     </div>
