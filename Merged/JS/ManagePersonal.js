@@ -7,11 +7,13 @@ $(document).ready(function(){
 });
 
 function LoadUserInteractions(){
-
-
     $(document).on('click', 'li', function(event){
         buttonClick = new ButtonControls(event);
         buttonClick.onClick();
+    });
+
+    $(document).on('click', '.check-head', function(){;
+        $('input:checkbox').prop('checked', !$(this).is(":checked"));
     });
 }
 
@@ -43,49 +45,69 @@ var ButtonControls = function(event){
     }
 
     function NewClick(){
-        var html = '<div class = "popup-window">' +
+        var html = '<form method="post" action="" class = "popup-window">' +
             '<h1>Add new Student</h1>' +
             '<label>Student Number:</label>' +
-            '<input type="text">' +
+            '<input type="text" name = "id">' +
             '<label>Name:</label>' +
-            '<input type="text">' +
+            '<input type="text" name = "name">' +
             '<label>Stream:</label>' +
-            '<input type="text">' +
+            '<input type="text" name = "stream">' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
-            '</div>';
+            '<input type="hidden" name="type" value = "new">' +
+            '</form>';
         $('main').append(html);
     }
 
     function ManageClick(){
         var checkedData = GetCheckedElements();
-        var currentSelectIndex = 0;
+        if(checkedData.length>0) {
+            var currentSelectIndex = 0;
 
-        var html = '<div class = "popup-window">' +
-            '<h1>Manage Students</h1>' +
-            '<label>Student:</label>' +
-            '<select class = "popup-select">';
+            var html = '<form method="post" class = "popup-window">' +
+                '<h1>Manage Students</h1>' +
+                '<label>Student:</label>' +
+                '<select class = "popup-select">';
 
-            for(var i = 0; i < checkedData.length; i++){
-                html += '<option>'+checkedData[i].FetchAllData()[1]+'</option>';
+            for (var i = 0; i < checkedData.length; i++) {
+                html += '<option>' + checkedData[i].FetchAllData()[1] + '</option>';
             }
 
             html += '</select>' +
             '<label>Student Number:</label>' +
-            '<input type="text" value = "'+checkedData[currentSelectIndex].FetchAllData()[0]+'">' +
+            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
             '<label>Name:</label>' +
-            '<input type="text" value = "'+checkedData[currentSelectIndex].FetchAllData()[1]+'">' +
+            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name">' +
             '<label>Stream:</label>' +
-            '<input type="text" value = "'+checkedData[currentSelectIndex].FetchAllData()[2]+'">' +
-            '<input type="submit" value = "Add" class = "inline">' +
+            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[2] + '" name = "stream">' +
+            '<input type="submit" value = "Update" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
-            '</div>';
-        $('main').append(html);
-        OnChange(checkedData);
+            '<input type="hidden" name="type" value = "manage">' +
+            '</form>';
+            $('main').append(html);
+            OnChange(checkedData);
+        }
     }
 
     function DeleteClick(){
-        console.log("test3");
+        var checkedData = GetCheckedElements();
+
+        if(checkedData.length>0) {
+            var html = '<form method="post" action="" class = "popup-window">' +
+                '<h1>Delete Students</h1>' +
+                '<p>Confirm you want to delete ' + checkedData.length + ' students?</p>' +
+                '<input type="submit" value = "Confirm" class = "inline">' +
+                '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
+                '<input type="hidden" name="type" value = "Delete">';
+
+                for(var i = 0; i < checkedData.length; i++){
+                    html += '<input type="hidden" name="id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
+                }
+                html +='</form>';
+            $('main').append(html);
+            OnChange(checkedData);
+        }
     }
 
     function GetCheckedElements(){
