@@ -2,18 +2,22 @@
     background-color: white;
 }
 
-#studentInformationTable {
+#InformationTable {
     max-width: 1600px;
     width: 100%;
+    border-collapse: collapse;
 }
 
-#studentInformationTable td {
-    text-align: center;
-    width: 7%;
-}
-
-#studentInformationTable th {
+#InformationTable th {
+    background-color: rgb(246,246,246);
     font-size: 12pt;
+    text-align: left;
+    border: 1px solid rgb(225,225,225);
+    border-top: none;
+}
+#InformationTable td {
+    text-align: left;
+    border: 1px solid rgb(225,225,225);
 }
 
 .manageWrapper {
@@ -24,4 +28,21 @@
     list-style: none;
     padding: 0;
     margin: 10px 5px;
+}
+
+.check-Small {
+    width: 10px;
+}
+
+.tableHead {
+    padding-left: 10px;
+    width: 35%;
+}
+
+.data-item{
+    padding-left: 10px;
+}
+
+.admin-controls {
+
 }

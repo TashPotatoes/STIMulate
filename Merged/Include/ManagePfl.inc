@@ -12,69 +12,67 @@
     $showSearch = false;
     $placeholder = "Student Name, Student Number...";
     $headName = "Search";
+
 ?>
 <div class = "push-right">
-    <div class="contentWrapper">
-        <div class="headElement">
-            <img src="IMG/calander.png" alt="Calander" class="inline-image">
-            <h2 class="inline-text">Manage</h2>
+
+    <div class = "filter">
+        <div class = "headElement">
+            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
+            <h2 class = "inline-text">Specialisation</h2>
         </div>
-        <div class = "manageWrapper">
-            <ul>
-                <li><input type="button" value="Add new Facilitator"></li>
-            </ul>
-        </div>
+    <span class = "filter-stream">
+        <ul>
+            <li class = "admin-controls">New</li>
+            <li class = "admin-controls">Manage</li>
+            <li class = "admin-controls">Delete</li>
+        </ul>
+    </span>
     </div>
 
-    <?php include 'Include/TimetableFilter.inc';?>
-
     <div class="contentWrapper">
-        <div class="headElement">
-            <img src="IMG/calander.png" alt="Calander" class="inline-image">
-            <h2 class="inline-text">Student Records</h2>
-        </div>
-
-        <table id = "studentInformationTable">
+       <table id = "InformationTable">
+            <thead>
+                <tr>
+                    <th class = "check-Small"><input type="checkbox"></th>
+                    <th class = "tableHead">Student Number</th>
+                    <th class = "tableHead">Name</th>
+                    <th class = "tableHead">Streams</th>
+                </tr>
+            </thead>
             <tbody>
-            <tr>
-                <th>Student Number</th>
-                <th>Student Name</th>
-                <?php
-                for($i = 0; $i < count($streams); $i++) {
-                    echo '<th>'.$streams[$i]['str_name'].'</th>';
-                }
-                ?>
-                <th>Active</th>
-            </tr>
             <?php
             for($i = 0; $i < count($facilitatorInfo); $i++){
-                if($facilitatorInfo[$i]['active'] == 1) {
-                    $active = 'CHECKED';
-                } else {
-                    $active = '';
-                }
                 echo '<tr>';
-                echo '<td>'.($i+1).'. '.$facilitatorInfo[$i]['student_id'].'</td>';
-                echo '<td>'.$facilitatorInfo[$i]['stu_name_first'].' '.$facilitatorInfo[$i]['stu_name_last'].'</td>';
-                for($j = 0; $j < count($streams); $j++) {
-                    $checked = '';
-
-                    for($k = 0; $k < count($facilitatorstreams); $k ++) {
-                        //var_dump($facilitatorstreams[$k]);
-                        if(isset($facilitatorstreams[$k][$j+1], $facilitatorstreams[$k][0], $facilitatorInfo[$i]['student_id'])){
-                            if($facilitatorstreams[$k][$j+1]==1 && $facilitatorstreams[$k][0] == $facilitatorInfo[$i]['student_id']){
-                                $checked = 'checked';
-                                break;
-                                }
-                            }
-                    }
-                    echo '<td><input type = "checkbox" '.$checked.'></td>';
+                $checked = '';
+                if($facilitatorInfo[$i]['active'] == 1) {
+                    //$checked = 'CHECKED';
                 }
-                echo '<td><input type = "checkbox" '.$active.'></td>';
+                echo '<td class="check-Small"><input type = "checkbox" '.$checked.'></td>';
+
+                echo '<td class = "data-item">'.$facilitatorInfo[$i]['student_id'].'</td>';
+                echo '<td class = "data-item">'.$facilitatorInfo[$i]['stu_name_first'].' '.$facilitatorInfo[$i]['stu_name_last'].'</td>';
+                echo '<td class = "data-item">';
+                for($j = 0; $j < count($facilitatorstreams); $j++) {
+                    $firstInputted = false;
+                    for($k = 1; $k < (count($facilitatorstreams[$j])/2); $k++){
+                        if($facilitatorstreams[$j][$k] == '1' && $facilitatorInfo[$i]['student_id'] == $facilitatorstreams[$j][0]){
+                            if($firstInputted == false){
+                                echo $streams[$k-1]['str_name'];
+                                $firstInputted = true;
+                            } else {
+                                echo ', '.$streams[$k-1]['str_name'];
+                            }
+                        }
+                    }
+
+                }
+                echo '</td>';
+                $something = $facilitatorInfo[$i]['student_id'].'</td>';
                 echo '</tr>';
             }
             ?>
             </tbody>
-        </table>
+       </table>
     </div>
 </div>

@@ -68,5 +68,27 @@ body {
     width: 250px;
     box-shadow: inset 0 0 1px black;
     padding: 5px;
-    margin:;
+    /*margin:;*/
+}
+
+.popup-window {
+    position: fixed;
+
+    border: 2px solid rgb(225,225,225);
+    background-color: #ffffff;
+    padding: 30px;
+    top: 30%;
+    left: 30%;
+}
+
+.popup-window input, .popup-window label {
+    display: block;
+}
+
+input.inline {
+    display: inline;
+}
+
+.popup-window h1 {
+    margin: 0;
 }
