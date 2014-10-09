@@ -26,7 +26,7 @@
         <div class="messagebox" >
             <p>
             <a href="about.php">About STIMulate</a>
-            <a href="dashboard.php">Facilitator Login</a>
+            <a href="shifts.php">Facilitator Login</a>
             </p>
         </div>
         </div>
