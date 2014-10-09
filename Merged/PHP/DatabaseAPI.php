@@ -41,7 +41,7 @@ function InsertAbsentie($post){
 }
 
 function retrieveAllSpecialisations() {
-    $sqlObject = new\PHP\SqlObject("SELECT * FROM STIMulate.facilitator_specialisations");
+    $sqlObject = new\PHP\SqlObject("SELECT user_id, specialisations.spec_id, spec_name FROM STIMulate.facilitator_specialisations JOIN specialisations ON facilitator_specialisations.spec_id = specialisations.spec_id");
     $data = $sqlObject->Execute();
     echo JSON_ENCODE($data);
 }

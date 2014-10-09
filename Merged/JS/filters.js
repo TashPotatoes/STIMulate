@@ -42,7 +42,9 @@ function FilterByStream(stream) {
 
 
 function FilterBySpecialisations() {
-	var Specialisations; 
+	var RawSpecialisations;
+    var Spec = [];
+    var fac_spec_matrix = [];
 	$.ajax({ url: 'PHP/DatabaseAPI.php',
 		data: {
 			"action": 'specialisations',
@@ -51,64 +53,59 @@ function FilterBySpecialisations() {
         	datatype: 'JSON',
 
 		success: function(output) {
-            console.log(output);
-			Specialisations = JSON.parse(output);
-		},
+            console.log(JSON.parse(output));
+			RawSpecialisations = JSON.parse(output);
+            console.log(Spec); 
+            $.each(RawSpecialisations, function(id, matrix){
+                var spec_name = matrix['spec_name'];
+                console.log(matrix['user_id'], " has ", spec_name);
+                if( $.inArray(spec_name, Spec ) !== -1 ) {
+                    console.log(spec_name, " IN ARRAY");
+                    var index = Spec.indexOf(spec_name);
+                    fac_spec_matrix[index].push(matrix['user_id']);
+                } else {
+                    console.log("ADDING ",matrix['spec_name']);
+                    Spec.push(spec_name);
+                    fac_spec_matrix.push([spec_name]);
+                    var index = Spec.indexOf(spec_name);
+                    console.log(Spec.indexOf(spec_name));
+                    fac_spec_matrix[index].push(matrix['user_id']);
+                }
+                console.log(Spec);
+                console.log(fac_spec_matrix);
+                console.log("----------");
+            });
+            console.log(Spec);
+
+
+        },
         error: function(){
             console.log("ajax is fucking shit");
         }
-	})
-        var Spec2 = [];
-        var fac_spec2 = [];
-        $.each(Specialisations, function(user_id, spec_id)
-        {
-            // if($.inArray(spec, Spec2)) {
-            //     console.log(spec_id + " not in array");
-            // }
-            // else {
-            //     console.log(spec_id + " in array");
-            // }
+    
+    });
+        $("#SpecFilter").autocomplete({
+            source: Spec,
+            search: function( event, ui ) {},
+            close: function( event, ui ) {}
         });
-        //console.log(Specialisations);
-	  var Spec = [
-	 	"python",
-	 	"BPM",
-	 	"teensy",
-        "c++",
-        "c#"
-	 ];
-
-
-    var fac_spec_matrix = [
-        ['python','n8571091', 'n1000001'],
-        ['BPM','n8571091', 'n1000014', 'n1000009' ],
-        ['teensy', 'n1000021','n1000022'],
-        ['C++', 'n1000014', 'n1000009' ],
-        ['C#', 'n1000014', 'n1000011' ]
-    ];
-
-
-    $("#SpecFilter").autocomplete({
-        source: Specialisations,
-        search: function( event, ui ) {},
-        close: function( event, ui ) {}
-    });
-    $("#SpecFilter").on("autocompleteclose", function() { 
-        var specIndex = $.inArray(this.value, Specialisations);
-        var test = $.inArray(this.value, fac_spec_matrix);
-        console.log(fac_spec_matrix);
-        console.log(test);
-        if (specIndex != -1) {
-            ResetSpecialisationFilters();
-            $.each(fac_spec_matrix[specIndex], function( index, value ) {
-                $(".namecard").css("opacity", ".4");
-                if(index > 0) {
-                    value = "." + value;
-                    $(value).not(".absent").parent().css("background-color", "rgb(240,240,255)");
-                    $(value).not(".absent").css("opacity", "1");
-               }
-            });
-        }
-    });
-
+        $("#SpecFilter").on("autocompleteclose", function() { 
+            console.log("LOLWORKING?");
+            var specIndex = $.inArray(this.value, Spec);
+            var test = $.inArray(this.value, fac_spec_matrix);
+            console.log(fac_spec_matrix);
+            console.log(test);
+            if (specIndex != -1) {
+                ResetSpecialisationFilters();
+                $.each(fac_spec_matrix[specIndex], function( index, value ) {
+                    $(".namecard").css("opacity", ".4");
+                    if(index > 0) {
+                        value = "." + value;
+                    console.log("WHO IS IT", value)
+                        $(value).not(".absent").parent().css("background-color", "rgb(240,240,255)");
+                        $(value).not(".absent").css("opacity", "1");
+                   }
+                });
+            }
+        });
 }
