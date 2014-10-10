@@ -33,11 +33,14 @@ function CheckAll(check){
         if(!check) {
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).prop('checked', "checked");
+                $(this).closest('tr').css({'background-color':'rgb(245,245,245)'});
+
             });
             checking = true;
         } else {
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).removeAttr("checked");
+                $(this).closest('tr').css({'background-color':'inherit'});
             });
             checking = false;
         }
