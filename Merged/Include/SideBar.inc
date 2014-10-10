@@ -22,14 +22,12 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
         array(0, "Manage Specialisations", "specialisations.php", "crown"),
         array(0, "Record a shift", "#", "crown"),
         array(0, "Record an absence", "RecordAbsentie.php", "crown"),
-        array(1, "Manage Facilitators", "ManageStaff.php", "home"),
-        array(1, "Manage Shifts", "manageShifts.php", "home"),
-        array(1, "Record a session", "#", "crown"),
-        array(1, "Record a shift", "#", "crown"),
-        array(1, "Manage PLFs", "ManagePLF.php", "crown"),
+        array(1, "Manage Facilitators", "ManagePlf.php", "crown"),
         array(1, "Manage Staff", "ManageStaff.php", "crown"),
-        array(1, "Manage Individual Shifts", "manageShifts.php", "crown"),
-        array(1, "Manage Abenties", "ManageAbsentie.php", "crown"));
+        array(1, "Manage Shifts", "manageShifts.php", "crown"),
+        array(1, "Manage Abenties", "ManageAbsentie.php", "crown"),
+        array(1, "Record a session", "#", "crown"),
+        );
     ?>
 
     <aside>
