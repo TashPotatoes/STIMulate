@@ -2,10 +2,10 @@
     require_once '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
     require '/php/uac.php';
-var_dump($_POST);
+
 	$UserAccessControl = new UserAccessControl();
 	if ($UserAccessControl->isUserLoggedIn() == true) {
-        header("Location: dashboard.php");
+        header("Location: shifts.php");
 	} else {
         $errors = 1;
 	}

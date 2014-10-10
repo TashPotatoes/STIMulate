@@ -166,15 +166,23 @@
                     } else {
                         echo "<div class='" . $shiftInformation["student_id"] . " namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
                     }
-                    if($shiftInformation['is_IT']) {
-                        echo "<span class='IT' alt='Info. Tech.'>IT</span>";
-                    }
-                    if($shiftInformation['is_SC']) {
-                        echo "<span class='SC' alt='Science'>SC</span>";
-                    }
-                    if($shiftInformation['is_MA']) {
-                        echo "<span class='MA' alt='Maths'>MA</span>";
+                    $cardInpuuted = false;
 
+                    if ($shiftInformation['is_IT']) {
+                        echo "<span class='IT' alt='Info. Tech.'>IT</span>";
+                        $cardInpuuted = true;
+                    }
+                    if ($shiftInformation['is_SC']) {
+                        echo "<span class='SC' alt='Science'>SC</span>";
+                        $cardInpuuted = true;
+                    }
+                    if ($shiftInformation['is_MA']) {
+                        echo "<span class='MA' alt='Maths'>MA</span>";
+                        $cardInpuuted = true;
+                    }
+
+                    if(!$cardInpuuted) {
+                        echo "<span class=\"".$shiftInformation['str_shortname']."\" alt='Maths'>".$shiftInformation['str_shortname']."</span>";
                     }
                     echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
                     echo "</div>";

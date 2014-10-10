@@ -6,9 +6,10 @@ $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.streams");
 $streams = $sqlObject->Execute();
 if(isset($_POST)) {
     if (isset($_POST['type'])) {
-        var_dump($_POST);
         switch ($_POST['type']) {
             case 'new':
+                $dayIndex = date("w", strtotime($_POST['day']))-1;
+                $streamID = '';
                 switch ($_POST['stream']) {
                     case 'IT':
                         $streamID = 2;
@@ -24,8 +25,6 @@ if(isset($_POST)) {
                         break;
                 }
 
-                $dayIndex = date("w", strtotime($_POST['day']))-1;
-                $streamID = '';
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.shifts (student_id, shi_stream, shi_day, shi_time,
                                             shi_duration) VALUES (:id, :stream, :day, :time, :duration);", array($_POST['id'], $streamID, $dayIndex, $_POST['time'], $_POST['duration']));
                 $sqlObject->Execute();
