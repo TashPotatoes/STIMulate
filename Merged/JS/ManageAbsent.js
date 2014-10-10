@@ -17,6 +17,9 @@ function LoadUserInteractions(){
     });
 }
 
+function RemoveAllPopups(){
+    $('.background-wrapper').remove();
+}
 
 var ButtonControls = function(event){
     var event = event;
@@ -37,25 +40,25 @@ var ButtonControls = function(event){
         }
     };
 
-    function RemoveAllPopups(){
-        $('.popup-window').remove();
-    }
-
     function NewClick(){
 
 
-        var html = '<form method="post" action="" class = "popup-window">' +
-            '<h1>Add new</h1>' +
+        var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
+            '<div class = "headElement">' +
+            '<img src="IMG/calander.png" alt="Calander" class = "inline-image">' +
+            '<h2 class = "inline-text">Add new Absentie</h2>' +
+            '</div>' +
+            '<div class = "formWrapper">' +
             '<label>ID Number:</label>' +
-            '<input type="text" name = "id">' +
+            '<input type="text" name = "id" placeholder="n827xxxx">' +
             '<label>Time:</label>' +
             '<input type="datetime-local" name = "time">' +
             '<label>Reason:</label>' +
-            '<textarea name = "reason"></textarea>' +
+            '<textarea name = "reason" placeholder="Why you cannot make it.."></textarea>' +
             '<input type="submit" value = "Add" class = "inline">' +
-            '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
+            '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
             '<input type="hidden" name="type" value = "new">' +
-            '</form>';
+            '</div></form></div>';
         $('main').append(html);
     }
 
@@ -63,17 +66,21 @@ var ButtonControls = function(event){
         var checkedData = GetCheckedElements();
 
         if(checkedData.length>0) {
-            var html = '<form method="post" action="" class = "popup-window">' +
-                '<h1>Delete Record</h1>' +
+            var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
+                '<div class = "headElement">' +
+                '<img src="IMG/calander.png" alt="Calander" class = "inline-image">' +
+                '<h2 class = "inline-text">Delete Absentie</h2>' +
+                '</div>' +
+                '<div class = "formWrapper">' +
                 '<p>Confirm you want to delete ' + checkedData.length + ' records?</p>' +
                 '<input type="submit" value = "Confirm" class = "inline">' +
-                '<input type="button" value = "Cancel" class = "inline" onclick="$(\'.popup-window\').remove();">' +
+                '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
                 '<input type="hidden" name="type" value = "Delete">';
 
             for(var i = 0; i < checkedData.length; i++){
                 html += '<input type="hidden" name="absent_id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
             }
-            html +='</form>';
+            html +='</div></form></div>';
             $('main').append(html);
         }
     }

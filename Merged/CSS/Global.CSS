@@ -102,6 +102,9 @@ body {
     box-sizing : border-box
 }
 
+.popup-window textarea {
+    max-width: 100%;
+}
 .popup-window input[type = "button"], .popup-window input[type = "submit"] {
     padding: 5px;
     width: 70px;
@@ -127,4 +130,9 @@ input.inline {
 .formWrapper {
     position: relative;
     margin: 15px 30px 30px;
+}
+
+.filter-stream ul li.admin-controls {
+    background-color: rgba(67,142,185, 0.75);
+    color: white;
 }
