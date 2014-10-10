@@ -6,10 +6,7 @@
         </div>
         <div id = "adminOptions">
             <ul>
-                <li><a href="ManagePLF.php">Manage PLFs</a></li>
-                <li><a href = "ManageStaff.php">Manage Staff</a></li>
-                <li><a href = "manageShifts.php"> Manage Individual Shifts</a></li>
-                <li><a href = "ManageAbsentie.php">View Abenties</a></li>
+
             </ul>
         </div>
     </div>
