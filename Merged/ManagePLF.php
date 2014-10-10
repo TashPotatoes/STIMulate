@@ -26,6 +26,7 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/ManagePfl.CSS" rel="stylesheet" type="text/css">
     <script src = "JS/ManagePersonal.js"></script>
+    <script src = "JS/ManageTableControls.js"></script>
 </head>
 <body>
 <main>

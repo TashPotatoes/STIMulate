@@ -11,10 +11,6 @@ function LoadUserInteractions(){
         buttonClick = new ButtonControls(event);
         buttonClick.onClick();
     });
-
-    $(document).on('click', '.check-head', function(){
-        $('input:checkbox').prop('checked', !$(this).is(":checked"));
-    });
 }
 
 function RemoveAllPopups(){

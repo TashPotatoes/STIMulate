@@ -69,10 +69,10 @@ if(isset($_POST)) {
             <thead>
             <tr>
                 <th class = "check-Small check-head"><input type="checkbox"></th>
-                <th class = "tableHead">Student ID</th>
-                <th class = "tableHead">Student Name</th>
-                <th class = "tableHead">Time Absent</th>
-                <th class = "tableHead">Reason</th>
+                <th class = "tableHead">Student ID <span class = "arrow-down"></span></th>
+                <th class = "tableHead">Student Name<span class = "arrow-down"></span></th>
+                <th class = "tableHead">Time Absent<span class = "arrow-down"></span></th>
+                <th class = "tableHead">Reason<span class = "arrow-down"></span></th>
             </tr>
             </thead>
             <tbody>

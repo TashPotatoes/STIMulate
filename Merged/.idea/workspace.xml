@@ -25,37 +25,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="manageStaff.inc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+      <file leaf-file-name="ManageTableControls.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JS/ManageTableControls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="21.5" vertical-offset="916" max-vertical-offset="1717">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="840">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
               <folding>
-                <marker date="1412913777014" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
-                <marker date="1412913777014" expanded="true" signature="624:793" placeholder="INSERT INTO ..." />
-                <marker date="1412913777014" expanded="true" signature="993:1150" placeholder="UPDATE STIMu..." />
-                <marker date="1412913777014" expanded="true" signature="1329:1418" placeholder="UPDATE STIMu..." />
+                <element signature="e#0#43#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManagePersonalStaff.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2958">
-              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SideBar.inc" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58476657" vertical-offset="0" max-vertical-offset="833">
-              <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -63,8 +40,54 @@
       <file leaf-file-name="Global.CSS" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSS/Global.CSS">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1387" max-vertical-offset="2431">
-              <caret line="98" column="118" selection-start-line="98" selection-start-column="118" selection-end-line="98" selection-end-column="118" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1933" max-vertical-offset="2737">
+              <caret line="140" column="38" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManagePLF.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ManagePLF.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+              <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+              <folding>
+                <marker date="1412915385373" expanded="true" signature="901:1061" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageShifts.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manageShifts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+              <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+              <folding>
+                <marker date="1412915385380" expanded="true" signature="910:1070" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageStaff.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ManageStaff.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+              <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+              <folding>
+                <marker date="1412915388081" expanded="true" signature="908:1068" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageStaff.CSS" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CSS/ManageStaff.CSS">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="901">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -80,7 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/CSS/Absenses.CSS" />
         <option value="$PROJECT_DIR$/Include/TimetablePreferences.inc" />
         <option value="$PROJECT_DIR$/CSS/Gateway.CSS" />
         <option value="$PROJECT_DIR$/Dashboard.php" />
@@ -108,29 +130,30 @@
         <option value="$PROJECT_DIR$/ViewAbentie.php" />
         <option value="$PROJECT_DIR$/Include/ViewAbsentie.inc" />
         <option value="$PROJECT_DIR$/PHP/SqlObject.php" />
-        <option value="$PROJECT_DIR$/Include/ManagePfl.inc" />
         <option value="$PROJECT_DIR$/CSS/ManageStaff.CSS" />
         <option value="$PROJECT_DIR$/CSS/ManageShifts.CSS" />
-        <option value="$PROJECT_DIR$/ManagePLF.php" />
-        <option value="$PROJECT_DIR$/ManageStaff.php" />
-        <option value="$PROJECT_DIR$/manageShifts.php" />
         <option value="$PROJECT_DIR$/PHP/MySQL.php" />
-        <option value="$PROJECT_DIR$/Include/ManageAbsentie.inc" />
         <option value="$PROJECT_DIR$/Index.php" />
-        <option value="$PROJECT_DIR$/ManageAbsentie.php" />
         <option value="$PROJECT_DIR$/CSS/ManageAbsenties.css" />
         <option value="$PROJECT_DIR$/Include/Admin.inc" />
         <option value="$PROJECT_DIR$/CSS/ManagePfl.CSS" />
-        <option value="$PROJECT_DIR$/Include/ManageShifts.inc" />
         <option value="$PROJECT_DIR$/gateway.php" />
         <option value="$PROJECT_DIR$/Include/Timetable.inc" />
+        <option value="$PROJECT_DIR$/Include/SideBar.inc" />
+        <option value="$PROJECT_DIR$/Include/ManageAbsentie.inc" />
+        <option value="$PROJECT_DIR$/Include/ManagePfl.inc" />
+        <option value="$PROJECT_DIR$/Include/ManageShifts.inc" />
+        <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
         <option value="$PROJECT_DIR$/CSS/Global.CSS" />
+        <option value="$PROJECT_DIR$/ManageAbsentie.php" />
+        <option value="$PROJECT_DIR$/ManagePLF.php" />
+        <option value="$PROJECT_DIR$/manageShifts.php" />
+        <option value="$PROJECT_DIR$/ManageStaff.php" />
         <option value="$PROJECT_DIR$/JS/ManageAbsent.js" />
         <option value="$PROJECT_DIR$/JS/ManagePersonal.js" />
         <option value="$PROJECT_DIR$/JS/ManagePersonalShifts.js" />
         <option value="$PROJECT_DIR$/JS/ManagePersonalStaff.js" />
-        <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
-        <option value="$PROJECT_DIR$/Include/SideBar.inc" />
+        <option value="$PROJECT_DIR$/JS/ManageTableControls.js" />
       </list>
     </option>
   </component>
@@ -342,18 +365,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS/ManageTableControls.js</url>
+          <line>4</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Include/TimetablePreferences.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2142" max-vertical-offset="3043">
-          <caret line="173" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TimetablePref.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="748">
@@ -445,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSS/ManageStaff.CSS">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ViewAbsentie.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="629">
@@ -501,13 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ManagePLF.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45945945" vertical-offset="0" max-vertical-offset="814">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Include/ViewAbsentie.inc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-29.923077" vertical-offset="514" max-vertical-offset="1394">
@@ -526,6 +535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -537,18 +547,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ManageAbsentie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="748">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CSS/Absentie.CSS">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="918">
           <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -564,6 +567,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -571,6 +575,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="901">
           <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -578,6 +583,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="867">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -585,38 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16707617" vertical-offset="0" max-vertical-offset="814">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ManageStaff.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="748">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/ManageAbsentie.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6296296" vertical-offset="226" max-vertical-offset="1768">
-          <caret line="28" column="62" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/ManagePfl.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32219252" vertical-offset="915" max-vertical-offset="2193">
-          <caret line="68" column="14" selection-start-line="65" selection-start-column="8" selection-end-line="68" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manageShifts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45945945" vertical-offset="0" max-vertical-offset="814">
-          <caret line="27" column="42" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,14 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.721598" vertical-offset="2533" max-vertical-offset="3553">
           <caret line="183" column="24" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/ManageShifts.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5305868" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -668,64 +634,163 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CSS/Global.CSS">
+    <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1387" max-vertical-offset="2431">
-          <caret line="98" column="118" selection-start-line="98" selection-start-column="118" selection-end-line="98" selection-end-column="118" />
+        <state vertical-scroll-proportion="0.31326783" vertical-offset="0" max-vertical-offset="833">
+          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JS/ManagePersonal.js">
+    <entry file="file://$PROJECT_DIR$/Include/ManageShifts.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="3162">
-          <caret line="58" column="69" selection-start-line="58" selection-start-column="69" selection-end-line="58" selection-end-column="69" />
+        <state vertical-scroll-proportion="-22.23077" vertical-offset="714" max-vertical-offset="2023">
+          <caret line="76" column="82" selection-start-line="76" selection-start-column="82" selection-end-line="76" selection-end-column="82" />
+          <folding>
+            <marker date="1412914849265" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..shifts..." />
+            <marker date="1412914849265" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..streams..." />
+            <marker date="1412914849265" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1412914849265" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.115385" vertical-offset="890" max-vertical-offset="1717">
+          <caret line="77" column="78" selection-start-line="77" selection-start-column="78" selection-end-line="77" selection-end-column="78" />
+          <folding>
+            <marker date="1412914849258" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..staff..." />
+            <marker date="1412914849258" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1412914849258" expanded="true" signature="-1:-1" placeholder="UPDATE STIMu..." />
+            <marker date="1412914849258" expanded="true" signature="-1:-1" placeholder="UPDATE STIMu..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/ManagePfl.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6616729" vertical-offset="915" max-vertical-offset="2193">
+          <caret line="85" column="85" selection-start-line="85" selection-start-column="85" selection-end-line="85" selection-end-column="85" />
+          <folding>
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..facilitators..." />
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..streams..." />
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..facilitator_streams..." />
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="UPDATE STIMu..." />
+            <marker date="1412914849249" expanded="true" signature="-1:-1" placeholder="UPDATE STIMu..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/ManageAbsentie.inc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.076923" vertical-offset="814" max-vertical-offset="1768">
+          <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="71" />
+          <folding>
+            <marker date="1412914813782" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..absences..." />
+            <marker date="1412914813782" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..facilitators..." />
+            <marker date="1412914813782" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1412914813782" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageAbsentie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <marker date="1412915385364" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManagePLF.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <marker date="1412915385373" expanded="true" signature="901:1061" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manageShifts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <marker date="1412915385380" expanded="true" signature="910:1070" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageStaff.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="765">
+          <caret line="28" column="55" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <marker date="1412915388081" expanded="true" signature="908:1068" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS/ManageStaff.CSS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS/Global.CSS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1933" max-vertical-offset="2737">
+          <caret line="140" column="38" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/ManagePersonalShifts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2567">
-          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2499">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2890">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JS/ManagePersonal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25373134" vertical-offset="0" max-vertical-offset="3094">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JS/ManageAbsent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50595236" vertical-offset="527" max-vertical-offset="2210">
-          <caret line="56" column="86" selection-start-line="56" selection-start-column="86" selection-end-line="56" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.29130965" vertical-offset="0" max-vertical-offset="2176">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+    <entry file="file://$PROJECT_DIR$/JS/ManageTableControls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="21.5" vertical-offset="916" max-vertical-offset="1717">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="840">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
           <folding>
-            <marker date="1412913777014" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
-            <marker date="1412913777014" expanded="true" signature="624:793" placeholder="INSERT INTO ..." />
-            <marker date="1412913777014" expanded="true" signature="993:1150" placeholder="UPDATE STIMu..." />
-            <marker date="1412913777014" expanded="true" signature="1329:1418" placeholder="UPDATE STIMu..." />
+            <element signature="e#0#43#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2958">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/SideBar.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58476657" vertical-offset="0" max-vertical-offset="833">
-          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>

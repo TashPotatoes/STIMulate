@@ -74,8 +74,8 @@ if(isset($_POST)){
             <thead>
             <tr>
                 <th class = "check-Small check-head"><input type="checkbox"></th>
-                <th class = "tableHead">Staff Number</th>
-                <th class = "tableHead">Name</th>
+                <th class = "tableHead">Staff Number<span class = "arrow-down"></span></th>
+                <th class = "tableHead">Name<span class = "arrow-down"></span></th>
             </tr>
             </thead>
             <tbody>

@@ -26,6 +26,7 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/ManageAbsenties.css" rel="stylesheet" type="text/css">
     <script src = "JS/ManageAbsent.js"></script>
+    <script src = "JS/ManageTableControls.js"></script>
 </head>
 <body>
 <main>
