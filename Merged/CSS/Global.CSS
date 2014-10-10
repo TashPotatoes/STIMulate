@@ -96,7 +96,7 @@ body {
     display: block;
 }
 
-.popup-window input[type = "text"], .popup-window select, .popup-window textarea {
+.popup-window input[type = "text"], .popup-window select, .popup-window textarea, .popup-window input[type = "password"] {
     padding: 5px;
     width: 100%;
     box-sizing : border-box

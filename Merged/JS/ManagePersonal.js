@@ -52,9 +52,9 @@ var ButtonControls = function(event){
             '</div>' +
             '<div class = "formWrapper">' +
             '<label>Student Number:</label>' +
-            '<input type="text" name = "id" placeholder="n827xxxx">' +
+            '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
             '<label>Name:</label>' +
-            '<input type="text" name = "name" placeholder="Your first and last name..">' +
+            '<input type="text" name = "name" placeholder="Your first and last name.." REQUIRED>' +
             '<label>Stream:</label>' +
             '<input type="text" name = "stream" placeholder="Streams">' +
             '<input type="submit" value = "Add" class = "inline">' +

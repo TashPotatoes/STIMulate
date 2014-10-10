@@ -50,11 +50,11 @@ var ButtonControls = function(event){
             '</div>' +
             '<div class = "formWrapper">' +
             '<label>ID Number:</label>' +
-            '<input type="text" name = "id" placeholder="n827xxxx">' +
+            '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
             '<label>Time:</label>' +
-            '<input type="datetime-local" name = "time">' +
+            '<input type="datetime-local" name = "time" REQUIRED>' +
             '<label>Reason:</label>' +
-            '<textarea name = "reason" placeholder="Why you cannot make it.."></textarea>' +
+            '<textarea name = "reason" placeholder="Why you cannot make it.." REQUIRED></textarea>' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
             '<input type="hidden" name="type" value = "new">' +

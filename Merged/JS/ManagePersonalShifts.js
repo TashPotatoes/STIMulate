@@ -48,9 +48,9 @@ var ButtonControls = function(event){
             '</div>' +
             '<div class = "formWrapper">' +
             '<label>ID Number:</label>' +
-            '<input type="text" name = "id" placeholder="n827xxxx">' +
+            '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
             '<label>Stream:</label>' +
-            '<select name = "stream">' +
+            '<select name = "stream" REQUIRED>' +
             '<option>IT</option>' +
             '<option>Science</option>' +
             '<option>Math</option>' +
@@ -65,9 +65,9 @@ var ButtonControls = function(event){
             '<option>Friday</option>' +
             '</select>' +
             '<label>Time:</label>' +
-            '<input type="time" name = "time">' +
+            '<input type="time" name = "time" REQUIRED>' +
             '<label>Duration:</label>' +
-            '<select name = "duration">' +
+            '<select name = "duration" REQUIRED>' +
             '<option>1</option>' +
             '<option>2</option>' +
             '<option>3</option>' +

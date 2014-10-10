@@ -44,16 +44,20 @@ var ButtonControls = function(event){
     };
 
     function NewClick(){
-        var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
+        var html = '<div class = "background-wrapper">' +
+            '<form method="post" action="" class = "popup-window" autocomplete="off">' +
             '<div class = "headElement">' +
             '<img src="IMG/calander.png" alt="Calander" class = "inline-image">' +
             '<h2 class = "inline-text">Add new Staff</h2>' +
             '</div>' +
             '<div class = "formWrapper">' +
             '<label>ID Number:</label>' +
-            '<input type="text" name = "id" placeholder="s827xxxx">' +
+            '<input type="text" name = "id" placeholder="s827xxxx" REQUIRED>' +
             '<label>Name:</label>' +
-            '<input type="text" name = "name" placeholder="Your first and last name..">' +
+            '<input type="text" name = "name" placeholder="Your first and last name.." REQUIRED>' +
+            '<label>Password:</label>' +
+            '<input type="password" name = "password" placeholder="Password" REQUIRED>' +
+            '<input type="password" name = "confirmPassword" placeholder="Confirm Password" REQUIRED>' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
             '<input type="hidden" name="type" value = "new">' +
@@ -81,9 +85,9 @@ var ButtonControls = function(event){
 
             html += '</select>' +
             '<label>ID Number:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="s827xxxx">' +
+            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="s827xxxx" REQUIRED>' +
             '<label>Name:</label>' +
-            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name..">' +
+            '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name.." REQUIRED>' +
             '<input type="submit" value = "Update" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
             '<input type="hidden" name="type" value = "manage">' +
