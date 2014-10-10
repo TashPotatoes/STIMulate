@@ -54,10 +54,10 @@ var ButtonControls = function(event){
             '<label>ID Number:</label>' +
             '<input type="text" name = "id" placeholder="s827xxxx" REQUIRED>' +
             '<label>Name:</label>' +
-            '<input type="text" name = "name" placeholder="Your first and last name.." REQUIRED>' +
+            '<input type="text" name = "name" placeholder="Your first and last name.." autocomplete="off" REQUIRED>' +
             '<label>Password:</label>' +
-            '<input type="password" name = "password" placeholder="Password" REQUIRED>' +
-            '<input type="password" name = "confirmPassword" placeholder="Confirm Password" REQUIRED>' +
+            '<input type="password" name = "password" placeholder="Password" autocomplete="off" REQUIRED>' +
+            '<input type="password" name = "confirmPassword" placeholder="Confirm Password" autocomplete="off" REQUIRED>' +
             '<input type="submit" value = "Add" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
             '<input type="hidden" name="type" value = "new">' +

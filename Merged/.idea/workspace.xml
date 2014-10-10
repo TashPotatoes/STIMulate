@@ -25,26 +25,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="manageStaff.inc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="manageStaff.inc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5769231" vertical-offset="542" max-vertical-offset="1700">
-              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+            <state vertical-scroll-proportion="-0.69787765" vertical-offset="916" max-vertical-offset="1717">
+              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
               <folding>
-                <marker date="1412875181937" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
-                <marker date="1412875181937" expanded="true" signature="624:751" placeholder="INSERT INTO ..." />
-                <marker date="1412875181937" expanded="true" signature="931:1088" placeholder="UPDATE STIMu..." />
-                <marker date="1412875181937" expanded="true" signature="1267:1356" placeholder="UPDATE STIMu..." />
+                <marker date="1412913777014" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
+                <marker date="1412913777014" expanded="true" signature="624:793" placeholder="INSERT INTO ..." />
+                <marker date="1412913777014" expanded="true" signature="993:1150" placeholder="UPDATE STIMu..." />
+                <marker date="1412913777014" expanded="true" signature="1329:1418" placeholder="UPDATE STIMu..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ManagePersonalStaff.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ManagePersonalStaff.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8861076" vertical-offset="941" max-vertical-offset="2958">
-              <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2958">
+              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -103,7 +103,6 @@
         <option value="$PROJECT_DIR$/CSS/ManageShifts.CSS" />
         <option value="$PROJECT_DIR$/ManagePLF.php" />
         <option value="$PROJECT_DIR$/ManageStaff.php" />
-        <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
         <option value="$PROJECT_DIR$/manageShifts.php" />
         <option value="$PROJECT_DIR$/PHP/MySQL.php" />
         <option value="$PROJECT_DIR$/Include/ManageAbsentie.inc" />
@@ -117,10 +116,11 @@
         <option value="$PROJECT_DIR$/gateway.php" />
         <option value="$PROJECT_DIR$/Include/Timetable.inc" />
         <option value="$PROJECT_DIR$/CSS/Global.CSS" />
-        <option value="$PROJECT_DIR$/JS/ManagePersonalStaff.js" />
         <option value="$PROJECT_DIR$/JS/ManageAbsent.js" />
         <option value="$PROJECT_DIR$/JS/ManagePersonal.js" />
         <option value="$PROJECT_DIR$/JS/ManagePersonalShifts.js" />
+        <option value="$PROJECT_DIR$/JS/ManagePersonalStaff.js" />
+        <option value="$PROJECT_DIR$/Include/manageStaff.inc" />
       </list>
     </option>
   </component>
@@ -262,15 +262,15 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -298,9 +298,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25809062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1699029" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2605178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -308,9 +306,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32718894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286517" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -509,7 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.307692" vertical-offset="0" max-vertical-offset="680">
           <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -517,7 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -525,11 +523,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1156">
           <caret line="11" column="151" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="151" />
-          <folding>
-            <marker date="1412723965377" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1412723965377" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1412723965377" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..shifts..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -537,9 +531,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="748">
           <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <marker date="1412896228486" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -547,7 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="918">
           <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -555,9 +546,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.653847" vertical-offset="0" max-vertical-offset="833">
           <caret line="32" column="28" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <marker date="1412723965416" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -565,7 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.26923" vertical-offset="0" max-vertical-offset="867">
           <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -573,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -581,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="901">
           <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -589,7 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="867">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -597,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16707617" vertical-offset="0" max-vertical-offset="814">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -613,9 +597,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.6296296" vertical-offset="226" max-vertical-offset="1768">
           <caret line="28" column="62" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="62" />
-          <folding>
-            <marker date="1412881185754" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -639,9 +621,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15394567" vertical-offset="0" max-vertical-offset="1207">
           <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <marker date="1412912163460" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,12 +629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.721598" vertical-offset="2533" max-vertical-offset="3553">
           <caret line="183" column="24" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
-          <folding>
-            <marker date="1412912568062" expanded="true" signature="-1:-1" placeholder="SELECT facil..facilitators..." />
-            <marker date="1412912568062" expanded="true" signature="-1:-1" placeholder="SELECT facil..facilitators..." />
-            <marker date="1412912568062" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..absences..." />
-            <marker date="1412912568062" expanded="true" signature="-1:-1" placeholder="SELECT str_s..streams..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -662,12 +637,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5305868" vertical-offset="0" max-vertical-offset="2023">
           <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding>
-            <marker date="1412912103676" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..shifts..." />
-            <marker date="1412912103676" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..streams..." />
-            <marker date="1412912103676" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1412912103676" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,24 +697,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
+    <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5769231" vertical-offset="542" max-vertical-offset="1700">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-          <folding>
-            <marker date="1412875181937" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
-            <marker date="1412875181937" expanded="true" signature="624:751" placeholder="INSERT INTO ..." />
-            <marker date="1412875181937" expanded="true" signature="931:1088" placeholder="UPDATE STIMu..." />
-            <marker date="1412875181937" expanded="true" signature="1267:1356" placeholder="UPDATE STIMu..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2958">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JS/ManagePersonalStaff.js">
+    <entry file="file://$PROJECT_DIR$/Include/manageStaff.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8861076" vertical-offset="941" max-vertical-offset="2958">
-          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-          <folding />
+        <state vertical-scroll-proportion="-0.69787765" vertical-offset="916" max-vertical-offset="1717">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+          <folding>
+            <marker date="1412913777014" expanded="true" signature="73:148" placeholder="SELECT * FRO..staff..." />
+            <marker date="1412913777014" expanded="true" signature="624:793" placeholder="INSERT INTO ..." />
+            <marker date="1412913777014" expanded="true" signature="993:1150" placeholder="UPDATE STIMu..." />
+            <marker date="1412913777014" expanded="true" signature="1329:1418" placeholder="UPDATE STIMu..." />
+          </folding>
         </state>
       </provider>
     </entry>

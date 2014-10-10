@@ -16,8 +16,9 @@ if(isset($_POST)){
         }
         switch($_POST['type']){
             case 'new':
-                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.staff (staff_id, staff_name_first, staff_name_last, active)
-                VALUES (:id, :name, :last, 1);", array($_POST['id'], $first, $last));
+                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.staff (staff_id, staff_name_first,
+              staff_name_last, staff_password, active)
+                VALUES (:id, :name, :last, MD5(:pass), 1);", array($_POST['id'], $first, $last, $_POST['password']));
                 $sqlObject->Execute();
                 break;
             case 'manage':
