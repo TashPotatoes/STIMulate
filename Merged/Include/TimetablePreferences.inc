@@ -11,10 +11,10 @@ Author: Pearl Gariano
         </div>
         <div>
             <p>Please select your stream:<br/>
-                <input type="radio" name="stream" id="stream-it" value="IT"><label for="stream-it">IT</label><br/>
-                <input type="radio" name="stream" id="stream-ma" value="MATH"><label for="stream-ma">Maths</label><br/>
-                <input type="radio" name="stream" id="stream-sc" value="SCIENCE"><label for="stream-sc">Science</label><br/>
-                <input type="radio" name="stream" id="stream-dh" value="DUTYHOST"><label for="stream-dh">Duty Host</label><br/>
+                <input type="radio" name="stream" id="stream-it" value="it"><label for="stream-it">IT</label><br/>
+                <input type="radio" name="stream" id="stream-ma" value="ma"><label for="stream-ma">Maths</label><br/>
+                <input type="radio" name="stream" id="stream-sc" value="sc"><label for="stream-sc">Science</label><br/>
+                <input type="radio" name="stream" id="stream-dh" value="dh"><label for="stream-dh">Duty Host</label><br/>
             </p>
             <p>To enter preferences, click on the cells until they change to the correct colour.</p>
 
