@@ -6,8 +6,8 @@
 
 }
 
-#timeWrapper input {
-    margin-left: 38px;
+#absentieForm input[type = 'date'],#absentieForm input[type = 'time'] {
+    margin-left: 39px;
     border-radius: 3px;
     border: 1px solid rgb(160,160,160);
     padding: 5px 10px;
@@ -34,8 +34,6 @@
 
 #absentieForm label {
     vertical-align: top;
-}
-#absentieForm input[type = 'submit'] {
 
 }
 
@@ -46,4 +44,22 @@
 #buttonWrapper {
     display: block;
     margin-left: 81px;
+}
+
+.interactive-text{
+    color: #a6a6a6;
+}
+
+.interactive-text:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.small {
+    font-size: 10pt;
+}
+
+#absentieForm input[type = 'date'].no-margin {
+    margin-left: 5px;
 }

@@ -81,7 +81,8 @@
                 }
                 $shiftInformation = $sqlObject->Execute();
 
-                $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp;");
+                $sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
+                                                  AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW();");
                 $absentInformation = $sqlObject->Execute();
 
                 $startOfWeek = date("d-m-Y", strtotime('this week', time()));
@@ -129,21 +130,34 @@
                             if($rightTime) {
                                 if(count($absentInformation) > 0) {
                                     $inputtedNameCards = 0;
-                                    for($j = 0; $j < count($absentInformation); $j++){
-                                        $absentDay = date("w", strtotime($absentInformation[$j]["absence_timestamp"]))-1;
-                                        $absentTime = date("H:i", strtotime($absentInformation[$j]["absence_timestamp"]));
+                                    for($j = 0; $j < count($absentInformation); $j++) {
+                                        if (isset($absentInformation[$j]['absent_end_timestamp']) && $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]) {
+                                            $absentEnd = date("Y-m-d H:i:s", strtotime($absentInformation[$j]['absent_end_timestamp']));
+                                            $now = date("Y-m-d H:i:s", strtotime("Now"));
 
-                                        if($shiftTime == $absentTime && $day == $absentDay &&
-                                            $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]){
-                                            NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
-                                            $inputtedNameCards++;
-                                            break;
-                                        } else if($absentTime+$shiftDuration <= $shiftTime+$shiftDuration &&
-                                            $currentTime >= $shiftTime && $day == $absentDay &&
-                                            $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]) {
-                                            NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
-                                            $inputtedNameCards++;
-                                            break;
+                                            if($absentEnd>$now){
+                                                NameCard($shiftInformation[$i], $day, true);
+                                                $inputtedNameCards++;
+                                                break;
+                                            }
+                                        } else {
+                                            $absentDay = date("w", strtotime($absentInformation[$j]["absence_timestamp"])) - 1;
+                                            $absentTime = date("H:i", strtotime($absentInformation[$j]["absence_timestamp"]));
+
+                                            if ($shiftTime == $absentTime && $day == $absentDay &&
+                                                $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]
+                                            ) {
+                                                NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
+                                                $inputtedNameCards++;
+                                                break;
+                                            } else if ($absentTime + $shiftDuration <= $shiftTime + $shiftDuration &&
+                                                $currentTime >= $shiftTime && $day == $absentDay &&
+                                                $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]
+                                            ) {
+                                                NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
+                                                $inputtedNameCards++;
+                                                break;
+                                            }
                                         }
                                     }
                                     if($inputtedNameCards == 0) {

@@ -31,6 +31,7 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Absentie.CSS" rel="stylesheet" type="text/css">
+    <script src = "JS/Absentie.js"></script>
 </head>
 <body>
 <main>
