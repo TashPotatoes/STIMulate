@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Absentie.inc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Absentie.inc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Include/Absentie.inc">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.9615383" vertical-offset="316" max-vertical-offset="1173">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.07934656" vertical-offset="0" max-vertical-offset="1173">
+              <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
               <folding>
                 <marker date="1413176439147" expanded="true" signature="278:384" placeholder="INSERT INTO ..." />
                 <marker date="1413176439147" expanded="true" signature="803:941" placeholder="INSERT INTO ..." />
@@ -42,21 +42,6 @@
                 <marker date="1413176439147" expanded="true" signature="2049:2254" placeholder="..." />
                 <marker date="1413176439147" expanded="true" signature="2844:2980" placeholder="..." />
                 <marker date="1413176439147" expanded="true" signature="3019:3181" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Timetable.inc" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2975496" vertical-offset="1989" max-vertical-offset="3791">
-              <caret line="132" column="87" selection-start-line="132" selection-start-column="87" selection-end-line="132" selection-end-column="87" />
-              <folding>
-                <marker date="1413177554461" expanded="true" signature="2083:2664" placeholder="SELECT facil..facilitators..." />
-                <marker date="1413177554461" expanded="true" signature="2778:3443" placeholder="SELECT facil..facilitators..." />
-                <marker date="1413177554461" expanded="true" signature="3661:3891" placeholder="SELECT * FRO..absences..." />
-                <marker date="1413177554461" expanded="true" signature="11071:11114" placeholder="SELECT str_s..streams..." />
               </folding>
             </state>
           </provider>
@@ -725,6 +710,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1683">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JS/Absentie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
@@ -735,18 +728,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JS/TimetableInteraction.js">
+    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1683">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-15.692307" vertical-offset="1836" max-vertical-offset="3791">
+          <caret line="132" column="87" selection-start-line="132" selection-start-column="87" selection-end-line="132" selection-end-column="87" />
+          <folding>
+            <marker date="1413177554461" expanded="true" signature="-1:-1" placeholder="SELECT facil..facilitators..." />
+            <marker date="1413177554461" expanded="true" signature="-1:-1" placeholder="SELECT facil..facilitators..." />
+            <marker date="1413177554461" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..absences..." />
+            <marker date="1413177554461" expanded="true" signature="-1:-1" placeholder="SELECT str_s..streams..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Include/Absentie.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.9615383" vertical-offset="316" max-vertical-offset="1173">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.07934656" vertical-offset="0" max-vertical-offset="1173">
+          <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
           <folding>
             <marker date="1413176439147" expanded="true" signature="278:384" placeholder="INSERT INTO ..." />
             <marker date="1413176439147" expanded="true" signature="803:941" placeholder="INSERT INTO ..." />
@@ -759,19 +757,6 @@
             <marker date="1413176439147" expanded="true" signature="2049:2254" placeholder="..." />
             <marker date="1413176439147" expanded="true" signature="2844:2980" placeholder="..." />
             <marker date="1413176439147" expanded="true" signature="3019:3181" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/Timetable.inc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2975496" vertical-offset="1989" max-vertical-offset="3791">
-          <caret line="132" column="87" selection-start-line="132" selection-start-column="87" selection-end-line="132" selection-end-column="87" />
-          <folding>
-            <marker date="1413177554461" expanded="true" signature="2083:2664" placeholder="SELECT facil..facilitators..." />
-            <marker date="1413177554461" expanded="true" signature="2778:3443" placeholder="SELECT facil..facilitators..." />
-            <marker date="1413177554461" expanded="true" signature="3661:3891" placeholder="SELECT * FRO..absences..." />
-            <marker date="1413177554461" expanded="true" signature="11071:11114" placeholder="SELECT str_s..streams..." />
           </folding>
         </state>
       </provider>
