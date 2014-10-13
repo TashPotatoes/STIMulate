@@ -135,6 +135,8 @@ input.inline {
 .filter-stream ul li.admin-controls {
     background-color: rgba(67,142,185, 0.75);
     color: white;
+    height: 100%;
+    vertical-align: top;
 }
 
 #InformationTable th:hover {
