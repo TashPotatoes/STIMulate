@@ -1,6 +1,7 @@
 <?php
 require_once 'PHP/SqlObject.php';
-$sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences ORDER BY volunteer_id asc");
+$sqlObject = new \PHP\SqlObject("SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
+                                                  AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() ORDER BY volunteer_id asc");
 $absceneInformation = $sqlObject->Execute();
 $studentIds = array();
 
@@ -72,6 +73,7 @@ if(isset($_POST)) {
                 <th class = "tableHead">Student ID <span class = "arrow-down"></span></th>
                 <th class = "tableHead">Student Name<span class = "arrow-down"></span></th>
                 <th class = "tableHead">Time Absent<span class = "arrow-down"></span></th>
+                <th class = "tableHead">End Absent Time<span class = "arrow-down"></span></th>
                 <th class = "tableHead">Reason<span class = "arrow-down"></span></th>
             </tr>
             </thead>
@@ -86,6 +88,7 @@ if(isset($_POST)) {
                         echo '<td class = "data-item">'.$absceneInformation[$i]['volunteer_id'].'</td>';
                         echo '<td class = "data-item">'.$studentInformation[$j]['stu_name_first'].' '.$studentInformation[$j]['stu_name_last'].'</td>';
                         echo '<td class = "data-item">'.$absceneInformation[$i]['absence_timestamp'].'</td>';
+                        echo '<td class = "data-item">'.$absceneInformation[$i]['absent_end_timestamp'].'</td>';
                         echo '<td class = "data-item">'.$absceneInformation[$i]['reason'].'</td>';
                         echo '<td class = "data-item" HIDDEN><input type = "hidden" value = "'.$absceneInformation[$i]['absence_id'].'"></td>';
                         echo '</tr>';

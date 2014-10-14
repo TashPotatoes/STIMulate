@@ -1,3 +1,10 @@
+/**
+ * Created by Hayden on 13/10/2014.
+ */
+/**
+ * Created by Hayden on 9/10/2014.
+ */
+
 $(document).ready(function(){
     LoadUserInteractions();
 });
@@ -7,6 +14,8 @@ function LoadUserInteractions(){
         buttonClick = new ButtonControls(event);
         buttonClick.onClick();
     });
+
+
 }
 
 function RemoveAllPopups(){
@@ -20,11 +29,15 @@ var ButtonControls = function(event){
 
     this.onClick = function(){
         RemoveAllPopups();
+
         switch (name){
-            case "New":
-                NewClick();
+            case "View CSV":
+                AddCSV();
                 break;
-            case "Manage":
+            case "Add all to Database":
+                break;
+            case "Edit":
+                console.log('edit');
                 ManageClick();
                 break;
             case "Delete":
@@ -35,32 +48,25 @@ var ButtonControls = function(event){
         }
     };
 
-    function NewClick(){
+    function AddCSV(){
         var html = '<div class = "background-wrapper">' +
-            '<form method="post" action="" class = "popup-window">' +
+            '<form method="post" action="" class = "popup-window" enctype="multipart/form-data">' +
             '<div class = "headElement">' +
             '<img src="IMG/calander.png" alt="Calander" class = "inline-image">' +
-            '<h2 class = "inline-text">Add new Student</h2>' +
+            '<h2 class = "inline-text">Add new Absentie</h2>' +
             '</div>' +
             '<div class = "formWrapper">' +
-            '<label>Student Number:</label>' +
-            '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
-            '<label>Name:</label>' +
-            '<input type="text" name = "name" placeholder="Your first and last name.." REQUIRED>' +
-            '<label>Stream:</label>' +
-            '<input type="text" name = "stream" placeholder="Streams">' +
-            '<input type="submit" value = "Add" class = "inline">' +
+            '<label>File:</label>' +
+            '<input type="file" name = "file" REQUIRED>' +
+            '<input type="submit" value = "View File" class = "inline">' +
             '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
-            '<input type="hidden" name="type" value = "new">' +
-            '</div>' +
-            '</form>' +
-            '</div>' +
-            '';
+            '<input type="hidden" name="type" value = "AddCSV">' +
+            '</div></form></div>';
         $('main').append(html);
     }
 
     function ManageClick(){
-        var checkedData = GetCheckedElements(checkedElements);
+        var checkedData = GetCheckedElements();
         if(checkedData.length>0) {
             var currentSelectIndex = 0;
 
@@ -98,7 +104,7 @@ var ButtonControls = function(event){
     }
 
     function DeleteClick(){
-        var checkedData = GetCheckedElements(checkedElements);
+        var checkedData = GetCheckedElements();
 
         if(checkedData.length>0) {
             var html = '<div class = "background-wrapper">' +
@@ -124,41 +130,12 @@ var ButtonControls = function(event){
         }
     }
 
-    function OnChange(checkedData){
-        $('.popup-select').on("change", function(){
-            var currentIndex = $('.popup-select')[0].selectedIndex;
-            var inputs = $('.popup-window').find('input[type = "text"]');
-
-            inputs[0].value = (checkedData[currentIndex].FetchAllData()[0]);
-            inputs[1].value = (checkedData[currentIndex].FetchAllData()[1]);
-            inputs[2].value = (checkedData[currentIndex].FetchAllData()[2]);
-        })
-    }
-
-};
-
-var TableData = function(checkBoxElement){
-    var checkBoxElement = checkBoxElement;
-    var idNum = "";
-    var name = "";
-    var streams = "";
-    GetSiblings();
-
-    this.FetchAllData = function() {
-        return [idNum, name, streams];
-    };
-
-    function GetSiblings(){
-        var siblings = $(checkBoxElement).parent().siblings();
-        var siblingData = [];
-
-        for(var i = 0; i < siblings.length; i++){
-            siblingData.push($(siblings[i]).html());
+    function GetCheckedElements(){
+        var checkedData = [];
+        for(var i = 0; i < checkedElements.length; i++){
+            checkedData.push(new TableData(checkedElements[i]));
         }
-
-        idNum = siblingData[0];
-        name = siblingData[1];
-        streams = siblingData[2];
+        return checkedData;
     }
 
 };

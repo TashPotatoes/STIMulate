@@ -41,7 +41,8 @@ var ButtonControls = function(event){
     function NewClick(){
 
 
-        var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
+        var html = '<div class = "background-wrapper">' +
+            '<form method="post" action="" class = "popup-window">' +
             '<div class = "headElement">' +
             '<img src="IMG/calander.png" alt="Calander" class = "inline-image">' +
             '<h2 class = "inline-text">Add new Absentie</h2>' +
@@ -61,7 +62,7 @@ var ButtonControls = function(event){
     }
 
     function DeleteClick(){
-        var checkedData = GetCheckedElements();
+        var checkedData = GetCheckedElements(checkedElements);
 
         if(checkedData.length>0) {
             var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
@@ -81,14 +82,6 @@ var ButtonControls = function(event){
             html +='</div></form></div>';
             $('main').append(html);
         }
-    }
-
-    function GetCheckedElements(){
-        var checkedData = [];
-        for(var i = 0; i < checkedElements.length; i++){
-            checkedData.push(new TableData(checkedElements[i]));
-        }
-        return checkedData;
     }
 };
 

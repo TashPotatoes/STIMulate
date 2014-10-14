@@ -24,7 +24,7 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
-    <link href="CSS/ManageShifts.CSS" rel="stylesheet" type="text/css">
+    <link href="CSS/ManageAdminControls.CSS" rel="stylesheet" type="text/css">
     <script src = "JS/ManagePersonalShifts.js"></script>
     <script src = "JS/ManageTableControls.js"></script>
 </head>

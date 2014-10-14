@@ -62,7 +62,7 @@ var ButtonControls = function(event){
     }
 
     function ManageClick(){
-        var checkedData = GetCheckedElements();
+        var checkedData = GetCheckedElements(checkedElements);
         if(checkedData.length>0) {
             var currentSelectIndex = 0;
 
@@ -95,7 +95,7 @@ var ButtonControls = function(event){
     }
 
     function DeleteClick(){
-        var checkedData = GetCheckedElements();
+        var checkedData = GetCheckedElements(checkedElements);
 
         if(checkedData.length>0) {
             var html = '<div class = "background-wrapper"><form method="post" action="" class = "popup-window">' +
@@ -118,13 +118,6 @@ var ButtonControls = function(event){
         }
     }
 
-    function GetCheckedElements(){
-        var checkedData = [];
-        for(var i = 0; i < checkedElements.length; i++){
-            checkedData.push(new TableData(checkedElements[i]));
-        }
-        return checkedData;
-    }
 
     function OnChange(checkedData){
         $('.popup-select').on("change", function(){

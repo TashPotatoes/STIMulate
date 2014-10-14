@@ -72,6 +72,7 @@ if(isset($_POST)){
             <li class = "admin-controls">New</li>
             <li class = "admin-controls">Manage</li>
             <li class = "admin-controls">Delete</li>
+            <li class = "admin-controls">Add by CSV</li>
         </ul>
     </span>
     </div>

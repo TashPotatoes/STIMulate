@@ -13,17 +13,14 @@ function LoadTableInteractions(){
        //$('input[type="checkbox"]').prop('checked', !$(this).is(":checked"));
 
         CheckAll(checking);
-
-        $("input:checked").each(function() {
-            $(this).closest('tr').css({'background-color':'rgb(245,245,245)'});
-        });
     });
 
     $(document).on('change', 'input[type="checkbox"]', function(){
         if($(this).prop('checked')){
-            $(this).closest('tr').css({'background-color':'rgb(245,245,245)'});
+            $(this).closest('tr').css({'background-color':'rgb(235,235,235)'});
         } else {
             $(this).closest('tr').css({'background-color':'inherit'});
+            $(this).closest('tr:nth-child(even)').css({'background-color':'rgb(245,245,245)'});
         }
     });
 }
@@ -33,7 +30,7 @@ function CheckAll(check){
         if(!check) {
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).prop('checked', "checked");
-                $(this).closest('tr').css({'background-color':'rgb(245,245,245)'});
+                $(this).closest('tr').css({'background-color':'rgb(235,235,235)'});
 
             });
             checking = true;
@@ -41,7 +38,18 @@ function CheckAll(check){
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).removeAttr("checked");
                 $(this).closest('tr').css({'background-color':'inherit'});
+                $(this).closest('tr:nth-child(even)').css({'background-color':'rgb(245,245,245)'});
             });
             checking = false;
         }
+}
+
+function GetCheckedElements(checkedElements){
+    var checkedData = [];
+    for(var i = 0; i < checkedElements.length; i++){
+        if($(checkedElements[i]).parent().is('td')) {
+            checkedData.push(new TableData(checkedElements[i]));
+        }
+    }
+    return checkedData;
 }
