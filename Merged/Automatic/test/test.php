@@ -2,100 +2,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php include '../../Include/GlobalHead.inc'; ?>
-<link href="../../CSS/SideBar.CSS" rel="stylesheet" type="text/css">
-<link href="../../CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
-<link href="../../CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
-<link href="../../CSS/ManagePfl.CSS" rel="stylesheet" type="text/css">
+<?php include 'Include/GlobalHead.inc'; ?>
+<link href="/CSS/SideBar.CSS" rel="stylesheet" type="text/css">
+<link href="/CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
+<link href="/CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
+<link href="/CSS/ManagePfl.CSS" rel="stylesheet" type="text/css">
 	<meta charset="UTF-8">
 	<script src="../dist/glpk.min.js"></script>	
 	
 </head>
 <body>
 <?php
-    require '../../PHP/functions.php'; 
-	require_once '../../php/databaseAPI.php';
-    require_once '../../php/SqlObject.php';
-    require '../../php/uac.php';
+    require '/PHP/functions.php'; 
+	require_once '/php/databaseAPI.php';
+    require_once '/php/SqlObject.php';
+    require '/php/uac.php';
 	
 	$studentArray;
 	$stream = "";
 	
 	function generateCPLEX($stream){
-			// Generate array of studentsID, Index of studentID in array will be used to generate the input CPLEX string
-			$studentListRS = new \PHP\SqlObject("SELECT * FROM preferences ORDER BY `user_id` ASC WHERE  `stream` = :stream; GROUP BY `user_id`", array(strtoupper($stream))); 
-			$studentListRS->Execute();
+			// Generate all data for all students. Database houses multiple rows per student.
+			$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY user_id ASC, day ASC", array($stream));  
+			$studentPrefRS = $studentPrefSQL->Execute();		
+			
+			// Collects all unique students in both preferences and facilitators. Index of studentID in array will be used to generate the input CPLEX string.
+			$studentListSQL = new \PHP\SqlObject("SELECT student_id FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream GROUP BY user_id ORDER BY user_id ASC", array($stream));  
+			$studentListRS = $studentListSQL->Execute();		
+			
+			echo "retrieving from database<br/>";
+			
 			$studentArray = array();
 			$studentTotal = 0;
-			foreach($studentListRS as $row) {
-				$studentArray[$studentTotal] = $row['student_ID'];
+			foreach ($studentListRS as $row) {
+				$studentArray[$studentTotal] = $row['student_id'];
 				$studentTotal++;
 			}
+			
 			if ($studentTotal == 0){
 				echo "no input data in database";
 			}
 			else if ($studentTotal < 8*5){
-				echo "you have " . $studentTotal . " it is recommended that you wait for more students to submit preferences";
+				echo "you have " . $studentTotal . " students. It is recommended that you wait for more students to submit preferences<br/>";
 			}
 			
 			$studentHours = array(); //TODONE create hours in db and then uncomment code below and edit for loop for generating relevant constraints
-			$studentHoursRS = new \PHP\SqlObject("SELECT `student_id`, hours_" . $stream . "FROM facilitators JOIN preferences on facilitators.student_id = preferences.user_id WHERE hours_" . $stream . " <> 0 ORDER BY `student_ID` asc;", array()); 
-			$studentHoursRS->Execute();
-			foreach($studentHoursRS as $row) {
-				$studentIndex = array_search($row['student_id'],$studentList,true);
-				$studentHours[studentIndex] = $row["hours_" . $stream . "'"];
+			foreach($studentPrefRS as $row) {
+				$studentIndex = array_search($row['user_id'], $studentArray,true);
+				$studentHours[$studentIndex] = $row["hours_" . $stream];
 			}
 			
-					
+			echo "processing student inputs<br/>";		
+			
 			// Generates array with ith student and jth shift, where j is calculated by day + shift
 			$shiftTotal = 8; //TODONE maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
 			$startTime = 9;
-			$preferencesRS = new \PHP\SqlObject("SELECT * FROM preferences  WHERE  `stream` = :stream ORDER BY `user_id` ASC;", array(strtoupper($stream)));
-			$preferencesRS->Execute();
+			$daysTotal = 5;
+			$dayArray = array(0,1,2,3,4);
 			$prefArray = array();
-			foreach($preferencesRS as $row) {
-				$studentIndex = array_search($row['user_id'],$studentList,true);
-				for ($i = 0; $i < $shiftTotal; $i++){
-					$prefArray[$studentIndex][$row['day']+$i] = $row["'" . ($i + startTime) % 12 . "'"];
+			
+			// For each student, retrieve and add their preferences and then calculate days where no data was stored in database (to save space in database)
+			foreach($studentArray as $student) {
+				
+				$daysWithData = array();
+				$daysWithoutData =array();
+				
+				// Generate data for the current student. 
+				$studentSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream AND user_id = :user ORDER BY user_id ASC, day ASC", array($stream, $student));  
+				$studentRS = $studentSQL->Execute();		
+				$studentIndex = array_search($studentRS[0][0], $studentArray, true);
+				
+				// go through each row and add all data
+				$index = 0;
+				foreach ($studentRS as $row) {
+				
+					for ($j = 0; $j < $shiftTotal; $j++){
+						$prefArray[$studentIndex][$row['day']*$shiftTotal + $j] = $row[ ($j + $startTime -1) % 12 + 1];
+						$daysWithData[$index] = $row['day'];
+						$index++;
+					}
+				}
+				
+				// check what days where not data was added and add null entries worth -50 to the simplex algorithm
+				$daysWithoutData = array_diff($dayArray, $daysWithData) ;
+				foreach ($daysWithoutData as $day){
+					for ($j = 0; $j < $shiftTotal; $j++){
+								$prefArray[$studentIndex][$day*$shiftTotal + $j] = -50;
+					}
 				}
 			}
 			
 			// iterate over each persons preferences to create objective function
+			echo "generating model</br>";
 			$objective = "\* Objective function *\  \n Maximize \n obj:";
 			for ($person = 0; $person < $studentTotal; $person++){
-				for ($shift = 0; $shift < $shiftTotal; $shift++){
-					echo "inside objective";
+				for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 					$objective .= " +" . $prefArray[$person][$shift] . " x" . $person . "_" . $shift;
 				}
-			}
+			} 
 
 			// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
 			$constraint = "\n  \* Constraints *\ \n Subject To \n";
 			for ($person = 0; $person < $studentTotal; $person++){
 				$constraint .= "person_" . $person . ":"; 
-				for ($shift = 0; $shift < $shiftTotal; $shift++){
+				for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 					$constraint .=  " +x" . $person . "_" . $shift;
 				}
-				//$constraint .= " = " . 2 . "\n"; // TODODONE: after db is changed, changed this line to: 
 				$constraint .= " = " + $studentHours[$person] + "\n"; // decide whether <= or =
 			}
 			
 			// iterate over each shift to make sure each shift has the specified number of people
 			$numAtDesk = array ( 1, 1, 2, 2, 2, 2, 1, 1);
-			for ($shift = 0; $shift < $shiftTotal; $shift++){
+			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 				$constraint .= "shift_" + $shift +":";
 				for ($person = 0; $person < $studentTotal; $person++){
 					$constraint .=  " +x" . $person . "_" . $shift;
 				}
-				$constraint .= " <= " . $numAtDesk[$shift] . "\n";
+				$constraint .= " <= " . $numAtDesk[$shift % count($numAtDesk)] . "\n";
 			}
 			
 			
 			// TODONE:DONE add int 1, 0 field for each stream called new to db, once added, uncomment the following code 
 			//$newTotal = new \PHP\SqlObject("SELECT COUNT(*) FROM facilitator_shift_preferences WHERE new = :new AND stream = :stream;", array(1, $stream));
 			//$newTotal->Execute();
-			$newTotalRS = new \PHP\SqlObject("SELECT * FROM facilitators JOIN preferences ON facilitators.student_id = preferences.user_id WHERE stream = :stream;", array(strtoupper($stream)));
-			$newTotalRS->Execute();
+			$newTotalSQL= new \PHP\SqlObject("SELECT * FROM facilitators JOIN preferences ON facilitators.student_id = preferences.user_id WHERE stream = :stream;", array(strtoupper($stream)));
+			$newTotalRS = $newTotalSQL->Execute();
 			$newTotal = count($newTotalRS);
 			
 			
@@ -319,19 +350,22 @@ End
 	        console.log(value);
         };
 		
-		/*function javascriptToPHP( jsvar, pageURL) { 
+		function javascriptToPHP( jsvar, pageURL) { 
+		console.log("here");
 				 $.ajax({
 						url: pageURL,
 						type: "POST",
 						data: {
 							'variable[]': jsvar
 						},
-						success: function () {
+						success: function (output) {
+							console.log("This is a ajax succes" + output);
 						},
 						error: function () {
+							console.log("error");
 						}
-				}
-		}*/
+				});
+		}
 		
         function run(){
             start = new Date(); 
@@ -353,6 +387,7 @@ End
             }
         
 			var results;
+			
             //l og("obj: " + glp_mip_obj_val(lp));
             for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
@@ -362,8 +397,8 @@ End
 				results[person][shift]  = value; 
             }
 			
-			javascriptToPHP(results, 'test.php');
-			
+		console.log("in run");
+		javascriptToPHP(results, 'test.php');	
 		}
         
     </script>

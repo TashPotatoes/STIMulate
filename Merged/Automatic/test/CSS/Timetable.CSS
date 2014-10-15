@@ -1,0 +1,113 @@
+.timetableWrapper {
+    margin: 15px auto 0 auto;
+    max-width: 1600px;
+    width: 100%;
+    border: 2px solid rgb(225,225,225);
+}
+.messagebox {
+    text-align: center;
+}
+
+.contentWrapper {
+    margin: 15px auto 0 auto;
+    max-width: 1600px;
+    width: 100%;
+    border: 2px solid rgb(225,225,225);
+
+}
+.index-container {
+    padding: 20px;
+}
+
+.timetable {
+}
+.timetable table {
+
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin:0;
+    font-size: 1em;
+}
+.timetable table, .timetable th, .timetable td {
+    vertical-align: top;
+}
+th{
+    height: 30px;
+    vertical-align: middle;
+    background-color: rgb(22,22,22);
+    color: rgb(245,245,245);
+    text-shadow: 1px 1px 1px rgb(100,100,100);
+    font-size: 1.1em;
+    font-weight: normal;
+}
+tr{
+    border-left:none;
+    border-right:none;
+    border-top: 1px solid rgb(200,200,200);
+    min-height: 50px;
+    background-color: white;
+    color: rgb(51,51,51);
+}
+td{
+    border-right: 1px solid rgb(200,200,200);
+    width: 18%;
+    height: 42px;
+
+}
+td:last-child {
+    border-right:none;
+}
+.timetable-pref td {
+    width: 15%;
+}
+.column-time {
+    min-height: 20px;
+    max-width: 40px;
+    width: 5%;
+    text-align: right;
+    padding: 2px;
+}
+.column-colour {
+    min-height: 20px;
+    max-width: 40px;
+    width: 5%;
+    text-align: right;
+    padding: 2px;
+}
+.namecard {
+    height: 20px;
+    padding: 2px 0;
+}
+
+.namecard span {
+    text-align: center;
+    display: inline-block;
+    width: 25px;
+    height: 17px;
+    font-size: .75em;
+    top: -.25em;
+    border-radius: 10px 10px 10px 10px;
+    position: relative;
+    color: #efefef;
+    margin-right: 3px;
+}
+.namecard .DH {color: #212121;}
+.IT {background-color: rgba(250,0,0,.9);}
+.MA {background-color: rgba(11,118,13,.9);}
+.SC {background-color: rgba(137,22,132,.9);}
+.DH {color: red; background-color: rgba(250,250,0,.9); }
+
+.absent {
+    background-image: url('../img/alert-icon.png');
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: top 4px right 3px;
+    opacity: 0.5;
+    color: rgb(200,50,50);
+}
+.absent-current { /*meaning, the current week */
+    opacity: 0.5;
+}
+
+/*added css for timetable preferences*/

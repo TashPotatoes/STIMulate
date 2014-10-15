@@ -1,0 +1,48 @@
+.contentWrapper {
+    background-color: white;
+}
+
+#InformationTable {
+    max-width: 1600px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#InformationTable th {
+    background-color: rgb(246,246,246);
+    font-size: 12pt;
+    text-align: left;
+    border: 1px solid rgb(225,225,225);
+    border-top: none;
+}
+#InformationTable td {
+    text-align: left;
+    border: 1px solid rgb(225,225,225);
+}
+
+.manageWrapper {
+
+}
+
+.manageWrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 5px;
+}
+
+.check-Small {
+    width: 10px;
+}
+
+.tableHead {
+    padding-left: 10px;
+    width: 50%;
+}
+
+.data-item{
+    padding-left: 10px;
+}
+
+.admin-controls {
+
+}

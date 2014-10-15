@@ -1,0 +1,27 @@
+#locationBar {
+    height: 25px;
+    color: black;
+    background: white;
+}
+#locationBar p {
+    display: inline-block;
+    margin: 0;
+
+    padding-top: 3px;
+    font-size: 10pt;
+}
+
+#locationBar img {
+    margin-left: 225px;
+    height: 15px;
+    width: 15px;
+    top: 3px;
+}
+#locationBar a {
+    text-decoration: none;
+    color: rgb(67,142,185);
+}
+
+#locationBar a:visited {
+    color: rgb(67,142,185);
+}
