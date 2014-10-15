@@ -69,11 +69,14 @@ function retrieveAllSpecialisationsInStreams($inStream) {
 function updateTimetablePreferences($post) {
 
     
-    echo $post["stream"];
-    echo $post["hours"];
-    var_dump($post["array"]);
-    //$query = new \PHP\SqlObject(INSERT INTO STIMulate.preferences (student_id, faculty, `day`, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) 
-    //VALUES (array($_SESSION['user_id']), 'stream', 'MONDAY', '3', '2', '1', '1', '0', '0', '0', '0');
+    $stream = $post["stream"];
+    $hours = $post["hours"];
+    $preferences = $post["array"];
+    //$student = array($_SESSION['user_id']);
+    
+    $query = new \PHP\SqlObject("INSERT INTO STIMulate.preferences (student_id, faculty, `day`, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) 
+    VALUES 'n12345678', $stream, 0, $preferences[0][0], $preferences[0][1], $preferences[0][2], $preferences[0][3], $preferences[0][4], $preferences[0][5], $preferences[0][6], $preferences[0][7]");
+    
 
-   // $sqlObject = new\PHP\SqlObject("INSERT ");
+    
 }
