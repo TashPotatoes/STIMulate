@@ -9,6 +9,22 @@ $(document).ready(function(){
 });
 
 function LoadTableInteractions(){
+
+    $(document).on('click', '.tableHead', function(event) {
+        console.log($(event.target));
+        if (!$(event.target).hasClass('.check-head')) {
+            $('#InformationTable').tablesorter({
+                headers: {
+                    // disable sorting of the first column (we can use zero or the header class name)
+                    0: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                }
+            });
+        }
+    });
+
     $(document).on('click', '.check-head', function(){
        //$('input[type="checkbox"]').prop('checked', !$(this).is(":checked"));
 
@@ -156,3 +172,24 @@ function OnChange(checkedData){
 function RemoveAllPopups(){
     $('.background-wrapper').remove();
 }
+
+/**
+ * Sort a list of elements and apply the order to the DOM.
+ *
+ * https://gist.github.com/mindplay-dk/6825439
+ */
+jQuery.fn.order = function(asc, fn) {
+    fn = fn || function (el) {
+        return $(el).text().replace(/^\s+|\s+$/g, '');
+    };
+    var T = asc !== false ? 1 : -1,
+        F = asc !== false ? -1 : 1;
+    this.sort(function (a, b) {
+        a = fn(a), b = fn(b);
+        if (a == b) return 0;
+        return a < b ? F : T;
+    });
+    this.each(function (i) {
+        this.parentNode.appendChild(this);
+    });
+};

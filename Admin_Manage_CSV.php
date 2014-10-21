@@ -27,6 +27,7 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/ManageAdminControls.CSS" rel="stylesheet" type="text/css">
     <script src = "JS/Admin_Manage_CSV.js"></script>
     <script src = "JS/Admin_Manage_Controls.js"></script>
+    <script src = "JS/jquery.tablesorter.js"></script>
 </head>
 <body>
 <main>
