@@ -25,8 +25,8 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/ManageAdminControls.CSS" rel="stylesheet" type="text/css">
-    <script src = "JS/CsvControls.js"></script>
-    <script src = "JS/ManageTableControls.js"></script>
+    <script src = "JS/Admin_Manage_CSV.js"></script>
+    <script src = "JS/Admin_Manage_Controls.js"></script>
 </head>
 <body>
 <main>
@@ -38,7 +38,7 @@ $UserAccessControl->checkTimeout();
                     </a>";
     include 'Include/Global_Breadcrumb.inc'; ?>
     <?php include 'Include/Global_Sidebar.inc'; ?>
-    <?php include 'Include/Admin_Manage_Volunteer_CSV.inc'; ?>
+    <?php include 'Include/Admin_Manage_CSV.inc'; ?>
 </main>
 </body>
 </html>
