@@ -54,6 +54,17 @@ function GetCheckedElements(checkedElements){
     return checkedData;
 }
 
+function GetRowChild(row){
+    var rowData = [];
+    for(var i = 0; i < row.length; i++){
+        var rowChild = $(row[i]).children();
+        if(rowChild.is('td')) {
+            rowData.push(rowChild);
+        }
+    }
+
+    return rowData;
+}
 
 var TableData = function(checkBoxElement){
     var checkBoxElement = checkBoxElement;
