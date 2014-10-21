@@ -351,28 +351,36 @@ function manageAbsent()
 function manageShift()
 {
     if (isset($_POST['type'])) {
-        var_dump($_POST);
+        $streamID = '';
+        if(isset($_POST['stream'])) {
+            switch ($_POST['stream']) {
+                case 'IT':
+                    $streamID = 2;
+                    break;
+                case 'Duty Host':
+                    $streamID = 1;
+                    break;
+                case 'Maths':
+                    $streamID = 3;
+                    break;
+                case 'Science':
+                    $streamID = 4;
+                    break;
+            }
+            $dayIndex = date("w", strtotime($_POST['day'])) - 1;
+        }
         switch ($_POST['type']) {
             case 'new':
-                $dayIndex = date("w", strtotime($_POST['day'])) - 1;
-                $streamID = '';
-                switch ($_POST['stream']) {
-                    case 'IT':
-                        $streamID = 2;
-                        break;
-                    case 'Duty Host':
-                        $streamID = 1;
-                        break;
-                    case 'Maths':
-                        $streamID = 3;
-                        break;
-                    case 'Science':
-                        $streamID = 4;
-                        break;
-                }
 
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.shifts (student_id, shi_stream, shi_day, shi_time,
                                             shi_duration) VALUES (:id, :stream, :day, :time, :duration);", array($_POST['id'], $streamID, $dayIndex, $_POST['time'], $_POST['duration']));
+                $sqlObject->Execute();
+                break;
+            case 'manage':
+                $updateQuery = "UPDATE STIMulate.shifts SET student_id = :student_id, shi_stream = :shi_stream, shi_day = :shi_day, shi_time = :shi_time,
+                                            shi_duration = :shi_duration WHERE shift_id = :shift_id";
+
+                $sqlObject = new \PHP\SqlObject($updateQuery, array($_POST['newId'], $streamID, $dayIndex, $_POST['time'], $_POST['duration'], $_POST['shiftID']));
                 $sqlObject->Execute();
                 break;
             case 'delete':

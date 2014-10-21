@@ -170,9 +170,9 @@ function handlePost(){
         }
         $array[3] = $time;
     }
-    var_dump($_POST, $sql);
+
     $sqlObject = new \PHP\SqlObject($sql, $array);
-    //$sqlObject->Execute();
+    $sqlObject->Execute();
 }
 
 function manageSqlGeneration($sql, $length, &$array){
@@ -181,28 +181,36 @@ function manageSqlGeneration($sql, $length, &$array){
             if($j == 0){
                 $sql .= '(';
             }
-            $sql .= ':'.$i.$j;
-
+            $noComma = false;
             $data = $_POST['id'.$i][$j];
             if($j == 1 && $_GET['action'] != 'manageShift') {
+                $sql .= ':'.$i.$j;
                 $data = explode(' ', $_POST['id'.$i][$j]);
                 array_push($array, $data[0]);
                 $sql .= ', :'.$i.$j.'num2';
                 array_push($array, $data[1]);
-            } else if($j == $length-1 && $_GET['action'] == 'manageShfit') { // TEMPORARY FIX TO STREAM MIX
-
+            } else if($j == count($_POST['id'.$i])-1) { // TEMPORARY FIX TO STREAM MIX
+                if($_GET['action'] == 'manageShift'){
+                    $sql .= ':'.$i.$j;
+                    array_push($array, $data);
+                }
+                $noComma = true;
             } else {
                 array_push($array, $data);
+                $sql .= ':'.$i.$j;
             }
 
-            if($j == count($_POST['id'.$i])-1){
-                if($_GET['action'] != 'manageShift'){
-                    $sql .= ', 1)';
+            if($noComma){
+                $noComma = false;
+            } else {
+                $sql .= ', ';
+            }
+            if($j == count($_POST['id'.$i])-1) {
+                if ($_GET['action'] != 'manageShift') {
+                    $sql .= '1)';
                 } else {
                     $sql .= ')';
                 }
-            } else {
-                $sql .= ', ';
             }
         }
         if($i != $length-1){
