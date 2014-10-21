@@ -15,14 +15,15 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
     $navigation = array(
         //   ("usertype[staff/student]", "Name", "file", "icon");
         //     0: student 1: staff
-        array(0, "Your Shifts", "Volunteer_Shifts.php", "calander"),
-        array(0, "Your Availabilities", "Global_Timetable_Preferences.php", "calander"),
+        array(0, "Dashboard", "Dashboard.php", "home"),
+        array(0, "Your Shifts", "shifts.php", "calander"),
+        array(0, "Your Availabilities", "TimetablePref.php", "calander"),
         array(0, "Record a session", "#", "crown"),
-        array(0, "Manage Specialisations", "Volunteer_Specialisations.php", "crown"),
+        array(0, "Manage Specialisations", "specialisations.php", "crown"),
         array(0, "Record a shift", "#", "crown"),
-        array(0, "Record an absence", "Volunteer_Record_Absent.php", "crown"),
-        array(1, "Manage Facilitators", "Admin_Manage_Staff.php", "home"),
-        array(1, "Manage Shifts", "Admin_Manage_Shifts.php", "home"),
+        array(0, "Record an absence", "RecordAbsentie.php", "crown"),
+        array(1, "Manage Facilitators", "ManageStaff.php", "home"),
+        array(1, "Manage Shifts", "manageShifts.php", "home"),
         array(1, "Record a session", "#", "crown"),
         array(1, "Record a shift", "#", "crown"),
         array("0", "Admin", "Admin.php", "crown"));
