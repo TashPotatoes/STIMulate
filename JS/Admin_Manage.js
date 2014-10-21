@@ -143,7 +143,7 @@ function manageAbsentHtml(buttonHtml){
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="s827xxxx" REQUIRED>' +
     '<label>Name:</label>' +
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name.." REQUIRED>' +
-    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
+    '<input type="hidden" value = "' + $(checkedData[currentSelectIndex].FetchAllData()[5]).val() + '" name = "absentId">' +
     '<label>Start time:</label>';
 
     var time = checkedData[currentSelectIndex].FetchAllData()[2].split(' ');
@@ -211,8 +211,10 @@ function returnBody(getVariable, action){
                 case 'manageAbsent':
                     return '<label>ID Number:</label>' +
                     '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
-                    '<label>Time:</label>' +
+                    '<label>Start:</label>' +
                     '<input type="datetime-local" name = "time" REQUIRED>' +
+                    '<label>End Time:</label>' +
+                    '<input type="datetime-local" name = "endTime">' +
                     '<label>Reason:</label>' +
                     '<textarea name = "reason" placeholder="Why you cannot make it.." REQUIRED></textarea>' + buttonHtml;
                     break;
@@ -277,6 +279,6 @@ function returnBody(getVariable, action){
         default:
             return '<div></div>';
             break;
-        }
+    }
 }
 

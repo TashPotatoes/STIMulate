@@ -63,7 +63,7 @@ if(isset($_GET['action'])) { ?>
 function RetrieveData(){
     // Defining the SQL queries to pull data from the database
     $sqlQueries = ['absentSql' => 'SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
-                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() ORDER BY volunteer_id asc',
+                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() OR absence_timestamp > NOW() ORDER BY volunteer_id asc',
                     'allShiftSql' => 'SELECT * FROM STIMulate.shifts ORDER BY student_id asc',
                     'allStreamsSql' => 'SELECT * FROM STIMulate.streams',
                     'allStreamStreamsSql' => 'SELECT * FROM STIMulate.facilitator_streams',
@@ -324,8 +324,27 @@ function manageAbsent()
         switch ($_POST['type']) {
             case 'new':
                 $time = date("Y-m-d H:i:s", strtotime($_POST['time']));
+                if($_POST['endTime']!='') {
+                    $end = date("Y-m-d H:i:s", strtotime($_POST['endTime']));
+                } else {
+                    $end = null;
+                }
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.absences
-                  (absence_timestamp, volunteer_id, reason) VALUES (:timestamp, :id, :reason)", array($time, $_POST['id'], $_POST['reason']));
+                  (absence_timestamp, absent_end_timestamp, volunteer_id, reason) VALUES (:timestamp, :absent_end_timestamp, :id, :reason)", array($time, $end, $_POST['id'], $_POST['reason']));
+
+                $sqlObject->Execute();
+                break;
+            case 'manage':
+                $updateQuery = "UPDATE STIMulate.absences SET absence_timestamp = :absence_timestamp, absent_end_timestamp  = :absent_end_timestamp,
+                                volunteer_id = :volunteer_id, reason = :reason WHERE absence_id = :absence_id";
+
+                $time = date("Y-m-d H:i:s", strtotime($_POST['time']));
+                if($_POST['endTime']!='') {
+                    $end = date("Y-m-d H:i:s", strtotime($_POST['endTime']));
+                } else {
+                    $end = null;
+                }
+                $sqlObject = new \PHP\SqlObject($updateQuery, array($time, $end, $_POST['newId'], $_POST['reason'], $_POST['absentId']));
                 $sqlObject->Execute();
                 break;
             case 'delete':
