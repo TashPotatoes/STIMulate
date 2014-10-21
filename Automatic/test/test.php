@@ -13,6 +13,9 @@
 </head>
 <body>
 <?php
+	ini_set('max_execution_time', 300);
+	ini_set("memory_limit","20M");
+	
     require '/PHP/functions.php'; 
 	require_once '/php/databaseAPI.php';
     require_once '/php/SqlObject.php';
@@ -23,15 +26,15 @@
 	
 	function generateCPLEX($stream){
 			// Generate all data for all students. Database houses multiple rows per student.
-			$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY user_id ASC, day ASC", array($stream));  
+			$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY stream_" . $stream . " DESC, user_id ASC, day ASC", array($stream));  
 			$studentPrefRS = $studentPrefSQL->Execute();		
 			
 			// Collects all unique students in both preferences and facilitators. Index of studentID in array will be used to generate the input CPLEX string.
-			$studentListSQL = new \PHP\SqlObject("SELECT student_id FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream GROUP BY user_id ORDER BY user_id ASC", array($stream));  
+			$studentListSQL = new \PHP\SqlObject("SELECT student_id FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream GROUP BY user_id ORDER BY stream_" . $stream . " DESC, user_id ASC", array($stream));  
 			$studentListRS = $studentListSQL->Execute();		
 			
 			echo "retrieving from database<br/>";
-			
+			flush();
 			$studentArray = array();
 			$studentTotal = 0;
 			foreach ($studentListRS as $row) {
@@ -100,7 +103,7 @@
 					$objective .= " +" . $prefArray[$person][$shift] . " x" . $person . "_" . $shift;
 				}
 			} 
-
+				echo "starting constraints student hours</br>";
 			// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
 			$constraint = "\n  \* Constraints *\ \n Subject To \n";
 			for ($person = 0; $person < $studentTotal; $person++){
@@ -108,27 +111,28 @@
 				for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 					$constraint .=  " +x" . $person . "_" . $shift;
 				}
-				$constraint .= " = " + $studentHours[$person] + "\n"; // decide whether <= or =
+				$constraint .= " = " . ($studentHours[$person] ) . "\n"; // decide whether <= or =
 			}
-			
+			echo "constraints num at desk</br>";
 			// iterate over each shift to make sure each shift has the specified number of people
 			$numAtDesk = array ( 1, 1, 2, 2, 2, 2, 1, 1);
 			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
-				$constraint .= "shift_" + $shift +":";
+				$constraint .= "shift_" . $shift .":";
 				for ($person = 0; $person < $studentTotal; $person++){
 					$constraint .=  " +x" . $person . "_" . $shift;
 				}
-				$constraint .= " <= " . $numAtDesk[$shift % count($numAtDesk)] . "\n";
+				$constraint .= " <= " . ($numAtDesk[$shift % count($numAtDesk)]) . "\n";
 			}
 			
-			
+						echo "constraints new plfs with old plfs</br>";
+
 			// TODONE:DONE add int 1, 0 field for each stream called new to db, once added, uncomment the following code 
 			//$newTotal = new \PHP\SqlObject("SELECT COUNT(*) FROM facilitator_shift_preferences WHERE new = :new AND stream = :stream;", array(1, $stream));
 			//$newTotal->Execute();
-			$newTotalSQL= new \PHP\SqlObject("SELECT * FROM facilitators JOIN preferences ON facilitators.student_id = preferences.user_id WHERE stream = :stream;", array(strtoupper($stream)));
+			$newTotalSQL= new \PHP\SqlObject("SELECT * FROM facilitators JOIN preferences ON facilitators.student_id = preferences.user_id WHERE stream = :stream AND new_" . $stream . " = 1;", array(strtoupper($stream)));
 			$newTotalRS = $newTotalSQL->Execute();
 			$newTotal = count($newTotalRS);
-			
+			echo "constraints num at desk after db call $newTotal</br>";
 			
 			// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
 			// is effective, otherwise large m will make restraint redundant
@@ -137,7 +141,7 @@
 			$m = 10000; // arbitrarily large amount
 			$constraintNewA = "";
 			$constraintNewB = "";
-			for ($shift = 0; $shift < $shiftTotal; $shift++){
+			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 				$constraintNewA .= "newPLFa_" . $shift . ": "; 
 				$constraintNewB .= "newPLFb_" . $shift . ": 1- ";
 				
@@ -152,23 +156,26 @@
 				
 				$constraint .= $constraintNewA + $constraintNewB;
 			}
-				
+			echo "ensure binary</br>";	
 			// Ensures all decision variables are binary (ie less than 1 and integer)
 			$bounds = "\n \* Variable bounds *\ \n Bounds \n";
 			$integers = "\n	\* Integer definitions *\ \n General \n ";	
 			for ($shift = 0; $shift < $shiftTotal; $shift++){
-				for ($person = 0; $person < $studentTotal; $person){
+				echo "ensure binary at $shift start</br>";
+				for ($person = 0; $person < $studentTotal; $person++){
 					$bounds .= " x" . $person . "_" . $shift . " <= 1 \n ";
 					$integers .=" x" . $person . "_" . $shift;
 				}
 				$bounds .= " y" . $shift . " <= 1 \n";
+				echo "ensure binary at $shift end</br>";
 			}
-
+						echo "outputting to algorithm";
 			// Collect all the strings to generate the input string
 			$input = $objective . $constraint . $bounds . $integers . " End";
 			
 			//TODO: pass input string directly to algorithm, may need to change.
 			echo $input;
+			echo "end of code";
 			return $input;
 	}
 

@@ -109,7 +109,7 @@ class UserAccessControl
         if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $this->timetoutTime)) {
             session_unset();     
             session_destroy();
-            header("Location: Global_Gateway.php?ref=timeout");
+            header("Location: gateway.php?ref=timeout");
         }
         $_SESSION['last_activity'] = time(); 
     }
