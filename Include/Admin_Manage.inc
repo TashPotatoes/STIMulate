@@ -466,8 +466,8 @@ function manageVolunteer()
                 break;
             case 'manage':
                 $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.facilitators
-                                                            SET student_id = :id, stu_name_first = :firstname, stu_name_last = :lastname
-                                                            WHERE student_id = :id;", array($_POST['id'], $first, $last));
+                                                            SET student_id = :newId, stu_name_first = :firstname, stu_name_last = :lastname
+                                                            WHERE student_id = :id;", array($_POST['newId'], $first, $last, $_POST['id']));
                 $sqlObject->Execute();
                 break;
             case 'delete':
