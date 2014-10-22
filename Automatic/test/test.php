@@ -245,22 +245,23 @@
 						// student_ID, shift_ID, stream, day, shift_time)
 						$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
 						foreach ($results as $entry){
-						echo "<pre>";
-						echo print_r($entry);
-						echo "</pre>";
-						
-						$student_ID =  $studentArray($entry[1]);//array_search($entry[1], $studentArray);
-						echo "student id is $student_ID";
-//						$shift_ID = $entry[1]*$studentTotal+$entry[2];
-						$shi_stream = $streamArray[$stream];
-						$shi_day = floor($entry[2] / $shiftTotal);
-						$shi_time = $timesArray[$entry[2]];
-						$shi_duration = 0;
-						
+							echo "<pre>";
+							echo print_r($entry);
+							echo "</pre>";
+							
+							$student_ID =  $studentArray($entry[1]);//array_search($entry[1], $studentArray);
+							echo "student id is $student_ID";
+	//						$shift_ID = $entry[1]*$studentTotal+$entry[2];
+							if ($event[2] == 1) {
+							$shi_stream = $streamArray[$stream];
+							$shi_day = floor($entry[1] / $shiftTotal);
+							$shi_time = $timesArray[$entry[1]];
+							$shi_duration = 0;
+							
 							$sqlEntry = "( `". $student_ID  . "`, " . $shi_stream . ", `" . $shi_day . "`"; 
 							$sqlEntry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
 							//TODONE: the final "," breaks stuff. check if final "," causes sql error and if variable names have spaces at the start
-
+						}
 						}
 						
 						// add constructed table to database
@@ -469,18 +470,14 @@ End
 				var person = Integer.parseInt(glp_get_col_name(lp, i) [1]);
 				var shift = Integer.parseInt(glp_get_col_name(lp, i) [3]);
 				var value = Integer.parseInt(glp_mip_col_val(lp, i));
-				results[person][shift]  = value; 
+				results.push([person, shift, value]); //results[person][shift]  = value; 
             }
 			
-		console.log("in run");
-		javascriptToPHP(results, 'test.php');	
+			console.log("in run");
+			javascriptToPHP(results, 'test.php');	
 		}
         
     </script>
-
-
-
-
 </body>
 </html>
 
