@@ -53,7 +53,7 @@ function manageShiftHtml(buttonHtml) {
     html += '</select><label>Student ID</label>' +
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="s827xxxx" REQUIRED>' +
     '<label>Stream:</label>' +
-    '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name.." REQUIRED>' +
+    '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "stream" placeholder="Your first and last name.." REQUIRED>' +
     '<label>Day:</label>' +
     '<select name = "day">';
 
@@ -67,13 +67,13 @@ function manageShiftHtml(buttonHtml) {
     html += '</select>' +
     '<label>Time:</label>';
     var time;
-    hourMinute = checkedData[currentSelectIndex].FetchAllData()[3].split(':');
-    hour = hourMinute[0];
-    minute = hourMinute[1].substr(0, 2);
-    timeOfDate = hourMinute[1].substr(2);
+    var hourMinute = checkedData[currentSelectIndex].FetchAllData()[3].split(':');
+    var hour = hourMinute[0];
+    var minute = hourMinute[1].substr(0, 2);
+    var timeOfDate = hourMinute[1].substr(2);
 
     if(timeOfDate == 'pm'){
-        hour += 12;
+        hour = parseInt(hour) + 12;
     } else {
         if(hour<10) {
             hour = '0' + hour;
@@ -83,7 +83,7 @@ function manageShiftHtml(buttonHtml) {
     html += '<input type="time" name = "time" REQUIRED value="'+hour+':'+minute+':00">' +
     '<label>Duration:</label>' +
     '<select name = "duration">';
-    for (var i = 1; i < 3; i++) {
+    for (var i = 1; i <= 3; i++) {
         if (i+' Hour(s)' == checkedData[currentSelectIndex].FetchAllData()[4]) {
             html += '<option selected>' + i + '</option>';
         } else {
@@ -91,7 +91,8 @@ function manageShiftHtml(buttonHtml) {
         }
     }
     html += '</select>' +
-    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">';
+    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
+    '<input type="hidden" value = "' + $(checkedData[currentSelectIndex].FetchAllData()[5]).val() + '" name = "shiftID">';
     return html + buttonHtml;
 }
 function manageVolunteerHtml(buttonHtml) {
@@ -142,14 +143,14 @@ function manageAbsentHtml(buttonHtml){
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="s827xxxx" REQUIRED>' +
     '<label>Name:</label>' +
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name.." REQUIRED>' +
-    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
+    '<input type="hidden" value = "' + $(checkedData[currentSelectIndex].FetchAllData()[5]).val() + '" name = "absentId">' +
     '<label>Start time:</label>';
 
     var time = checkedData[currentSelectIndex].FetchAllData()[2].split(' ');
     html += '<input type="datetime-local" name = "time" REQUIRED value="'+time[0]+'T'+time[1]+'">' +
     '<label>End time:</label>';
     time = checkedData[currentSelectIndex].FetchAllData()[3].split(' ');
-    html += '<input type="datetime-local" name = "endTime" REQUIRED value="'+time[0]+'T'+time[1]+'">' +
+    html += '<input type="datetime-local" name = "endTime" value="'+time[0]+'T'+time[1]+'">' +
     '<textarea name = "reason" placeholder="Why you cannot make it.." REQUIRED>'+checkedData[currentSelectIndex].FetchAllData()[4]+'</textarea>';
     return html + buttonHtml;
 }
@@ -210,8 +211,10 @@ function returnBody(getVariable, action){
                 case 'manageAbsent':
                     return '<label>ID Number:</label>' +
                     '<input type="text" name = "id" placeholder="n827xxxx" REQUIRED>' +
-                    '<label>Time:</label>' +
+                    '<label>Start:</label>' +
                     '<input type="datetime-local" name = "time" REQUIRED>' +
+                    '<label>End Time:</label>' +
+                    '<input type="datetime-local" name = "endTime">' +
                     '<label>Reason:</label>' +
                     '<textarea name = "reason" placeholder="Why you cannot make it.." REQUIRED></textarea>' + buttonHtml;
                     break;
@@ -257,12 +260,12 @@ function returnBody(getVariable, action){
                         break;
                     case 'manageShift':
                         for (var i = 0; i < checkedData.length; i++) {
-                            html += '<input type="hidden" name="shift_id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
+                            html += '<input type="hidden" name="shift_id[]" value = "'+$(checkedData[i].FetchAllData()[5]).val()+'">';
                         }
                         break;
                     case 'manageAbsent':
                         for (var i = 0; i < checkedData.length; i++) {
-                            html += '<input type="hidden" name="absent_id[]" value = "'+checkedData[i].FetchAllData()[0]+'">';
+                            html += '<input type="hidden" name="absent_id[]" value = "'+$(checkedData[i].FetchAllData()[5]).val()+'">';
                         }
                         break;
                     default:
@@ -276,6 +279,6 @@ function returnBody(getVariable, action){
         default:
             return '<div></div>';
             break;
-        }
+    }
 }
 

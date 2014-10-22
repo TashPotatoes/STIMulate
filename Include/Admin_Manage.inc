@@ -63,7 +63,7 @@ if(isset($_GET['action'])) { ?>
 function RetrieveData(){
     // Defining the SQL queries to pull data from the database
     $sqlQueries = ['absentSql' => 'SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
-                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() ORDER BY volunteer_id asc',
+                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() OR absence_timestamp > NOW() ORDER BY volunteer_id asc',
                     'allShiftSql' => 'SELECT * FROM STIMulate.shifts ORDER BY student_id asc',
                     'allStreamsSql' => 'SELECT * FROM STIMulate.streams',
                     'allStreamStreamsSql' => 'SELECT * FROM STIMulate.facilitator_streams',
@@ -324,8 +324,27 @@ function manageAbsent()
         switch ($_POST['type']) {
             case 'new':
                 $time = date("Y-m-d H:i:s", strtotime($_POST['time']));
+                if($_POST['endTime']!='') {
+                    $end = date("Y-m-d H:i:s", strtotime($_POST['endTime']));
+                } else {
+                    $end = null;
+                }
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.absences
-                  (absence_timestamp, volunteer_id, reason) VALUES (:timestamp, :id, :reason)", array($time, $_POST['id'], $_POST['reason']));
+                  (absence_timestamp, absent_end_timestamp, volunteer_id, reason) VALUES (:timestamp, :absent_end_timestamp, :id, :reason)", array($time, $end, $_POST['id'], $_POST['reason']));
+
+                $sqlObject->Execute();
+                break;
+            case 'manage':
+                $updateQuery = "UPDATE STIMulate.absences SET absence_timestamp = :absence_timestamp, absent_end_timestamp  = :absent_end_timestamp,
+                                volunteer_id = :volunteer_id, reason = :reason WHERE absence_id = :absence_id";
+
+                $time = date("Y-m-d H:i:s", strtotime($_POST['time']));
+                if($_POST['endTime']!='') {
+                    $end = date("Y-m-d H:i:s", strtotime($_POST['endTime']));
+                } else {
+                    $end = null;
+                }
+                $sqlObject = new \PHP\SqlObject($updateQuery, array($time, $end, $_POST['newId'], $_POST['reason'], $_POST['absentId']));
                 $sqlObject->Execute();
                 break;
             case 'delete':
@@ -351,28 +370,36 @@ function manageAbsent()
 function manageShift()
 {
     if (isset($_POST['type'])) {
-        var_dump($_POST);
+        $streamID = '';
+        if(isset($_POST['stream'])) {
+            switch ($_POST['stream']) {
+                case 'IT':
+                    $streamID = 2;
+                    break;
+                case 'Duty Host':
+                    $streamID = 1;
+                    break;
+                case 'Maths':
+                    $streamID = 3;
+                    break;
+                case 'Science':
+                    $streamID = 4;
+                    break;
+            }
+            $dayIndex = date("w", strtotime($_POST['day'])) - 1;
+        }
         switch ($_POST['type']) {
             case 'new':
-                $dayIndex = date("w", strtotime($_POST['day'])) - 1;
-                $streamID = '';
-                switch ($_POST['stream']) {
-                    case 'IT':
-                        $streamID = 2;
-                        break;
-                    case 'Duty Host':
-                        $streamID = 1;
-                        break;
-                    case 'Maths':
-                        $streamID = 3;
-                        break;
-                    case 'Science':
-                        $streamID = 4;
-                        break;
-                }
 
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.shifts (student_id, shi_stream, shi_day, shi_time,
                                             shi_duration) VALUES (:id, :stream, :day, :time, :duration);", array($_POST['id'], $streamID, $dayIndex, $_POST['time'], $_POST['duration']));
+                $sqlObject->Execute();
+                break;
+            case 'manage':
+                $updateQuery = "UPDATE STIMulate.shifts SET student_id = :student_id, shi_stream = :shi_stream, shi_day = :shi_day, shi_time = :shi_time,
+                                            shi_duration = :shi_duration WHERE shift_id = :shift_id";
+
+                $sqlObject = new \PHP\SqlObject($updateQuery, array($_POST['newId'], $streamID, $dayIndex, $_POST['time'], $_POST['duration'], $_POST['shiftID']));
                 $sqlObject->Execute();
                 break;
             case 'delete':
@@ -466,8 +493,8 @@ function manageVolunteer()
                 break;
             case 'manage':
                 $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.facilitators
-                                                            SET student_id = :id, stu_name_first = :firstname, stu_name_last = :lastname
-                                                            WHERE student_id = :id;", array($_POST['id'], $first, $last));
+                                                            SET student_id = :newId, stu_name_first = :firstname, stu_name_last = :lastname
+                                                            WHERE student_id = :id;", array($_POST['newId'], $first, $last, $_POST['id']));
                 $sqlObject->Execute();
                 break;
             case 'delete':

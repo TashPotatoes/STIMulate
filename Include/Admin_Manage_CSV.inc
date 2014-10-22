@@ -1,7 +1,6 @@
 <?php
 require_once 'PHP/SqlObject.php';
 
-
 if (isset($_FILES['file'])) {
     $file = fopen($_FILES["file"]["tmp_name"], 'r');
     $CSVData = array();
@@ -13,6 +12,12 @@ if (isset($_FILES['file'])) {
     }
     fclose($file);
     unset($CSVData[0]);
+}
+
+if(isset($_POST)){
+    if(count($_POST) > 0) {
+        handlePost();
+    }
 }
 
 // If the page is access with an appropraite get variable
@@ -73,8 +78,8 @@ function determineControls(){
             $buttonHtml = array();
             break;
         default:
-            if(isset($_POST)){
-                if(count($_POST) > 0){
+            if(isset($_FILES)){
+                if(count($_FILES) > 0){
                     unset($buttonHtml['addCSV']);
                 } else {
                     unset($buttonHtml['addData']);
@@ -131,6 +136,89 @@ function determineBody($CSVData, $numberColumns) {
             echo '</tr>';
         }
     }
+}
 
+function handlePost(){
+    $length = $_POST['numberVariables'];
+
+    $sql = '';
+    $array = array();
+    switch($_GET['action']){
+        case 'manageVolunteer':
+            $sql = 'INSERT INTO STIMulate.facilitators (student_id, stu_name_first, stu_name_last, active) VALUES ';
+            break;
+        case 'manageStaff':
+            $sql = 'INSERT INTO STIMulate.staff (staff_id, staff_name_first, staff_name_last, active) VALUES ';
+            break;
+        case 'manageShift':
+            $sql = 'INSERT INTO STIMulate.shifts (student_id, shi_stream, shi_day, shi_time, shi_duration) VALUES ';
+            break;
+        default:
+            break;
+    }
+    $sql = manageSqlGeneration($sql, $length, $array);
+
+    if($_GET['action']=='manageShift'){
+        $array[4] = explode(' ', $array[4])[0];
+
+        if(substr($array[3], -count($array[3])-1) == 'pm') {
+            $timeExploded = explode(':', substr($array[3], 0, strlen($array[3])-2));
+            $timeExploded[0] += 12;
+            $time = $timeExploded[0].':'.$timeExploded[1];
+        } else {
+            $time = substr($array[3], 0, -2);
+        }
+        $array[3] = $time;
+    }
+
+    $sqlObject = new \PHP\SqlObject($sql, $array);
+    $sqlObject->Execute();
+}
+
+function manageSqlGeneration($sql, $length, &$array){
+    for($i =0; $i < $length; $i++){
+        for($j = 0; $j < count($_POST['id'.$i]); $j++){
+            if($j == 0){
+                $sql .= '(';
+            }
+            $noComma = false;
+            $data = $_POST['id'.$i][$j];
+            if($j == 1 && $_GET['action'] != 'manageShift') {
+                $sql .= ':'.$i.$j;
+                $data = explode(' ', $_POST['id'.$i][$j]);
+                array_push($array, $data[0]);
+                $sql .= ', :'.$i.$j.'num2';
+                array_push($array, $data[1]);
+            } else if($j == count($_POST['id'.$i])-1) { // TEMPORARY FIX TO STREAM MIX
+                if($_GET['action'] == 'manageShift'){
+                    $sql .= ':'.$i.$j;
+                    array_push($array, $data);
+                }
+                $noComma = true;
+            } else {
+                array_push($array, $data);
+                $sql .= ':'.$i.$j;
+            }
+
+            if($noComma){
+                $noComma = false;
+            } else {
+                $sql .= ', ';
+            }
+            if($j == count($_POST['id'.$i])-1) {
+                if ($_GET['action'] != 'manageShift') {
+                    $sql .= '1)';
+                } else {
+                    $sql .= ')';
+                }
+            }
+        }
+        if($i != $length-1){
+            $sql .= ', ';
+        } else {
+            $sql .= ';';
+        }
+    }
+    return $sql;
 }
 ?>
