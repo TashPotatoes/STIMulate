@@ -37,7 +37,7 @@ if(isset($_POST['stream'])) {
 <?php	
 	} 	
 ?>
-<textarea id="source" cols="50" rows="10">
+<textarea id="source" cols="100" rows="10">
 <?php if ($modelOPL == ""){
 ?>
 	\* Objective function *\
@@ -157,7 +157,7 @@ x5_14 x1_15 x2_15 x3_15 x4_15 x5_15
 End
 
 <?php } else {
-	echo ($modelOPl);
+	echo ($modelOPL);
 }
 ?>
 </textarea>

@@ -9,6 +9,8 @@
 
 ini_set('max_execution_time', 300);
 ini_set("memory_limit","20M");
+//ob_end_clean();
+ini_set('output_buffering', '0');
 
 $stream = "";
 $studentTotal = 0;
@@ -35,7 +37,7 @@ function GenerateOPL($stream){
 		
 		
 		echo "retrieving from database<br/>";
-		//flush();
+		flush();
 		$studentArray = array();
 		$studentTotal = 0;
 		foreach ($studentListRS as $row) {
@@ -58,7 +60,8 @@ function GenerateOPL($stream){
 			$totalHours += $row["hours_" . $stream];
 		}
 		
-		echo "processing student inputs<br/>";		
+		echo "processing student inputs<br/>";
+		flush();		
 		
 		// Generates array with ith student and jth shift, where j is calculated by day + shift
 		$shiftTotal = 8; //TODONE maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
@@ -93,22 +96,26 @@ function GenerateOPL($stream){
 			$daysWithoutData = array_diff($dayArray, $daysWithData) ;
 			foreach ($daysWithoutData as $day){
 				for ($j = 0; $j < $shiftTotal; $j++){
-							$prefArray[$studentIndex][$day*$shiftTotal + $j] = -50;
+					$prefArray[$studentIndex][$day*$shiftTotal + $j] = -50;
 				}
 			}
 		}
 		
 		// iterate over each persons preferences to create objective function
 		echo "generating model</br>";
-		$objective = "\* Objective function *\  \n Maximize \n obj:";
+		flush();
+		$objective = "\* Objective function *\  \nMaximize \nobj:" ;
 		for ($person = 0; $person < $studentTotal; $person++){
 			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 				$objective .= " +" . $prefArray[$person][$shift] . " x" . $person . "_" . $shift;
 			}
-		} 
-			echo "starting constraints student hours</br>";
+		}
+		// clean the objective function
+		$objective = str_replace("+-", "-", $objective);
+		
+		echo "starting constraints student hours</br>";
 		// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
-		$constraint = "\n  \* Constraints *\ \n Subject To \n";
+		$constraint = "\n\n \* Constraints *\ \nSubject To \n";
 		for ($person = 0; $person < $studentTotal; $person++){
 			$constraint .= "person_" . $person . ":"; 
 			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
@@ -159,7 +166,7 @@ function GenerateOPL($stream){
 				$constraintNewB = "";
 				for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 					$constraintNewA .= "newPLFa_" . $shift . ": "; 
-					$constraintNewB .= "newPLFb_" . $shift . ": 1- ";
+					$constraintNewB .= "newPLFb_" . $shift . ":";
 					
 					for ($person = 0; $person < $newTotal; $person++){
 						$constraintNewA .=  " +x" . $person . "_" . $shift;
@@ -168,11 +175,11 @@ function GenerateOPL($stream){
 						$constraintNewB .=  " -x" . $person . "_" . $shift;
 					}
 					
-					$constraintNewA .= " -1 +" . $m . "y" . $shift . " < " . $m . "\n";
-					$constraintNewB .= " -" . $m . "y" . $shift . " <= " . 0 . "\n";
-					
-					$constraint .= $constraintNewA . $constraintNewB;
+					$constraintNewA .= " +" . $m . "y" . $shift . " < " . ($m +1) . "\n";
+					$constraintNewB .= " -" . $m . "y" . $shift . " <= " . -1 . "\n";
+	
 				}
+				$constraint .= $constraintNewA . $constraintNewB;
 			} else {
 				echo "not enough students hours to ensure new PLF's are with old PLFs <br/>";
 			}
@@ -183,8 +190,8 @@ function GenerateOPL($stream){
 
 		echo "ensure variables are binary </br>";	
 		// Ensures all decision variables are binary (ie less than 1 and integer)
-		$bounds = "\n \* Variable bounds *\ \n Bounds \n";
-		$integers = "\n	\* Integer definitions *\ \n General \n";	
+		$bounds = "\n\n\* Variable bounds *\ \nBounds \n";
+		$integers = "\n\n\* Integer definitions *\ \nGeneral \n";	
 		for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
 		
 			for ($person = 0; $person < $studentTotal; $person++){
@@ -198,7 +205,7 @@ function GenerateOPL($stream){
 		}
 					echo "outputting to algorithm";
 		// Collect all the strings to generate the input string
-		$input = $objective . $constraint . $bounds . $integers . " End";
+		$input = $objective . $constraint . $bounds . $integers . " \n\nEnd";
 		
 		//TODO: pass input string directly to algorithm, may need to change.
 	
