@@ -1,7 +1,7 @@
 <?php require_once '/php/DatabaseAPI.php'; ?>
     <?php
-        if("index.php" == basename($_SERVER['PHP_SELF'])) { 
-        
+        if("index.php" == basename($_SERVER['PHP_SELF'])) {
+
     ?>
     <style type="text/css">
     .111specfilter {display: none;}
@@ -136,7 +136,7 @@
                                             $now = date("Y-m-d H:i:s", strtotime("Now"));
 
                                             if($absentEnd>$now){
-                                                NameCard($shiftInformation[$i], $day, true);
+                                                NameCard($shiftInformation[$i], $day, true, $absentInformation[$j]["absence_timestamp"]);
                                                 $inputtedNameCards++;
                                                 break;
                                             }
@@ -147,14 +147,14 @@
                                             if ($shiftTime == $absentTime && $day == $absentDay &&
                                                 $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]
                                             ) {
-                                                NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
+                                                NameCard($shiftInformation[$i], $day, true, $absentInformation[$j]["absence_timestamp"]);
                                                 $inputtedNameCards++;
                                                 break;
                                             } else if ($absentTime + $shiftDuration <= $shiftTime + $shiftDuration &&
                                                 $currentTime >= $shiftTime && $day == $absentDay &&
                                                 $absentInformation[$j]["volunteer_id"] == $shiftInformation[$i]["student_id"]
                                             ) {
-                                                NameCard($shiftInformation[$i], $day, $absentInformation[$j]["absence_timestamp"]);
+                                                NameCard($shiftInformation[$i], $day, true, $absentInformation[$j]["absence_timestamp"]);
                                                 $inputtedNameCards++;
                                                 break;
                                             }
@@ -171,11 +171,11 @@
                     }
                 }
 
-                function NameCard($shiftInformation, $day, $disabled)
+                function NameCard($shiftInformation, $day, $disabled, $absentTimetsamp = '')
                 {
                     if($disabled){
-                        $date = substr($disabled, 0, 9);
-                        $absentMsg = "away on the " . substr($disabled, 0,9);
+                        $date = substr($absentTimetsamp, 0, 9);
+                        $absentMsg = "away on the " . substr($date, 0,9);
                         echo "<div class='".$shiftInformation["student_id"]." absent namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."' title='". $absentMsg ."'>";
                     } else {
                         echo "<div class='" . $shiftInformation["student_id"] . " namecard f-".$shiftInformation["str_shortname"]." day".$day." time".$shiftInformation["shi_time"]." id".$shiftInformation["student_id"]."'>";
@@ -209,7 +209,7 @@
                     foreach ($data as $stream) {
                         $shortcode = ucfirst(strtolower($stream['str_shortname']));
                         echo "<li id='filterStream".$shortcode."' class='stream-filters'>".$stream['str_name']."</li>";
-                    }  
+                    }
                 }
 
                 ?>
