@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: Natasha Moffat
  * Date: 19/10/2014
- * Time: 4:20 PM
+ * Time: 3:08 PM
  */
 
 
@@ -264,12 +264,11 @@ function NextIsConsec($arrayResults, $i, $consec, $total){
  * @return Auto_Gen_Timetable inserted with rows, old data deleted
  */
 function ResultsToDatabase(){
-				$clearTableSQL = new \PHP\SqlObject("$sqlEntry", array());
-				$clearTable = $clearTableSQL->Execute();
 			
 			// Return the javascript array of person, shift and value 
 			if (isset($_POST['variable[]'])) {
-					DELETE FROM table_name
+					$clearTableSQL = new \PHP\SqlObject("$DELETE FROM `Auto_Gen_Timetable`", array());
+					$clearTable = $clearTableSQL->Execute();
 					
 					$results = $_POST['variable[]'];
 					$entries = count($results);

@@ -26,6 +26,7 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
         array(1, "Manage Shifts", "Admin_Manage.php?action=manageShift", "crown"),
         array(1, "Manage Abenties", "Admin_Manage.php?action=manageAbsent", "crown"),
         array(1, "Record a session", "#", "crown"),
+		array(1, "Generate Timetable", "Admin_Gen_Timetable.php", "crown"),
         );
     ?>
 
