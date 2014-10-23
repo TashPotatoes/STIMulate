@@ -54,7 +54,7 @@ function run(){
 					var value = parseInt(glp_mip_col_val(lp, i));
 					results.push([person, shift, value]); //results[person][shift]  = value; 
 				}
-				//console.log(results);
+				console.log(results);
 				javascriptToPHP(results, 'Admin_Gen_Timetable.php');
 			
 			} else {

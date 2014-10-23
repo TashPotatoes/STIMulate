@@ -24,7 +24,7 @@ $modelOPL = "";
 		<div class = "content">
 	 
 <?php
-// for the user to select the stream
+// if the stream has been selected, generate the OPL
 if(isset($_POST['stream'])) {
 
 	$stream =  $_POST['stream'];
@@ -32,23 +32,28 @@ if(isset($_POST['stream'])) {
 	$modelOPL = GenerateOPL($stream);
 ?>
 
+
+
 	<textarea id='source' cols='100' rows='10'>	
 <?php 
+	// if the OPL has been generated add to database
 	if ($modelOPL != "") {
 		echo ($modelOPL); 
+		ResultsToDatabase();
 	} else {
 		echo ("OPL model placeholder");
-	}
+?>
+		<input type="submit" value= "Generate Table" onclick="run()" />
+
+<?php	}
 ?>
 	</textarea>	
-		
-	<input type="submit" value= "Generate Table" onclick="run()" />
-
+	
 	<pre id="log"/>
 
 <?php 
-	ResultsToDatabase();
 } else {
+	// if the stream has not been selected, display options to select
 ?>	
 
 	<div class="stream"">
