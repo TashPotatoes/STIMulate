@@ -3,16 +3,18 @@ The code on this page might be difficult to follow. That is because most of the 
 is quite similar but has slight variations to the rules making it harder to refactor.
  */
 function LoadUserInteractions(getVariable){
-        // If an interactable button is clicked
+    // If an interactable button is clicked
     $(document).on('click', '.admin-controls', function(event) {
         var buttonName = $(event.target).html();
 
+        // On click fetch these globally available variables
         checkedElements = $('#InformationTable input:checkbox:checked');
         checkedData = GetCheckedElements(checkedElements);
 
+        // CSV request goes to CSV page, else append relevant action form
         if (buttonName != 'Add by CSV') {
             $('main').append(GenerateHTML(getVariable, buttonName));
-            OnChange(checkedData);
+            OnChange(checkedData); // Largely legacy. Made to switch between rows, does not affect functionality.
         } else {
             window.location.href = "Admin_Manage_CSV.php?action="+getVariable;
         }
@@ -20,12 +22,19 @@ function LoadUserInteractions(getVariable){
 
 }
 
+/*
+    Generates relevant html based on the page get variable and action requested.
+    PRE: getVariable - string Get variable sent to javascript from php
+    PRE: action - button name that was clicked
+    POST: html - string pure string html
+ */
 function GenerateHTML(getVariable, action){
+    // Generic html features are static. Header and body dynamically generated.
     var html = '<div class = "background-wrapper">' +
         '<form method="post" action="" class = "popup-window">' +
-        addHeader(action, 'calander.png') +
+        addHeader(action, 'calander.png') + // Adds header element
         '<div class = "formWrapper">' +
-        returnBody(getVariable, action) +
+        returnBody(getVariable, action) + // Adds body
         '<input type = "hidden" value = "'+getVariable+'" type = "hidden">' +
         '</div>' +
         '</form>' +
@@ -33,6 +42,12 @@ function GenerateHTML(getVariable, action){
     return html;
 }
 
+/*
+    Returns header html with the relevant variables concatenated.
+    PRE: name - string name to be displayed on the header
+    PRE: image - image name in the IMG/ folder to appear next to the name
+    POST: Returns string - pure html string
+ */
 function addHeader(name, image){
     return '<div class = "headElement">' +
     '<img src="IMG/'+image+'" alt="Calander" class = "inline-image">' +
@@ -40,6 +55,11 @@ function addHeader(name, image){
     '</div>';
 }
 
+/*
+    Creates html for the popup body of the shift nature
+    PRE: buttonHTML -
+    PRE:
+ */
 function manageShiftHtml(buttonHtml) {
     var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     var currentSelectIndex = 0;

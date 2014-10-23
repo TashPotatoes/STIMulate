@@ -95,7 +95,7 @@ class UserAccessControl
                 $_SESSION['requires_reset'] = $loginCheck[0]['passReset'] == '1';
 
             } else {
-                $this->errors[] = var_dump($sqlObject)."This user does not exist.";
+                $this->errors[] = "This user does not exist.";
             }
         } else {
             $this->errors[] = "Database connection problem.";

@@ -1,7 +1,11 @@
 <!--
 Author: Pearl Gariano
 -->
+<?php
+    var_dump($_POST);
 
+
+?>
 <div class="push-right pageWrapper">
 
     <div class="contentWrapper">
