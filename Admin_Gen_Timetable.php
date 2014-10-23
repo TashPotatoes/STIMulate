@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Hayden
- * Date: 19/10/2014
+ * User: Natasha moffat
+ * Date: 20/10/2014
  * Time: 4:20 PM
  */
 
@@ -23,6 +23,9 @@ $UserAccessControl->checkTimeout();
     <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
+	<script src="JS/Admin_Gen_Timetable.js"></script>
+	<meta charset="UTF-8">
+	<script src="JS/Automatic/dist/glpk.min.js"></script>	
 </head>
 <body>
 <main>

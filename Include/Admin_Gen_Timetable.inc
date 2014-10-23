@@ -1,35 +1,153 @@
 <?php
 //Requiring SQL Object
 require_once 'PHP/SqlObject.php';
+require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 
-?>
-
-<?php
-	// for the user to select the stream
-	//$stream = "IT";
-	if(isset($_POST['stream'])) {
-		$stream =  $_POST['stream'];
-		echo "<p>Current Stream: " . $stream . "</p>";
-		generateCPLEX($stream);?>
-		
-		<input type="submit" value= "Generate Table" onclick="run()" />
-		<pre id="log"/>
-	<?php 
-		//resultsToDatabase();
-	} else {
+// for the user to select the stream
+//$stream = "IT";
+if(isset($_POST['stream'])) {
+	$stream =  $_POST['stream'];
+	echo "<p>Current Stream: " . $stream . "</p>";
+	generateOPL($stream);?>
+	
+	<input type="submit" value= "Generate Table" onclick="run()" />
+	<pre id="log"/>
+<?php 
+	//resultsToDatabase();
+} else {
 ?>	
-		<div>
-			<form name="streamSelect" action="test.php" method="post">
-			<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
-			<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
-			<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
-			<input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/>
-			<input type="submit" value="Select Stream">
-			</form>
-		</div>
+	<div>
+		<form name="streamSelect" action="test.php" method="post">
+		<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
+		<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
+		<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
+		<input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/>
+		<input type="submit" value="Select Stream">
+		</form>
+	</div>
 <?php	
 	} 	
 ?>
+<textarea id="source" cols="50" rows="10">
+
+	\* Objective function *\
+Minimize
+obj: +17 x1_1 +23 x2_1 +16 x3_1 +19 x4_1 +18 x5_1 +21 x1_2 +16 x2_2 +20 x3_2 +19 x4_2 +19 x5_2 +22 x1_3 +21 x2_3 +16 x3_3 +22 x4_3 +15 x5_3 +18 x1_4 +16 x2_4 +25 x3_4 +22 x4_4 +15 x5_4 +24 x1_5 +17 x2_5
++24 x3_5 +20 x4_5 +21 x5_5 +15 x1_6 +16 x2_6 +16 x3_6 +16 x4_6 +25 x5_6 +20 x1_7 +19 x2_7 +17 x3_7 +19 x4_7 +16 x5_7 +18 x1_8 +25 x2_8 +19 x3_8 +17 x4_8 +16 x5_8 +19 x1_9 +18 x2_9 +19 x3_9 +21 x4_9 +23 x5_9
++18 x1_10 +21 x2_10 +18 x3_10 +19 x4_10 +15 x5_10 +16 x1_11 +17 x2_11 +20 x3_11 +25 x4_11 +22 x5_11 +22 x1_12 +15 x2_12 +16 x3_12 +23 x4_12 +17 x5_12 +24 x1_13 +25 x2_13 +17 x3_13 +25 x4_13 +19 x5_13 +24 x1_14
++17 x2_14 +21 x3_14 +25 x4_14 +22 x5_14 +16 x1_15 +24 x2_15 +24 x3_15 +25 x4_15 +24 x5_15
+
+\* Constraints *\
+Subject To
+one_1: +x1_1 +x2_1 +x3_1 +x4_1 +x5_1 = 1
+one_2: +x1_2 +x2_2 +x3_2 +x4_2 +x5_2 = 1
+one_3: +x1_3 +x2_3 +x3_3 +x4_3 +x5_3 = 1
+one_4: +x1_4 +x2_4 +x3_4 +x4_4 +x5_4 = 1
+one_5: +x1_5 +x2_5 +x3_5 +x4_5 +x5_5 = 1
+one_6: +x1_6 +x2_6 +x3_6 +x4_6 +x5_6 = 1
+one_7: +x1_7 +x2_7 +x3_7 +x4_7 +x5_7 = 1
+one_8: +x1_8 +x2_8 +x3_8 +x4_8 +x5_8 = 1
+one_9: +x1_9 +x2_9 +x3_9 +x4_9 +x5_9 = 1
+one_10: +x1_10 +x2_10 +x3_10 +x4_10 +x5_10 = 1
+one_11: +x1_11 +x2_11 +x3_11 +x4_11 +x5_11 = 1
+one_12: +x1_12 +x2_12 +x3_12 +x4_12 +x5_12 = 1
+one_13: +x1_13 +x2_13 +x3_13 +x4_13 +x5_13 = 1
+one_14: +x1_14 +x2_14 +x3_14 +x4_14 +x5_14 = 1
+one_15: +x1_15 +x2_15 +x3_15 +x4_15 +x5_15 = 1
+lim_1: +8 x1_1 +15 x1_2 +14 x1_3 +23 x1_4 +8 x1_5 +16 x1_6 +8 x1_7 +25 x1_8 +9 x1_9 +17 x1_10 +25 x1_11 +15 x1_12 +10 x1_13 +8 x1_14 +24 x1_15 <= 36
+lim_2: +15 x2_1 +7 x2_2 +23 x2_3 +22 x2_4 +11 x2_5 +11 x2_6 +12 x2_7 +10 x2_8 +17 x2_9 +16 x2_10 +7 x2_11 +16 x2_12 +10 x2_13 +18 x2_14 +22 x2_15 <= 34
+lim_3: +21 x3_1 +20 x3_2 +6 x3_3 +22 x3_4 +24 x3_5 +10 x3_6 +24 x3_7 +9 x3_8 +21 x3_9 +14 x3_10 +11 x3_11 +14 x3_12 +11 x3_13 +19 x3_14 +16 x3_15 <= 38
+lim_4: +20 x4_1 +11 x4_2 +8 x4_3 +14 x4_4 +9 x4_5 +5 x4_6 +6 x4_7 +19 x4_8 +19 x4_9 +7 x4_10 +6 x4_11 +6 x4_12 +13 x4_13 +9 x4_14 +18 x4_15 <= 27
+lim_5: +8 x5_1 +13 x5_2 +13 x5_3 +13 x5_4 +10 x5_5 +20 x5_6 +25 x5_7 +16 x5_8 +16 x5_9 +17 x5_10 +10 x5_11 +10 x5_12 +5 x5_13 +12 x5_14 +23 x5_15 <= 33
+
+\* Variable bounds *\
+Bounds
+x1_1 <= 1
+x2_1 <= 1
+x3_1 <= 1
+x4_1 <= 1
+x5_1 <= 1
+x1_2 <= 1
+x2_2 <= 1
+x3_2 <= 1
+x4_2 <= 1
+x5_2 <= 1
+x1_3 <= 1
+x2_3 <= 1
+x3_3 <= 1
+x4_3 <= 1
+x5_3 <= 1
+x1_4 <= 1
+x2_4 <= 1
+x3_4 <= 1
+x4_4 <= 1
+x5_4 <= 1
+x1_5 <= 1
+x2_5 <= 1
+x3_5 <= 1
+x4_5 <= 1
+x5_5 <= 1
+x1_6 <= 1
+x2_6 <= 1
+x3_6 <= 1
+x4_6 <= 1
+x5_6 <= 1
+x1_7 <= 1
+x2_7 <= 1
+x3_7 <= 1
+x4_7 <= 1
+x5_7 <= 1
+x1_8 <= 1
+x2_8 <= 1
+x3_8 <= 1
+x4_8 <= 1
+x5_8 <= 1
+x1_9 <= 1
+x2_9 <= 1
+x3_9 <= 1
+x4_9 <= 1
+x5_9 <= 1
+x1_10 <= 1
+x2_10 <= 1
+x3_10 <= 1
+x4_10 <= 1
+x5_10 <= 1
+x1_11 <= 1
+x2_11 <= 1
+x3_11 <= 1
+x4_11 <= 1
+x5_11 <= 1
+x1_12 <= 1
+x2_12 <= 1
+x3_12 <= 1
+x4_12 <= 1
+x5_12 <= 1
+x1_13 <= 1
+x2_13 <= 1
+x3_13 <= 1
+x4_13 <= 1
+x5_13 <= 1
+x1_14 <= 1
+x2_14 <= 1
+x3_14 <= 1
+x4_14 <= 1
+x5_14 <= 1
+x1_15 <= 1
+x2_15 <= 1
+x3_15 <= 1
+x4_15 <= 1
+x5_15 <= 1
+
+\* Integer definitions *\
+General
+x1_1 x2_1 x3_1 x4_1 x5_1 x1_2 x2_2 x3_2 x4_2 x5_2 x1_3 x2_3 x3_3 x4_3 x5_3 x1_4 x2_4 x3_4 x4_4 x5_4 x1_5 x2_5 x3_5 x4_5 x5_5 x1_6 x2_6 x3_6 x4_6 x5_6 x1_7 x2_7 x3_7 x4_7 x5_7 x1_8
+x2_8 x3_8 x4_8 x5_8 x1_9 x2_9 x3_9 x4_9 x5_9 x1_10 x2_10 x3_10 x4_10 x5_10 x1_11 x2_11 x3_11 x4_11 x5_11 x1_12 x2_12 x3_12 x4_12 x5_12 x1_13 x2_13 x3_13 x4_13 x5_13 x1_14 x2_14 x3_14 x4_14
+x5_14 x1_15 x2_15 x3_15 x4_15 x5_15
+
+End
+</textarea>
+
+
 <script>
         var start;
 		var logNode = document.getElementById("log");
@@ -43,375 +161,4 @@ require_once 'PHP/SqlObject.php';
 </script>
 
 
-
-/*
- * Based on the page get, retrieve the right information and return the data
- * @return array An associative array of database data
- */
-function babla(){}
-
-/*
- * Determines the appropriate html to put into the button control box
- * Echos html into browser
- */
-function determineControls(){
-    // Define all button options, and unset them as needed using the switch
-    $buttonHtml = array('newButton' => '<li class = "admin-controls">New</li>','manageButton' => '<li class = "admin-controls">Manage</li>',
-        'deleteButton' => '<li class = "admin-controls">Delete</li>', 'addCSVButton' => '<li class = "admin-controls">Add by CSV</li>');
-
-    // Depending on the action return the appropraite information
-    switch($_GET['action']) {
-        // If user wants to manage volunteers
-        case null:
-            // Default action. Display nothing
-            $buttonHtml = array();
-            break;
-        case 'manageAbsent':
-            unset($buttonHtml['addCSVButton']);
-            break;
-        default:
-            break;
-    }
-
-    // Echo html in as needed
-    foreach($buttonHtml as $button){
-        echo $button;
-    }
-}
-
-function determineTableHead(){
-    // Define all table head options, later the index chooses the correct one.
-    $tableHeadHtml = array('manageVolunteer' => '<th class = "check-Small check-head"><input type="checkbox"></th>
-                    <th class = "tableHead">Student Number<span class = "arrow-down"></span></th>
-                    <th class = "tableHead">Name<span class = "arrow-down"></span></th>
-                    <th class = "tableHead">Streams<span class = "arrow-down"></span></th>',
-                    'manageStaff' => '<th class = "check-Small check-head"><input type="checkbox"></th>
-                    <th class = "tableHead">Staff Number<span class = "arrow-down"></span></th>
-                    <th class = "tableHead">Name<span class = "arrow-down"></span></th>',
-                    'manageShift' => '<th class = "check-Small check-head"><input type="checkbox"></th>
-                <th class = "tableHead">Student ID<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Stream<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Day<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Time<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Duration<span class = "arrow-down"></span></th>',
-                    'manageAbsent' => '<th class = "check-Small check-head"><input type="checkbox"></th>
-                <th class = "tableHead">Student ID <span class = "arrow-down"></span></th>
-                <th class = "tableHead">Student Name<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Time Absent<span class = "arrow-down"></span></th>
-                <th class = "tableHead">End Absent Time<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Reason<span class = "arrow-down"></span></th>'
-                    );
-    $index = '';
-
-    // Echo html in as needed
-    echo $tableHeadHtml[$_GET['action']];
-    return true;
-}
-
-function insertRows($sqlResult){
-    // Depending on the action return the appropraite information
-    switch($_GET['action']) {
-        // If user wants to manage volunteers
-        case 'manageVolunteer':
-            insertVolunteer($sqlResult);
-            break;
-        case 'manageStaff':
-            insertStaff($sqlResult);
-            break;
-        case 'manageShift':
-            insertShift($sqlResult);
-            break;
-        case 'manageAbsent':
-            insertAbsent($sqlResult);
-            break;
-        // Default action. End
-        default:
-            return false;
-    }
-}
-
-function insertVolunteer($sqlResult){
-    for($i = 0; $i < count($sqlResult['volunteerInformation']); $i++){
-        echo '<tr>';
-        $checked = '';
-        if($sqlResult['volunteerInformation'][$i]['active'] == 1) {
-            //$checked = 'CHECKED';
-        }
-        echo '<td class="check-Small"><input type = "checkbox" '.$checked.'></td>';
-
-        echo '<td class = "data-item">'.$sqlResult['volunteerInformation'][$i]['student_id'].'</td>';
-        echo '<td class = "data-item">'.$sqlResult['volunteerInformation'][$i]['stu_name_first'].' '.$sqlResult['volunteerInformation'][$i]['stu_name_last'].'</td>';
-        echo '<td class = "data-item">';
-        for($j = 0; $j < count($sqlResult['volunteerStreamInformation']); $j++) {
-            $firstInputted = false;
-            for($k = 1; $k < (count($sqlResult['volunteerStreamInformation'][$j])/2); $k++){
-                if($sqlResult['volunteerStreamInformation'][$j][$k] == '1' && $sqlResult['volunteerInformation'][$i]['student_id'] == $sqlResult['volunteerStreamInformation'][$j][0]){
-                    if($firstInputted == false){
-                        echo $sqlResult['streamInformation'][$k-1]['str_name'];
-                        $firstInputted = true;
-                    } else {
-                        echo ', '.$sqlResult['streamInformation'][$k-1]['str_name'];
-                    }
-                }
-            }
-
-        }
-        echo '</td>';
-        echo '</tr>';
-    }
-}
-
-function insertStaff($sqlResult){
-    for($i = 0; $i < count($sqlResult['staffInformation']); $i++){
-        $checked = '';
-        echo '<tr>';
-        echo '<td class="check-Small"><input type = "checkbox" '.$checked.'></td>';
-
-        echo '<td class = "data-item">'.$sqlResult['staffInformation'][$i]['staff_id'].'</td>';
-        echo '<td class = "data-item">'.$sqlResult['staffInformation'][$i]['staff_name_first'].' '.$sqlResult['staffInformation'][$i]['staff_name_last'].'</td>';
-        echo '</tr>';
-    }
-}
-
-function insertShift($sqlResult) {
-    $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-    for ($i = 0; $i < count($sqlResult['shiftInformation']); $i++) {
-        $time = $sqlResult['shiftInformation'][$i]['shi_time'];
-
-        if (date("h:i", strtotime($sqlResult['shiftInformation'][$i]['shi_time'])) < date("h:i", strtotime("9:00"))) {
-            $time += 12;
-        }
-        if ($time >= 12) {
-            $sqlResult['shiftInformation'][$i]['shi_time'] .= 'pm';
-        } else {
-            $sqlResult['shiftInformation'][$i]['shi_time'] .= 'am';
-        }
-
-        for ($j = 0; $j < count($sqlResult['streamInformation']); $j++) {
-            if ($sqlResult['streamInformation'][$j]['stream_id'] == $sqlResult['shiftInformation'][$i]['shi_stream']) {
-                $stream = $sqlResult['streamInformation'][$j]['str_name'];
-            }
-        }
-        echo '<tr>';
-        echo '<td class="check-Small"><input type = "checkbox" ></td>';
-        echo '<td class = "data-item">' . $sqlResult['shiftInformation'][$i]['student_id'] . '</td>';
-        echo '<td class = "data-item">' . $stream . '</td>';
-        echo '<td class = "data-item">' . $days[$sqlResult['shiftInformation'][$i]['shi_day']] . '</td>';
-        echo '<td class = "data-item">' . $sqlResult['shiftInformation'][$i]['shi_time'] . '</td>';
-        echo '<td class = "data-item">' . $sqlResult['shiftInformation'][$i]['shi_duration'] . ' Hour(s)</td>';
-        echo '<td class = "data-item" HIDDEN><input type = "hidden" value = "' . $sqlResult['shiftInformation'][$i]['shift_id'] . '"></td>';
-        echo '</tr>';
-    }
-}
-
-function insertAbsent($sqlResult) {
-    for($i = 0; $i < count($sqlResult['absentInformation']); $i++){
-        for($j=0;$j < count($sqlResult['absentStudentInformation']);$j++){
-            if($sqlResult['absentInformation'][$i]['volunteer_id'] == $sqlResult['absentStudentInformation'][$j]['student_id']){
-                echo '<tr>';
-                echo '<td class="check-Small"><input type = "checkbox" ></td>';
-                echo '<td class = "data-item">'.$sqlResult['absentInformation'][$i]['volunteer_id'].'</td>';
-                echo '<td class = "data-item">'.$sqlResult['absentStudentInformation'][$j]['stu_name_first'].' '.$sqlResult['absentStudentInformation'][$j]['stu_name_last'].'</td>';
-                echo '<td class = "data-item">'.$sqlResult['absentInformation'][$i]['absence_timestamp'].'</td>';
-                echo '<td class = "data-item">'.$sqlResult['absentInformation'][$i]['absent_end_timestamp'].'</td>';
-                echo '<td class = "data-item">'.$sqlResult['absentInformation'][$i]['reason'].'</td>';
-                echo '<td class = "data-item" HIDDEN><input type = "hidden" value = "'.$sqlResult['absentInformation'][$i]['absence_id'].'"></td>';
-                echo '</tr>';
-            }
-        }
-    }
-}
-
-function handlePost(){
-    switch($_GET['action']){
-        case 'manageVolunteer':
-            manageVolunteer();
-            break;
-        case 'manageStaff':
-            manageStaff();
-            break;
-        case 'manageShift':
-            manageShift();
-            break;
-        case 'manageAbsent':
-            manageAbsent();
-            break;
-        default:
-            break;
-    }
-}
-
-function manageAbsent()
-{
-    if (isset($_POST['type'])) {
-        switch ($_POST['type']) {
-            case 'new':
-                $time = date("Y-m-d H:i:s", strtotime($_POST['time']));
-                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.absences
-                  (absence_timestamp, volunteer_id, reason) VALUES (:timestamp, :id, :reason)", array($time, $_POST['id'], $_POST['reason']));
-                $sqlObject->Execute();
-                break;
-            case 'delete':
-                $deleteQuery = "DELETE FROM STIMulate.absences WHERE absence_id IN (";
-                for ($i = 0; $i < count($_POST['absent_id']); $i++) {
-                    if ($i + 1 == count($_POST['absent_id'])) {
-                        $deleteQuery .= ":val" . $i;
-                    } else {
-                        $deleteQuery .= ":val" . $i . ', ';
-                    }
-                }
-
-                $deleteQuery .= ");";
-                $sqlObject = new \PHP\SqlObject($deleteQuery, $_POST['absent_id']);
-                $sqlObject->Execute();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-function manageShift()
-{
-    if (isset($_POST['type'])) {
-        var_dump($_POST);
-        switch ($_POST['type']) {
-            case 'new':
-                $dayIndex = date("w", strtotime($_POST['day'])) - 1;
-                $streamID = '';
-                switch ($_POST['stream']) {
-                    case 'IT':
-                        $streamID = 2;
-                        break;
-                    case 'Duty Host':
-                        $streamID = 1;
-                        break;
-                    case 'Maths':
-                        $streamID = 3;
-                        break;
-                    case 'Science':
-                        $streamID = 4;
-                        break;
-                }
-
-                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.shifts (student_id, shi_stream, shi_day, shi_time,
-                                            shi_duration) VALUES (:id, :stream, :day, :time, :duration);", array($_POST['id'], $streamID, $dayIndex, $_POST['time'], $_POST['duration']));
-                $sqlObject->Execute();
-                break;
-            case 'delete':
-                $deleteQuery = "DELETE FROM STIMulate.shifts WHERE shift_id IN (";
-                for ($i = 0; $i < count($_POST['shift_id']); $i++) {
-                    if ($i + 1 == count($_POST['shift_id'])) {
-                        $deleteQuery .= ":val" . $i;
-                    } else {
-                        $deleteQuery .= ":val" . $i . ', ';
-                    }
-                }
-
-
-                $deleteQuery .= ");";
-                $sqlObject = new \PHP\SqlObject($deleteQuery, $_POST['shift_id']);
-                $sqlObject->Execute();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-function manageStaff()
-{
-    if (isset($_POST['id'], $_POST['type'])) {
-        if (isset($_POST['name'])) {
-            $name = explode(' ', $_POST['name']);
-            $first = $name[0];
-            if (isset($name[1])) {
-                $last = $name[1];
-            } else {
-                $last = " ";
-            }
-        }
-        switch ($_POST['type']) {
-            case 'new':
-                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.staff (staff_id, staff_name_first,
-              staff_name_last, staff_password, active)
-                VALUES (:id, :name, :last, MD5(:pass), 1);", array($_POST['id'], $first, $last, $_POST['password']));
-                $sqlObject->Execute();
-                break;
-            case 'manage':
-
-                $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.staff
-                SET staff_id = :newId, staff_name_first = :firstname, staff_name_last = :lastname
-                WHERE staff_id = :id;", array($_POST['newId'], $first, $last, $_POST['id']));
-                $sqlObject->Execute();
-                break;
-            case 'delete':
-                $deleteQuery = "UPDATE STIMulate.staff
-                SET active = 0
-                WHERE staff_id IN (";
-
-                for ($i = 0; $i < count($_POST['id']); $i++) {
-                    if ($i + 1 == count($_POST['id'])) {
-                        $deleteQuery .= ":val" . $i;
-                    } else {
-                        $deleteQuery .= ":val" . $i . ', ';
-                    }
-                }
-                $deleteQuery .= ");";
-
-                $sqlObject = new \PHP\SqlObject($deleteQuery, $_POST['id']);
-
-                $sqlObject->Execute();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-function manageVolunteer()
-{
-    if (isset($_POST['id'], $_POST['type'])) {
-        if (isset($_POST['name'], $_POST['stream'])) {
-            $name = explode(' ', $_POST['name']);
-            $first = $name[0];
-            if (isset($name[1])) {
-                $last = $name[1];
-            } else {
-                $last = "";
-            }
-        }
-        switch ($_POST['type']) {
-            case 'new':
-                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.facilitators (student_id, stu_name_first, stu_name_last, active)
-                                                        VALUES (:id, :name, :last, 1);", array($_POST['id'], $first, $last));
-                $sqlObject->Execute();
-                break;
-            case 'manage':
-                $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.facilitators
-                                                            SET student_id = :id, stu_name_first = :firstname, stu_name_last = :lastname
-                                                            WHERE student_id = :id;", array($_POST['id'], $first, $last));
-                $sqlObject->Execute();
-                break;
-            case 'delete':
-                $deleteQuery = "UPDATE STIMulate.facilitators
-                                        SET active = 0
-                                        WHERE student_id IN (";
-
-                for ($i = 0; $i < count($_POST['id']); $i++) {
-                    if ($i + 1 == count($_POST['id'])) {
-                        $deleteQuery .= ":val" . $i;
-                    } else {
-                        $deleteQuery .= ":val" . $i . ', ';
-                    }
-                }
-                $deleteQuery .= ");";
-                $sqlObject = new \PHP\SqlObject($deleteQuery, $_POST['id']);
-                $sqlObject->Execute();
-                break;
-            default:
-                break;
-        }
-    }
-}
 ?>

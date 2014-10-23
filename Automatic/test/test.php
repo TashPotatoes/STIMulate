@@ -7,6 +7,8 @@
 <link href="/CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
 <link href="/CSS/TimeTableFilter.CSS" rel="stylesheet" type="text/css">
 <link href="/CSS/ManagePfl.CSS" rel="stylesheet" type="text/css">
+<link href="/CSS/ManagePfl.CSS" rel="stylesheet" type="text/css">
+<script src="Admin_Gen_Timetable.js"></script>
 	<meta charset="UTF-8">
 	<script src="../dist/glpk.min.js"></script>	
 	
@@ -322,7 +324,7 @@
 	if(isset($_POST['stream'])) {
 		$stream =  $_POST['stream'];
 		echo "<p>Current Stream: " . $stream . "</p>";
-		generateCPLEX($stream);?>
+		generateOPL($stream);?>
 		
 		<input type="submit" value= "Generate Table" onclick="run()" />
 		<pre id="log"/>
@@ -468,11 +470,11 @@ End
             var now = new Date();
 	        var d = (now.getTime() - start.getTime()) / 1000;
 	        logNode.appendChild(document.createTextNode(value + "\n"));
-            if (d > 60) throw new Error("timeout");
+            if (d > 200) throw new Error("timeout");
 	        console.log(value);
         };
 		
-		function javascriptToPHP( jsvar, pageURL) { 
+		/*function javascriptToPHP( jsvar, pageURL) { 
 		console.log("here");
 				 $.ajax({
 						url: pageURL,
@@ -532,7 +534,7 @@ End
 			
 			console.log("in run");
 				
-		}
+		}*/
         
     </script>
 </body>
