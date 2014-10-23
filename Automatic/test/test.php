@@ -229,7 +229,21 @@
 				}
 	}
 	
-	function resultsToDatabase2(){
+	function nextIsConsec($arrayResults, $i, $consec, $total){
+		// while the next person is the same for the next entry keep checking
+		if ($results[i + $consec + 1][0] == $results[i + $consec][0]){
+			// check the next person has a shift for the next entry 
+			 if ($results[i + $consex + 1][2] == 1){
+				// check that it's the next shift on the same day
+				if ($results[i + $consec + 1][2] % $total == $results[i + $consec][2] % $total + 1){ 
+					return true;
+				}
+			 }	
+		}
+	} 
+	
+	
+	function resultsToDatabase(){
 				//shift_id (unique for student) student_id, shi_stream, shi_day, shi_time, shi_duration
 				
 				// Return the javascript array of person, shift and value 
@@ -243,31 +257,41 @@
 						
 						// assume shift_ID goes from 0 to shiftnum,
 						// student_ID, shift_ID, stream, day, shift_time)
+						/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
 						$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
-						foreach ($results as $entry){
-							echo "<pre>";
-							echo print_r($entry);
-							echo "</pre>";
+						for ($i = 0;  $i < $entries; $i ++) {
 							
-							$student_ID =  $studentArray($entry[1]);//array_search($entry[1], $studentArray);
-							echo "student id is $student_ID";
-	//						$shift_ID = $entry[1]*$studentTotal+$entry[2];
-							if ($event[2] == 1) {
-							$shi_stream = $streamArray[$stream];
-							$shi_day = floor($entry[1] / $shiftTotal);
-							$shi_time = $timesArray[$entry[1]];
-							$shi_duration = 0;
-							
-							$sqlEntry = "( `". $student_ID  . "`, " . $shi_stream . ", `" . $shi_day . "`"; 
-							$sqlEntry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
-							//TODONE: the final "," breaks stuff. check if final "," causes sql error and if variable names have spaces at the start
+							// process if it's optimal for the ith shift/person combo to be true
+							if ($results[i][2] == 1) {
+								$student_ID =  $studentArray($entry[1]); //array_search($entry[1], $studentArray);
+								$shi_stream = $streamArray[$stream];
+								$shi_day = floor($entry[1] / $shiftTotal);
+								$shi_time = $timesArray[$entry[1] % $shiftTotal] ;
+								
+								// Check for consecutive shifts. 
+								//Check next shift/person is same person, check there is a shift for that person, check its on the same day, check its the next shift. 
+								$consec = 0;
+								while (nextIsConsec($results, $i, $consec, $shiftTotal)) {
+									$i++;
+									$consec++;
+								}
+								$shi_duration = $consec + 1;
+								
+								$sqlEntry = "( '". $student_ID  . "', $shi_stream , $shi_day , ";
+								$sqlEntry .= "'" . $shi_time  . "' $shi_duration . ), ";
+							}
 						}
-						}
+
+						$sqlEntry = rtrim($sqlEntry,",");
 						
 						// add constructed table to database
 						$automaticTable = new \PHP\SqlObject("$sqlEntry", array());
 						$automaticTable->Execute();
+
+				} else {
+					echo "There has been an error";
 				}
+				
 	}
 	
 	
@@ -464,17 +488,28 @@ End
         
 			var results;
 			
-            //l og("obj: " + glp_mip_obj_val(lp));
+            log("obj: " + glp_mip_obj_val(lp));
+			
             for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
-				var person = Integer.parseInt(glp_get_col_name(lp, i) [1]);
-				var shift = Integer.parseInt(glp_get_col_name(lp, i) [3]);
-				var value = Integer.parseInt(glp_mip_col_val(lp, i));
-				results.push([person, shift, value]); //results[person][shift]  = value; 
+				if (glp_mip_obj_val(lp) != 0){
+					if (Integer.parseInt(glp_get_col_name(lp, i) [0])  == "x"){
+						var person = Integer.parseInt(glp_get_col_name(lp, i) [1]);
+						var shift = Integer.parseInt(glp_get_col_name(lp, i) [3]);
+						var value = Integer.parseInt(glp_mip_col_val(lp, i));
+						results.push([person, shift, value]); //results[person][shift]  = value; 
+					}
+					
+					javascriptToPHP(results, 'test.php');
+				
+				} else {
+					alert("There was no feasible solution");
+				}
+					
             }
 			
 			console.log("in run");
-			javascriptToPHP(results, 'test.php');	
+				
 		}
         
     </script>

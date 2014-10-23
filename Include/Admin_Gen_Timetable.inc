@@ -30,6 +30,17 @@ require_once 'PHP/SqlObject.php';
 <?php	
 	} 	
 ?>
+<script>
+        var start;
+		var logNode = document.getElementById("log");
+        var log = glp_print_func = function(value){
+            var now = new Date();
+	        var d = (now.getTime() - start.getTime()) / 1000;
+	        logNode.appendChild(document.createTextNode(value + "\n"));
+            if (d > 60) throw new Error("timeout");
+	        console.log(value);
+        };
+</script>
 
 
 
@@ -37,72 +48,7 @@ require_once 'PHP/SqlObject.php';
  * Based on the page get, retrieve the right information and return the data
  * @return array An associative array of database data
  */
-function RetrieveData(){
-    // Defining the SQL queries to pull data from the database
-    $sqlQueries = ['absentSql' => 'SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
-                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() ORDER BY volunteer_id asc',
-                    'allShiftSql' => 'SELECT * FROM STIMulate.shifts ORDER BY student_id asc',
-                    'allStreamsSql' => 'SELECT * FROM STIMulate.streams',
-                    'allStreamStreamsSql' => 'SELECT * FROM STIMulate.facilitator_streams',
-                    'allStaffSql' => 'SELECT * FROM STIMulate.staff WHERE active =1 ORDER BY staff_name_first asc',
-                    'allVolunteerSql' => 'SELECT * FROM STIMulate.facilitators WHERE active = 1 ORDER BY stu_name_first asc'];
-
-    // Depending on the action return the appropraite information
-    switch($_GET['action']) {
-        // If user wants to manage volunteers
-        case 'manageVolunteer':
-            // Execute 3 sql queries and assign them to an associative array to return
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allVolunteerSql']);
-            $volunteerInformation = $sqlObject->Execute();
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allStreamsSql']);
-            $streamInformation = $sqlObject->Execute();
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allStreamStreamsSql']);
-            $volunteerStreamInformation = $sqlObject->Execute();
-
-            // Return associative array
-            return array('volunteerInformation' => $volunteerInformation, 'streamInformation' => $streamInformation, 'volunteerStreamInformation' => $volunteerStreamInformation);
-        case 'manageStaff':
-            // Execute 3 sql queries and assign them to an associative array to return
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allStaffSql']);
-            $staffInformation = $sqlObject->Execute();
-
-            // Return associative array
-            return array('staffInformation' => $staffInformation);
-        case 'manageShift':
-            // Retreive all shift and stream information
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allShiftSql']);
-            $shiftInformation = $sqlObject->Execute();
-            $sqlObject = new \PHP\SqlObject($sqlQueries['allStreamsSql']);
-            $streams = $sqlObject->Execute();
-
-            return array('shiftInformation' => $shiftInformation, 'streamInformation' => $streams);
-        case 'manageAbsent':
-            $sqlObject = new \PHP\SqlObject($sqlQueries['absentSql']);
-            $abscentInformation = $sqlObject->Execute();
-
-            $studentIds = array();
-            for($i = 0; $i < count($abscentInformation); $i++){
-                array_push($studentIds, $abscentInformation[$i]['volunteer_id']);
-            }
-            $retrieveStudentInformation = "SELECT * FROM STIMulate.facilitators WHERE student_id in (";
-            for($i = 0; $i < count($studentIds); $i++){
-                if($i+1 == count($studentIds)){
-                    $retrieveStudentInformation .= ":val".$i;
-                } else {
-                    $retrieveStudentInformation .= ":val".$i.', ';
-                }
-            }
-            $retrieveStudentInformation .= ") ORDER BY student_id asc;";
-
-            $sqlObject = new \PHP\SqlObject($retrieveStudentInformation, $studentIds);
-            $studentInformation = $sqlObject->Execute();
-
-            return array('absentInformation'=>$abscentInformation,'absentStudentInformation'=>$studentInformation);
-        // Default action
-        default:
-            return false;
-    }
-}
+function babla(){}
 
 /*
  * Determines the appropriate html to put into the button control box
