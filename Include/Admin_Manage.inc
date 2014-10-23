@@ -287,6 +287,8 @@ function insertAbsent($sqlResult) {
     for($i = 0; $i < count($sqlResult['absentInformation']); $i++){
         for($j=0;$j < count($sqlResult['absentStudentInformation']);$j++){
             if($sqlResult['absentInformation'][$i]['volunteer_id'] == $sqlResult['absentStudentInformation'][$j]['student_id']){
+                $string = (strlen($sqlResult['absentInformation'][$i]['reason']) > 30) ?
+                    substr($sqlResult['absentInformation'][$i]['reason'],0,25).' <span class = "clickMore">more..</span>' : $sqlResult['absentInformation'][$i]['reason'];
                 echo '<tr>';
                 echo '<td class="check-Small"><input type = "checkbox" ></td>';
                 echo '<td class = "data-item">'.$sqlResult['absentInformation'][$i]['volunteer_id'].'</td>';
@@ -438,7 +440,10 @@ function manageStaff()
             $name = explode(' ', $_POST['name']);
             $first = $name[0];
             if (isset($name[1])) {
-                $last = $name[1];
+                $last = '';
+                for($i = 1; $i < count ($name); $i++){
+                    $last .= $name[$i];
+                }
             } else {
                 $last = " ";
             }
@@ -488,7 +493,10 @@ function manageVolunteer()
             $name = explode(' ', $_POST['name']);
             $first = $name[0];
             if (isset($name[1])) {
-                $last = $name[1];
+                $last = '';
+                for($i = 1; $i < count ($name); $i++){
+                    $last .= $name[$i].' ';
+                }
             } else {
                 $last = "";
             }

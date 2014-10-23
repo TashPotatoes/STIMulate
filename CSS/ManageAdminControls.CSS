@@ -19,6 +19,8 @@
 #InformationTable td {
     text-align: left;
     border: 1px solid rgb(225,225,225);
+    overflow-x: hidden;
+
 }
 
 #InformationTable tr:nth-child(even) {
@@ -35,13 +37,12 @@
     margin: 10px 5px;
 }
 
-.check-Small {
-    width: 10px;
+#InformationTable td.check-Small, .check-head{
+    width: 5px;
 }
 
 .tableHead {
     padding-left: 10px;
-    min-width: 20%;
 }
 
 .data-item{

@@ -123,9 +123,6 @@ function manageVolunteerHtml(buttonHtml) {
         }
     }
 
-
-
-    console.log(streamArray[1]);
     html += '<tr><td>IT</td><td><input type="checkbox" name = "it" placeholder="Streams" '+checked(streamArray, 'IT')+'></td></tr>' +
     '<tr><td>Science</td><td><input type="checkbox" name = "science" placeholder="Streams" '+checked(streamArray, 'Science')+'></td></tr>' +
     '<tr><td>Math</td><td><input type="checkbox" name = "math" placeholder="Streams" '+checked(streamArray, 'Math')+'></td></tr>' +
@@ -257,7 +254,7 @@ function returnBody(getVariable, action){
             }
             break;
         case 'Manage':
-            if (checkedData.length > 0) {
+            if (checkedData.length > 0 && checkedData.length < 2) {
                 var buttonHtml = '<input type="submit" value = "Confirm" class = "inline">' +
                     '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
                     '<input type="hidden" name="type" value = "manage">';
@@ -275,6 +272,8 @@ function returnBody(getVariable, action){
                 default:
                     break;
                 }
+            } else if(checkedData.length > 1) {
+                return '<p>More then one record Selected. Please select only one to continue.</p><input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">';
             } else {
                 return '<p>Please check which records you wish to edit.</p><input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">';
             }
