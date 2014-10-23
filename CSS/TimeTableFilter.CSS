@@ -1,3 +1,4 @@
+/* Styles for the filtering elements of the timetable */
 .specialSearchSpan input {
     width: 400px;
     bottom: 10px;
@@ -37,10 +38,6 @@
 .searchIcon {
     top: 12px;
     padding-left: 5px;
-}
-
-.stream-filters {
-
 }
 
 #filterStreamIt {background: rgba(200,0,0,0.2);}

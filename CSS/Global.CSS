@@ -1,3 +1,6 @@
+/* Main Style sheet for this site */
+
+
 html, body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -49,6 +52,7 @@ body {
     padding-right: 0;
 }
 
+/* Element for aligning content to the side of the sidebar, not underneath */
 .push-right {
     margin-left: 200px;
     padding: 20px;

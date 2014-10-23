@@ -1,12 +1,8 @@
-/**
-Author: Pearl Gariano
-**/
-
 $(document).ready(function(){
     clickColorEvent();
 
 });
-
+/* Function to visually alter the volunteer hours data input */
 function clickColorEvent() {
 	$('td').on('click', function(){
 		if ($(this).hasClass("GREEN")) {

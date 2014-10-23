@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: crazygravy89
- * Date: 20/07/14
- * Time: 2:12 PM
- */
 
 namespace PHP;
 

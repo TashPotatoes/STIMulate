@@ -1,4 +1,5 @@
 <?php
+	// Page for logging out
     require_once 'uac.php';
 	$UserAccessControl = new UserAccessControl();
 
