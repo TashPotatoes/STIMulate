@@ -11,6 +11,7 @@ class UserAccessControl
     public $errors = array();
     public $messages = array();
     public $loop = 0;
+    public $requiresPasswordReset = false;
     public function __construct()
     {
         if (session_status() == PHP_SESSION_NONE) {
@@ -80,25 +81,21 @@ class UserAccessControl
     } elseif (!empty($_POST['login_input_username']) && !empty($_POST['login_input_password'])) {
 
             $user_name = $_POST['login_input_username'];
-            $password = md5($_POST['login_input_password']);
-            $sqlObject = new \php\SqlObject("SELECT * FROM staff 
-                                WHERE staff_id = :id AND staff_password = :pass", array($user_name, $password));
+            $password = $_POST['login_input_password'];
+            $sqlObject = new \php\SqlObject("SELECT * FROM STIMulate.staff
+                                WHERE staff_id = :id AND staff_password = MD5(:pass)", array($user_name, $password));
             $loginCheck = $sqlObject->Execute();
 
             if (count($loginCheck)) {
-
-                echo "STAFF";
                 $userType = "staff";
                 $result_row = $loginCheck;
-
-                var_dump($result_row);
-
                 $_SESSION['user_id'] = $loginCheck[0]['staff_id'];
                 $_SESSION['user_login_status'] = 1;
                 $_SESSION['user_type'] = $userType;
+                $_SESSION['requires_reset'] = $loginCheck[0]['passReset'] == '1';
 
             } else {
-                $this->errors[] = "This user does not exist.";
+                $this->errors[] = var_dump($sqlObject)."This user does not exist.";
             }
         } else {
             $this->errors[] = "Database connection problem.";

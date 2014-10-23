@@ -50,3 +50,7 @@
 .admin-controls {
     margin-right: 10px;
 }
+
+li.admin-controls.large {
+    width: 200px;
+}

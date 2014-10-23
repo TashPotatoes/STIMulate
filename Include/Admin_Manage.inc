@@ -27,7 +27,7 @@ if(isset($_GET['action'])) { ?>
     <div class = "filter">
         <div class = "headElement">
             <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-            <h2 class = "inline-text">Specialisation</h2>
+            <h2 class = "inline-text">Admin Controls</h2>
         </div>
     <span class = "filter-stream">
         <ul>
@@ -134,7 +134,8 @@ function RetrieveData(){
 function determineControls(){
     // Define all button options, and unset them as needed using the switch
     $buttonHtml = array('newButton' => '<li class = "admin-controls">New</li>','manageButton' => '<li class = "admin-controls">Manage</li>',
-        'deleteButton' => '<li class = "admin-controls">Delete</li>', 'addCSVButton' => '<li class = "admin-controls">Add by CSV</li>');
+        'deleteButton' => '<li class = "admin-controls">Delete</li>', 'resetPasswordButton' => '<li class = "admin-controls large">Reset Password</li>',
+        'addCSVButton' => '<li class = "admin-controls">Add by CSV</li>');
 
     // Depending on the action return the appropraite information
     switch($_GET['action']) {
@@ -144,9 +145,12 @@ function determineControls(){
             $buttonHtml = array();
             break;
         case 'manageAbsent':
-            unset($buttonHtml['addCSVButton']);
+            unset($buttonHtml['addCSVButton'],$buttonHtml['resetPasswordButton']);
             break;
         default:
+            if($_GET['action'] != 'manageStaff'){
+                unset($buttonHtml['resetPasswordButton']);
+            }
             break;
     }
 
@@ -255,13 +259,10 @@ function insertShift($sqlResult) {
     for ($i = 0; $i < count($sqlResult['shiftInformation']); $i++) {
         $time = $sqlResult['shiftInformation'][$i]['shi_time'];
 
-        if (date("h:i", strtotime($sqlResult['shiftInformation'][$i]['shi_time'])) < date("h:i", strtotime("9:00"))) {
-            $time += 12;
-        }
-        if ($time >= 12) {
-            $sqlResult['shiftInformation'][$i]['shi_time'] .= 'pm';
+        if (date("H:i", strtotime($sqlResult['shiftInformation'][$i]['shi_time'])) > date("H:i", strtotime("12:00"))) {
+            $sqlResult['shiftInformation'][$i]['shi_time'] = date("H:i", strtotime($time.' -12 hours')).'pm';
         } else {
-            $sqlResult['shiftInformation'][$i]['shi_time'] .= 'am';
+            $sqlResult['shiftInformation'][$i]['shi_time'] = $time.'am';
         }
 
         for ($j = 0; $j < count($sqlResult['streamInformation']); $j++) {
@@ -305,7 +306,13 @@ function handlePost(){
             manageVolunteer();
             break;
         case 'manageStaff':
-            manageStaff();
+            if(isset($_POST['type'])){
+                if($_POST['type'] == 'resetPassword'){
+                    resetPassword();
+                } else {
+                    manageStaff();
+                }
+            }
             break;
         case 'manageShift':
             manageShift();
@@ -517,5 +524,21 @@ function manageVolunteer()
                 break;
         }
     }
+}
+
+function resetPassword(){
+    $sql = 'UPDATE STIMulate.staff SET staff_password = MD5(:password), passReset = 1 WHERE staff_id in (';
+
+    for ($i = 0; $i < count($_POST['id']); $i++) {
+        if ($i + 1 == count($_POST['id'])) {
+            $sql .= ":val" . $i;
+        } else {
+            $sql .= ":val" . $i . ', ';
+        }
+    }
+
+    $sql .= ");";
+    $sqlObject = new \PHP\SqlObject($sql, array_merge(array($_POST['password']), $_POST['id']));
+    $sqlObject->Execute();
 }
 ?>

@@ -1,0 +1,32 @@
+#passwordWrapper {
+    max-width: 500px;
+    width: 100%;
+
+    padding-bottom: 10px;
+    margin: 10px auto;
+    background: #ffffff;
+    border: 2px solid rgb(225,225,225);
+}
+
+#passwordform {
+    max-width: 450px;
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+#passwordWrapper input {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    box-sizing : border-box
+}
+
+#passwordWrapper input[type = "button"], #passwordWrapper input[type = "submit"] {
+    padding: 5px;
+    width: 70px;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
+
+}

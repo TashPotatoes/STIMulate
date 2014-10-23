@@ -3,6 +3,7 @@
  */
 
 checking = false;
+onChangeIndex = 0;
 
 $(document).ready(function(){
     LoadTableInteractions();
@@ -158,6 +159,7 @@ function OnChange(checkedData){
                     }
                 }
                 inputs[i].value = hour + ':' + minute + ':00';
+
             } else if(isset(checkedData[currentIndex].FetchAllData()[i])){
                 if(checkedData[currentIndex].FetchAllData()[i].split(' ')[1] == 'Hour(s)') {
                     $(inputs[i]).val(checkedData[currentIndex].FetchAllData()[i].split(' ')[0]).change();
@@ -166,7 +168,18 @@ function OnChange(checkedData){
                 }
             }
         }
+        var appendHtml = '';
+        for(var i = 0; i < inputs.length; i++) {
+            appendHtml += '<input type = "hidden" value = "'+checkedData[currentIndex].FetchAllData()[i]+'" name = "id'+onChangeIndex+i+'">';
+        }
+        onChangeIndex++;
+
+        $(inputs[0]).parent().append(appendHtml);
     })
+}
+
+function storeModifiedData(){
+
 }
 
 function RemoveAllPopups(){

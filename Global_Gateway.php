@@ -5,11 +5,16 @@
 
 	$UserAccessControl = new UserAccessControl();
 	if ($UserAccessControl->isUserLoggedIn() == true) {
-        header("Location: Volunteer_Shifts.php");
+        if($_SESSION['requires_reset']){
+            header("Location: Admin_Login_Reset.php");
+        } else {
+            header("Location: Volunteer_Shifts.php");
+        }
 	} else {
         $errors = 1;
 	}
     $UserAccessControl->checkTimeout();
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +37,7 @@
                 include 'Include/Global_Breadcrumb.inc'; ?>
 <div>
 <?php
-if($errors) {
+if(isset($errors)) {
     if (isset($UserAccessControl)) {
         if ($UserAccessControl->errors) {
             foreach ($UserAccessControl->errors as $error) {

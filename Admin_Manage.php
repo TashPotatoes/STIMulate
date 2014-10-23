@@ -39,6 +39,7 @@ $currentPlace = "<a href = \"index.php\">
 include 'Include/Global_Breadcrumb.inc';
 include 'Include/Global_Sidebar.inc';
 include 'Include/Admin_Manage.inc';
+
 ?>
 </main>
 </body>
