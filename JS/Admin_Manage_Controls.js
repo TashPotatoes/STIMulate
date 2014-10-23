@@ -1,12 +1,8 @@
-/**
- * Created by Hayden on 10/10/2014.
- */
-
-checking = false;
-
 $(document).ready(function(){
+    checking = false;
     LoadTableInteractions();
 });
+
 
 function LoadTableInteractions(){
 

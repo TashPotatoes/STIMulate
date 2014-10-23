@@ -1,5 +1,4 @@
 <?php
-
 require_once "SqlObject.php";
 
 if(isset($_POST["action"])){

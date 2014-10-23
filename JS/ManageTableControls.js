@@ -1,7 +1,3 @@
-/**
- * Created by Hayden on 10/10/2014.
- */
-
 checking = false;
 
 $(document).ready(function(){
@@ -26,7 +22,6 @@ function LoadTableInteractions(){
 }
 
 function CheckAll(check){
-
         if(!check) {
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).prop('checked', "checked");
