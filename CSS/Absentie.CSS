@@ -1,9 +1,6 @@
+/* Styling for absentee related elements */
 .contentWrapper {
     background-color: white;
-}
-
-#timeWrapper {
-
 }
 
 #absentieForm input[type = 'date'],#absentieForm input[type = 'time'] {

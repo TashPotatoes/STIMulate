@@ -1,3 +1,4 @@
+		/* Parta javascript variables to PHP (via sending as POST & reloading page) */
 		function javascriptToPHP( jsvar, pageURL) { 
 		console.log("here");
 				 $.ajax({
@@ -14,7 +15,7 @@
 						}
 				});
 		}
-		
+		/* function for simplex algorithm */
         function run(){
             start = new Date(); 
 			logNode.innerText = "";

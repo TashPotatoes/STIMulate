@@ -1,7 +1,3 @@
-/**
- * Created by Hayden on 9/10/2014.
- */
-
 $(document).ready(function(){
     LoadUserInteractions();
 });

@@ -1,3 +1,4 @@
+
 /**
  * Created by Hayden on 10/10/2014.
  */
@@ -6,8 +7,10 @@ checking = false;
 onChangeIndex = 0;
 
 $(document).ready(function(){
+    checking = false;
     LoadTableInteractions();
 });
+
 
 function LoadTableInteractions(){
 

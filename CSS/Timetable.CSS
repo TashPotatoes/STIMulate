@@ -1,3 +1,4 @@
+/* Stylings for the Timetable displayed on the homepage, and a number of other locations */
 .timetableWrapper {
     margin: 15px auto 0 auto;
     max-width: 1600px;
@@ -75,11 +76,12 @@ td:last-child {
     text-align: right;
     padding: 2px;
 }
+/* Namecards relate to the individual facilitators and their related elements on the timetable */
 .namecard {
     height: 20px;
     padding: 2px 0;
 }
-
+/* namecard badges */
 .namecard span {
     text-align: center;
     display: inline-block;
@@ -93,6 +95,7 @@ td:last-child {
     margin-right: 3px;
 }
 .namecard .DH {color: #212121;}
+/* The below styles are  applied to badges based their data */
 .IT {background-color: rgba(250,0,0,.9);}
 .MA {background-color: rgba(11,118,13,.9);}
 .SC {background-color: rgba(137,22,132,.9);}
@@ -110,10 +113,6 @@ td:last-child {
     background-size: 16px 16px;
     background-position: top 4px right 3px;
     opacity: 0.5;
-    color: rgba(200,50,50, 0.5);
+    color: rgba(120,50,50, 0.5);
+    content: "<span style='float:right; color: rgb(100,100,100)'>away</a>";
 }
-.absent-current { /*meaning, the current week */
-    opacity: 0.5;
-}
-
-/*added css for timetable preferences*/

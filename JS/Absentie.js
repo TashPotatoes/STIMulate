@@ -1,18 +1,15 @@
-/**
- * Created by Hayden on 13/10/2014.
- */
-
 $(document).ready(function(){
     InitialiseDocumentControls();
 });
 
+/* This function simply listens for interactions with relevant text */
 function InitialiseDocumentControls(){
     $(document).on('click', '.interactive-text', function(event){
         buttonClick = new ButtonControls(event);
         buttonClick.onClick();
     });
 }
-
+/* This function  sets up the controls for the user to modify */
 var ButtonControls = function(event){
     var event = event;
     var name = $(event.target).html();

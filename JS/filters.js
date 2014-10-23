@@ -4,7 +4,7 @@ $(document).ready(function(){
     $(document).tooltip();
 })
 
-
+/* Function to listen for stream button clicks */
 function Initialise(){
     $("#filterStreamIt, #filterStreamSc, #filterStreamMa, #filterStreamDh ").on("click", function() {
         UnHideTableElements();
@@ -12,20 +12,15 @@ function Initialise(){
         ResetSpecialisationFilters();
     });
 
-    $("#SpecFilter").on("change", function() {
-       // console.log($(this).value.text);
-        //get the inputs value
-        //find elements with ^ value in class
-        //do something with them.
-    });
 }
 
-function ResetSpecialisationFilters() {console.log("BLSADS");
+/* Reset specialisations on timetable on current stream */
+function ResetSpecialisationFilters() {
     $(".namecard").css("opacity", "1");
     $(".namecard").parent().css("background-color", "white");
-
-
 }
+
+/* Display timetable & specialisation on selecting stream after first loading page*/
 function UnHideTableElements() {
     if( $(".specfilter").css("display") ) {
         $(".specfilter").css("display", "block");
@@ -34,13 +29,14 @@ function UnHideTableElements() {
         $("#defaultLogo").remove();
     }
 }
+/* Display namecards matching the chosen stream / hide the rest */
 function FilterByStream(stream) {
 	StreamClass = ".f-" + stream.substr(-2).toUpperCase();
 	$(".namecard").not(StreamClass).css({"visibility": "hidden","display": "none"});
 	$(StreamClass).css({"visibility": "visible", "display": "block"})
 }
 
-
+/* Retrieve specialisation data, then filter namecards to match the specialisations */
 function FilterBySpecialisations() {
 	var RawSpecialisations;
     var Spec = [];
@@ -80,7 +76,6 @@ function FilterBySpecialisations() {
 
         },
         error: function(){
-            console.log("ajax is fucking shit");
         }
     
     });
@@ -90,7 +85,6 @@ function FilterBySpecialisations() {
             close: function( event, ui ) {}
         });
         $("#SpecFilter").on("autocompleteclose", function() { 
-            console.log("LOLWORKING?");
             var specIndex = $.inArray(this.value, Spec);
             var test = $.inArray(this.value, fac_spec_matrix);
             console.log(fac_spec_matrix);
