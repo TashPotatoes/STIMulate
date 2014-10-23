@@ -55,7 +55,7 @@ function run(){
 				results.push([person, shift, value]); //results[person][shift]  = value; 
 			}
 			console.log(results);
-			//javascriptToPHP(results, '../Admin_Gen_Timetable.php');
+			javascriptToPHP(results, '../Admin_Gen_Timetable.php');
 		
 		} else {
 			alert("There was no feasible solution");
