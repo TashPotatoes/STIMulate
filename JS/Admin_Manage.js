@@ -276,6 +276,22 @@ function returnBody(getVariable, action){
                 return '<p>Please check which records you wish to delete.</p><input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">';
             }
             break;
+        case 'Reset Password':
+            if(checkedData.length>0) {
+                var buttonHtml = '<input type="submit" value = "Confirm" class = "inline">' +
+                    '<input type="button" value = "Cancel" class = "inline" onclick="RemoveAllPopups();">' +
+                    '<input type="hidden" name="type" value = "resetPassword">';
+                var html = '<p>Reset ' + checkedData.length + ' password(s)?</p>' +
+                    '<label>Provide to staff to login and reset:</label>' +
+                    '<input type = "text" value="password' + Math.floor(Math.random() * 100) + 1 + '" name="password">';
+
+                for (var i = 0; i < checkedData.length; i++) {
+                    html += '<input type="hidden" name="id[]" value = "' + checkedData[i].FetchAllData()[0] + '">';
+                }
+
+                return html + buttonHtml;
+            }
+            break;
         default:
             return '<div></div>';
             break;
