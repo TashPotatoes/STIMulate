@@ -11,7 +11,7 @@
 
         $sqlObject = new \PHP\SqlObject("select * from facilitator_specialisations 
 right join specialisations on facilitator_specialisations.spec_id=specialisations.spec_id
-where user_id = :userid or user_id is null", array($_SESSION['user_id']));
+where user_id = :userid or user_id is null order by 'spec_id'", array($_SESSION['user_id']));
         $data = $sqlObject->Execute();
 
 if($_POST) {
