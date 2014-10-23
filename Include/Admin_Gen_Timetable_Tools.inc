@@ -10,11 +10,6 @@
 ini_set('max_execution_time', 300);
 ini_set("memory_limit","20M");
 
-//require '/PHP/functions.php'; 
-require_once '/php/databaseAPI.php';
-//require_once '/php/SqlObject.php';
-require '/php/uac.php';
-
 $stream = "";
 $studentTotal = 0;
 
@@ -29,7 +24,7 @@ $studentTotal = 0;
  * @return string  of OPL model to run simplex algorithm
  */
 
-function generateOPL($stream){
+function GenerateOPL($stream){
 		// Generate all data for all students. Database houses multiple rows per student.
 		$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY new_" .$stream." DESC, user_id ASC, day ASC", array(strtoupper($stream)));  
 		$studentPrefRS = $studentPrefSQL->Execute();		

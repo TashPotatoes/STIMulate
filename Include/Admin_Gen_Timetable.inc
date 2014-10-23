@@ -15,8 +15,9 @@ require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 //$stream = "IT";
 if(isset($_POST['stream'])) {
 	$stream =  $_POST['stream'];
-	echo "<p>Current Stream: " . $stream . "</p>";
-	generateOPL($stream);?>
+	//echo ("<p> Current Stream: $stream </p>");
+	GenerateOPL($stream);
+?>
 	
 	<input type="submit" value= "Generate Table" onclick="run()" />
 	<pre id="log"/>
@@ -25,7 +26,7 @@ if(isset($_POST['stream'])) {
 } else {
 ?>	
 	<div>
-		<form name="streamSelect" action="test.php" method="post">
+		<form name="streamSelect" action="Include/Admin_Gen_Timetable.inc" method="post">
 		<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
 		<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
 		<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
@@ -167,6 +168,3 @@ End
 	        console.log(value);
         };
 </script>
-
-
-?>
