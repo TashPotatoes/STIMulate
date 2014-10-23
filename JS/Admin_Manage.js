@@ -104,15 +104,43 @@ function manageVolunteerHtml(buttonHtml) {
     for (var i = 0; i < checkedData.length; i++) {
         html += '<option>' + checkedData[i].FetchAllData()[1] + '</option>';
     }
+
     html += '</select>' +
     '<label>ID Number:</label>' +
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "newId" placeholder="n827xxxx">' +
     '<label>Name:</label>' +
     '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[1] + '" name = "name" placeholder="Your first and last name..">' +
     '<label>Stream:</label>' +
-    '<input type="text" value = "' + checkedData[currentSelectIndex].FetchAllData()[2] + '" name = "stream" placeholder="Streams">' +
-    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">';
+    '<input type="hidden" value = "' + checkedData[currentSelectIndex].FetchAllData()[0] + '" name = "id">' +
+    '<table>';
+
+    var streamArray = [];
+    for (var i = 0; i < checkedData.length; i++) {
+        for (var j = 0; j < $(checkedData[i].FetchAllData()[2]).length; j++) {
+            if ($($(checkedData[i].FetchAllData()[2])[j]).is('input')) {
+                streamArray.push($($(checkedData[i].FetchAllData()[2])[j]).attr('name'));
+            }
+        }
+    }
+
+
+
+    console.log(streamArray[1]);
+    html += '<tr><td>IT</td><td><input type="checkbox" name = "it" placeholder="Streams" '+checked(streamArray, 'IT')+'></td></tr>' +
+    '<tr><td>Science</td><td><input type="checkbox" name = "science" placeholder="Streams" '+checked(streamArray, 'Science')+'></td></tr>' +
+    '<tr><td>Math</td><td><input type="checkbox" name = "math" placeholder="Streams" '+checked(streamArray, 'Math')+'></td></tr>' +
+    '<tr><td>Duty Host</td><td><input type="checkbox" name = "dutyHost" placeholder="Streams" '+checked(streamArray, 'Duty Host')+'></td></tr>' +
+    '</table>';
     return html + buttonHtml;
+}
+
+function checked(streamArray, checkAgainst){
+    for(var i = 0; i < streamArray.length; i++){
+        if(streamArray[i] == checkAgainst){
+            return 'Checked';
+        }
+    }
+    return '';
 }
 
 function manageStaffHtml(buttonHtml) {
@@ -168,7 +196,13 @@ function returnBody(getVariable, action){
                     '<label>Name:</label>' +
                     '<input type="text" name = "name" placeholder="Your first and last name.." REQUIRED>' +
                     '<label>Stream:</label>' +
-                    '<input type="text" name = "stream" placeholder="Streams">' + buttonHtml;
+                    '<table>' +
+                    '<tr><td>IT</td><td><input type="checkbox" name = "it" placeholder="Streams"></td></tr>' +
+                    '<tr><td>Science</td><td><input type="checkbox" name = "science" placeholder="Streams"></td></tr>' +
+                    '<tr><td>Math</td><td><input type="checkbox" name = "math" placeholder="Streams"></td></tr>' +
+                    '<tr><td>Duty Host</td><td><input type="checkbox" name = "dutyHost" placeholder="Streams"></td></tr>' +
+                    '</table>' +
+                    buttonHtml;
                     break;
                 case 'manageStaff':
                     return '<label>Staff Number:</label>' +

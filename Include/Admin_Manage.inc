@@ -212,6 +212,7 @@ function insertRows($sqlResult){
 }
 
 function insertVolunteer($sqlResult){
+    $streamIndex = array(1, 3, 2, 0);
     for($i = 0; $i < count($sqlResult['volunteerInformation']); $i++){
         echo '<tr>';
         $checked = '';
@@ -228,14 +229,14 @@ function insertVolunteer($sqlResult){
             for($k = 1; $k < (count($sqlResult['volunteerStreamInformation'][$j])/2); $k++){
                 if($sqlResult['volunteerStreamInformation'][$j][$k] == '1' && $sqlResult['volunteerInformation'][$i]['student_id'] == $sqlResult['volunteerStreamInformation'][$j][0]){
                     if($firstInputted == false){
-                        echo $sqlResult['streamInformation'][$k-1]['str_name'];
+                        echo '<span>'.$sqlResult['streamInformation'][$streamIndex[$k-1]]['str_name'].'</span>';
                         $firstInputted = true;
                     } else {
-                        echo ', '.$sqlResult['streamInformation'][$k-1]['str_name'];
+                        echo '<span>, '.$sqlResult['streamInformation'][$streamIndex[$k-1]]['str_name'].'</span>';
                     }
+                    echo '<input type = "hidden" name = "'.$sqlResult['streamInformation'][$k-1]['str_name'].'" value = "'.$sqlResult['volunteerStreamInformation'][$j][$k].'">';
                 }
             }
-
         }
         echo '</td>';
         echo '</tr>';
@@ -483,7 +484,7 @@ function manageStaff()
 function manageVolunteer()
 {
     if (isset($_POST['id'], $_POST['type'])) {
-        if (isset($_POST['name'], $_POST['stream'])) {
+        if (isset($_POST['name'])) {
             $name = explode(' ', $_POST['name']);
             $first = $name[0];
             if (isset($name[1])) {
@@ -496,13 +497,42 @@ function manageVolunteer()
             case 'new':
                 $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.facilitators (student_id, stu_name_first, stu_name_last, active)
                                                         VALUES (:id, :name, :last, 1);", array($_POST['id'], $first, $last));
+
                 $sqlObject->Execute();
+
+                // Adding stream data
+                if(!isset($_POST['it'])){$_POST['it'] = 0; }else{$_POST['it'] = 1;}
+                if(!isset($_POST['math'])){$_POST['math'] = 0; }else{$_POST['math'] = 1;}
+                if(!isset($_POST['science'])){$_POST['science'] = 0; }else{$_POST['science'] = 1;}
+                if(!isset($_POST['dutyHost'])){$_POST['dutyHost'] = 0; }else{$_POST['dutyHost'] = 1;}
+
+                // Adding stream data
+                $sql = "INSERT INTO STIMulate.facilitator_streams (user_id, is_it, is_sc, is_ma, is_dh)
+                                                        VALUES (:id, :it, :sc, :ma, :dh);";
+                $sqlObject = new \PHP\SqlObject($sql, array($_POST['id'], $_POST['it'], $_POST['math'], $_POST['science'], $_POST['dutyHost']));
+                $sqlObject->Execute();
+
                 break;
             case 'manage':
                 $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.facilitators
                                                             SET student_id = :newId, stu_name_first = :firstname, stu_name_last = :lastname
                                                             WHERE student_id = :id;", array($_POST['newId'], $first, $last, $_POST['id']));
                 $sqlObject->Execute();
+
+                $updateStream = "INSERT INTO STIMulate.facilitator_streams (user_id, is_it, is_sc, is_ma, is_dh)
+                                VALUES (:id, :it, :sc, :ma, :dh)
+                                ON DUPLICATE KEY
+                                UPDATE is_it = :it, is_sc = :sc, is_ma = :ma, is_dh = :dh;";
+
+                // Adding stream data
+                if(!isset($_POST['it'])){$_POST['it'] = 0; }else{$_POST['it'] = 1;}
+                if(!isset($_POST['math'])){$_POST['math'] = 0; }else{$_POST['math'] = 1;}
+                if(!isset($_POST['science'])){$_POST['science'] = 0; }else{$_POST['science'] = 1;}
+                if(!isset($_POST['dutyHost'])){$_POST['dutyHost'] = 0; }else{$_POST['dutyHost'] = 1;}
+
+                $sqlObject = new \PHP\SqlObject($updateStream, array($_POST['id'], $_POST['it'], $_POST['science'], $_POST['math'], $_POST['dutyHost']));
+                $sqlObject->Execute();
+
                 break;
             case 'delete':
                 $deleteQuery = "UPDATE STIMulate.facilitators
