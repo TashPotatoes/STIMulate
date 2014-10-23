@@ -1,0 +1,28 @@
+/* Styling for the Generate Timetable page */
+
+.content {
+	padding: 10px;
+	background-color: #fff;
+}
+
+.streams {
+	margin: 5px;
+}
+
+.stream ul{
+    list-style-type: none;
+}
+
+input[type=submit] {
+	/*height: 52px;*/
+	background-color: rgba(67,142,185, 0.75);
+    color: white;
+    height: 100%;
+	padding: 15px;
+	text-align: centre;
+	border: solid;
+	margin: 15px;
+	clear:both;
+	display: block;
+}
+

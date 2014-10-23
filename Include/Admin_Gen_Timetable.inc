@@ -21,44 +21,57 @@ $modelOPL = "";
      </div>
 	 
 	 <div class = "contentWrapper">
+		<div class = "content">
 	 
 <?php
 // for the user to select the stream
 if(isset($_POST['stream'])) {
+
 	$stream =  $_POST['stream'];
 	//echo ("<p> Current Stream: $stream </p>");
 	$modelOPL = GenerateOPL($stream);
 ?>
-	
-	<input class="admin-controls" type="submit" value= "Generate Table" onclick="run()" />
-	<pre id="log"/>
+
+	<textarea id='source' cols='100' rows='10'>	
 <?php 
-	//resultsToDatabase();
+	if ($modelOPL != "") {
+		echo ($modelOPL); 
+	} else {
+		echo ("OPL model placeholder");
+	}
+?>
+	</textarea>	
+		
+	<input type="submit" value= "Generate Table" onclick="run()" />
+
+	<pre id="log"/>
+
+<?php 
+	ResultsToDatabase();
 } else {
 ?>	
-	<div>
+
+	<div class="stream"">
+		Select stream
+		
 		<form name="streamSelect" action="Admin_Gen_Timetable.php" method="post">
-		<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
-		<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
-		<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
-		<input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/>
-		<input class="admin-controls" type="submit" value="Select Stream">
+		<ul>
+			<li><input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/></li>
+			<li><input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/></li>
+			<li><input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/></li>
+			<li><input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/></li>
+		</ul>
+		<input type="submit" value="Select Stream">		
 		</form>
+		
 	</div>
+
 <?php	
 	} 	
 ?>
-<textarea id="source" cols="100" rows="10">
-<?php if ($modelOPL == ""){
 
-?>
 
-<?php } else {
-	echo ($modelOPL);
-}
-?>
-</textarea>
-
+		</div>
 	</div>
 </div> 
 
@@ -69,7 +82,7 @@ if(isset($_POST['stream'])) {
 		var now = new Date();
 		var d = (now.getTime() - start.getTime()) / 1000;
 		logNode.appendChild(document.createTextNode(value + "\n"));
-		if (d > 60) throw new Error("timeout");
+		if (d > 200) throw new Error("timeout");
 		console.log(value);
 	};
 </script>

@@ -35,9 +35,6 @@ function GenerateOPL($stream){
 		$studentListSQL = new \PHP\SqlObject("SELECT student_id FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream GROUP BY user_id ORDER BY new_" . $stream . " DESC, user_id ASC", array($stream));  
 		$studentListRS = $studentListSQL->Execute();		
 		
-		
-		echo "retrieving from database<br/>";
-		flush();
 		$studentArray = array();
 		$studentTotal = 0;
 		foreach ($studentListRS as $row) {
@@ -46,10 +43,10 @@ function GenerateOPL($stream){
 		}
 		
 		if ($studentTotal == 0){
-			echo "no input data in database";
+			echo "Warning: No input data in database <br/>";
 		}
 		else if ($studentTotal < 8*5){
-			echo "you have " . $studentTotal . " students. It is recommended that you wait for more students to submit preferences<br/>";
+			echo "Warning: you have " . $studentTotal . " students. It is recommended that you wait for more students to submit preferences<br/>";
 		}
 		
 		$totalHours = 0;
@@ -58,10 +55,7 @@ function GenerateOPL($stream){
 			$studentIndex = array_search($row['user_id'], $studentArray,true);
 			$studentHours[$studentIndex] = $row["hours_" . $stream];
 			$totalHours += $row["hours_" . $stream];
-		}
-		
-		echo "processing student inputs<br/>";
-		flush();		
+		}	
 		
 		// Generates array with ith student and jth shift, where j is calculated by day + shift
 		$shiftTotal = 8; //TODONE maybe change to a value that calculated by counting number of columns in db after the stream field or whatever it is
@@ -102,8 +96,6 @@ function GenerateOPL($stream){
 		}
 		
 		// iterate over each persons preferences to create objective function
-		echo "generating model</br>";
-		flush();
 		$objective = "\* Objective function *\  \nMaximize \nobj:" ;
 		for ($person = 0; $person < $studentTotal; $person++){
 			for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
@@ -113,7 +105,6 @@ function GenerateOPL($stream){
 		// clean the objective function
 		$objective = str_replace("+-", "-", $objective);
 		
-		echo "starting constraints student hours</br>";
 		// iterate over each persons to make sure each persons total weekly hours doesn't exceed their specified hours for that stream
 		$constraint = "\n\n \* Constraints *\ \nSubject To \n";
 		for ($person = 0; $person < $studentTotal; $person++){
@@ -123,7 +114,7 @@ function GenerateOPL($stream){
 			}
 			$constraint .= " = " . ($studentHours[$person] ) . "\n"; // decide whether <= or =
 		}
-		echo "constraints num at desk</br>";
+		
 		// iterate over each shift to make sure each shift has the specified number of people
 		$numAtDesk = array ( 1, 1, 2, 2, 2, 2, 1, 1);
 		for ($shift = 0; $shift < $shiftTotal*$daysTotal; $shift++){
@@ -152,11 +143,9 @@ function GenerateOPL($stream){
 			$error = 0.00;
 			$minNew = 0.00;
 			$minNew = floor(($totalHours)  - (1 + $error)*$shiftTotal*$daysTotal); 
-			echo " total hours is $totalHours ";
-			echo "new min is $minNew and new plfs is $newTotal";
+			
 			if  ($minNew  >= $newTotal) {
 				
-				echo "constraints new plfs with old plfs</br>";
 				$newPLFConstraint = true;
 				// ensure new plfs are paired with old plfs.If y in newPLFa is true then b 
 				// is effective, otherwise large m will make restraint redundant
@@ -181,14 +170,12 @@ function GenerateOPL($stream){
 				}
 				$constraint .= $constraintNewA . $constraintNewB;
 			} else {
-				echo "not enough students hours to ensure new PLF's are with old PLFs <br/>";
+				echo "Warning: Not enough students hours to ensure new PLF's are with old PLFs <br/>";
 			}
 		} else {
-			echo "not enough students hours to ensure new PLF's are with old PLFs <br/>";
+			echo "Warning: Not enough students hours to ensure new PLF's are with old PLFs <br/>";
 		}
-		echo "working5<br/>";
 
-		echo "ensure variables are binary </br>";	
 		// Ensures all decision variables are binary (ie less than 1 and integer)
 		$bounds = "\n\n\* Variable bounds *\ \nBounds \n";
 		$integers = "\n\n\* Integer definitions *\ \nGeneral \n";	
@@ -203,17 +190,16 @@ function GenerateOPL($stream){
 				$integers .= " y" . $shift; 
 			}
 		}
-					echo "outputting to algorithm";
+
 		// Collect all the strings to generate the input string
 		$input = $objective . $constraint . $bounds . $integers . " \n\nEnd";
 		
 		//TODO: pass input string directly to algorithm, may need to change.
 	
-		echo "end of model generation";
 		return $input;
 }
 
-function ResultsToDatabase1(){
+/*function ResultsToDatabase1(){
 			
 			// Return the javascript array of person, shift and value 
 			if (isset($_POST['variable[]'])) {
@@ -235,7 +221,7 @@ function ResultsToDatabase1(){
 					$automaticTable = new \PHP\SqlObject("$sqlEntry", array());
 					$automaticTable->Execute();
 			}
-}
+}*/
 
 
 /* 
@@ -266,54 +252,52 @@ function NextIsConsec($arrayResults, $i, $consec, $total){
  * @return Auto_Gen_Timetable inserted with rows, old data deleted
  */
 function ResultsToDatabase(){
-			
-			// Return the javascript array of person, shift and value 
-			if (isset($_POST['variable[]'])) {
-					$clearTableSQL = new \PHP\SqlObject("$DELETE FROM `Auto_Gen_Timetable`", array());
-					$clearTable = $clearTableSQL->Execute();
+	echo "inside results";
+	// Return the javascript array of person, shift and value 
+	if (isset($_POST['variable[]'])) {
+		echo "processing";
+		$clearTableSQL = new \PHP\SqlObject("$DELETE FROM `Auto_Gen_Timetable`", array());
+		$clearTable = $clearTableSQL->Execute();
+		
+		$results = $_POST['variable[]'];
+		$entries = count($results);
+		$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
+		$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
+		//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
+		//$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+		
+		// assume shift_ID goes from 0 to shiftnum,
+		// student_ID, shift_ID, stream, day, shift_time)
+		/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
+		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
+		for ($i = 0;  $i < $entries; $i ++) {
+				
+			// process if it's optimal for the ith shift/person combo to be true
+			if ($results[i][2] == 1) {
+				$student_ID =  $studentArray($entry[1]); //array_search($entry[1], $studentArray);
+				$shi_stream = $streamArray[$stream];
+				$shi_day = floor($entry[1] / $shiftTotal);
+				$shi_time = $timesArray[$entry[1] % $shiftTotal] ;
 					
-					$results = $_POST['variable[]'];
-					$entries = count($results);
-					$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
-					$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
-					//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
-					//$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-					
-					// assume shift_ID goes from 0 to shiftnum,
-					// student_ID, shift_ID, stream, day, shift_time)
-					/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
-					$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
-					for ($i = 0;  $i < $entries; $i ++) {
-						
-						// process if it's optimal for the ith shift/person combo to be true
-						if ($results[i][2] == 1) {
-							$student_ID =  $studentArray($entry[1]); //array_search($entry[1], $studentArray);
-							$shi_stream = $streamArray[$stream];
-							$shi_day = floor($entry[1] / $shiftTotal);
-							$shi_time = $timesArray[$entry[1] % $shiftTotal] ;
-							
-							// Check for consecutive shifts. 
-							//Check next shift/person is same person, check there is a shift for that person, check its on the same day, check its the next shift. 
-							$consec = 0;
-							while (NextIsConsec($results, $i, $consec, $shiftTotal)) {
-								$i++;
-								$consec++;
-							}
-							$shi_duration = $consec + 1;
-							
-							$sqlEntry = "( '". $student_ID  . "', $shi_stream , $shi_day , ";
-							$sqlEntry .= "'" . $shi_time  . "' $shi_duration . ), ";
-						}
-					}
-
-					$sqlEntry = rtrim($sqlEntry,",");
-					
-					// add constructed table to database
-					$automaticTableSQL = new \PHP\SqlObject("$sqlEntry", array());
-					$automaticTable = $automaticTableSQL->Execute();
-
-			} else {
-				echo "There has been an error";
+				// Check for consecutive shifts. 
+				//Check next shift/person is same person, check there is a shift for that person, check its on the same day, check its the next shift. 
+				$consec = 0;
+				while (NextIsConsec($results, $i, $consec, $shiftTotal)) {
+					$i++;
+					$consec++;
+				}
+				$shi_duration = $consec + 1;
+				
+				$sqlEntry = "( '". $student_ID  . "', $shi_stream , $shi_day , ";
+				$sqlEntry .= "'" . $shi_time  . "' $shi_duration . ), ";
 			}
-			
+		}
+
+		$sqlEntry = rtrim($sqlEntry,",");
+		
+		// add constructed table to database
+		$automaticTableSQL = new \PHP\SqlObject("$sqlEntry", array());
+		$automaticTable = $automaticTableSQL->Execute();
+		echo "Temporary Table Generated";
+	}
 }

@@ -38,28 +38,28 @@ function run(){
 
     	log("obj: " + glp_mip_obj_val(lp));
     	for(var i = 1; i <= glp_get_num_cols(lp); i++){
-        	log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
+        	//log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
     	}
         
 	var results;
 			
-        log("obj: " + glp_mip_obj_val(lp));
+        //log("obj: " + glp_mip_obj_val(lp));
 			
         for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
-		if (glp_mip_obj_val(lp) != 0){
-			if (Integer.parseInt(glp_get_col_name(lp, i) [0])  == "x"){
-				var person = Integer.parseInt(glp_get_col_name(lp, i) [1]);
-				var shift = Integer.parseInt(glp_get_col_name(lp, i) [3]);
-				var value = Integer.parseInt(glp_mip_col_val(lp, i));
-				results.push([person, shift, value]); //results[person][shift]  = value; 
+			if (glp_mip_obj_val(lp) != 0){
+				if (parseInt(glp_get_col_name(lp, i) [0])  == "x"){
+					var person = parseInt(glp_get_col_name(lp, i) [1]);
+					var shift = parseInt(glp_get_col_name(lp, i) [3]);
+					var value = parseInt(glp_mip_col_val(lp, i));
+					results.push([person, shift, value]); //results[person][shift]  = value; 
+				}
+				//console.log(results);
+				javascriptToPHP(results, 'Admin_Gen_Timetable.php');
+			
+			} else {
+				alert("There was no feasible solution");
 			}
-			console.log(results);
-			javascriptToPHP(results, '../Admin_Gen_Timetable.php');
-		
-		} else {
-			alert("There was no feasible solution");
-		}
         }
 				
 }
