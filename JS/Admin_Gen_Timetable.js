@@ -48,7 +48,7 @@
 						results.push([person, shift, value]); //results[person][shift]  = value; 
 					}
 					console.log(results);
-					//javascriptToPHP(results, '../Include/Admin_Gen_Timetable.inc');
+					//javascriptToPHP(results, '../Admin_Gen_Timetable.php');
 				
 				} else {
 					alert("There was no feasible solution");

@@ -26,7 +26,7 @@ if(isset($_POST['stream'])) {
 } else {
 ?>	
 	<div>
-		<form name="streamSelect" action="Include/Admin_Gen_Timetable.inc" method="post">
+		<form name="streamSelect" action="Admin_Gen_Timetable.php" method="post">
 		<input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/>
 		<input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/>
 		<input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/>
