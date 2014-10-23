@@ -14,13 +14,8 @@
         <ul>
             <?php
             $showSearch = true;
-            $placeholder = "Search specialisations...";
             generateStreamFilters($showSearch, $placeholder); ?>
         </ul>
-    </span>
-    <span class = "searchbar" style="float:right";>
-        <img src="IMG/search.png" class = "inline-image searchIcon">
-        <input type="text" placeholder="Search Topics, Streams, or Units..." class = "searchSpan">
     </span>
 
 </div>
@@ -33,6 +28,10 @@ if(isset($showSearch)){
         <img src="IMG/calander.png" alt="Calander" class = "inline-image">
         <h2 class = "inline-text">Specialisation</h2>
     </div>
+    <span class = "searchbar">
+        <img src="IMG/search.png" class = "inline-image searchIcon">
+        <input type="text" placeholder="Search Topics, Streams, or Units..." class = "searchSpan">
+    </span>
 </div>
 <?php }}?>
 
