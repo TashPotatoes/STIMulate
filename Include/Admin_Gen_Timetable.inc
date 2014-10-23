@@ -10,13 +10,13 @@
 //Requiring SQL Object
 require_once 'PHP/SqlObject.php';
 require_once 'Include/Admin_Gen_Timetable_Tools.inc';
+$modelOPL = "";
 
 // for the user to select the stream
-//$stream = "IT";
 if(isset($_POST['stream'])) {
 	$stream =  $_POST['stream'];
 	//echo ("<p> Current Stream: $stream </p>");
-	GenerateOPL($stream);
+	$modelOPL = GenerateOPL($stream);
 ?>
 	
 	<input type="submit" value= "Generate Table" onclick="run()" />
@@ -38,7 +38,8 @@ if(isset($_POST['stream'])) {
 	} 	
 ?>
 <textarea id="source" cols="50" rows="10">
-
+<?php if ($modelOPL == ""){
+?>
 	\* Objective function *\
 Minimize
 obj: +17 x1_1 +23 x2_1 +16 x3_1 +19 x4_1 +18 x5_1 +21 x1_2 +16 x2_2 +20 x3_2 +19 x4_2 +19 x5_2 +22 x1_3 +21 x2_3 +16 x3_3 +22 x4_3 +15 x5_3 +18 x1_4 +16 x2_4 +25 x3_4 +22 x4_4 +15 x5_4 +24 x1_5 +17 x2_5
@@ -154,17 +155,22 @@ x2_8 x3_8 x4_8 x5_8 x1_9 x2_9 x3_9 x4_9 x5_9 x1_10 x2_10 x3_10 x4_10 x5_10 x1_11
 x5_14 x1_15 x2_15 x3_15 x4_15 x5_15
 
 End
+
+<?php } else {
+	echo ($modelOPl);
+}
+?>
 </textarea>
 
 
 <script>
-        var start;
-		var logNode = document.getElementById("log");
-        var log = glp_print_func = function(value){
-            var now = new Date();
-	        var d = (now.getTime() - start.getTime()) / 1000;
-	        logNode.appendChild(document.createTextNode(value + "\n"));
-            if (d > 60) throw new Error("timeout");
-	        console.log(value);
-        };
+	var start;
+	var logNode = document.getElementById("log");
+	var log = glp_print_func = function(value){
+		var now = new Date();
+		var d = (now.getTime() - start.getTime()) / 1000;
+		logNode.appendChild(document.createTextNode(value + "\n"));
+		if (d > 60) throw new Error("timeout");
+		console.log(value);
+	};
 </script>

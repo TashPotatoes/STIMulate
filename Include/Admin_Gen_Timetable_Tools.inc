@@ -201,8 +201,8 @@ function GenerateOPL($stream){
 		$input = $objective . $constraint . $bounds . $integers . " End";
 		
 		//TODO: pass input string directly to algorithm, may need to change.
-		echo $input;
-		echo "end of code";
+	
+		echo "end of model generation";
 		return $input;
 }
 
