@@ -110,10 +110,9 @@ td:last-child {
     background-size: 16px 16px;
     background-position: top 4px right 3px;
     opacity: 0.5;
-    color: rgba(200,50,50, 0.5);
+    color: rgba(120,50,50, 0.5);
+    content: "<span style='float:right; color: rgb(100,100,100)'>away</a>";
 }
-.absent-current { /*meaning, the current week */
-    opacity: 0.5;
-}
+
 
 /*added css for timetable preferences*/

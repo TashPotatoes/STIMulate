@@ -12,15 +12,9 @@ function Initialise(){
         ResetSpecialisationFilters();
     });
 
-    $("#SpecFilter").on("change", function() {
-       // console.log($(this).value.text);
-        //get the inputs value
-        //find elements with ^ value in class
-        //do something with them.
-    });
 }
 
-function ResetSpecialisationFilters() {console.log("BLSADS");
+function ResetSpecialisationFilters() {
     $(".namecard").css("opacity", "1");
     $(".namecard").parent().css("background-color", "white");
 
@@ -80,7 +74,6 @@ function FilterBySpecialisations() {
 
         },
         error: function(){
-            console.log("ajax is fucking shit");
         }
     
     });
@@ -90,7 +83,6 @@ function FilterBySpecialisations() {
             close: function( event, ui ) {}
         });
         $("#SpecFilter").on("autocompleteclose", function() { 
-            console.log("LOLWORKING?");
             var specIndex = $.inArray(this.value, Spec);
             var test = $.inArray(this.value, fac_spec_matrix);
             console.log(fac_spec_matrix);

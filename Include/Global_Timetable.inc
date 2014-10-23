@@ -1,13 +1,14 @@
 <?php require_once '/php/DatabaseAPI.php'; ?>
-    <?php
-        if("index.php" == basename($_SERVER['PHP_SELF'])) { 
-        
-    ?>
+<?php include "Global_Timetable_Filter.inc" ?>
     <style type="text/css">
     .111specfilter {display: none;}
     .timetableWrapper {display:none;}
     </style>
-
+<!--
+    <?php
+        //if("index.php" == basename($_SERVER['PHP_SELF'])) { 
+        
+    ?>
     <div class="filter">
         <div class="headElement">
             <img src="IMG/calander.png" alt="Calander" class="inline-image">
@@ -39,7 +40,9 @@
             </script>
         </span>
     </div>
-    <?php } ?>
+    <?php //} ?>
+
+-->
     <div class="timetableWrapper">
 
         <div class="headElement">
@@ -201,7 +204,7 @@
                     echo $shiftInformation['stu_name_first']." ".substr($shiftInformation['stu_name_last'], 0,1);
                     echo "</div>";
                 }
-
+/*
                 function generateStreamFilters() {
                     $sqlObject = new \PHP\SqlObject("SELECT str_shortname, str_name FROM streams");
                     $data = $sqlObject->Execute();
@@ -211,7 +214,7 @@
                         echo "<li id='filterStream".$shortcode."' class='stream-filters'>".$stream['str_name']."</li>";
                     }  
                 }
-
+*/
                 ?>
             </table>
         </div>
