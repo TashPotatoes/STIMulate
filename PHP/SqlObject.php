@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: crazygravy89
- * Date: 21/07/14
- * Time: 12:49 PM
- */
+
 
 namespace PHP;
 require_once 'MySQL.php';

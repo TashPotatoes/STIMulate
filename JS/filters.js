@@ -87,18 +87,21 @@ function FilterBySpecialisations() {
         $("#SpecFilter").on("autocompleteclose", function() { 
             var specIndex = $.inArray(this.value, Spec);
             var test = $.inArray(this.value, fac_spec_matrix);
-            console.log(fac_spec_matrix);
-            console.log(test);
+            //console.log(fac_spec_matrix);
+            //console.log(test);
             if (specIndex != -1) {
                 ResetSpecialisationFilters();
+                console.log("++++++++++++++++++++++++");
+                console.log(fac_spec_matrix);
+                $(".namecard").css("opacity", ".4");
                 $.each(fac_spec_matrix[specIndex], function( index, value ) {
-                    $(".namecard").css("opacity", ".4");
                     if(index > 0) {
                         value = "." + value;
-                    console.log("WHO IS IT", value)
+                        console.log("! " + value);
                         $(value).not(".absent").parent().css("background-color", "rgb(240,240,255)");
                         $(value).not(".absent").css("opacity", "1");
-                   }
+                    }
+
                 });
             }
         });

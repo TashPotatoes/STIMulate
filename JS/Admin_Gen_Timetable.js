@@ -4,17 +4,17 @@
 function javascriptToPHP( jsvar, pageURL) { 
 	console.log("here");
 	 $.ajax({
-			url: pageURL,
-			type: "POST",
-			data: {
-				'variable[]': jsvar
-			},
-			success: function (output) {
-				console.log("This is a ajax succes" + output);
-			},
-			error: function () {
-				console.log("error");
-			}
+		url: pageURL,
+		type: "POST",
+		data: {
+			'variable[]': jsvar
+		},
+		success: function (output) {
+			console.log("This is a ajax succes" + output);
+		},
+		error: function () {
+			console.log("error");
+		}
 	});
 }
 
