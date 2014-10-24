@@ -2,13 +2,15 @@
  * Pass javascript variables to PHP (via sending as POST & reloading page) 
  */
 function javascriptToPHP( jsvar, pageURL) { 
+	jsvar = JSON.stringify(jsvar)
 	console.log("here");
 	 $.ajax({
 		url: pageURL,
 		type: "POST",
 		data: {
-			'variable[]': jsvar
+			'variable': jsvar
 		},
+		cache: false,
 		success: function (output) {
 			console.log("This is a ajax succes" + output);
 		},
@@ -22,9 +24,9 @@ function javascriptToPHP( jsvar, pageURL) {
 /* 
  * Function for to run simplex algorithm upon pressing the "generate table"  
  */
-function run(){
+function run(model){
 	start = new Date(); 
-	logNode.innerText = "";
+	logNode.innerText = document.getElementById("log");
     	var lp = glp_create_prob();
     	glp_read_lp_from_string(lp, null, document.getElementById("source").value);
 
@@ -43,7 +45,7 @@ function run(){
         
 	var results;
 			
-        //log("obj: " + glp_mip_obj_val(lp));
+        log("obj: " + glp_mip_obj_val(lp));
 			
         for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
