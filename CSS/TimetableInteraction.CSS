@@ -52,3 +52,10 @@
 .popup li:hover {
     background: rgb(225,225,225);
 }
+
+td {
+	align: center; 
+	color: #fff;
+	text-align: center; 
+	vertical-align: middle;
+}
