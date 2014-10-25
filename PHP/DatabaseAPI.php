@@ -67,16 +67,24 @@ function retrieveAllSpecialisationsInStreams($inStream) {
 
 function updateTimetablePreferences($post) {
 
-    $stream = $post["stream"];
-    $hours = $post["hours"];
-    $preferences = $post["array"];
-    //$student = array($_SESSION['user_id']);
-    
-    $query = new \PHP\SqlObject("INSERT INTO STIMulate.preferences (student_id, faculty, 'day', '9', '10', '11', '12', '1', '2', '3', '4')
-                    VALUES 'n12345678', $stream, 0, $preferences[0][0], $preferences[0][1],
-                    $preferences[0][2], $preferences[0][3], $preferences[0][4], $preferences[0][5],
-                    $preferences[0][6], $preferences[0][7]");
-    
-
-    
+    $stream = strtoupper($post["stream"]);
+    $hours = $post["max-hour"];
+    $preferences = $post["prefs"];
+    $student =$_SESSION['user_id'];
+	$sql = "INSERT INTO STIMulate.preferences (student_id, faculty, 'day', '9', '10', '11', '12', '1', '2', '3', '4') VALUES";
+	
+	// iterate over each day to generate first half of sql values, then iterate over shifts for last half of sql values
+	for ($day = 0; $day < count($preferences); $day++){
+		$sql .= " '" . $studentID . "', '" . $stream . "', " . $day;
+		echo "<br/> current sql $ql ";
+		for ($shift = 0; $shift < count($preferences[$day]); $shift++){
+			$sql .= ", $preferences[$day][$shift]";
+		}
+	}
+	
+    $sqlObject = new \PHP\SqlObject($sql);
+	$sqlObject->Execute();
+	echo "<span> Successfully updated for $sql <br/> /span>";
+	
 }
+?>

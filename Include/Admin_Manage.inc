@@ -74,7 +74,7 @@ function RetrieveData(){
                     'allStaffSql' => 'SELECT * FROM STIMulate.staff WHERE active =1 ORDER BY staff_name_first asc',
                     'allVolunteerSql' => 'SELECT * FROM STIMulate.facilitators WHERE active = 1 ORDER BY stu_name_first asc'];
 
-    // Depending on the action return the appropraite information
+    // Depending on the action return the appropriate information
     switch($_GET['action']) {
         // If user wants to manage volunteers
         case 'manageVolunteer':
@@ -96,7 +96,7 @@ function RetrieveData(){
             // Return associative array
             return array('staffInformation' => $staffInformation);
         case 'manageShift':
-            // Retreive all shift and stream information
+            // Retrieve all shift and stream information
             $sqlObject = new \PHP\SqlObject($sqlQueries['allShiftSql']);
             $shiftInformation = $sqlObject->Execute();
             $sqlObject = new \PHP\SqlObject($sqlQueries['allStreamsSql']);
