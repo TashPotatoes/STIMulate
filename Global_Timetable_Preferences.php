@@ -7,10 +7,6 @@
     $UserAccessControl->checkTimeout();
 ?>
 
-<!--
-Author: Pearl Gariano
--->
-
 <!DOCTYPE HTML>
 <html>
 	<head>
