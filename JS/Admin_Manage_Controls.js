@@ -7,6 +7,7 @@ checking = false;
 onChangeIndex = 0;
 priorIndex = 0;
 
+// Load default interactions
 $(document).ready(function(){
     checking = false;
     LoadTableInteractions();
@@ -14,7 +15,7 @@ $(document).ready(function(){
 
 
 function LoadTableInteractions(){
-
+    // When the table head is clicked that isn't a checkbox, sort the column
     $(document).on('click', '.tableHead', function(event) {
         console.log($(event.target));
         if (!$(event.target).hasClass('.check-head')) {
@@ -30,12 +31,12 @@ function LoadTableInteractions(){
         }
     });
 
+    // When the top checkbox is checked, check all
     $(document).on('click', '.check-head', function(){
-       //$('input[type="checkbox"]').prop('checked', !$(this).is(":checked"));
-
         CheckAll(checking);
     });
 
+    // When a checkbox is checked, check entire row
     $(document).on('change', 'input[type="checkbox"]', function(){
         if($(this).prop('checked')){
             $(this).closest('tr').css({'background-color':'rgb(235,235,235)'});
@@ -46,16 +47,21 @@ function LoadTableInteractions(){
     });
 }
 
+/*
+    Checks all checkboxs and rows
+    PRE: check - bool whether all boxs are check at the moment or not
+    POST: checkboxes checked, and rows coloured
+ */
 function CheckAll(check){
 
-        if(!check) {
+        if(!check) { // if not checked check
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).prop('checked', "checked");
                 $(this).closest('tr').css({'background-color':'rgb(235,235,235)'});
 
             });
             checking = true;
-        } else {
+        } else { // If checked uncheck
             $("input[type =\"checkbox\"]").each(function () {
                 $(this).removeAttr("checked");
                 $(this).closest('tr').css({'background-color':'inherit'});
@@ -65,8 +71,10 @@ function CheckAll(check){
         }
 }
 
+// Gets the row data of all checked elements
 function GetCheckedElements(checkedElements){
     var checkedData = [];
+    // for each of the checked elements, initiate them into a table data object
     for(var i = 0; i < checkedElements.length; i++){
         if($(checkedElements[i]).parent().is('td')) {
             checkedData.push(new TableData(checkedElements[i]));
@@ -75,6 +83,7 @@ function GetCheckedElements(checkedElements){
     return checkedData;
 }
 
+// Gets a rows child data. Tr -> td data
 function GetRowChild(row){
     var rowData = [];
     for(var i = 0; i < row.length; i++){
@@ -87,15 +96,18 @@ function GetRowChild(row){
     return rowData;
 }
 
+// Object that gets and stores tr row data
 var TableData = function(checkBoxElement){
     var checkBoxElement = checkBoxElement;
     var siblingInfo;
     GetSiblings();
 
+    // Returns fetched data
     this.FetchAllData = function() {
         return siblingInfo;
     };
 
+    // Gets ros td data
     function GetSiblings(){
         var siblings = $(checkBoxElement).parent().siblings();
         var siblingData = [];
@@ -108,6 +120,7 @@ var TableData = function(checkBoxElement){
     }
 };
 
+// isset with similar functionality as php's isset.
 function isset ()
 {
     // http://kevin.vanzonneveld.net
@@ -141,13 +154,18 @@ function isset ()
     return true;
 }
 
-
+// When a manage popup select changes, change all data to relevant data.
+// THIS WAS REMOVED FROM PRODUCTION VERSION AS OF 24/10/2014. FUNCTIONALITY DOES
+// WORK HOWEVER.
 function OnChange(checkedData){
+    // On change
     $('.popup-select').on("change", function(){
         var currentIndex = $('.popup-select')[0].selectedIndex;
         var inputs = $('.popup-window').find(':input').not('input[type=button]').not('input[type=submit]').not('input[type=hidden]');
         inputs = inputs.slice(1);
 
+        // Foreach of the inputs if the type is a time put into proper formate else
+        // if set checked data table object
         for(var i = 0; i < inputs.length; i++) {
             if ($(inputs[i]).is('input[type=time')) {
                 var time;
@@ -165,42 +183,20 @@ function OnChange(checkedData){
                 inputs[i].value = hour + ':' + minute + ':00';
 
             } else if(isset(checkedData[currentIndex].FetchAllData()[i])){
+                // Split hours off and insert into input field if Hours(s) exists
                 if(checkedData[currentIndex].FetchAllData()[i].split(' ')[1] == 'Hour(s)') {
                     $(inputs[i]).val(checkedData[currentIndex].FetchAllData()[i].split(' ')[0]).change();
-                } else {
+                } else { // else input just equals fetched data
                     inputs[i].value = (checkedData[currentIndex].FetchAllData()[i]);
                 }
             }
         }
-        $(inputs[0]).parent().append(appendHtml);
+
+        //$(inputs[0]).parent().append(appendHtml);
     });
 }
 
-function storeModifiedData(){
-
-}
-
+// Simply removes all popups
 function RemoveAllPopups(){
     $('.background-wrapper').remove();
 }
-
-/**
- * Sort a list of elements and apply the order to the DOM.
- *
- * https://gist.github.com/mindplay-dk/6825439
- */
-jQuery.fn.order = function(asc, fn) {
-    fn = fn || function (el) {
-        return $(el).text().replace(/^\s+|\s+$/g, '');
-    };
-    var T = asc !== false ? 1 : -1,
-        F = asc !== false ? -1 : 1;
-    this.sort(function (a, b) {
-        a = fn(a), b = fn(b);
-        if (a == b) return 0;
-        return a < b ? F : T;
-    });
-    this.each(function (i) {
-        this.parentNode.appendChild(this);
-    });
-};
