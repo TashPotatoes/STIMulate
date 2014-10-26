@@ -68,11 +68,52 @@ function retrieveAllSpecialisationsInStreams($inStream) {
 function updateTimetablePreferences($post) {
 
     $stream = strtoupper($_POST["stream"]);
-    $hours = $_POST["maxHour"];
-    $preferences = $_POST["prefs"];
+    $hours = $_POST["max-hour"];
+    //$preferences = $_POST["prefs"];
     $student =$_SESSION['user_id'];
-    var_dump($preferences);
-	$sql = "INSERT INTO STIMulate.preferences (student_id, faculty, 'day', '9', '10', '11', '12', '1', '2', '3', '4') VALUES (";
+    //var_dump($preferences);
+	
+	$noPref = -50;
+	$thirPref = 3;
+	$secPref = 9;
+	$firstPref = 27;
+	$sql = "INSERT INTO STIMulate.preferences (student_id, faculty, 'day', '9', '10', '11', '12', '1', '2', '3', '4') VALUES ";
+    
+	$daysArray = array("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY");
+	$SHIFTS_IN_DAY = 8;
+	$DAYS_IN_WEEK = 5;
+	$addRow = false;
+	$sqlValues = "";
+	for ($i = 0; $i < $DAYS_IN_WEEK; $i++){
+		
+		for ($j = 0; $j < $SHIFTS_IN_DAY; $j++){
+			switch ($_POST["$j $daysArray[$i]"]){
+				case $noPref: 
+					$sqlValues .= ", " . $noPref;
+					break;
+				case $thirPref:
+					$sqlValues .= ", " . $thirPref;
+					$addRow = true;
+					break;
+				case $secPref:
+					$sqlValues .= ", " . $secPref;
+					$addRow = true;
+					break;
+				case $firstPref:
+					$sqlValues .= ", " . $firstPref;
+					$addRow = true;
+					break;
+			}
+		}
+		
+		if ($addRow) {
+		$sql .= "( '" . $student . "', '" . $stream . "', " . $day . $sqlValues . "), ";
+		}
+	}
+	$sql = rtrim($sql, ",");
+	
+	
+	/*$sql = "INSERT INTO STIMulate.preferences (student_id, faculty, 'day', '9', '10', '11', '12', '1', '2', '3', '4') VALUES (";
     // iterate over each day to generate first half of sql values, then iterate over shifts for last half of sql values
     for ($day = 0; $day < count($preferences); $day++){
 		$sql .= " '" . $student . "', '" . $stream . "', " . $day;
@@ -80,7 +121,7 @@ function updateTimetablePreferences($post) {
 		for ($shift = 0; $shift < count($preferences[$day]); $shift++){
 			$sql .= ", " . $preferences[$day][$shift] . ", ";
 		}
-	}
+	}*/
 	
     $sqlObject = new \PHP\SqlObject($sql);
 	$sqlObject->Execute();

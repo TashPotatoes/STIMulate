@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created: Pearl Gariano
+ * Edited: Natasha Moffat
+ * Date: 19/10/2014
+ * Time: 3:10 PM
+ */
 
 
 require_once 'PHP/DatabaseAPI.php';
@@ -16,11 +22,10 @@ var_dump($_POST);
         </div>
         <div class = "timetableWrapper">
 
-			 <form id="preferences" name="preferences" action="Global_Timetable_Preferences.php" method="post"> 
+			 <form  id="preferences" name="preferences" action="Global_Timetable_Preferences.php" method="post"> 
 				
-				<input type="hidden" name="action" 
-				value="updatePreferences">
-				<input type="hidden" name="prefs" value="".
+				<input type="hidden" name="action" value="updatePreferences">
+				
 				<div>
 					<p>Please select your stream:</p>
 						<ul>
@@ -59,6 +64,7 @@ var_dump($_POST);
 							
 							for($day = 0; $day < $DAYS_IN_WEEK; $day++){
 								echo "<td class='$shift $daysArray[$day] WHITE'>";
+								echo "<input type='hidden' class = 'hiddeninput' name ='$shift $daysArray[$day]' value='-50'>";
 								echo "</td>";
 							}
 							echo '</tr>';
@@ -69,10 +75,10 @@ var_dump($_POST);
 				</div> <!-- End timetable -->
 
 				<p>How many hours would you like to volunteer for your selected stream?<br/>
-					<input type="radio" name="maxHour" id="maxHour-1" value="1"><label for="maxHour-1">1</label><br/>
-					<input type="radio" name="maxHour" id="maxHour-2" value="2"><label for="maxHour-2">2</label><br/>
-					<input type="radio" name="maxHour" id="maxHour-3" value="3"><label for="maxHour-3">3</label><br/>
-					<input type="radio" name="maxHour" id="maxHour-4" value="4"><label for="maxHour-4">4</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-1" value="1"><label for="max-hour-1">1</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-2" value="2"><label for="max-hour-2">2</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-3" value="3"><label for="max-hour-3">3</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-4" value="4"><label for="max-hour-4">4</label><br/>
 				</p>
 				<input id="submit" type="submit" value="Submit">
 			</form>
@@ -83,33 +89,33 @@ var_dump($_POST);
 
 <script>
 	$( "#preferences" ).submit(function( event ) {
- 		alert(errors);
+ 	
 		// retrieve form inputs 		
-		var maxHour = document.forms["preferences"]["max-hour"].value;
-		var stream = document.forms["preferences"]["stream"].value;
-		var prefs = array();
+		var maxHour = document.forms["myForm"]["max-hour"].value;
+		var stream = document.forms["myForm"]["stream"].value;
+		var result = array();
 		
 		// iterate over all rows in html tables, If the row has a preference selected then process 
 		// that row. Only rows with preferences in them get stored in the database
 		
 		$('.preferences > tr').each(function(shift, v){
-			if ($(this).find('td.GREEN', 'td.YELLOW', 'td.RED').length > 0) {
+			if $(this.find('td.GREEN', 'td.YELLOW', 'td.RED').length > 0) {
 				
 				// add the corresponding preference value for the class to the array
 				$(this).children('td').each(function(day, vv){
 					
 					switch ( $(this).attr("class")) {
 					case 'WHITE':  //null
-						prefs[day][shift] = -50;
+						results[day][shift] = -50;
 						break;
 					case 'GREEN': //3rd
-						prefs[day][shift] = 3;
+						results[day][shift] = 3;
 						break;
 					case 'YELLOW': //2nd
-						prefs[day][shift] = 9;
+						results[day][shift] = 9;
 						break;
 					case 'RED': //1st
-						prefs[day][shift] = 27;
+						results[day][shift] = 27;
 						break;						
 					}
 				});
@@ -119,12 +125,10 @@ var_dump($_POST);
 		// post the variables to the page
 		console.log("here");
 		 $.ajax({
-			url: "Global_Timetable_Preferences.php",
+			url: "Global_Timetable_Preferences.php,
 			type: "POST",
 			data: {
-				stream: stream,
-				maxHour: maxHour,
-				prefs: prefs
+				stream: stream , maxhour: maxHour, prefs: results
 			},
 			cache: false,
 			success: function (output) {
