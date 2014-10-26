@@ -17,16 +17,16 @@ if(!$UserAccessControl->isUserLoggedIn()) {} else {
         //     0: student 1: staff
         array(0, "Your Shifts", "Volunteer_Shifts.php", "calander"),
         array(0, "Your Availabilities", "Global_Timetable_Preferences.php", "calander"),
-        array(0, "Record a session", "#", "crown"),
+        //array(0, "Record a session", "#", "crown"),
         array(0, "Manage Specialisations", "Volunteer_Specialisations.php", "crown"),
-        array(0, "Record a shift", "#", "crown"),
+        //array(0, "Record a shift", "#", "crown"),
         array(0, "Record an absence", "Volunteer_Record_Absent.php", "crown"),
         array(1, "Manage Facilitators", "Admin_Manage.php?action=manageVolunteer", "crown"),
         array(1, "Manage Staff", "Admin_Manage.php?action=manageStaff", "crown"),
         array(1, "Manage Shifts", "Admin_Manage.php?action=manageShift", "crown"),
         array(1, "Manage Abenties", "Admin_Manage.php?action=manageAbsent", "crown"),
-        array(1, "Manage Specialisations", "Admin_Manage.php?action=manageSpecs", "crown"),
-        array(1, "Record a session", "#", "crown"),
+        //array(1, "Manage Specialisations", "Admin_Manage.php?action=manageSpecs", "crown"),
+        //array(1, "Record a session", "#", "crown"),
 		array(1, "Generate Timetable", "Admin_Gen_Timetable.php", "crown"),
         );
     ?>
