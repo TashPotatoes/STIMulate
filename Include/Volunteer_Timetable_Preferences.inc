@@ -7,9 +7,13 @@
  */
 
 
-require_once 'PHP/DatabaseAPI.php';
+require_once 'PHP/SqlObject.php';
 
-var_dump($_POST);
+if(isset($_POST)){
+    if(count($_POST) > 0) {
+        HandlePost();
+    }
+}
 ?>
 
 
@@ -22,9 +26,9 @@ var_dump($_POST);
         </div>
         <div class = "timetableWrapper">
 
-			 <form  id="preferences" name="preferences" action="Global_Timetable_Preferences.php" method="post"> 
-				
-				<input type="hidden" name="action" value="updatePreferences">
+        <form  id="preferences" name="preferences" action="" method="post"> <!-- Global_Timetable_Preferences.php -->
+
+                <input type="hidden" name="action" value="updatePreferences">
 				
 				<div>
 					<p>Please select your stream:</p>
@@ -37,7 +41,7 @@ var_dump($_POST);
 					<p>To enter preferences, click on the cells until they change to the correct colour.</p>
 				</div>
 		
-				<div class="timetable">
+				<div class="timetable noselect">
 					<table  class = "preferences">
 						<tr>
 							<th>Time</th>
@@ -64,7 +68,8 @@ var_dump($_POST);
 							
 							for($day = 0; $day < $DAYS_IN_WEEK; $day++){
 								echo "<td class='$shift $daysArray[$day] WHITE'>";
-								echo "<input type='hidden' class = 'hiddeninput' name ='$shift $daysArray[$day]' value='-50'>";
+                                echo "<p></p>";
+								echo '<input type="hidden" class = "hiddeninput" name ="preferenceID[]" value="-50">';
 								echo "</td>";
 							}
 							echo '</tr>';
@@ -87,57 +92,44 @@ var_dump($_POST);
     </div> <!-- end content wrapper -->
 </div> <!-- end push-right-->
 
-<script>
-	$( "#preferences" ).submit(function( event ) {
- 	
-		// retrieve form inputs 		
-		var maxHour = document.forms["myForm"]["max-hour"].value;
-		var stream = document.forms["myForm"]["stream"].value;
-		var result = array();
-		
-		// iterate over all rows in html tables, If the row has a preference selected then process 
-		// that row. Only rows with preferences in them get stored in the database
-		
-		$('.preferences > tr').each(function(shift, v){
-			if $(this.find('td.GREEN', 'td.YELLOW', 'td.RED').length > 0) {
-				
-				// add the corresponding preference value for the class to the array
-				$(this).children('td').each(function(day, vv){
-					
-					switch ( $(this).attr("class")) {
-					case 'WHITE':  //null
-						results[day][shift] = -50;
-						break;
-					case 'GREEN': //3rd
-						results[day][shift] = 3;
-						break;
-					case 'YELLOW': //2nd
-						results[day][shift] = 9;
-						break;
-					case 'RED': //1st
-						results[day][shift] = 27;
-						break;						
-					}
-				});
-			}
-		});
-		
-		// post the variables to the page
-		console.log("here");
-		 $.ajax({
-			url: "Global_Timetable_Preferences.php,
-			type: "POST",
-			data: {
-				stream: stream , maxhour: maxHour, prefs: results
-			},
-			cache: false,
-			success: function (output) {
-				console.log("This is a ajax succes" + output);
-			},
-			error: function () {
-				console.log("error");
-			}
-		});
-	});
+<?php
 
-</script>
+function HandlePost()
+{
+    $stream = strtoupper($_POST["stream"]);
+    $student = $_SESSION['user_id'];
+
+    $sql = "INSERT INTO STIMulate.preferences (user_id, stream, day, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) VALUES ";
+
+    $SHIFTS_IN_DAY = 8;
+    $DAYS_IN_WEEK = 5;
+    $startSlice = 0;
+    $dataArray = array();
+    for ($i = 0; $i < $DAYS_IN_WEEK; $i++) {
+        $row = array($student, $stream, $i);
+        $counter = $i;
+        for ($j = 0; $j < $SHIFTS_IN_DAY; $j++) {
+            if ($j == 0) {
+                $sql .= '(:stu_id' . $i . '' . $j . ' , :faculty' . $i . '' . $j . ' , :day' . $i . '' . $j . ', ';
+            }
+            if ($j + 1 == $SHIFTS_IN_DAY) {
+                $sql .= ":val" . $i . '' . $j . ') ';
+            } else {
+                $sql .= ":val" . $i . '' . $j . ', ';
+            }
+
+            array_push($row, $_POST['preferenceID'][$counter]);
+            $counter += 5;
+        }
+        if ($i + 1 == $DAYS_IN_WEEK) {
+            $sql .= ";";
+        } else {
+            $sql .= ", ";
+        }
+        $dataArray = array_merge($dataArray, $row);
+        $startSlice += $SHIFTS_IN_DAY;
+    }
+    echo $sql;
+    $sqlObject = new \PHP\SqlObject($sql, $dataArray);
+    $sqlObject->Execute();
+}
