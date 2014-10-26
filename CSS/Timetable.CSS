@@ -115,3 +115,15 @@ td:last-child {
     opacity: 0.5;
     color: rgba(120,50,50, 0.5);
 }
+
+
+.preferences td {
+	align: center; 
+	color: #fff;
+	text-align: center; 
+	vertical-align: middle;
+}
+.preferences td:first-child {
+	color: #000;
+
+}

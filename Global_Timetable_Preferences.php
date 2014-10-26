@@ -7,21 +7,20 @@
     $UserAccessControl->checkTimeout();
 ?>
 
-<!--
-Author: Pearl Gariano
--->
-
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Timetable Preferences</title>
 		<!--<link rel="stylesheet" type="text/css" href="CSS/Inputcolumn-timetable.css"> -->
 	    <?php include 'Include/Global_Head.inc'; ?>
+		<meta charset="utf-8"> 
 	    <link href="CSS/SideBar.CSS" rel="stylesheet" type="text/css">
 	    <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
 	    <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
 	    <script src = "js/ColourChange.js"></script>
-	    <script src = "js/TimetableInteraction.js"></script>
+	    <!--<script src = "js/TimetableInteraction.js"></script>-->
+		<script src = "js/VolunteerTimetablePreferences.js"></script>
+		
 	</head>
 <body>
 <main>

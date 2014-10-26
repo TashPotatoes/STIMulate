@@ -1,11 +1,12 @@
-<!--
-Author: Pearl Gariano
--->
 <?php
-    var_dump($_POST);
 
 
+require_once 'PHP/DatabaseAPI.php';
+
+var_dump($_POST);
 ?>
+
+
 <div class="push-right pageWrapper">
 
     <div class="contentWrapper">
@@ -13,112 +14,126 @@ Author: Pearl Gariano
             <img src="IMG/calander.png" alt="Calander" class = "inline-image">
             <h2 class = "inline-text">Timetable Preferences</h2>
         </div>
-        <div>
-            <p>Please select your stream:<br/>
-                <input type="radio" name="stream" id="stream-it" value="it"><label for="stream-it">IT</label><br/>
-                <input type="radio" name="stream" id="stream-ma" value="ma"><label for="stream-ma">Maths</label><br/>
-                <input type="radio" name="stream" id="stream-sc" value="sc"><label for="stream-sc">Science</label><br/>
-                <input type="radio" name="stream" id="stream-dh" value="dh"><label for="stream-dh">Duty Host</label><br/>
-            </p>
-            <p>To enter preferences, click on the cells until they change to the correct colour.</p>
+        <div class = "timetableWrapper">
 
-   
-    </div>
-    <div class = "timetableWrapper">
+			 <form id="preferences" name="preferences" action="Global_Timetable_Preferences.php" method="post"> 
+				
+				<input type="hidden" name="action" 
+				value="updatePreferences">
+				<input type="hidden" name="prefs" value="".
+				<div>
+					<p>Please select your stream:</p>
+						<ul>
+								<li><input type="radio" name="stream" id="stream-it"value="it"><label for="stream-it">IT</label><br/></li>
+								<li><input type="radio" name="stream" id="stream-ma"value="ma"><label for="stream-ma">Maths</label><br/></li>
+								<li><input type="radio" name="stream" id="stream-sc"value="sc"><label for="stream-sc">Science</label><br/></li>
+								<li><input type="radio" name="stream" id="stream-dh"value="dh"><label for="stream-dh">Duty Host</label><br/></li>
+						</ul>
+					<p>To enter preferences, click on the cells until they change to the correct colour.</p>
+				</div>
+		
+				<div class="timetable">
+					<table  class = "preferences">
+						<tr>
+							<th>Time</th>
+							<th>Monday</th>
+							<th>Tuesday</th>
+							<th>Wednesday</th>
+							<th>Thursday</th>
+							<th>Friday</th>
+						</tr>
 
-        </div>
-        <div class="timetable">
-            <table>
-                <tr>
-                    <th>Time</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                </tr>
+						<?php
+						$startOfWeek = date("d-m-Y", strtotime('this week', time()));
 
-                <?php
-                $startOfWeek = date("d-m-Y", strtotime('this week', time()));
+						$DAYS_IN_WEEK = 5;
+						$START_HOUR = '08:00:00'; // Must be before 12 noon, whole hour only (0-12), set to hour before earliest shift. // CHANGE THIS TO BE A QUERY
+						$SHIFTS_IN_DAY = 8;
+						$daysArray = array("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY");
+						$row = 1;
 
-                $DAYS_IN_WEEK = 5;
-                $START_HOUR = '08:00:00'; // Must be before 12 noon, whole hour only (0-12), set to hour before earliest shift. // CHANGE THIS TO BE A QUERY
-                $SECTIONS_IN_DAY = 8;
+						for($shift = 0; $shift < $SHIFTS_IN_DAY; $shift++){
+							$currentTime = date("h:i", strtotime('+'.($row*60).'minutes', strtotime($START_HOUR)));
+							echo '<tr>';
+							echo '<td class="column-time">'.$currentTime.'</td>';
+							
+							for($day = 0; $day < $DAYS_IN_WEEK; $day++){
+								echo "<td class='$shift $daysArray[$day] WHITE'>";
+								echo "</td>";
+							}
+							echo '</tr>';
+							$row++;
+						}
+						?>
+					</table>
+				</div> <!-- End timetable -->
 
-                $row = 1;
+				<p>How many hours would you like to volunteer for your selected stream?<br/>
+					<input type="radio" name="maxHour" id="maxHour-1" value="1"><label for="maxHour-1">1</label><br/>
+					<input type="radio" name="maxHour" id="maxHour-2" value="2"><label for="maxHour-2">2</label><br/>
+					<input type="radio" name="maxHour" id="maxHour-3" value="3"><label for="maxHour-3">3</label><br/>
+					<input type="radio" name="maxHour" id="maxHour-4" value="4"><label for="maxHour-4">4</label><br/>
+				</p>
+				<input id="submit" type="submit" value="Submit">
+			</form>
+			
+		</div> <!-- End timetable wrapper -->		
+    </div> <!-- end content wrapper -->
+</div> <!-- end push-right-->
 
-                for($i = 0; $i < $SECTIONS_IN_DAY; $i++){
-                    $currentTime = date("h:i", strtotime('+'.($row*60).'minutes', strtotime($START_HOUR)));
-                    echo '<tr>';
-                    echo '<td class="column-time">'.$currentTime.'</td>';
+<script>
+	$( "#preferences" ).submit(function( event ) {
+ 		alert(errors);
+		// retrieve form inputs 		
+		var maxHour = document.forms["preferences"]["max-hour"].value;
+		var stream = document.forms["preferences"]["stream"].value;
+		var prefs = array();
+		
+		// iterate over all rows in html tables, If the row has a preference selected then process 
+		// that row. Only rows with preferences in them get stored in the database
+		
+		$('.preferences > tr').each(function(shift, v){
+			if ($(this).find('td.GREEN', 'td.YELLOW', 'td.RED').length > 0) {
+				
+				// add the corresponding preference value for the class to the array
+				$(this).children('td').each(function(day, vv){
+					
+					switch ( $(this).attr("class")) {
+					case 'WHITE':  //null
+						prefs[day][shift] = -50;
+						break;
+					case 'GREEN': //3rd
+						prefs[day][shift] = 3;
+						break;
+					case 'YELLOW': //2nd
+						prefs[day][shift] = 9;
+						break;
+					case 'RED': //1st
+						prefs[day][shift] = 27;
+						break;						
+					}
+				});
+			}
+		});
+		
+		// post the variables to the page
+		console.log("here");
+		 $.ajax({
+			url: "Global_Timetable_Preferences.php",
+			type: "POST",
+			data: {
+				stream: stream,
+				maxHour: maxHour,
+				prefs: prefs
+			},
+			cache: false,
+			success: function (output) {
+				console.log("This is a ajax succes" + output);
+			},
+			error: function () {
+				console.log("error");
+			}
+		});
+	});
 
-                    //stuff here for now... 
-                    switch ($i) {
-                        case 0:
-                            $time="9";
-                            break;
-                        case 1:
-                            $time="10";
-                            break;
-                        case 2:
-                            $time="11";
-                            break;
-                        case 3:
-                            $time="12";
-                            break;
-                        case 4:
-                            $time="13";
-                            break;
-                        case 5:
-                            $time="14";
-                            break;
-                        case 6:
-                            $time="15";
-                            break;
-                        case 7:
-                            $time="16";
-                            break;
-                        default:
-                            $time="ERROR";
-                            break;
-                    }
-
-                    for($j = 0; $j < $DAYS_IN_WEEK; $j++){
-                        switch ($j) {
-                            case 0:
-                                $day="MONDAY";
-                                break;
-                            case 1:
-                                $day="TUESDAY";
-                                break;
-                            case 2:
-                                $day="WEDNESDAY";
-                                break;
-                            case 3:
-                                $day="THURSDAY";
-                                break;
-                            case 4:
-                                $day="FRIDAY";
-                                break;
-                            default:
-                                $day="ERROR";
-                                break;
-                        }
-                        echo "<td class='$time $day WHITE'>";
-                        echo "</td>";
-                    }
-                    echo '</tr>';
-                    $row++;
-                }
-                ?>
-            </table>
-        </div>
-        <p>How many hours would you like to volunteer for your selected stream?<br/>
-            <input type="radio" name="max-hour" id="max-hour-1" value="1"><label for="max-hour-1">1</label><br/>
-            <input type="radio" name="max-hour" id="max-hour-2" value="2"><label for="max-hour-2">2</label><br/>
-            <input type="radio" name="max-hour" id="max-hour-3" value="3"><label for="max-hour-3">3</label><br/>
-            <input type="radio" name="max-hour" id="max-hour-4" value="4"><label for="max-hour-4">4</label><br/>
-        </p>
-        <input id="submit" type="submit" value="Submit">
-    </div>
-</div>
+</script>
