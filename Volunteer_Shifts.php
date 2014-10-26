@@ -15,6 +15,7 @@
     <link href="CSS/LocationSeparator.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/Timetable.CSS" rel="stylesheet" type="text/css">
     <link href="CSS/TimetableInteraction.CSS" rel="stylesheet" type="text/css">
+    <link href="CSS/Global_Display_Absent.CSS" rel="stylesheet" type="text/css">
     <script src = "JS/filters.js"></script>
     <script src = "JS/TimetableInteraction.js"></script>
 </head>
@@ -33,6 +34,7 @@
         <?php
             $oneStudent = true;
             include 'Include/Global_Timetable.inc';
+            include 'Include/Global_Display_Absent.inc';
         ?>
     </div>
 </main>

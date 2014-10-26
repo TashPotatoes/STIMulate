@@ -172,21 +172,6 @@ function OnChange(checkedData){
                 }
             }
         }
-        //var appendHtml = '';
-        //for(var i = 0; i < $(checkedData[i].FetchAllData()).length; i++) {
-        //    for (var j = 0; j < $($(checkedData[i].FetchAllData()[i])).length; j++) {
-        //        if ($($(checkedData[i].FetchAllData()[i])[j]).is('input')) {
-        //            console.log($(checkedData[i].FetchAllData()[i])[j]);
-        //            var name = $($(checkedData[i].FetchAllData()[i])[j]).attr('name');
-        //            var value = $($(checkedData[i].FetchAllData()[i])[j]).val();
-        //            appendHtml += '<input type = "hidden" value = "' + value + '" name = "' + name + '">';
-        //
-        //
-        //        }
-        //    }
-        //    appendHtml += '<input type = "hidden" value = "' + checkedData[priorIndex].FetchAllData()[1] + '" name = "id' + onChangeIndex + i + '">';
-        //    onChangeIndex++;
-        //}
         $(inputs[0]).parent().append(appendHtml);
     });
 }

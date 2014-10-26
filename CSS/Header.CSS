@@ -53,3 +53,7 @@ header a {
     text-decoration: none;
     color: inherit;
 }
+
+.inline-image.no-width {
+    width: 0;
+}

@@ -6,22 +6,30 @@
     $information = RetrieveIntialDataDash();
 ?>
 
-
-<div class = "push-right">
+<div id = "dashWrapper">
+    <div class = "headElement">
+        <img src="IMG/calander.png" alt="Calander" class = "inline-image">
+        <h2 class = "inline-text">Absent Facilitators</h2>
+    </div>
     <div id = "dashboard">
-        <?php
-            // Inserts Absent notification into HTML
-            InsertAbsentNotification($information);
-        ?>
+    <?php
+    // Inserts Absent notification into HTML
+    InsertAbsentNotification($information);
+    ?>
     </div>
 </div>
 
 
+
 <?php
-    /* PAGE SPECIFIC FUNCTIONS */
+    /*
+     * Retrieves all necessary information to display information
+     *
+     */
     function RetrieveIntialDataDash(){
         // Sql queries
-        $absentieQuery = "SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp;";
+        $absentieQuery = "SELECT * FROM STIMulate.absences WHERE DATE_ADD(NOW(), INTERVAL 7 DAY) >= absence_timestamp
+                    AND absence_timestamp >= DATE_SUB(NOW(), INTERVAL 7 DAY) OR absent_end_timestamp > NOW() OR absence_timestamp > NOW() ORDER BY absence_timestamp asc;";
         $studentInformationQuery = "SELECT * FROM STIMulate.facilitators WHERE student_id IN (";
 
         // Retrieving Absent information
@@ -30,6 +38,8 @@
 
         // Retrieving Student Informaton
         $studentNumbers = array();
+
+        // Select relevant student data based on the absent student data
         for($i = 0; $i < count($absentInformation); $i++){
             array_push($studentNumbers, $absentInformation[$i]['volunteer_id']);
             if($i+1 == count($absentInformation)){
@@ -51,16 +61,28 @@ function InsertAbsentNotification($information){
     // Foreach absent and corresponding student record
     for($i = 0; $i < count($information['absent']); $i++) {
 
-        // Retreiving day and time
+        // Retrieving day and time information based off of absent information
         $dayAbsent = date("l", strtotime($information['absent'][$i]['absence_timestamp']));
+        $absentDate = date("d/m/Y", strtotime($information['absent'][$i]['absence_timestamp']));
         $timeAbsent = TimeToAMPM(date("h:i", strtotime($information['absent'][$i]['absence_timestamp'])));
+        if(isset($information['absent'][$i]['absent_end_timestamp'])){
+            $endDayAbsent = date("l", strtotime($information['absent'][$i]['absent_end_timestamp']));
+            $endAbsentDate = date("d/m/Y", strtotime($information['absent'][$i]['absent_end_timestamp']));
+        }
 
         // Echoing student name, day and time into dash
         for($j = 0; $j < count($information['student']); $j++){
             if($information['absent'][$i]['volunteer_id'] == $information['student'][$j]['student_id']){
-                echo '<div class = "notification">
-                    <p>'.$information['student'][$j]['stu_name_first'].' '.$information['student'][$j]['stu_name_last'].' is absent '.$dayAbsent.', at '.$timeAbsent.'</p>
-                </div>';
+                $html = '<div class = "notification">
+                    <p>'.$information['student'][$j]['stu_name_first'].' '.$information['student'][$j]['stu_name_last'].' is absent '.$dayAbsent.' '.$absentDate.'';
+                if(isset($information['absent'][$i]['absent_end_timestamp'])){
+                    $html.= ' to '.$endDayAbsent.' the '.$endAbsentDate;
+
+                } else {
+                    $html.=', at '.$timeAbsent;
+                }
+                $html .= '</p></div>';
+                echo $html;
             }
         }
     }

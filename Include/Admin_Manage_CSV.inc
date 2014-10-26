@@ -1,28 +1,35 @@
 <?php
 require_once 'PHP/SqlObject.php';
 
+// If files posted to page add them to table
 if (isset($_FILES['file'])) {
     $file = fopen($_FILES["file"]["tmp_name"], 'r');
     $CSVData = array();
     $numberColumns = 0;
+
+    // Get data and count columns
     while (($line = fgetcsv($file)) !== FALSE) {
         //$line is an array of the csv elements
         array_push($CSVData, $line);
         $numberColumns = count($line);
     }
     fclose($file);
+
+    // Remove top title row
     unset($CSVData[0]);
 }
 
+// If post posted handle interaction
 if(isset($_POST)){
     if(count($_POST) > 0) {
         handlePost();
     }
 }
 
-// If the page is access with an appropraite get variable
+// If the page is access with an appropriate get variable
 if(isset($_GET['action'])) { ?>
 <script>
+    // Pass get to javascript
     $(document).ready(function(){
         LoadUserInteractions(<?php echo JSON_ENCODE($_GET['action']); ?>);
     });
@@ -36,6 +43,7 @@ if(isset($_GET['action'])) { ?>
     <span class = "filter-stream">
         <ul>
             <?php
+            // Determine head buttons
             determineControls();
             ?>
         </ul>
@@ -47,12 +55,15 @@ if(isset($_GET['action'])) { ?>
         <thead>
         <tr>
             <?php
+            // Determine table head elements
             determineTableHead();
             ?>
         </tr>
         </thead>
         <tbody>
         <?php
+        // If csv data and column number succesfully retrieved
+        // input data
         if(isset($CSVData, $numberColumns)) {
             determineBody($CSVData, $numberColumns);
         }
@@ -65,6 +76,9 @@ if(isset($_GET['action'])) { ?>
 /*
  * Determines the appropriate html to put into the button control box
  * Echos html into browser
+ * PRE: $_GET['action'] - string page action for example manage volunteer
+ * PRE: $_FILES - array file data posted to the page
+ * POST: html inserted into page
  */
 function determineControls(){
     // Define all button options, and unset them as needed using the switch
@@ -79,7 +93,7 @@ function determineControls(){
             break;
         default:
             if(isset($_FILES)){
-                if(count($_FILES) > 0){
+                if(count($_FILES) > 0){ // If more then on row
                     unset($buttonHtml['addCSV']);
                 } else {
                     unset($buttonHtml['addData']);
@@ -96,6 +110,11 @@ function determineControls(){
     }
 }
 
+/*
+ * Determines the html to input into the table head
+ * PRE: $_GET['action'] - string web page specific action the page is to undertake
+ * POST: html inputted into browser
+ */
 function determineTableHead(){
     // Define all table head options, later the index chooses the correct one.
     $tableHeadHtml = array('manageVolunteer' => '<th class = "check-Small check-head"><input type="checkbox"></th>
@@ -122,9 +141,13 @@ function determineTableHead(){
 
     // Echo html in as needed
     echo $tableHeadHtml[$_GET['action']];
-    return true;
 }
 
+/*
+ * Creates the data necessary for the table body
+ * PRE: $CSVData - array Array of data from a posted csv file
+ * PRE: $numberColumns - int Number of columns counted in csv file
+ */
 function determineBody($CSVData, $numberColumns) {
     if (isset($CSVData)) {
         for ($i = 1; $i < count($CSVData) + 1; $i++) {
@@ -138,6 +161,12 @@ function determineBody($CSVData, $numberColumns) {
     }
 }
 
+/*
+ * Handles page specific post operations
+ * PRE: $_POST['numberVariables'] - int Number of variables posted
+ * PRE: $_GET['action'] - string String representing page specific activies such as manage volunteer
+ * POST: Relevant SQL Executed
+ */
 function handlePost(){
     $length = $_POST['numberVariables'];
 
@@ -158,23 +187,35 @@ function handlePost(){
     }
     $sql = manageSqlGeneration($sql, $length, $array);
 
+    // If managing shift split time into it's appropriate components
     if($_GET['action']=='manageShift'){
-        $array[4] = explode(' ', $array[4])[0];
+        $TIME_INDEX = 3;
+        $DURATION_INDEX = 4;
+        $array[$DURATION_INDEX] = explode(' ', $array[$DURATION_INDEX])[0];
 
-        if(substr($array[3], -count($array[3])-1) == 'pm') {
-            $timeExploded = explode(':', substr($array[3], 0, strlen($array[3])-2));
+        if(substr($array[$TIME_INDEX], -count($array[$TIME_INDEX])-1) == 'pm') { //09:00pm to pm. If pm remove pm add 12hours
+            $timeExploded = explode(':', substr($array[$TIME_INDEX], 0, strlen($array[$TIME_INDEX])-2)); // 09:00pm to 09:00
             $timeExploded[0] += 12;
             $time = $timeExploded[0].':'.$timeExploded[1];
         } else {
-            $time = substr($array[3], 0, -2);
+            $time = substr($array[$TIME_INDEX], 0, -2); // 09:00am to 09:00
         }
-        $array[3] = $time;
+        $array[$TIME_INDEX] = $time;
     }
 
     $sqlObject = new \PHP\SqlObject($sql, $array);
     $sqlObject->Execute();
 }
 
+// TODO Add stream to csv implementation.
+/* Generic sql generation method. Generates sql based on
+ * array provided,
+ * PRE: $sql - string Current sql created
+ * PRE: $length - int number of variables posted
+ * PRE: $array - array Array of data to input
+ * POST: $array - Updated data array
+ * POST: $sql - Updated sql
+ */
 function manageSqlGeneration($sql, $length, &$array){
     for($i =0; $i < $length; $i++){
         for($j = 0; $j < count($_POST['id'.$i]); $j++){
@@ -183,13 +224,15 @@ function manageSqlGeneration($sql, $length, &$array){
             }
             $noComma = false;
             $data = $_POST['id'.$i][$j];
+
+            // If staff or volunteer split first name second name for sql
             if($j == 1 && $_GET['action'] != 'manageShift') {
                 $sql .= ':'.$i.$j;
                 $data = explode(' ', $_POST['id'.$i][$j]);
                 array_push($array, $data[0]);
                 $sql .= ', :'.$i.$j.'num2';
                 array_push($array, $data[1]);
-            } else if($j == count($_POST['id'.$i])-1) { // TEMPORARY FIX TO STREAM MIX
+            } else if($j == count($_POST['id'.$i])-1) { // TEMPORARY FIX TO STREAM MIX. IGNORES STREAM
                 if($_GET['action'] == 'manageShift'){
                     $sql .= ':'.$i.$j;
                     array_push($array, $data);
@@ -205,6 +248,9 @@ function manageSqlGeneration($sql, $length, &$array){
             } else {
                 $sql .= ', ';
             }
+
+            // Close the bracers of the sql statement (v1, v2, v3 -> (v1, v2, v3, 1) or (v1, v2, v3)
+            // Where 1 denotes whether a row is active. (Valid only for staff and volunteer tables
             if($j == count($_POST['id'.$i])-1) {
                 if ($_GET['action'] != 'manageShift') {
                     $sql .= '1)';
