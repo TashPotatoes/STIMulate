@@ -25,7 +25,6 @@
         <?php include 'Include/Global_Timetable.inc'; ?>
         <div class="messagebox" >
             <p>
-            <a href="about.php">About STIMulate</a>
             <a href="Volunteer_Shifts.php">Facilitator Login</a>
             </p>
         </div>

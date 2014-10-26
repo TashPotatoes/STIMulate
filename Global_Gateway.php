@@ -5,13 +5,15 @@
 
 	$UserAccessControl = new UserAccessControl();
 	if ($UserAccessControl->isUserLoggedIn() == true) {
-        if($_SESSION['requires_reset']){
+        if($_GET['ref'] == "logout") {
+            $UserAccessControl->doLogout();
+        }elseif($_SESSION['requires_reset']){
             header("Location: Admin_Login_Reset.php");
         } else {
             header("Location: Volunteer_Shifts.php");
         }
 	} else {
-        $errors = 1;
+       // $errors = 1;
 	}
     $UserAccessControl->checkTimeout();
 

@@ -48,7 +48,7 @@ class UserAccessControl
             $user_name = $_POST['login_input_username'];
             $password = $_POST['login_input_password'];
 
-            $sqlObject = new \php\SqlObject("SELECT student_id, active FROM facilitators 
+            $sqlObject = new \php\SqlObject("SELECT student_id, active, stu_name_first FROM facilitators 
                                 WHERE student_id = :id AND stu_name_last = :name", array($user_name, $password));
 
             $loginCheck = $sqlObject->Execute();
@@ -60,6 +60,7 @@ class UserAccessControl
 
                     $_SESSION['user_id'] = $loginCheck[0]['student_id'];
                     $_SESSION['user_login_status'] = 1;
+                    $_SESSION['user_name'] = $loginCheck[0]['stu_name_first'];
                     $_SESSION['user_type'] = $userType;
                 } else {
                     $this->errors[] = "This user is not active";
@@ -82,7 +83,7 @@ class UserAccessControl
 
             $user_name = $_POST['login_input_username'];
             $password = $_POST['login_input_password'];
-            $sqlObject = new \php\SqlObject("SELECT * FROM STIMulate.staff
+            $sqlObject = new \php\SqlObject("SELECT staff_id, staff_name_first, passReset FROM STIMulate.staff
                                 WHERE staff_id = :id AND staff_password = MD5(:pass)", array($user_name, $password));
             $loginCheck = $sqlObject->Execute();
 
@@ -91,6 +92,7 @@ class UserAccessControl
                 $result_row = $loginCheck;
                 $_SESSION['user_id'] = $loginCheck[0]['staff_id'];
                 $_SESSION['user_login_status'] = 1;
+                $_SESSION['user_name'] = $loginCheck[0]['staff_name_first'];
                 $_SESSION['user_type'] = $userType;
                 $_SESSION['requires_reset'] = $loginCheck[0]['passReset'] == '1';
 

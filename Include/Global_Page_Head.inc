@@ -19,7 +19,7 @@ session_start();
                 <?php
                 if(isset($_SESSION['user_id'])) {
                     echo '<img src="IMG/student.png" alt = "student Picture" class = "inline-image">';
-                    echo '<p id = "studentName" class = "inline-text">'.$_SESSION['user_id'].'</p>';
+                    echo '<p id = "studentName" class = "inline-text">'.$_SESSION['user_name'].'</p>';
                 } else { //echo "fek.";
                 }
                 ?>

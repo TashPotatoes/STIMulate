@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Hayden
- * Date: 19/10/2014
- * Time: 4:20 PM
- */
-
 require 'PHP/uac.php';
 $UserAccessControl = new UserAccessControl();
 

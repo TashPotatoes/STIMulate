@@ -72,7 +72,8 @@ function RetrieveData(){
                     'allStreamsSql' => 'SELECT * FROM STIMulate.streams',
                     'allStreamStreamsSql' => 'SELECT * FROM STIMulate.facilitator_streams',
                     'allStaffSql' => 'SELECT * FROM STIMulate.staff WHERE active =1 ORDER BY staff_name_first asc',
-                    'allVolunteerSql' => 'SELECT * FROM STIMulate.facilitators WHERE active = 1 ORDER BY stu_name_first asc'];
+                    'allVolunteerSql' => 'SELECT * FROM STIMulate.facilitators WHERE active = 1 ORDER BY stu_name_first asc',
+                    'allSpecs' => 'SELECT * FROM STIMulate.specialisations'];
 
     // Depending on the action return the appropriate information
     switch($_GET['action']) {
@@ -133,6 +134,16 @@ function RetrieveData(){
 
             // Return associative array
             return array('absentInformation'=>$absentInformation,'absentStudentInformation'=>$studentInformation);
+        case 'manageSpecs':
+            // Execute 3 sql queries and assign them to an associative array to return
+            $sqlObject = new \PHP\SqlObject($sqlQueries['allSpecs']);
+            $specInformation = $sqlObject->Execute();
+            $sqlObject = new \PHP\SqlObject($sqlQueries['allStreamsSql']);
+            $streamInformation = $sqlObject->Execute();
+
+
+            // Return associative array
+            return array('SpecInformation' => $specInformation, 'streamInformation' => $streamInformation);
         // Default action
         default:
             // Do nothing
@@ -148,9 +159,13 @@ function RetrieveData(){
  */
 function determineControls(){
     // Define all button options, and unset them as needed using the switch
-    $buttonHtml = array('newButton' => '<li class = "admin-controls">New</li>','manageButton' => '<li class = "admin-controls">Manage</li>',
-        'deleteButton' => '<li class = "admin-controls">Delete</li>', 'resetPasswordButton' => '<li class = "admin-controls large">Reset Password</li>',
-        'addCSVButton' => '<li class = "admin-controls">Add by CSV</li>');
+    $buttonHtml = array(
+        'newButton' => '<li class = "admin-controls">New</li>',
+        'manageButton' => '<li class = "admin-controls">Manage</li>',
+        'deleteButton' => '<li class = "admin-controls">Delete</li>',
+        'resetPasswordButton' => '<li class = "admin-controls large">Reset Password</li>',
+        'addCSVButton' => '<li class = "admin-controls">Add by CSV</li>'
+        );
 
     // Depending on the action return the appropraite information
     switch($_GET['action']) {
@@ -202,7 +217,11 @@ function determineTableHead(){
                 <th class = "tableHead">Student Name<span class = "arrow-down"></span></th>
                 <th class = "tableHead">Time Absent<span class = "arrow-down"></span></th>
                 <th class = "tableHead">End Absent Time<span class = "arrow-down"></span></th>
-                <th class = "tableHead">Reason<span class = "arrow-down"></span></th>'
+                <th class = "tableHead">Reason<span class = "arrow-down"></span></th>',
+                    'manageSpecs' => '<th class = "check-Small check-head"><input type="checkbox"></th>
+                <th class = "tableHead">ID<span class = "arrow-down"></span></th>
+                <th class = "tableHead">Specialisation<span class = "arrow-down"></span></th>
+                <th class = "tableHead">Streams<span class = "arrow-down"></span></th>',
                     );
 
     // Echo html in as needed
@@ -234,6 +253,10 @@ function insertRows($sqlResult){
         case 'manageAbsent':
             //Insert absent tr td elements
             insertAbsent($sqlResult);
+            break; 
+        case 'manageSpecs':
+            //Insert absent tr td elements
+            insertSpecs($sqlResult);
             break;
         // Default action. End
         default:
@@ -291,6 +314,25 @@ function insertVolunteer($sqlResult){
     }
 }
 
+function insertSpecs($sqlResult) {
+    // This array is required because of a mismatch that exists
+    // between the streams and facilitator_stream tables in the database.
+    // This affects echoing indices later
+    // facilitator_streams  => [IT, Science, Math, Duty Host]
+    // streams              => [Duty Host, IT, Math, Science]
+    $streamIndex = array(1, 3, 2, 0);
+
+    for($i = 0; $i < count($sqlResult['SpecInformation']); $i++){
+        echo '<tr>';
+        echo '<td class="check-Small"><input type = "checkbox"></td>';
+
+        echo '<td class = "data-item">'.$sqlResult['SpecInformation'][$i]['spec_id'].'</td>';
+        echo '<td class = "data-item">'.$sqlResult['SpecInformation'][$i]['spec_name'].'</td>';
+        echo '<td class = "data-item">'.$sqlResult['SpecInformation'][$i]['in_it'].$sqlResult['SpecInformation'][$i]['in_sc'].$sqlResult['SpecInformation'][$i]['in_ma'].'</td>';
+        
+        echo '</tr>';
+    }
+}
 /*
  * Inserts staff information as per a successful staff database
  * retrieve
@@ -696,6 +738,82 @@ function manageVolunteer()
                 $deleteQuery = "UPDATE STIMulate.facilitators
                                         SET active = 0
                                         WHERE student_id IN (";
+                for ($i = 0; $i < count($_POST['id']); $i++) {
+                    if ($i + 1 == count($_POST['id'])) {
+                        $deleteQuery .= ":val" . $i;
+                    } else {
+                        $deleteQuery .= ":val" . $i . ', ';
+                    }
+                }
+                $deleteQuery .= ");";
+                $sqlObject = new \PHP\SqlObject($deleteQuery, $_POST['id']);
+                $sqlObject->Execute();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function manageSpecs() {
+    // If valid post
+    if (isset($_POST['id'], $_POST['type'])) {
+        // If name posted calculate first and last name
+        if (isset($_POST['name'])) {
+            $name = explode(' ', $_POST['name']); // Explode at ' '
+            $first = $name[0];
+
+            // 2nd element onward is lastname
+            if (isset($name[1])) {
+                $last = '';
+                for($i = 1; $i < count ($name); $i++){
+                    $last .= $name[$i].' ';
+                }
+            // Otherwise last name is empty
+            } else {
+                $last = "";
+            }
+        }
+        switch ($_POST['type']) {
+            case 'new':
+                // Add new facilitator
+                $sqlObject = new \PHP\SqlObject("INSERT INTO STIMulate.specialisations (spec_id, spec_name, in_it, in_sc, in_ma)
+                                                        VALUES (:id, :name, :in_it, :in_sc, :in_ma);", array($_POST['id'], $_POST['name'], $_POST['in_it'], $_POST['in_sc'],$_POST['in_ma']));
+                $sqlObject->Execute();
+
+                // Adding stream data
+                if(!isset($_POST['it'])){$_POST['it'] = 0; }else{$_POST['it'] = 1;}
+                if(!isset($_POST['math'])){$_POST['math'] = 0; }else{$_POST['math'] = 1;}
+                if(!isset($_POST['science'])){$_POST['science'] = 0; }else{$_POST['science'] = 1;}
+                if(!isset($_POST['dutyHost'])){$_POST['dutyHost'] = 0; }else{$_POST['dutyHost'] = 1;}
+
+            case 'manage':
+                // Updating facilitator and stream data
+                $sqlObject = new \PHP\SqlObject("UPDATE STIMulate.specialisations
+                                                            SET spec_id = :newId, spec_name = :name, in_it = :in_it, in_sc = :in_sc, in_ma = :in_ma
+                                                            WHERE spec_id = :id;", array($_POST['id'], $_POST['name'], $_POST['in_it'], $_POST['in_sc'],$_POST['in_ma']));
+                $sqlObject->Execute();
+
+                // updating stream data. If non-existant, add new record.
+                $updateStream = "INSERT INTO STIMulate.specialisations (spec_id, spec_name, in_it, in_sc, in_ma)
+                                VALUES (:id, :name, :it, :sc, :ma)
+                                ON DUPLICATE KEY
+                                UPDATE is_it = :it, is_sc = :sc, is_ma = :ma, is_dh = :dh;";
+
+                // updating stream data
+                if(!isset($_POST['it'])){$_POST['it'] = 0; }else{$_POST['it'] = 1;}
+                if(!isset($_POST['math'])){$_POST['math'] = 0; }else{$_POST['math'] = 1;}
+                if(!isset($_POST['science'])){$_POST['science'] = 0; }else{$_POST['science'] = 1;}
+
+                $sqlObject = new \PHP\SqlObject($updateStream, array($_POST['spec_id'], $_POST['spec_name'], $_POST['it'], $_POST['science'], $_POST['math'], ));
+                $sqlObject->Execute();
+
+                break;
+            case 'delete':
+                // Remove facilitator data
+                // Generate sql query based on volunteer ids
+                $deleteQuery = "DELETE FROM STIMulate.specialisations
+                                        WHERE spec_id IN (";
                 for ($i = 0; $i < count($_POST['id']); $i++) {
                     if ($i + 1 == count($_POST['id'])) {
                         $deleteQuery .= ":val" . $i;
