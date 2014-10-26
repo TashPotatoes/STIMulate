@@ -267,7 +267,11 @@ function insertVolunteer($sqlResult){
         // Calculate relevant streams and echo in
         for($j = 0; $j < count($sqlResult['volunteerStreamInformation']); $j++) {
             $firstInputted = false;
-
+            /*
+             * Depending on how effectively the light reflecting off the moon
+             * relative to the sun is hitting the silcon cpu in your computer
+             * will determine whether the following will work or not
+             */
             // Compare volunteer stream data with volunteer information
             for($k = 1; $k < (count($sqlResult['volunteerStreamInformation'][$j])/2); $k++){
                 if($sqlResult['volunteerStreamInformation'][$j][$k] == '1' && $sqlResult['volunteerInformation'][$i]['student_id'] == $sqlResult['volunteerStreamInformation'][$j][0]){
