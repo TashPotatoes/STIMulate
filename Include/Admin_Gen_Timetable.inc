@@ -9,8 +9,16 @@
 
 //Requiring SQL Object
 require_once 'PHP/SqlObject.php';
-require_once 'Include/Admin_Gen_Timetable_Tools.inc';
+
 $modelOPL = "";
+$stream = "";
+$studentTotal = 0;
+$studentArray = array();
+$shiftTotal = 8; 
+$startTime = 9;
+$daysTotal = 5;
+require_once 'Include/Admin_Gen_Timetable_Tools.inc';
+
 ?>
 
 <div class = "push-right">
@@ -24,6 +32,13 @@ $modelOPL = "";
 		<div class = "content">
 	 
 <?php
+			if (isset($_POST['variable'])){
+				echo "posted variable is set";
+				//echo "<p>PLF happiness index for this table is <pre id=\"log\"/> level of happiness </p>";
+				ResultsToDatabase();
+			}
+			
+			
 			// if the stream has been selected, generate the OPL
 			if(isset($_POST['stream'])) {
 
@@ -41,11 +56,7 @@ $modelOPL = "";
 					echo ("<input type='submit' value='Generate Table' onclick='run() '/> "); 
 					echo " checking if is posted";
 					
-					if (isset($_POST['variable'])){
-						echo "posted variable is set";
-						ResultsToDatabase();
-						echo "<p>PLF happiness index for this table is <pre id=\"log\"/></p>";
-					}
+					
 				} else {
 					// if stream is set but no OPL generated 
 					echo "<textarea id='source' cols='100' rows='10'>";
@@ -77,7 +88,7 @@ $modelOPL = "";
 
 <?php	
 			} 	
-			echo "<pre id=\"log\"/></p>";	
+			echo "PLF happiness score is <pre id=\"log\"/></p>";	
 
 ?>
 

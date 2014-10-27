@@ -1,21 +1,24 @@
 /* 
  * Pass javascript variables to PHP (via sending as POST & reloading page) 
  */
-function javascriptToPHP( jsvar, pageURL) { 
-	jsvar = JSON.stringify(jsvar)
+function javascriptToPHP( jsvar, stream, studentArray, pageURL) { 
+	jsvar = JSON.stringify(jsvar);
+	studentArray = JSON.stringify(studentArray);
+	stream = JSON.stringify(stream);
 	console.log("here");
-	 $.ajax({
+	$.ajax({
 		url: pageURL,
 		type: "POST",
 		data: {
-			'variable': jsvar
+			'variable': jsvar, 'curStream': stream, 'studentArray': studentArray
 		},
-		cache: false,
+		//dataType: 'json',
 		success: function (output) {
-			console.log("This is a ajax succes" + output);
+			console.log("This is a ajax success" + output);
 		},
-		error: function () {
-			console.log("error");
+		error : function(jqXHR, textStatus, errorThrown) { 
+			console.log("error "); 
+			alert("Error: Status: "+textStatus+" Message: "+errorThrown);
 		}
 	});
 }
@@ -38,30 +41,30 @@ function run(model){
     	var iocp = new IOCP({presolve: GLP_ON});
     	glp_intopt(lp, iocp);
 
-    	log("obj: " + glp_mip_obj_val(lp));
+    	//log("obj: " + glp_mip_obj_val(lp));
     	for(var i = 1; i <= glp_get_num_cols(lp); i++){
         	//log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
     	}
         
-	var results;
+	var results = [];
 			
         log("obj: " + glp_mip_obj_val(lp));
 			
         for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
 			if (glp_mip_obj_val(lp) != 0){
-				if (parseInt(glp_get_col_name(lp, i) [0])  == "x"){
+				if ((glp_get_col_name(lp, i) [0])  == "x"){
 					var person = parseInt(glp_get_col_name(lp, i) [1]);
 					var shift = parseInt(glp_get_col_name(lp, i) [3]);
 					var value = parseInt(glp_mip_col_val(lp, i));
 					results.push([person, shift, value]); //results[person][shift]  = value; 
 				}
-				console.log(results);
-				javascriptToPHP(results, 'Admin_Gen_Timetable.php');
+				
 			
 			} else {
 				alert("There was no feasible solution");
 			}
         }
-				
+		console.log("sending to php");
+		javascriptToPHP(results, 'Admin_Gen_Timetable.php');		
 }

@@ -11,9 +11,8 @@ ini_set('max_execution_time', 300);
 ini_set("memory_limit","20M");
 //ob_end_clean();
 //ini_set('output_buffering', '0');
-
 $stream = "";
-$studentTotal = 0;
+
 
 /* 
  *  Retrieves from the database the relevant fields in order to generate a mathematical model
@@ -25,7 +24,6 @@ $studentTotal = 0;
  *	 by person. 
  * @return string  of OPL model to run simplex algorithm
  */
-
 function GenerateOPL($stream){
 		// Generate all data for all students. Database houses multiple rows per student.
 		$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY new_" .$stream." DESC, user_id ASC, day ASC", array(strtoupper($stream)));  
@@ -197,31 +195,8 @@ function GenerateOPL($stream){
 		//TODO: pass input string directly to algorithm, may need to change.
 	
 		return $input;
+
 }
-
-/*function ResultsToDatabase1(){
-			
-			// Return the javascript array of person, shift and value 
-			if (isset($_POST['variable[]'])) {
-					$results = $_POST['variable[]'];
-					$entries = count($results);
-					$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
-					$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-					
-					// assume shift_ID goes from 0 to shiftnum,
-					$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shift_ID, stream, day, shift_time) VALUES";
-					foreach ($results as $entry){
-						$sqlEntry = "( `". array_search($entry[1], $studentArray)  . "`, " . $entry[2] . ", `" . $stream . "`"; 
-						$sqlEntry .= ", `"  . $dayEntries(floor($entry[3] / $shiftTotal)) . "`, `" . $shiftEntries[$entry[3] % $shiftTotal] . "` ), ";
-						//TODONE: the final "," breaks stuff. check if final "," causes sql error and if variable names have spaces at the start
-
-					}
-					
-					// add constructed table to database
-					$automaticTable = new \PHP\SqlObject("$sqlEntry", array());
-					$automaticTable->Execute();
-			}
-}*/
 
 
 /* 
@@ -234,11 +209,11 @@ function GenerateOPL($stream){
 function NextIsConsec($arrayResults, $i, $consec, $total){
 	
 	// while the next person is the same for the next entry keep checking
-	if ($results[i + $consec + 1][0] == $results[i + $consec][0]){
+	if ($arrayResults[$i + $consec + 1][0] == $arrayResults[$i + $consec][0]){
 		// check the next person has a shift for the next entry 
-		 if ($results[i + $consex + 1][2] == 1){
+		 if ($arrayResults[$i + $consec + 1][2] == 1){
 			// check that it's the next shift on the same day
-			if ($results[i + $consec + 1][2] % $total == $results[i + $consec][2] % $total + 1){ 
+			if ($arrayResults[$i + $consec + 1][2] % $total == $arrayResults[$i + $consec][2] % $total + 1){ 
 				return true;
 			}
 		 }	
@@ -252,16 +227,27 @@ function NextIsConsec($arrayResults, $i, $consec, $total){
  * @return Auto_Gen_Timetable inserted with rows, old data deleted
  */
 function ResultsToDatabase(){
-	echo "inside results";
+	
+	echo "inside todb";
 	// Return the javascript array of person, shift and value 
 	if (isset($_POST['variable'])) {
+	
 		echo "processing";
-		$clearTableSQL = new \PHP\SqlObject("$DELETE FROM `Auto_Gen_Timetable`", array());
+		$clearTableSQL = new \PHP\SqlObject("DELETE FROM `Auto_Gen_Timetable`", array());
 		$clearTable = $clearTableSQL->Execute();
 		
-		$results = $_POST['variable'];
+	//	$results = JSON_DECODE($_POST['variable']);
+		//$studentArray = JSON_DECODE($_POST['studentArray']);
+		echo "<pre>";
+		var_dump($results);
+		echo "<pre>";
+		
+		$shiftTotal = 8; 
+		
+		
+		
 		$entries = count($results);
-		$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
+		//$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
 		$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
 		//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
 		//$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
@@ -271,13 +257,16 @@ function ResultsToDatabase(){
 		/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
 		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
 		for ($i = 0;  $i < $entries; $i ++) {
+			echo intval($results[$i][intval(2)]);
+			
+			// process if it's optimal for the person/shift combo to be true in the ith entry
+			if (intval($results[$i][2]) == 1) {
+				$student_ID =  $studentArray[intval($results[$i][1])]; //array_search($entry[1], $studentArray);
+				//$shi_stream = $streamsArray[$stream];
+				//$shi_stream = strtoupper($_POST['curStream']);
 				
-			// process if it's optimal for the ith shift/person combo to be true
-			if ($results[i][2] == 1) {
-				$student_ID =  $studentArray($entry[1]); //array_search($entry[1], $studentArray);
-				$shi_stream = $streamArray[$stream];
-				$shi_day = floor($entry[1] / $shiftTotal);
-				$shi_time = $timesArray[$entry[1] % $shiftTotal] ;
+				$shi_day = floor(intval($results[$i][1]) / $shiftTotal);
+				$shi_time = $timesArray[intval($results[$i][1]) % $shiftTotal] ;
 					
 				// Check for consecutive shifts. 
 				//Check next shift/person is same person, check there is a shift for that person, check its on the same day, check its the next shift. 
@@ -299,6 +288,8 @@ function ResultsToDatabase(){
 		$automaticTableSQL = new \PHP\SqlObject("$sqlEntry", array());
 		$automaticTable = $automaticTableSQL->Execute();
 		echo "Temporary Table Generated";
-	}
+	
+	} else {
 	echo "not seeing post";
+	}
 }
