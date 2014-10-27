@@ -4,7 +4,7 @@
 
     ?>
     <style type="text/css">
-    .111specfilter {display: none;}
+    .specfilter {display: none;}
     .timetableWrapper {display:none;}
     </style>
 

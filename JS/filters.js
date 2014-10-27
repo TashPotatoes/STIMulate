@@ -26,7 +26,7 @@ function UnHideTableElements() {
         $(".specfilter").css("display", "block");
         $(".timetableWrapper").css("display", "block");
         $("#filterSelectMsg").remove();
-        $("#defaultLogo").remove();
+       // $("#defaultLogo").remove();
     }
 }
 /* Display namecards matching the chosen stream / hide the rest */

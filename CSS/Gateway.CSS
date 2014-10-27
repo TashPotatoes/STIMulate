@@ -1,7 +1,7 @@
 /* Styling for the login pages */
 #loginForm{
     width: 500px;
-    margin: 30px auto;
+    margin: 0 auto;
 }
 
 #loginForm input {
@@ -11,4 +11,11 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 7px 3px 7px 3px;
+}
+
+.gatewayerrors {
+	width: 500px;
+	margin: 30px auto;
+	text-align: center;
+	color: rgb(100,0,0);
 }

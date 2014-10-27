@@ -13,7 +13,7 @@
             header("Location: Volunteer_Shifts.php");
         }
 	} else {
-       // $errors = 1;
+        $errors = 1;
 	}
     $UserAccessControl->checkTimeout();
 
@@ -37,7 +37,7 @@
                         <p>Home</p>
                     </a>";
                 include 'Include/Global_Breadcrumb.inc'; ?>
-<div>
+<div class="gatewayerrors">
 <?php
 if(isset($errors)) {
     if (isset($UserAccessControl)) {

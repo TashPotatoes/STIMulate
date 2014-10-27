@@ -110,7 +110,7 @@ td:last-child {
 .absent {
     background-image: url('../img/alert-icon.png');
     background-repeat: no-repeat;
-    background-size: 32px 16px;
+    background-size: 42px 16px;
     background-position: top 4px right 3px;
     opacity: 0.5;
     color: rgba(120,50,50, 0.5);
