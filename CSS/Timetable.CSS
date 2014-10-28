@@ -116,10 +116,6 @@ td:last-child {
     color: rgba(120,50,50, 0.5);
 }
 
-.preferences td.column-time {
-    text-align: inherit;
-    vertical-align: inherit;
-}
 
 .preferences td {
 	align: center; 

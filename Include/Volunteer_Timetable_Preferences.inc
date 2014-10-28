@@ -16,43 +16,20 @@ if(isset($_POST)){
 }
 ?>
 
-<style>
-    .timetableWrapper {
-        background-color: #ffffff;
-    }
 
-    .timetableWrapper ul{
-        list-style: none;
-        padding-left: 10px;
-    }
+<div class="push-right pageWrapper">
 
-    .timetableWrapper p {
-        padding-left: 10px;
-    }
-
-    .timetableWrapper input[type = 'submit'] {
-        padding: 5px;
-        width: 70px;
-        height: 30px;
-        border: 1px solid rgb(165,165,165);
-        background-color: rgb(67,142,185);
-        color: #ffffff;
-        margin: 10px;
-    }
-</style>
-<div class="push-right">
-
-
+    <div class="contentWrapper">
+        <div class = "headElement">
+            <img src="IMG/calander.png" alt="Calander" class = "inline-image">
+            <h2 class = "inline-text">Timetable Preferences</h2>
+        </div>
         <div class = "timetableWrapper">
 
         <form  id="preferences" name="preferences" action="" method="post"> <!-- Global_Timetable_Preferences.php -->
 
                 <input type="hidden" name="action" value="updatePreferences">
-
-            <div class = "headElement">
-                <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-                <h2 class = "inline-text">Timetable Preferences</h2>
-            </div>
+				
 				<div>
 					<p>Please select your stream:</p>
 						<ul>
@@ -63,11 +40,7 @@ if(isset($_POST)){
 						</ul>
 					<p>To enter preferences, click on the cells until they change to the correct colour.</p>
 				</div>
-
-            <div class = "headElement">
-                <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-                <h2 class = "inline-text">Timetable Preferences</h2>
-            </div>
+		
 				<div class="timetable noselect">
 					<table  class = "preferences">
 						<tr>
@@ -106,24 +79,18 @@ if(isset($_POST)){
 					</table>
 				</div> <!-- End timetable -->
 
-            <div class = "headElement">
-                <img src="IMG/calander.png" alt="Calander" class = "inline-image">
-                <h2 class = "inline-text">Hours to Volunteer</h2>
-            </div>
-				<p>How many hours would you like to volunteer for your selected stream?</p>
-            <ul>
-                <li><input type="radio" name="max-hour" id="max-hour-1" value="1"><label for="max-hour-1">1</label><br/></li>
-                <li><input type="radio" name="max-hour" id="max-hour-2" value="2"><label for="max-hour-2">2</label><br/></li>
-                <li><input type="radio" name="max-hour" id="max-hour-3" value="3"><label for="max-hour-3">3</label><br/></li>
-                <li><input type="radio" name="max-hour" id="max-hour-4" value="4"><label for="max-hour-4">4</label><br/></li>
-            </ul>
-
-
+				<p>How many hours would you like to volunteer for your selected stream?<br/>
+					<input type="radio" name="max-hour" id="max-hour-1" value="1"><label for="max-hour-1">1</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-2" value="2"><label for="max-hour-2">2</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-3" value="3"><label for="max-hour-3">3</label><br/>
+					<input type="radio" name="max-hour" id="max-hour-4" value="4"><label for="max-hour-4">4</label><br/>
+				</p>
 				<input id="submit" type="submit" value="Submit">
 			</form>
 			
 		</div> <!-- End timetable wrapper -->		
     </div> <!-- end content wrapper -->
+</div> <!-- end push-right-->
 
 <?php
 
