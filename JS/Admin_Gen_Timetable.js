@@ -9,7 +9,7 @@ function javascriptToPHP( jsvar, studentArray, pageURL) {
 		url: pageURL,
 		type: "POST",
 		data: {
-			'variable': jsvar, 'curStream': stream, 'studentArray': studentArray
+			'variable': jsvar, 'studentArray': studentArray
 		},
 		//dataType: 'json',
 		success: function (output) {
@@ -26,7 +26,7 @@ function javascriptToPHP( jsvar, studentArray, pageURL) {
 /* 
  * Function for to run simplex algorithm upon pressing the "generate table"  
  */
-function run(model){
+function run(stream){
 	start = new Date(); 
 	logNode.innerText = document.getElementById("log");
     	var lp = glp_create_prob();
@@ -48,7 +48,7 @@ function run(model){
 	var results = [];
 			
         log("plf happiness index is : " + glp_mip_obj_val(lp));
-		var stream = document.getElementById("stream").value;
+		//var stream = document.getElementById("stream").value;
 		
         for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));

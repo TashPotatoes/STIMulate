@@ -47,9 +47,10 @@ $stream = "";
 					
 					echo ($modelOPL); 
 					echo ("</textarea>");
-					echo ("<input type='hidden' id='stream' value='$stream'/>");
+					//echo ("<input type='hidden' id='stream' value=''/>");
 					
-					echo ("<input type='submit' value='Generate Table' onclick='run() '/> "); 
+					echo ("<input type='submit' value='Generate Table' onclick=\"run('" . $stream ."') \"/> "); 
+					//echo ("<textarea cols='20' rows='20' id='stream' style='display:none;'>" . $stream . "</textarea>");
 				
 					
 				} else {
