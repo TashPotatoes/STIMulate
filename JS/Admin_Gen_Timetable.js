@@ -1,10 +1,9 @@
 /* 
  * Pass javascript variables to PHP (via sending as POST & reloading page) 
  */
-function javascriptToPHP( jsvar, stream, studentArray, pageURL) { 
+function javascriptToPHP( jsvar, studentArray, pageURL) { 
 	jsvar = JSON.stringify(jsvar);
 	studentArray = JSON.stringify(studentArray);
-	stream = JSON.stringify(stream);
 	console.log("here");
 	$.ajax({
 		url: pageURL,
@@ -57,7 +56,8 @@ function run(model){
 					var person = parseInt(glp_get_col_name(lp, i) [1]);
 					var shift = parseInt(glp_get_col_name(lp, i) [3]);
 					var value = parseInt(glp_mip_col_val(lp, i));
-					results.push([person, shift, value]); //results[person][shift]  = value; 
+					var stream = document.getElementById("stream").value
+					results.push([person, shift, value, stream]); //results[person][shift]  = value; 
 				}
 				
 			
@@ -66,5 +66,5 @@ function run(model){
 			}
         }
 		console.log("sending to php");
-		javascriptToPHP(results, 'Admin_Gen_Timetable.php');		
+		javascriptToPHP(results, studentArrayObj, 'Admin_Gen_Timetable.php');		
 }

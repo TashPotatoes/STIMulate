@@ -45,13 +45,14 @@ require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 				$stream =  $_POST['stream'];
 				//echo ("<p> Current Stream: $stream </p>");
 				$modelOPL = GenerateOPL($stream);
-				echo "<textarea id='source' cols='100' rows='10'>";
+				echo "<textarea id='source' cols='100' rows='10' readonly>";
 				
 				// if the OPL has been generated then display it, with option to run algorithm
 				if ($modelOPL != "") {
 					
 					echo ($modelOPL); 
 					echo ("</textarea>");
+					echo ("< input type='hidden' id='stream' value='$stream'/>");
 					
 					echo ("<input type='submit' value='Generate Table' onclick='run() '/> "); 
 					echo " checking if is posted";

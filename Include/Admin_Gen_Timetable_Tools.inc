@@ -194,6 +194,7 @@ function GenerateOPL($stream){
 		
 		//TODO: pass input string directly to algorithm, may need to change.
 	
+		echo "<script> var studentArrayObj = json_ecode($studentArray)" </script>; 
 		return $input;
 
 }
@@ -236,7 +237,9 @@ function ResultsToDatabase(){
 		$clearTableSQL = new \PHP\SqlObject("DELETE FROM `Auto_Gen_Timetable`", array());
 		$clearTable = $clearTableSQL->Execute();
 		
-	//	$results = JSON_DECODE($_POST['variable']);
+		$results = JSON_DECODE($_POST['variable'], true);
+		$studentArray = JSON_DECODE($_POST['studentArray'], true);
+		//$results = $_POST['variable'];
 		//$studentArray = JSON_DECODE($_POST['studentArray']);
 		echo "<pre>";
 		var_dump($results);
@@ -247,6 +250,7 @@ function ResultsToDatabase(){
 		
 		
 		$entries = count($results);
+		$stream = $result[0][3];
 		//$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
 		$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
 		//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
