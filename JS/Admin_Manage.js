@@ -12,12 +12,15 @@ function LoadUserInteractions(getVariable){
         checkedData = GetCheckedElements(checkedElements);
 
         // CSV request goes to CSV page, else append relevant action form
-        if (buttonName != 'Add by CSV') {
+        if (buttonName != 'Add by CSV' && getVariable != 'manageSpecs') {
             $('main').append(GenerateHTML(getVariable, buttonName));
             OnChange(checkedData); // Largely legacy. Made to switch between rows, does not affect functionality.
+        } else if(getVariable == 'manageSpecs'){
+            // Anthony's unfinished spec
         } else {
             window.location.href = "Admin_Manage_CSV.php?action="+getVariable;
         }
+
     });
 
 }
