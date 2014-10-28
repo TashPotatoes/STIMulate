@@ -252,7 +252,7 @@ function ResultsToDatabase(){
 		// assume shift_ID goes from 0 to shiftnum,
 		// student_ID, shift_ID, stream, day, shift_time)
 		/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
-		$sqlEntry = "INSERT INTO `autogen_timetable`(`shift_id`, `user_id`, `shi_stream`, `shi_day`, `shi_time`, `shi_duration`) VALUES";
+		$sqlEntry = "INSERT INTO `autogen_timetable`(`user_id`, shi_stream, shi_day, `shi_time`, shi_duration) VALUES";
 		for ($i = 0;  $i < $entries; $i++) {
 			
 			
@@ -275,7 +275,7 @@ function ResultsToDatabase(){
 				$shi_duration = $consec + 1;
 				
 				$sqlEntry .= "( '". $student_ID  . "', $shi_stream , $shi_day , ";
-				$sqlEntry .= "'" . $shi_time  . "' $shi_duration ), ";
+				$sqlEntry .= "'" . $shi_time  . "', $shi_duration ), ";
 			}
 		}
 
