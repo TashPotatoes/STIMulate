@@ -229,21 +229,16 @@ function NextIsConsec($arrayResults, $i, $consec, $total){
  */
 function ResultsToDatabase(){
 	
-	echo "inside todb";
 	// Return the javascript array of person, shift and value 
 	if (isset($_POST['variable'])) {
 	
-		echo "processing";
-		$clearTableSQL = new \PHP\SqlObject("DELETE FROM `Auto_Gen_Timetable`", array());
+		$clearTableSQL = new \PHP\SqlObject("DELETE FROM `autogen_timetable`", array());
 		$clearTable = $clearTableSQL->Execute();
 		
 		$results = JSON_DECODE($_POST['variable'], true);
 		$studentArray = JSON_DECODE($_POST['studentArray'], true);
 		//$results = $_POST['variable'];
 		//$studentArray = JSON_DECODE($_POST['studentArray']);
-		echo "<pre>";
-		var_dump($results);
-		echo "<pre>";
 		
 		$shiftTotal = 8; 
 			
@@ -257,12 +252,13 @@ function ResultsToDatabase(){
 		// assume shift_ID goes from 0 to shiftnum,
 		// student_ID, shift_ID, stream, day, shift_time)
 		/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
-		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, `shi_time`, shi_duration) VALUES";
-		for ($i = 0;  $i < $entries; $i ++) {
-			echo intval($results[$i][intval(2)]);
+		$sqlEntry = "INSERT INTO `autogen_timetable`(`shift_id`, `user_id`, `shi_stream`, `shi_day`, `shi_time`, `shi_duration`) VALUES";
+		for ($i = 0;  $i < $entries; $i++) {
+			
 			
 			// process if it's optimal for the person/shift combo to be true in the ith entry
 			if (intval($results[$i][2]) == 1) {
+				echo "this is in for loop and is 1" . intval($results[$i][intval(2)]) . "<br/>";
 				$student_ID =  $studentArray[intval($results[$i][1])]; //array_search($entry[1], $studentArray);
 				$shi_stream = $streamsArray[$stream];
 				//$shi_stream = strtoupper($_POST['curStream']);
@@ -281,15 +277,17 @@ function ResultsToDatabase(){
 				
 				$sqlEntry = "( '". $student_ID  . "', $shi_stream , $shi_day , ";
 				$sqlEntry .= "'" . $shi_time  . "' $shi_duration . ), ";
+				echo $sqlEntry . "<br/>";
 			}
 		}
 
 		$sqlEntry = rtrim($sqlEntry,",");
+		echo $sqlEntry;
 		
 		// add constructed table to database
 		$automaticTableSQL = new \PHP\SqlObject("$sqlEntry", array());
 		$automaticTable = $automaticTableSQL->Execute();
-		echo "Temporary Table Generated";
+		
 	
 	} else {
 	echo "not seeing post";

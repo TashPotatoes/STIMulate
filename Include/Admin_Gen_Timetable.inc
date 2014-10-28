@@ -28,7 +28,7 @@ $stream = "";
 	 
 <?php
 			if (isset($_POST['variable'])){
-				echo "posted variable is set";
+				//echo "posted variable is set";
 				//echo "<p>PLF happiness index for this table is <pre id=\"log\"/> level of happiness </p>";
 				ResultsToDatabase();
 			}
