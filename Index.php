@@ -17,11 +17,8 @@
 </head>
 <body>
     <main>
-        <div class="index-container">
-        <div class="messagebox" id="defaultLogo">
-        <img src="IMG/QUT.png" vertical-aign="middle" alt="QUT Logo" class = "inline-image">
-        <h1 class = inline-text>STIMulate</h1>
-        </div>
+        <?php include 'Include/Global_Page_Head.inc'; ?>
+       
         <?php include 'Include/Global_Timetable.inc'; ?>
         <div class="messagebox" >
             <p>
