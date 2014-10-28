@@ -248,7 +248,7 @@ function ResultsToDatabase(){
 		$shiftTotal = 8; 
 			
 		$entries = count($results);
-		$stream = $result[0][3];
+		$stream = $results[0][3];
 		$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
 		$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
 		//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
