@@ -129,40 +129,41 @@ if(isset($_POST)){
 
 function HandlePost()
 {
-    $stream = strtoupper($_POST["stream"]);
-    $student = $_SESSION['user_id'];
+    if(isset($_POST['stream'], $_POST['user_id'])) {
+        $stream = strtoupper($_POST["stream"]);
+        $student = $_SESSION['user_id'];
 
-    $sql = "INSERT INTO STIMulate.preferences (user_id, stream, day, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) VALUES ";
+        $sql = "INSERT INTO STIMulate.preferences (user_id, stream, day, `9`, `10`, `11`, `12`, `1`, `2`, `3`, `4`) VALUES ";
 
-    $SHIFTS_IN_DAY = 8;
-    $DAYS_IN_WEEK = 5;
-    $startSlice = 0;
-    $dataArray = array();
-    for ($i = 0; $i < $DAYS_IN_WEEK; $i++) {
-        $row = array($student, $stream, $i);
-        $counter = $i;
-        for ($j = 0; $j < $SHIFTS_IN_DAY; $j++) {
-            if ($j == 0) {
-                $sql .= '(:stu_id' . $i . '' . $j . ' , :faculty' . $i . '' . $j . ' , :day' . $i . '' . $j . ', ';
+        $SHIFTS_IN_DAY = 8;
+        $DAYS_IN_WEEK = 5;
+        $startSlice = 0;
+        $dataArray = array();
+        for ($i = 0; $i < $DAYS_IN_WEEK; $i++) {
+            $row = array($student, $stream, $i);
+            $counter = $i;
+            for ($j = 0; $j < $SHIFTS_IN_DAY; $j++) {
+                if ($j == 0) {
+                    $sql .= '(:stu_id' . $i . '' . $j . ' , :faculty' . $i . '' . $j . ' , :day' . $i . '' . $j . ', ';
+                }
+                if ($j + 1 == $SHIFTS_IN_DAY) {
+                    $sql .= ":val" . $i . '' . $j . ') ';
+                } else {
+                    $sql .= ":val" . $i . '' . $j . ', ';
+                }
+
+                array_push($row, $_POST['preferenceID'][$counter]);
+                $counter += 5;
             }
-            if ($j + 1 == $SHIFTS_IN_DAY) {
-                $sql .= ":val" . $i . '' . $j . ') ';
+            if ($i + 1 == $DAYS_IN_WEEK) {
+                $sql .= ";";
             } else {
-                $sql .= ":val" . $i . '' . $j . ', ';
+                $sql .= ", ";
             }
-
-            array_push($row, $_POST['preferenceID'][$counter]);
-            $counter += 5;
+            $dataArray = array_merge($dataArray, $row);
+            $startSlice += $SHIFTS_IN_DAY;
         }
-        if ($i + 1 == $DAYS_IN_WEEK) {
-            $sql .= ";";
-        } else {
-            $sql .= ", ";
-        }
-        $dataArray = array_merge($dataArray, $row);
-        $startSlice += $SHIFTS_IN_DAY;
+        $sqlObject = new \PHP\SqlObject($sql, $dataArray);
+        $sqlObject->Execute();
     }
-    echo $sql;
-    $sqlObject = new \PHP\SqlObject($sql, $dataArray);
-    $sqlObject->Execute();
 }
