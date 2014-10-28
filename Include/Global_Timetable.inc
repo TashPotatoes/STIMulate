@@ -137,11 +137,11 @@
                             $shiftDuration = $shiftInformation[$i]['shi_duration']-1;
 
                             // If the current time is the shift time continue else don't
-                            if($currentTime == $shiftTime) {
+                            if($currentTime == $shiftTime && $shiftDuration > 0) {
                                 $rightTime = true;
                             } else if(($currentTime+$shiftDuration) - ($shiftTime+$shiftDuration)
                                 <= $shiftDuration &&
-                                $currentTime >= $shiftTime){ //Handles shift durations if table time is in the range 9:00 -> 9:00 + 2 hours right time still
+                                $currentTime >= $shiftTime && $shiftDuration > 0){ //Handles shift durations if table time is in the range 9:00 -> 9:00 + 2 hours right time still
                                 $rightTime = true;
                             } else {
                                 $rightTime = false;
