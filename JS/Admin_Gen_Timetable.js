@@ -47,8 +47,9 @@ function run(model){
         
 	var results = [];
 			
-        log("obj: " + glp_mip_obj_val(lp));
-			
+        log("plf happiness index is : " + glp_mip_obj_val(lp));
+		var stream = document.getElementById("stream").value;
+		
         for(var i = 1; i <= glp_get_num_cols(lp); i++){
                 // log(glp_get_col_name(lp, i)  + " = " + glp_mip_col_val(lp, i));
 			if (glp_mip_obj_val(lp) != 0){
@@ -56,7 +57,7 @@ function run(model){
 					var person = parseInt(glp_get_col_name(lp, i) [1]);
 					var shift = parseInt(glp_get_col_name(lp, i) [3]);
 					var value = parseInt(glp_mip_col_val(lp, i));
-					var stream = document.getElementById("stream").value
+					
 					results.push([person, shift, value, stream]); //results[person][shift]  = value; 
 				}
 				

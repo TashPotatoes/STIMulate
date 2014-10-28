@@ -9,15 +9,10 @@
 
 //Requiring SQL Object
 require_once 'PHP/SqlObject.php';
+require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 
 $modelOPL = "";
 $stream = "";
-$studentTotal = 0;
-$studentArray = array();
-$shiftTotal = 8; 
-$startTime = 9;
-$daysTotal = 5;
-require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 
 ?>
 
@@ -52,17 +47,15 @@ require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 					
 					echo ($modelOPL); 
 					echo ("</textarea>");
-					echo ("< input type='hidden' id='stream' value='$stream'/>");
+					echo ("<input type='hidden' id='stream' value='$stream'/>");
 					
 					echo ("<input type='submit' value='Generate Table' onclick='run() '/> "); 
-					echo " checking if is posted";
-					
+				
 					
 				} else {
 					// if stream is set but no OPL generated 
-					echo "<textarea id='source' cols='100' rows='10'>";
 				
-					echo ("OPL loading");
+					echo ("OPL failed to load, please contact administrator");
 					echo ("</textarea>");
 				}
 				
@@ -89,7 +82,7 @@ require_once 'Include/Admin_Gen_Timetable_Tools.inc';
 
 <?php	
 			} 	
-			echo "PLF happiness score is <pre id=\"log\"/></p>";	
+			echo "<pre id=\"log\"/></p>";	
 
 ?>
 

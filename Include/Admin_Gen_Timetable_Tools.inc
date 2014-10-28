@@ -194,7 +194,7 @@ function GenerateOPL($stream){
 		
 		//TODO: pass input string directly to algorithm, may need to change.
 	
-		echo "<script> var studentArrayObj = json_ecode($studentArray)" </script>; 
+		echo "<script> var studentArrayObj = " . (json_encode($studentArray)) . "</script>"; 
 		return $input;
 
 }
@@ -223,7 +223,7 @@ function NextIsConsec($arrayResults, $i, $consec, $total){
 
 
 /* 
- *  Takes the [posted variable and processes the results, prepares the sql and updates the 
+ *  Takes the posted variable and processes the results, prepares the sql and updates the 
  *   temporary database.  deletes 
  * @return Auto_Gen_Timetable inserted with rows, old data deleted
  */
@@ -246,12 +246,10 @@ function ResultsToDatabase(){
 		echo "<pre>";
 		
 		$shiftTotal = 8; 
-		
-		
-		
+			
 		$entries = count($results);
 		$stream = $result[0][3];
-		//$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
+		$streamsArray = array( 'dh' => 1, 'it' => 2, 'ma' => 3, 'sc' => 4);
 		$timesArray = array( "9:00", "10:00", "11:00", "12:00","1:00", "2:00", "3:00", "4:00");
 		//$shiftEntries = array( "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4", "4-5");
 		//$dayEntries = array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
@@ -259,18 +257,18 @@ function ResultsToDatabase(){
 		// assume shift_ID goes from 0 to shiftnum,
 		// student_ID, shift_ID, stream, day, shift_time)
 		/////////$redundantRow; //array_push($redundantRow, i + $consec+1);
-		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, shi_time, shi_duration VALUES";
+		$sqlEntry = "INSERT INTO autogen_timetable (student_ID, shi_stream, shi_day, `shi_time`, shi_duration) VALUES";
 		for ($i = 0;  $i < $entries; $i ++) {
 			echo intval($results[$i][intval(2)]);
 			
 			// process if it's optimal for the person/shift combo to be true in the ith entry
 			if (intval($results[$i][2]) == 1) {
 				$student_ID =  $studentArray[intval($results[$i][1])]; //array_search($entry[1], $studentArray);
-				//$shi_stream = $streamsArray[$stream];
+				$shi_stream = $streamsArray[$stream];
 				//$shi_stream = strtoupper($_POST['curStream']);
 				
 				$shi_day = floor(intval($results[$i][1]) / $shiftTotal);
-				$shi_time = $timesArray[intval($results[$i][1]) % $shiftTotal] ;
+				$shi_time = $timesArray[intval($results[$i][1]) % $shiftTotal];
 					
 				// Check for consecutive shifts. 
 				//Check next shift/person is same person, check there is a shift for that person, check its on the same day, check its the next shift. 
