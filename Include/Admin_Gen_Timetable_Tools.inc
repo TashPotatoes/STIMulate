@@ -258,7 +258,6 @@ function ResultsToDatabase(){
 			
 			// process if it's optimal for the person/shift combo to be true in the ith entry
 			if (intval($results[$i][2]) == 1) {
-				echo "this is in for loop and is 1" . intval($results[$i][intval(2)]) . "<br/>";
 				$student_ID =  $studentArray[intval($results[$i][1])]; //array_search($entry[1], $studentArray);
 				$shi_stream = $streamsArray[$stream];
 				//$shi_stream = strtoupper($_POST['curStream']);
@@ -275,9 +274,8 @@ function ResultsToDatabase(){
 				}
 				$shi_duration = $consec + 1;
 				
-				$sqlEntry = "( '". $student_ID  . "', $shi_stream , $shi_day , ";
-				$sqlEntry .= "'" . $shi_time  . "' $shi_duration . ), ";
-				echo $sqlEntry . "<br/>";
+				$sqlEntry .= "( '". $student_ID  . "', $shi_stream , $shi_day , ";
+				$sqlEntry .= "'" . $shi_time  . "' $shi_duration ), ";
 			}
 		}
 
