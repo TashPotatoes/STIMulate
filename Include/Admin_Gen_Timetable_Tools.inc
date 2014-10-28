@@ -279,7 +279,7 @@ function ResultsToDatabase(){
 			}
 		}
 
-		$sqlEntry = rtrim($sqlEntry,",");
+		$sqlEntry = substr( $sqlEntry, 0, strrpos($sqlEntry, ","));  //= rtrim($sqlEntry,",");
 		echo $sqlEntry;
 		
 		// add constructed table to database
