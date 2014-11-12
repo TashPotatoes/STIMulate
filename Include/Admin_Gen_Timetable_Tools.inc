@@ -7,11 +7,74 @@
  */
 
 
+
 ini_set('max_execution_time', 300);
 ini_set("memory_limit","20M");
+
+namespace PHP;
+
+class Generator {
+	
+	private $studentTotal = 0;
+	private $stream = "";
+	private $studentArray = array();
+	private $studentPrefRS = array(), 
+	private $studentListRS = array();
+
+	function setStream($streamInput){
+		$this->$stream = $streamInput;
+	}
+
+	function retrieveStudentData($stream){
+		// Generate all data for all students. Database houses multiple rows per student.
+		$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY new_" .$stream." DESC, user_id ASC, day ASC", array(strtoupper($stream)));  
+		$this->$studentPrefRS = $studentPrefSQL->Execute();		
+		
+		// Collects all unique students in both preferences and facilitators. Index of studentID in array will be used to generate the input CPLEX string.
+		$studentListSQL = new \PHP\SqlObject("SELECT student_id FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream GROUP BY user_id ORDER BY new_" . $stream . " DESC, user_id ASC", array($stream));  
+		$this->$studentListRS = $studentListSQL->Execute();		
+
+	} 
+
+	function parseStudents(){		
+		$studentArray = array();
+		$studentTotal = 0;
+		foreach ($this->$studentListRS as $row) {
+			$studentArray[$studentTotal] = $row['student_id'];
+			$studentTotal++;
+		}
+		
+		if ($studentTotal == 0){
+			echo "Warning: No input data in database <br/>";
+		}
+		else if ($studentTotal < 8*5){
+			echo "Warning: you have " . $studentTotal . " students. It is recommended that you wait for more students to submit preferences<br/>";
+		}
+		// store the studentArray and student Total to be accessed later
+		$this->$studentTotal = $studentTotal;
+		$this->$studentArray = $studentArray;
+	}
+
+	function getinfo() {
+		retrie 
+		$stnjes = parsetudent;
+
+
+	}
+
+
+
+
+
+
+}
+
+
+
 //ob_end_clean();
 //ini_set('output_buffering', '0');
 $stream = "";
+$studentTotal = 0;
 
 
 /* 
