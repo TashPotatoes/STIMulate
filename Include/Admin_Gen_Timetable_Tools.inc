@@ -25,7 +25,7 @@ class Generator {
 		$this->$stream = $streamInput;
 	}
 
-	function retrieveStudentData($stream){
+	function RetrieveStudentData($stream){
 		// Generate all data for all students. Database houses multiple rows per student.
 		$studentPrefSQL = new \PHP\SqlObject("SELECT * FROM preferences JOIN facilitators ON facilitators.student_id = preferences.user_id  WHERE stream = :stream ORDER BY new_" .$stream." DESC, user_id ASC, day ASC", array(strtoupper($stream)));  
 		$this->$studentPrefRS = $studentPrefSQL->Execute();		
@@ -36,7 +36,7 @@ class Generator {
 
 	} 
 
-	function parseStudents(){		
+	function ParseStudents(){		
 		$studentArray = array();
 		$studentTotal = 0;
 		foreach ($this->$studentListRS as $row) {
@@ -55,11 +55,22 @@ class Generator {
 		$this->$studentArray = $studentArray;
 	}
 
-	function getinfo() {
-		retrie 
-		$stnjes = parsetudent;
+	function ParseStudentHours(){
+		$totalHours = 0;
+		$studentHours = array(); //TODONE create hours in db and then uncomment code below and edit for loop for generating relevant constraints
+		foreach($this->$studentPrefRS as $row) {
+			$studentIndex = array_search($row['user_id'], $studentArray,true);
+			$studentHours[$studentIndex] = $row["hours_" . $stream];
+			$totalHours += $row["hours_" . $stream];
+		}
+		$this->$studentHours = $studentHours;
+	}
 
-
+	function PrepareInfo() { 
+		RetrieveStudentData();
+		ParseStudents();
+		ParseStudentHours();
+		
 	}
 
 
